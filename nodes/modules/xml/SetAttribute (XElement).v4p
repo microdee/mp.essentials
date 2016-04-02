@@ -1,0 +1,199 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\xml\SetAttribute (XElement).v4p" systemname="SetAttribute (XElement)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\xml\SetAttribute (XElement).v4p" scrollx="165" scrolly="0">
+   <BOUNDS type="Window" left="47745" top="9015" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE systemname="Attribute (XElement Split)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Attribute (XElement Split)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="2595" top="1740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Attribute" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Element (XElement Split)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Element (XElement Split)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="1515" top="960" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Element" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Attributes" visible="1">
+   </PIN>
+   <PIN pinname="Attributes Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Value" visible="1">
+   </PIN>
+   <PIN pinname="Children" visible="1">
+   </PIN>
+   <PIN pinname="Children Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Attributes" dstnodeid="12" dstpinname="Attribute">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="10" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3990" top="450" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3990" top="450" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="left">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Attribute">
+   </PIN>
+   </NODE>
+   <NODE systemname="SetSlice (XElement Attribute Bin)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="SetSlice (XElement Attribute Bin)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="2325" top="3210" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Bin Size" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Spread" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1" slicecount="2" values="1,1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Attributes" dstnodeid="9" dstpinname="Spread">
+   </LINK>
+   <NODE systemname="Sift (String Advanced)" nodename="Sift (String Advanced)" componentmode="Hidden" id="8" filename="..\..\plugins\string\AdvancedStringSift\AdvancedStringSift.csproj">
+   <BOUNDS type="Node" left="2580" top="2265" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Input Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Input Index" visible="1">
+   </PIN>
+   <PIN pinname="Input Absolute Index" visible="1">
+   </PIN>
+   <PIN pinname="Filter Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Name" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="8" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Attributes Bin Size" dstnodeid="8" dstpinname="Input Bin Size">
+   </LINK>
+   <NODE systemname="Attribute (XElement Join)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Attribute (XElement Join)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="4005" top="2250" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Name" visible="1" slicecount="1" values="MyAttribute">
+   </PIN>
+   <PIN pinname="Value" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Attribute" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="3" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Attribute" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Input Absolute Index" dstnodeid="9" dstpinname="Index">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="13" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1515" top="360" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1515" top="360" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Element">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="11" dstpinname="Element">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="14" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6495" top="825" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6495" top="825" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MyAttribute">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Value">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Output String" dstnodeid="3" dstpinname="Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5160" top="465" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5160" top="465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Attribute Bin Size|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Filter Bin Size">
+   </LINK>
+   <NODE systemname="Element (XElement Join)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Element (XElement Join)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="1530" top="4365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Attributes Bin Size" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Value" visible="1">
+   </PIN>
+   <PIN pinname="Children" visible="1">
+   </PIN>
+   <PIN pinname="Children Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Attributes" visible="1">
+   </PIN>
+   <PIN pinname="Element" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Name" dstnodeid="17" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Value" dstnodeid="17" dstpinname="Value">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Children" dstnodeid="17" dstpinname="Children">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Children Bin Size" dstnodeid="17" dstpinname="Children Bin Size">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="17" dstpinname="Attributes">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="18" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1545" top="4935" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1545" top="4935" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Element">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Element" dstnodeid="18" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Attributes Bin Size" dstnodeid="17" dstpinname="Attributes Bin Size">
+   </LINK>
+   </PATCH>

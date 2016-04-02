@@ -1,0 +1,12 @@
+{
+	"Name": "mp.essentials",
+	"Author": "microdee",
+	"VVVVersion": "32",
+	"AddonPack": "true",
+	"Install": [
+		{"CopyThisPack": []}
+	],
+	"Uninstall": [
+		{"RemovePack": []}
+	]
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\nodes\Plugins\WindowsWindowPos\Test.v4p" scrollx="0" scrolly="0" systemname="Test" filename="C:\vvvv\libs\mcropack\nodes\Plugins\WindowsWindowPos\Test.v4p" locked="0">
+   <BOUNDS type="Window" left="40200" top="3000" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="33.3.0">
+   </PACK>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="2" stayontop="0" border="0">
+   <BOUNDS type="Node" left="1215" top="675" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1215" top="675" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="28800" height="16200">
+   </BOUNDS>
+   <PIN pinname="Window Handle" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.66914,0.66914,0.66914,1.00000|">
+   </PIN>
+   <PIN pinname="Keyboard State" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetParent (Windows)" filename="..\WindowsGetParent\WindowsGetParent.csproj" nodename="GetParent (Windows)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="1200" top="1230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Handle In" visible="1">
+   </PIN>
+   <PIN pinname="Handle Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Window Handle" dstnodeid="3" dstpinname="Handle In">
+   </LINK>
+   <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\modules\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="InAWindow" id="16">
+   <BOUNDS type="Node" left="1860" top="3195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="31770" top="6300" width="9000" height="6000">
+   </BOUNDS>
+   <PIN pinname="id" visible="1">
+   </PIN>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="PatchAlias (VVVV)" nodename="PatchAlias (VVVV)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="1860" top="2565" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="ID" dstnodeid="16" dstpinname="id">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Patch" dstnodeid="16" dstpinname="Patch">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Keyboard State" dstnodeid="16" dstpinname="Keyboard">
+   </LINK>
+   </PATCH>

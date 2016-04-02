@@ -1,0 +1,141 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\mcropack\VVVV.Packs.mcro\nodes\Plugins\DynamicGUIFakeMenu\FakeMenu (GUI Dynamic) help.v4p" systemname="DragAndDrop (Control) help" filename="E:\vvvv\mcropack\VVVV.Packs.mcro\nodes\Plugins\ControlDragAndDrop\DragAndDrop (Control) help.v4p">
+   <BOUNDS type="Window" left="7935" top="1680" width="6105" height="5325">
+   </BOUNDS>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
+   <NODE systemname="FakeMenu (GUI Dynamic)" filename="DynamicGUIFakeMenu.csproj" nodename="FakeMenu (GUI Dynamic)" componentmode="InAWindow" id="11" border="0">
+   <BOUNDS type="Node" left="1140" top="1770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Window Handle" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Buttons" visible="1">
+   </PIN>
+   <PIN pinname="Button Names" slicecount="4" values="Foo,Bar,,Yolo">
+   </PIN>
+   </NODE>
+   <NODE systemname="PatchAlias (VVVV)" nodename="PatchAlias (VVVV)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="1965" top="2595" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FakeMenu (GUI)" filename="..\..\modules\FakeMenu (GUI).v4p" nodename="FakeMenu (GUI)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="1620" top="3180" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Button Names" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Window Handle" dstnodeid="13" dstpinname="Window Handle">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="ID" dstnodeid="13" dstpinname="ID">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Buttons" dstnodeid="13" dstpinname="Buttons">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Patch" dstnodeid="13" dstpinname="Patch">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2880" top="990" width="1455" height="1365">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2880" top="990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="13" dstpinname="open">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="15" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1140" top="1125" width="825" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1140" top="1125" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="4" values="Foo,Bar,Bang,Yolo">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="11" dstpinname="Button Names">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="13" dstpinname="Button Names">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="2865" top="735" width="1410" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2865" top="735" width="1410" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|click here to open|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1515" top="3930" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1515" top="3930" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="index" dstnodeid="17" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="18" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2460" top="4065" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2460" top="4065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="String Output" dstnodeid="18" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3495" top="3900" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3495" top="3900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="opened" dstnodeid="19" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>

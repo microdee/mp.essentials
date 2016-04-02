@@ -1,0 +1,389 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\LookatSimple (Transform).v4p" systemname="LookatSimple (Transform)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\LookatSimple (Transform).v4p" scrollx="0" scrolly="555">
+   <BOUNDS type="Window" left="19680" top="4020" width="11115" height="9405">
+   </BOUNDS>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2595" top="900" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2595" top="900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,0,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Direction">
+   </PIN>
+   </NODE>
+   <NODE systemname="Normalize (3d Vector)" nodename="Normalize (3d Vector)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="2595" top="1875" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="NormalizedXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="20" dstpinname="XYZ">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="27" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="585" top="7695" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="585" top="7695" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="28" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1290" top="10155" width="735" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1290" top="10155" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform Out|">
+   </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="79">
+   <BOUNDS type="Node" left="3930" top="975" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3930" top="975" width="795" height="720">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="3" values="0,0,1">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|0, 0, 0|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Forward Vector|">
+   </PIN>
+   <PIN pinname="Slider Constraints" slicecount="1" values="scX">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <NODE systemname="Normalize (3d Vector)" nodename="Normalize (3d Vector)" componentmode="Hidden" id="80">
+   <BOUNDS type="Node" left="3915" top="2040" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1" slicecount="3" values="1,0,0">
+   </PIN>
+   <PIN pinname="NormalizedXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="79" srcpinname="Y Output Value" dstnodeid="80" dstpinname="XYZ">
+   </LINK>
+   <NODE systemname="Multiply (3d Dot)" nodename="Multiply (3d Dot)" componentmode="Hidden" id="81">
+   <BOUNDS type="Node" left="2655" top="2595" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input1 XYZ" visible="1" slicecount="3" values="0.409839004278183,0.809919953346252,0.419597089290619">
+   </PIN>
+   <PIN pinname="Input2 XYZ" visible="1" slicecount="9" values="1,0,0,0,1,0,0,0,1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="NormalizedXYZ" dstnodeid="81" dstpinname="Input1 XYZ">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="NormalizedXYZ" dstnodeid="81" dstpinname="Input2 XYZ">
+   </LINK>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="82">
+   <BOUNDS type="Node" left="1380" top="5250" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0.805424928665161">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Sign (Value)" nodename="Sign (Value)" componentmode="Hidden" id="83">
+   <BOUNDS type="Node" left="1245" top="3030" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Absolute Part" visible="1">
+   </PIN>
+   <PIN pinname="Sign Part" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="83" dstpinname="Input">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="84">
+   <BOUNDS type="Node" left="3555" top="5385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3555" top="5385" width="795" height="960">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="4" values="0,0,0,1">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|0, 0, 0, 1|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="85">
+   <BOUNDS type="Node" left="3075" top="6555" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1" slicecount="4" values="-0.999999940395355,-4.37113882867379E-008,4.37113847340243E-008,1.9106854651647E-015">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="86">
+   <BOUNDS type="Node" left="1350" top="5745" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Select" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Output" dstnodeid="86" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Output" dstnodeid="85" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="87">
+   <BOUNDS type="Node" left="3735" top="4395" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source Minimum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Source Maximum" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Destination Maximum" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (3d Cross)" nodename="Multiply (3d Cross)" componentmode="Hidden" id="88">
+   <BOUNDS type="Node" left="3810" top="2670" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input1 XYZ" visible="1" slicecount="3" values="0.523181736469269,0.186850622296333,0.831485271453857">
+   </PIN>
+   <PIN pinname="Input2 XYZ" visible="1" slicecount="3" values="0,0,1">
+   </PIN>
+   <PIN pinname="Output XYZ" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Normalize (3d Vector)" nodename="Normalize (3d Vector)" componentmode="Hidden" id="89">
+   <BOUNDS type="Node" left="3600" top="3240" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1" slicecount="3" values="0,0,1">
+   </PIN>
+   <PIN pinname="NormalizedXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="88" srcpinname="Output XYZ" dstnodeid="89" dstpinname="XYZ">
+   </LINK>
+   <NODE systemname="AxisAngle (Quaternion Set Vector)" nodename="AxisAngle (Quaternion Set Vector)" componentmode="Hidden" id="90">
+   <BOUNDS type="Node" left="3075" top="5010" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Angle" visible="1">
+   </PIN>
+   <PIN pinname="Axis XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Quaternion XYZW" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="87" srcpinname="Output" dstnodeid="90" dstpinname="Angle">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="NormalizedXYZ" dstnodeid="90" dstpinname="Axis XYZ">
+   </LINK>
+   <LINK srcnodeid="90" srcpinname="Quaternion XYZW" dstnodeid="85" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Rotate (Quaternion Vector)" nodename="Rotate (Quaternion Vector)" componentmode="Hidden" id="91">
+   <BOUNDS type="Node" left="1305" top="9195" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Quaternion XYZW" visible="1" slicecount="4" values="0.178877651691437,-0.983827114105225,0,0.00932413339614868">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="91" srcpinname="Transform Out" dstnodeid="28" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="NormalizedXYZ" dstnodeid="88" dstpinname="Input2 XYZ">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="NormalizedXYZ" dstnodeid="88" dstpinname="Input1 XYZ">
+   </LINK>
+   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="91" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="Power (Value)" nodename="Power (Value)" componentmode="Hidden" id="108">
+   <BOUNDS type="Node" left="1485" top="3780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="83" srcpinname="Absolute Part" dstnodeid="108" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="110">
+   <BOUNDS type="Node" left="1200" top="4440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="0.500343485847633">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="83" srcpinname="Sign Part" dstnodeid="110" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="110" srcpinname="Output" dstnodeid="87" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="108" srcpinname="Output" dstnodeid="110" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="82" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="125">
+   <BOUNDS type="Node" left="2925" top="7935" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1" slicecount="4" values="0,0,0,1">
+   </PIN>
+   <PIN pinname="Switch" visible="1" slicecount="4" values="0,0,0,0">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="4" values="-0,0.999999105930328,0,0.00130625127349049">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="127">
+   <BOUNDS type="Node" left="2205" top="5250" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0.805424928665161">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="126">
+   <BOUNDS type="Node" left="2175" top="5745" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Select" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="126" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="127" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Output" dstnodeid="125" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="Euler (Quaternion Set)" nodename="Euler (Quaternion Set)" componentmode="Hidden" id="128">
+   <BOUNDS type="Node" left="3975" top="7725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Quaternion XYZW" visible="1">
+   </PIN>
+   <PIN pinname="Yaw" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Roll" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Quaternion XYZW" dstnodeid="125" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="125" srcpinname="Output" dstnodeid="91" dstpinname="Quaternion XYZW">
+   </LINK>
+   <NODE systemname="Multiply (Quaternion)" nodename="Multiply (Quaternion)" componentmode="Hidden" id="131">
+   <BOUNDS type="Node" left="3165" top="7320" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Quaternion 1 XYZW" visible="1" slicecount="4" values="0,0,-0.999990999698639,0.00424105254933238">
+   </PIN>
+   <PIN pinname="Quaternion XYZW" visible="1">
+   </PIN>
+   <PIN pinname="Quaternion 2 XYZW" visible="1" slicecount="4" values="-0,0,-1,-4.37113882867379E-008">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="85" srcpinname="Output" dstnodeid="131" dstpinname="Quaternion 2 XYZW">
+   </LINK>
+   <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="133">
+   <BOUNDS type="Node" left="5250" top="6105" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source Minimum" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Source Maximum" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Destination Maximum" slicecount="1" values="-0.5">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Mapping" slicecount="1" values="Clamp">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="110" srcpinname="Output" dstnodeid="133" dstpinname="Input">
+   </LINK>
+   <NODE systemname="AxisAngle (Quaternion Set Vector)" nodename="AxisAngle (Quaternion Set Vector)" componentmode="Hidden" id="137">
+   <BOUNDS type="Node" left="4545" top="6705" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Axis XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Angle" visible="1">
+   </PIN>
+   <PIN pinname="Quaternion XYZW" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="80" srcpinname="NormalizedXYZ" dstnodeid="137" dstpinname="Axis XYZ">
+   </LINK>
+   <LINK srcnodeid="133" srcpinname="Output" dstnodeid="137" dstpinname="Angle">
+   </LINK>
+   <LINK srcnodeid="137" srcpinname="Quaternion XYZW" dstnodeid="131" dstpinname="Quaternion 1 XYZW">
+   </LINK>
+   <LINK srcnodeid="131" srcpinname="Quaternion XYZW" dstnodeid="125" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="138" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5715" top="8445" width="795" height="960">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5715" top="8445" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="4" values=",,,">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Quaternion XYZW" dstnodeid="138" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>

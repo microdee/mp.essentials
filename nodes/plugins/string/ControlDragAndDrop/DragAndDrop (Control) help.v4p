@@ -1,0 +1,87 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\mcropack\VVVV.Packs.mcro\nodes\Plugins\ControlDragAndDrop\DragAndDrop (Control) help.v4p" systemname="DragAndDrop (Control) help" filename="E:\vvvv\mcropack\VVVV.Packs.mcro\nodes\Plugins\ControlDragAndDrop\DragAndDrop (Control) help.v4p">
+   <BOUNDS type="Window" left="7935" top="1680" width="10770" height="7935">
+   </BOUNDS>
+   <NODE systemname="DragAndDrop (Control)" filename="ControlDragAndDrop.csproj" nodename="DragAndDrop (Control)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="3600" top="2445" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="DragEnter" visible="1">
+   </PIN>
+   <PIN pinname="DragDrop" visible="1">
+   </PIN>
+   <PIN pinname="DragLeave" visible="1">
+   </PIN>
+   <PIN pinname="DragInside" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="1">
+   <BOUNDS type="Node" left="1860" top="1635" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1860" top="1635" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="1215" top="2910" width="6240" height="5085">
+   </BOUNDS>
+   <PIN pinname="Control" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Background Color" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Control" dstnodeid="0" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="3615" top="3885" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Intersperse" slicecount="1" values="CarriageReturnLineFeed">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="4" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3615" top="4380" width="4890" height="1380">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3615" top="4380" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="5" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="HSV (Color Join)" nodename="HSV (Color Join)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="2475" top="885" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Value" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Decay (Animation)" nodename="Decay (Animation)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="4170" top="3015" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Decay" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="8" dstpinname="Value">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="1" dstpinname="Background Color">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="DragInside" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
+   </PATCH>

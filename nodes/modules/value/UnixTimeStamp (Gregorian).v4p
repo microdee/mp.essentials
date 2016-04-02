@@ -1,0 +1,95 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\mcropack\nodes\Modules\UnixTimeStamp (Gregorian).v4p" systemname="UnixTimeStamp (Gregorian)" filename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\mcropack\nodes\Modules\UnixTimeStamp (Gregorian).v4p">
+   <BOUNDS type="Window" left="18105" top="6270" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="dx11" Version="33.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="1995" top="1875" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="24">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="42195.1750092477">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="1995" top="2310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="60">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="42195.1734558333">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="3" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="1995" top="2745" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="60">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="1012684.16637667">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="2" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Gregorian (Astronomy Join)" nodename="Gregorian (Astronomy Join)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="2235" top="900" width="1050" height="270">
+   </BOUNDS>
+   <PIN pinname="Year" slicecount="1" values="1970">
+   </PIN>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1995" top="1440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Time" dstnodeid="0" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="4" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2010" top="3240" width="1590" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2010" top="3240" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="6" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1710" top="390" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1710" top="390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="25569">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="d">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input 1">
+   </LINK>
+   </PATCH>
