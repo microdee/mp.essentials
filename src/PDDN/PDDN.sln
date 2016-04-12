@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDDN", "PDDN\PDDN.csproj", "{669EF59D-DD08-4080-98EB-CBDB45A8EC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.CastToAll", "VVVV.Nodes.CastToAll\VVVV.Nodes.CastToAll.csproj", "{15CB1F4C-A7C2-419C-B16D-633C53E63A3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{669EF59D-DD08-4080-98EB-CBDB45A8EC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669EF59D-DD08-4080-98EB-CBDB45A8EC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669EF59D-DD08-4080-98EB-CBDB45A8EC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669EF59D-DD08-4080-98EB-CBDB45A8EC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15CB1F4C-A7C2-419C-B16D-633C53E63A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CB1F4C-A7C2-419C-B16D-633C53E63A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CB1F4C-A7C2-419C-B16D-633C53E63A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CB1F4C-A7C2-419C-B16D-633C53E63A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
