@@ -2,14 +2,13 @@
 <vpack>
 	<meta>
 		<name>mp.essentials</name>
-		<source>https://github.com/microdee/mp.dx.git</source>
+		<source>https://github.com/microdee/mp.essentials.git</source>
 		<author>microdee</author>
 	</meta>
 	<install>
 		CopyDir(
 			Pack.TempDir,
-			VVVV.Dir + "\\packs\\" + Pack.Name,
-			ignore: { "src" }
+			VVVV.Dir + "\\packs\\" + Pack.Name
 		);
 	</install>
 </vpack>
