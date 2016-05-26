@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V1;
 using VVVV.Utils.VColor;
