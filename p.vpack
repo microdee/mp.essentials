@@ -1,9 +1,20 @@
-<!DOCTYPE vpack SYSTEM "https://raw.githubusercontent.com/microdee/md.ecosystem/master/vpm/vpack-1.0.dtd" >
 <vpack>
 	<meta>
 		<name>mp.essentials</name>
 		<source>https://github.com/microdee/mp.essentials.git</source>
 		<author>microdee</author>
+		<dependencies>
+			<dependency>
+				<name>vvvv-Message</name>
+				<source>https://raw.githubusercontent.com/microdee/vpm/master/vpdb/velcrome/Message/contrib.2.1.csx</source>
+				<aliases>Message, vvvvMessage, vvvv.Message, Messages, vvvv-Messages, vvvvMessages, vvvv.Messages</aliases>
+			</dependency>
+			<dependency>
+				<name>vvvv-Patchbox</name>
+				<source>https://raw.githubusercontent.com/microdee/vpm/master/vpdb/velcrome/Patchbox/contrib.1.21.csx</source>
+				<aliases>Patchbox</aliases>
+			</dependency>
+		</dependencies>
 	</meta>
 	<install>
 		CopyDir(
