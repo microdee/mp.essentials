@@ -16,7 +16,7 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 	#region PluginInfo
-	[PluginInfo(Name = "HandleFromPoint", Category = "Windows", Tags = "")]
+	[PluginInfo(Name = "HandleFromCursor", Category = "Windows", Tags = "")]
 	#endregion PluginInfo
 	public class WindowsHandleFromPointNode : IPluginEvaluate
 	{		
