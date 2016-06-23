@@ -35,8 +35,6 @@ namespace VVVV.Nodes
 		ISpread<bool> FDragInside;
 		[Output("DragLeave", AllowFeedback=true, IsBang = true)]
 		ISpread<bool> FDragLeave;
-		[Output("DragDrop", AllowFeedback=true, IsBang = true)]
-		ISpread<bool> FDragDrop;
 
 		[Import()]
 		ILogger FLogger;
@@ -68,7 +66,6 @@ namespace VVVV.Nodes
 			//add a textbox
 			FInControl[0].DragEnter += new System.Windows.Forms.DragEventHandler(_dragenter);
 			FInControl[0].DragLeave += new EventHandler(_dragleave);
-			FInControl[0].DragDrop += new System.Windows.Forms.DragEventHandler(_dragdrop);
 
 			//add to controls
 		}
@@ -113,7 +110,6 @@ namespace VVVV.Nodes
 				}
 			}
 			FDragLeave[0] = pDragLeave;
-			FDragDrop[0] = pDragDrop;
 			FDragInside[0] = pDragInside;
 			pDragEnter = false;
 			pDragLeave = false;
