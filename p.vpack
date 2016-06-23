@@ -6,7 +6,7 @@
 		<dependencies>
 			<dependency>
 				<name>vvvv-Message</name>
-				<source>https://raw.githubusercontent.com/microdee/vpm/master/vpdb/velcrome/Message/github.mdreffix.csx</source>
+				<source>https://raw.githubusercontent.com/microdee/vpm/master/vpdb/velcrome/Message/github.master.csx</source>
 				<aliases>Message, vvvvMessage, vvvv.Message, Messages, vvvv-Messages, vvvvMessages, vvvv.Messages</aliases>
 			</dependency>
 			<dependency>
