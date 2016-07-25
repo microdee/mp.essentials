@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
-   <PATCH nodename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Deviced HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="2205">
-   <BOUNDS type="Window" left="825" top="4800" width="9000" height="10800">
+   <PATCH nodename="F:\vvvv\app\vvvv_50alpha34.103.1_x64\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Deviced HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="7890">
+   <BOUNDS type="Window" left="5460" top="2190" width="9000" height="10800">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -206,7 +206,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="SplitUint32 (Value Bitwise)" filename="..\..\plugins\boolean\BitwiseValueSplitUint32\BitwiseValueSplitUint32.csproj" nodename="SplitUint32 (Value Bitwise)" componentmode="Hidden" id="1">
+   <NODE systemname="SplitUint32 (Value Bitwise)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\boolean\BitwiseValueSplitUint32\BitwiseValueSplitUint32.csproj" nodename="SplitUint32 (Value Bitwise)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="5205" top="11805" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
@@ -462,7 +462,7 @@
    </NODE>
    <LINK srcnodeid="24" srcpinname="Output 3XYZ" dstnodeid="23" dstpinname="Input">
    </LINK>
-   <NODE systemname="SplitUint32 (Value Bitwise)" filename="..\..\plugins\boolean\BitwiseValueSplitUint32\BitwiseValueSplitUint32.csproj" nodename="SplitUint32 (Value Bitwise)" componentmode="Hidden" id="22">
+   <NODE systemname="SplitUint32 (Value Bitwise)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\boolean\BitwiseValueSplitUint32\BitwiseValueSplitUint32.csproj" nodename="SplitUint32 (Value Bitwise)" componentmode="Hidden" id="22">
    <BOUNDS type="Node" left="13095" top="13500" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
@@ -946,4 +946,6 @@
    </LINK>
    <LINK srcnodeid="76" srcpinname="Output" dstnodeid="2" dstpinname="Input">
    </LINK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
    </PATCH>
