@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
-   <PATCH nodename="F:\vvvv\app\vvvv_50alpha34.103.1_x64\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Deviced HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="7890">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
+   <PATCH nodename="F:\vvvv\app\vvvv_50alpha34.104_x64\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Deviced HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="5460" top="2190" width="9000" height="10800">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -615,7 +615,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6315" top="4410" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Horizontal">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="VVVV">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Coordinate System|">
    </PIN>

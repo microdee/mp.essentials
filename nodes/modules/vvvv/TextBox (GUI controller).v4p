@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
-   <PATCH nodename="E:\vvvv\mcropack\VVVV.Packs.mcro\nodes\modules\TextBox (GUI controller).v4p" systemname="TextBox (GUI controller)" filename="D:\vvvv\md.bot\nodes\modules\TextBox (GUI controller).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
+   <PATCH nodename="F:\vvvv\app\vvvv_50alpha34.104_x64\packs\mp.essentials\nodes\modules\vvvv\TextBox (GUI controller).v4p" systemname="TextBox (GUI controller)" filename="D:\vvvv\md.bot\nodes\modules\TextBox (GUI controller).v4p" scrollx="7155" scrolly="0">
    <BOUNDS type="Window" left="7590" top="3840" width="9000" height="6000">
    </BOUNDS>
    <NODE systemname="Vector (4d Join)" nodename="Vector (4d Join)" componentmode="Hidden" id="11">
@@ -74,7 +74,7 @@
    </NODE>
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="11" dstpinname="W">
    </LINK>
-   <NODE systemname="HandleFromPoint (Windows)" filename="..\plugins\WindowsHandleFromPoint\WindowsHandleFromPoint.csproj" nodename="HandleFromPoint (Windows)" componentmode="Hidden" id="4">
+   <NODE systemname="HandleFromPoint (Windows)" filename="" nodename="HandleFromPoint (Windows)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="5715" top="2400" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Cursor Pos" visible="1">
@@ -93,7 +93,7 @@
    <NODE systemname="S+H (Animation)" nodename="S+H (Animation)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="6450" top="2730" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -154,7 +154,7 @@
    </NODE>
    <LINK srcnodeid="17" srcpinname="Up Edge" dstnodeid="2" dstpinname="Set">
    </LINK>
-   <NODE systemname="DirectInput (Devices)" filename="..\plugins\DevicesDirectInput\DevicesDirectInput.csproj" nodename="DirectInput (Devices)" componentmode="Hidden" id="19">
+   <NODE systemname="DirectInput (Devices)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\devices\DevicesDirectInput\DevicesDirectInput.csproj" nodename="DirectInput (Devices)" componentmode="Hidden" id="19">
    <BOUNDS type="Node" left="4365" top="945" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Keyboard Spread" visible="1">
@@ -618,7 +618,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Patch">
    </PIN>
    </NODE>
-   <NODE systemname="componentmode (VVVV bounds)" filename="componentmode (VVVV bounds).v4p" nodename="componentmode (VVVV bounds)" componentmode="Hidden" id="13">
+   <NODE systemname="ComponentMode (VVVV bounds)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\ComponentMode (VVVV bounds).v4p" nodename="componentmode (VVVV bounds)" componentmode="Hidden" id="13">
    <BOUNDS type="Node" left="2475" top="5535" width="100" height="100">
    </BOUNDS>
    <PIN pinname="id" visible="1">
@@ -627,7 +627,7 @@
    </PIN>
    <PIN pinname="bounds" visible="1" slicecount="4" values="0,0,0,0">
    </PIN>
-   <PIN pinname="Patch" visible="1">
+   <PIN pinname="Patch" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="border" visible="1" slicecount="1" values="0">
    </PIN>
@@ -642,6 +642,8 @@
    </LINK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="31.9.0">
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
    </PATCH>
