@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
-   <PATCH nodename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="0" scrolly="3420">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="0" scrolly="255">
    <BOUNDS type="Window" left="9750" top="1380" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -382,4 +382,6 @@
    </LINK>
    <LINK srcnodeid="25" srcpinname="Object Id" dstnodeid="9" dstpinname="Input">
    </LINK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
    </PATCH>

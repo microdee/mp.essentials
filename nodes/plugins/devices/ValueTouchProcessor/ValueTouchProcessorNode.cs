@@ -19,8 +19,8 @@ namespace VVVV.Nodes
 {
 	public class TouchContainer
 	{
-		private Vector2D PrevPoint;
-		private Vector2D PrevPointF;
+		public Vector2D PrevPoint;
+		public Vector2D PrevPointF;
 		
 		public Vector2D Point;
 		public Vector2D PointFiltered;
@@ -282,8 +282,11 @@ namespace VVVV.Nodes
 					tc.FilterCutoffDerivative = FCutoffDerivative[i];
 					tc.Point = FPoints[i];
 					tc.PointFiltered = FPoints[i];
+					tc.PrevPoint = FPoints[i];
+					tc.PrevPointF = FPoints[i];
 					tc.ID = tid;
 					this.Touches.Add(tid, tc);
+					tc.Update(dt);
 				}
 			}
 			this.Removables.Clear();
