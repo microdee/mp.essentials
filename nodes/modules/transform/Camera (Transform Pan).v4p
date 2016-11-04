@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_50alpha34.104_x64\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" systemname="Camera (Transform Pan)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" scrollx="0" scrolly="480">
+   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" systemname="Camera (Transform Pan)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" scrollx="0" scrolly="1290">
    <BOUNDS type="Window" left="17040" top="4830" width="11010" height="10620">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
