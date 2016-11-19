@@ -1,0 +1,229 @@
+<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Formulars (Modular Camera).v4p" systemname="Formulars (Modular Camera)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Formulars (Modular Camera).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="17760" top="2850" width="9000" height="7650">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1">
+   <BOUNDS type="Box" left="1140" top="1650" width="1440" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1140" top="1650" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MC.CameraDelta">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="1290" top="1950" width="5070" height="615">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1290" top="1950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Vector3d Translation, Vector4d Rotation, double PivotDistance, double FOV, float Near, float Far|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (Message)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Formular (Message)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="1140" top="2715" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="4" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="4" dstpinname="Configuration">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="2550" top="975" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="975" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Update">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="1185" top="3165" width="1110" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1185" top="3165" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MC.Behaviors">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="1335" top="3465" width="4605" height="315">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1335" top="3465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Message CameraDelta, Message Reset, Message Interact|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (Message)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Formular (Message)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="1185" top="4230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="6" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="6" dstpinname="Configuration">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Update">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="11">
+   <BOUNDS type="Box" left="1245" top="4725" width="1110" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1245" top="4725" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MC.Reset">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="1395" top="5025" width="4845" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1395" top="5025" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool Translation, bool Rotation, bool PivotDistance, bool FOV|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (Message)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Formular (Message)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="1245" top="5790" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output String" dstnodeid="9" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="9" dstpinname="Configuration">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="9" dstpinname="Update">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="14">
+   <BOUNDS type="Box" left="1245" top="6240" width="1110" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1245" top="6240" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MC.Interact">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="13">
+   <BOUNDS type="Box" left="1395" top="6540" width="4845" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1395" top="6540" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool Interact, bool MouseButtons, Vector3d Mickies, string Keys|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (Message)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Formular (Message)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="1245" top="7305" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Output String" dstnodeid="12" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="12" dstpinname="Configuration">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Update">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="17">
+   <BOUNDS type="Box" left="1260" top="7725" width="1110" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1260" top="7725" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MC.Calculated">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="16">
+   <BOUNDS type="Box" left="1410" top="8025" width="4845" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1410" top="8025" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Transform InverseView, Transform View, Transform Projection, Transform InverseProjection, Vector3d Position, Vector4d Rotation|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (Message)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Formular (Message)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="1260" top="8790" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="15" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="15" dstpinname="Configuration">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Update">
+   </LINK>
+   </PATCH>

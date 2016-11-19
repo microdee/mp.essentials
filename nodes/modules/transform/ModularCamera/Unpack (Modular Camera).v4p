@@ -1,0 +1,145 @@
+<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Unpack (Modular Camera).v4p" systemname="Unpack (Modular Camera)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Unpack (Modular Camera).v4p" scrollx="0" scrolly="1035">
+   <BOUNDS type="Window" left="19275" top="5865" width="9000" height="7560">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <NODE systemname="Split (Message Formular)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Split (Message Formular)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1035" top="1845" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Formular" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Configuration" slicecount="1" values="|Transform View, Transform InverseView, Transform Projection, Transform InverseProjection, Vector3d Position, Vector4d Rotation|">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="InverseView" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="InverseProjection" visible="1">
+   </PIN>
+   <PIN pinname="PositionXYZ" visible="1">
+   </PIN>
+   <PIN pinname="RotationXYZW" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="1">
+   <BOUNDS type="Box" left="1035" top="1110" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1035" top="1110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Camera In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="840" top="2835" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="840" top="2835" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="View">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="View" dstnodeid="2" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="3">
+   <BOUNDS type="Box" left="1290" top="3450" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1290" top="3450" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="InverseView">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="InverseView" dstnodeid="3" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="1875" top="4245" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1875" top="4245" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Projection">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Projection" dstnodeid="4" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="2490" top="4845" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2490" top="4845" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="InverseProjection">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="InverseProjection" dstnodeid="5" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
+   <BOUNDS type="Box" left="3015" top="5460" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3015" top="5460" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="PositionXYZ">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="PositionXYZ" dstnodeid="6" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="3570" top="6675" width="795" height="960">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3570" top="6675" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="RotationXYZW">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="RotationXYZW" dstnodeid="7" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="PackCamera (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\PackCamera (Transform).v4p" nodename="PackCamera (Transform)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="4485" top="4830" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="View" dstnodeid="8" dstpinname="View">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="InverseView" dstnodeid="8" dstpinname="Projection">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="9">
+   <BOUNDS type="Box" left="4800" top="6570" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4800" top="6570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Packed">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="9" dstpinname="Input Node">
+   </LINK>
+   </PATCH>

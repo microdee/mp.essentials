@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6F5DBB4-EE3B-451A-ACCE-2533D258DF79}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mp.essentials</RootNamespace>
+    <AssemblyName>mp.essentials</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\nodes\plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LzmaSharp">
+      <HintPath>Dependencies\LzmaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SlimDX">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\SlimDX.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition.CodePlex">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.ComponentModel.Composition.CodePlex.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Context.CodePlex">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reflection.Context.CodePlex.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="vJoyInterfaceWrap">
+      <HintPath>Dependencies\vJoyInterfaceWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Core">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.Hosting">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Hosting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.Nodes.Generic">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Nodes.Generic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.PluginInterfaces">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.Utils">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.Utils3rdParty">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.UtilsIL">
+      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.UtilsIL.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="boolean\BitwiseValueORNode.cs" />
+    <Compile Include="boolean\BitwiseValueSplitUint32Node.cs" />
+    <Compile Include="boolean\BooleanQRCodeNode.cs" />
+    <Compile Include="boolean\QRCodeCS.cs" />
+    <Compile Include="boolean\ValueCountBangsNode.cs" />
+    <Compile Include="devices\DevicesDirectInputNode.cs" />
+    <Compile Include="devices\ValueTouchProcessorNode.cs" />
+    <Compile Include="devices\vjoy.cs" />
+    <Compile Include="generic\GenericAsObjectNode.cs" />
+    <Compile Include="generic\GenericKeepLastNode.cs" />
+    <Compile Include="generic\NodeEvaluateNode.cs" />
+    <Compile Include="generic\StringSpreadToFramesNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quaternion\SpectralQuaternionMultiplyNode.cs" />
+    <Compile Include="raw\RawLZMANode.cs" />
+    <Compile Include="raw\RawReadRangeNode.cs" />
+    <Compile Include="string\AdvancedStringSiftNode.cs" />
+    <Compile Include="string\BinStringFindNode.cs" />
+    <Compile Include="string\ControlDragAndDropNode.cs" />
+    <Compile Include="string\FixStringClipboardNode.cs" />
+    <Compile Include="string\SetStringDictionaryNode.cs" />
+    <Compile Include="string\StatesStateServerNode.cs" />
+    <Compile Include="string\StringAddHeadCutTailNode.cs" />
+    <Compile Include="string\StringEditNode.cs" />
+    <Compile Include="string\StringRegexNode.cs" />
+    <Compile Include="string\StringRemoveZeroNode.cs" />
+    <Compile Include="string\StringRouterNode.cs" />
+    <Compile Include="string\StringSeparateFixNode.cs" />
+    <Compile Include="string\StringSHA_256Node.cs" />
+    <Compile Include="System\FileDownloadNode.cs" />
+    <Compile Include="System\UDPAsyncNode.cs" />
+    <Compile Include="transform\TransformGetQuaternionNode.cs" />
+    <Compile Include="value\BeatValueLFO.cs" />
+    <Compile Include="value\LongitudeLatitude.cs" />
+    <Compile Include="value\ValueAllowFeedbackNode.cs" />
+    <Compile Include="value\ValueCountSpreadsNode.cs" />
+    <Compile Include="value\ValueGetSpreadAltNode.cs" />
+    <Compile Include="value\ValueMaxCountNode.cs" />
+    <Compile Include="value\ValueSequentialAddNode.cs" />
+    <Compile Include="value\ValueSiftSequentialNode.cs" />
+    <Compile Include="value\ValueSiftSetNode.cs" />
+    <Compile Include="value\ValueStepperSelectNode.cs" />
+    <Compile Include="vvvv\DynamicGUIFakeMenuNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vvvv\EnumerationsCustomEnumNode.cs" />
+    <Compile Include="vvvv\GUIDropBoxNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vvvv\GUITextBoxNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vvvv\vvvvNodePathNode.cs" />
+    <Compile Include="windows\HandleWindowsPIDNode.cs" />
+    <Compile Include="windows\PIDWindowsHandleNode.cs" />
+    <Compile Include="windows\WindowsGetForegroundWindowNode.cs" />
+    <Compile Include="windows\WindowsGetParentNode.cs" />
+    <Compile Include="windows\WindowsGetWindowTextNode.cs" />
+    <Compile Include="windows\WindowsHandleFromPointNode.cs" />
+    <Compile Include="windows\WindowsLaunchOSKNode.cs" />
+    <Compile Include="windows\WindowsRemoveBorderNode.cs" />
+    <Compile Include="windows\WindowsWindowPosNode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vJoyInterface.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
