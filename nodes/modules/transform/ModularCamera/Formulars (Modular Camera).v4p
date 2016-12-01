@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.106.dtd" >
    <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Formulars (Modular Camera).v4p" systemname="Formulars (Modular Camera)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Formulars (Modular Camera).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="17760" top="2850" width="9000" height="7650">
    </BOUNDS>

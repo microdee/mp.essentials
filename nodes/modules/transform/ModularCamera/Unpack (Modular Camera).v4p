@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.106.dtd" >
    <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Unpack (Modular Camera).v4p" systemname="Unpack (Modular Camera)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Unpack (Modular Camera).v4p" scrollx="0" scrolly="1035">
    <BOUNDS type="Window" left="19275" top="5865" width="9000" height="7560">
    </BOUNDS>

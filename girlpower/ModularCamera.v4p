@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
    <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\ModularCamera.v4p" scrollx="90" scrolly="0" systemname="ModularCam" filename="C:\vvvv\libs\mcropack\girlpower\ModularCam.v4p">
-   <BOUNDS type="Window" left="2370" top="2205" width="11910" height="11580">
+   <BOUNDS type="Window" left="14910" top="-12915" width="11910" height="11580">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -479,7 +479,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1050" top="15675" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="15600" top="2670" width="12420" height="9795">
+   <BOUNDS type="Window" left="4590" top="-11730" width="12420" height="9795">
    </BOUNDS>
    <PIN pinname="Layers" visible="1" slicecount="1" values="||">
    </PIN>
@@ -647,7 +647,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3720" top="1935" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="11355" height="15705">
+   <BOUNDS type="Window" left="9195" top="-15075" width="11355" height="15705">
    </BOUNDS>
    <PIN pinname="Behavior Out" visible="1">
    </PIN>

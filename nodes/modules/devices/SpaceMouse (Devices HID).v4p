@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.100.dtd" >
    <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="15" scrolly="1200">
    <BOUNDS type="Window" left="5595" top="285" width="9000" height="10800">
    </BOUNDS>

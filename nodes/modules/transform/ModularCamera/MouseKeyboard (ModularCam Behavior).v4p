@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "https://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.106.dtd" >
    <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" systemname="MouseKeyboard (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" scrollx="1815" scrolly="0">
    <BOUNDS type="Window" left="12600" top="2400" width="13605" height="12630">
    </BOUNDS>

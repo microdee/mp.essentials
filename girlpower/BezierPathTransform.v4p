@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" systemname="BezierPathTransform" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" scrollx="0" scrolly="1260">
-   <BOUNDS type="Window" left="615" top="2670" width="13170" height="11430">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" systemname="BezierPathTransform" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" scrollx="0" scrolly="1620">
+   <BOUNDS type="Window" left="3015" top="2415" width="13170" height="11430">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
@@ -11,13 +11,13 @@
    </BOUNDS>
    <BOUNDS type="Box" left="5325" top="13710" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="11955" top="4350" width="14805" height="11070">
+   <BOUNDS type="Window" left="13020" top="2565" width="14805" height="11070">
    </BOUNDS>
    <PIN pinname="Layers" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="View" visible="1">
+   <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Projection" visible="1">
+   <PIN pinname="Projection" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\mp.dx\nodes\modules\essentials\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden" id="2">
@@ -28,28 +28,6 @@
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="Camera (Transform VOOCAM)" filename="%VVVV%\packs\mp.voocam\nodes\modules\Camera (Transform VOOCAM).v4p" nodename="Camera (Transform VOOCAM)" componentmode="Hidden" id="3">
-   <BOUNDS type="Node" left="7710" top="12930" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="View" visible="1">
-   </PIN>
-   <PIN pinname="Projection" visible="1">
-   </PIN>
-   <PIN pinname="Camera Out" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="SpaceMouse (VOOCAM)" filename="%VVVV%\packs\mp.voocam\nodes\modules\SpaceMouse (VOOCAM).v4p" nodename="SpaceMouse (VOOCAM)" componentmode="Hidden" id="4">
-   <BOUNDS type="Node" left="8355" top="13485" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Camera In" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="3" srcpinname="View" dstnodeid="1" dstpinname="View">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Projection" dstnodeid="1" dstpinname="Projection">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Camera Out" dstnodeid="4" dstpinname="Camera In">
-   </LINK>
    <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="5">
    <BOUNDS type="Node" left="5310" top="12945" width="100" height="100">
    </BOUNDS>
@@ -205,7 +183,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2130" top="6360" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="9540" top="1020" width="14235" height="11475">
+   <BOUNDS type="Window" left="9555" top="-13065" width="14235" height="11475">
    </BOUNDS>
    <PIN pinname="Debug Input" visible="1" pintype="Input" slicecount="200" values="0.03,0.09,0.15,0.21,0.27,0.33,0.39,0.45,0.51,0.57,0.63,0.69,0.75,0.81,0.87,0.93,0.99,1.05,1.11,1.17,1.23,1.29,1.35,1.41,1.47,1.53,1.59,1.65,1.71,1.77,1.83,1.89,1.95,2.01,2.07,2.13,2.19,2.25,2.31,2.37,2.43,2.49,2.55,2.61,2.67,2.73,2.79,2.85,2.91,2.97,3.03,3.09,3.15,3.21,3.27,3.33,3.39,3.45,3.51,3.57,3.63,3.69,3.75,3.81,3.87,3.93,3.99,4.05,4.11,4.17,4.23,4.29,4.35,4.41,4.47,4.53,4.59,4.65,4.71,4.77,4.83,4.89,4.95,5.01,5.07,5.13,5.19,5.25,5.31,5.37,5.43,5.49,5.55,5.61,5.67,5.73,5.79,5.85,5.91,5.97,6.03,6.09,6.15,6.21,6.27,6.33,6.39,6.45,6.51,6.57,6.63,6.69,6.75,6.81,6.87,6.93,6.99,7.05,7.11,7.17,7.23,7.29,7.35,7.41,7.47,7.53,7.59,7.65,7.71,7.77,7.83,7.89,7.95,8.01,8.07,8.13,8.19,8.25,8.31,8.37,8.43,8.49,8.55,8.61,8.67,8.73,8.79,8.85,8.91,8.97,9.03,9.09,9.15,9.21,9.27,9.33,9.39,9.45,9.51,9.57,9.63,9.69,9.75,9.81,9.87,9.93,9.99,10.05,10.11,10.17,10.23,10.29,10.35,10.41,10.47,10.53,10.59,10.65,10.71,10.77,10.83,10.89,10.95,11.01,11.07,11.13,11.19,11.25,11.31,11.37,11.43,11.49,11.55,11.61,11.67,11.73,11.79,11.85,11.91,11.97">
    </PIN>
@@ -404,4 +382,28 @@
    </NODE>
    <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Look Ahead">
    </LINK>
+   <NODE systemname="Camera (Transform Modular)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" nodename="Camera (Transform Modular)" componentmode="Hidden" id="55">
+   <BOUNDS type="Node" left="7215" top="12900" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Behavior In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="55" srcpinname="View" dstnodeid="1" dstpinname="View">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Projection" dstnodeid="1" dstpinname="Projection">
+   </LINK>
+   <NODE systemname="SpaceMouse (ModularCam Behavior)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" nodename="SpaceMouse (ModularCam Behavior)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="7965" top="12060" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Behavior Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="56" srcpinname="Behavior Out" dstnodeid="55" dstpinname="Behavior In">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
    </PATCH>
