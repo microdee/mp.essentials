@@ -342,30 +342,12 @@
    </LINK>
    <LINK srcnodeid="7" srcpinname="Buffers" dstnodeid="36" dstpinname="Texture">
    </LINK>
-   <NODE systemname="RectPack (2d JimScott)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RectPack (2d JimScott)" componentmode="Hidden" id="43">
-   <BOUNDS type="Node" left="2850" top="3570" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Rectangle  WH" visible="1" slicecount="100" values="1024,1024,1024,1024,256,1024,256,1024,128,128,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,2048,2048,2048,2048,2048,2048,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,256,256,512,512,512,512,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024">
-   </PIN>
-   <PIN pinname="Packed Rectangles  Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="Packed Rectangles  XYWH" visible="1">
-   </PIN>
-   <PIN pinname="Former Index Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="Former Index" visible="1">
-   </PIN>
-   <PIN pinname="Dimensions  WH" visible="1">
-   </PIN>
-   <PIN pinname="Rotated" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="44">
    <BOUNDS type="Node" left="2640" top="4815" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Bin Size" visible="1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -375,31 +357,23 @@
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Packed Rectangles  Bin Size" dstnodeid="45" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="45" srcpinname="Output" dstnodeid="44" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="43" srcpinname="Packed Rectangles  XYWH" dstnodeid="44" dstpinname="Input">
    </LINK>
    <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="46">
    <BOUNDS type="Node" left="3465" top="4785" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Bin Size" visible="1">
+   <PIN pinname="Bin Size" visible="1" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Former Index Bin Size" dstnodeid="46" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="43" srcpinname="Former Index" dstnodeid="46" dstpinname="Input">
-   </LINK>
    <NODE systemname="SuppressDiagonals (DX11.Effect)" filename="%VVVV%\packs\mp.dx\nodes\dx11\SuppressDiagonals.fx" nodename="SuppressDiagonals (DX11.Effect)" componentmode="Hidden" id="47">
    <BOUNDS type="Node" left="3315" top="10755" width="100" height="100">
    </BOUNDS>
@@ -536,8 +510,6 @@
    <PIN pinname="Rows" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Dimensions  WH" dstnodeid="56" dstpinname="Y Input Value">
-   </LINK>
    <NODE systemname="Switch (Color Input)" nodename="Switch (Color Input)" componentmode="Hidden" id="57">
    <BOUNDS type="Node" left="5445" top="8100" width="100" height="100">
    </BOUNDS>
@@ -591,8 +563,6 @@
    <LINK srcnodeid="22" srcpinname="Output" dstnodeid="58" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="58" srcpinname="Output" dstnodeid="54" dstpinname="Rectangle  WH">
-   </LINK>
-   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="43" dstpinname="Rectangle  WH">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62">
    <BOUNDS type="Box" left="4740" top="1215" width="480" height="480">
@@ -649,15 +619,13 @@
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="66">
    <BOUNDS type="Node" left="4200" top="6525" width="330" height="270">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    <PIN pinname="Input 2" slicecount="1" values="0.25">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Rotated" dstnodeid="66" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="66" srcpinname="Output" dstnodeid="64" dstpinname="Rotate">
    </LINK>
    <LINK srcnodeid="65" srcpinname="Output" dstnodeid="8" dstpinname="Texture Transform">
@@ -683,14 +651,12 @@
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="200" values="0,0,128,128,0,128,256,256,256,128,512,512,768,128,512,512,256,640,1024,1024,256,1664,1024,1024,256,2688,1024,1024,256,3712,1024,1024,256,4736,1024,1024,256,5760,1024,1024,256,6784,1024,1024,256,7808,1024,1024,1280,640,1024,1024,2304,640,1024,1024,3328,640,1024,1024,4352,640,1024,1024,5376,640,1024,1024,6400,640,1024,1024,7424,640,1024,1024,1280,1664,1024,1024,1280,2688,1024,1024,1280,3712,1024,1024,1280,4736,1024,1024,1280,5760,1024,1024,1280,6784,1024,1024,1280,7808,1024,1024,2304,1664,1024,1024,3328,1664,1024,1024,4352,1664,1024,1024,5376,1664,1024,1024,6400,1664,1024,1024,0,384,256,1024,7424,1664,1024,1024,2304,2688,1024,1024,2304,3712,1024,1024,2304,4736,1024,1024,0,1408,256,1024,2304,5760,1024,1024,2304,6784,1024,1024,2304,7808,1024,1024,3328,2688,1024,1024,4352,2688,1024,1024,5376,2688,1024,1024,6400,2688,1024,1024,7424,2688,1024,1024,3328,3712,1024,1024,3328,4736,1024,1024,4352,3712,2048,2048,6400,3712,2048,2048,4352,5760,2048,2048">
    </PIN>
-   <PIN pinname="Source Maximum" visible="1">
+   <PIN pinname="Source Maximum" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="44" srcpinname="Output" dstnodeid="70" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="43" srcpinname="Dimensions  WH" dstnodeid="70" dstpinname="Source Maximum">
    </LINK>
    <LINK srcnodeid="70" srcpinname="Output" dstnodeid="51" dstpinname="Input 1">
    </LINK>
@@ -727,5 +693,55 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="72" srcpinname="Transform Out" dstnodeid="9" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="RectPack (2d Czachurski)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RectPack (2d Czachurski)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="2850" top="3570" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Rectangle  WH" visible="1" slicecount="100" values="1024,1024,1024,1024,256,1024,256,1024,128,128,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,2048,2048,2048,2048,2048,2048,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,256,256,512,512,512,512,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024,1024">
+   </PIN>
+   <PIN pinname="Packed Rectangles  Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Packed Rectangles  XYWH" visible="1">
+   </PIN>
+   <PIN pinname="Former Index Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Former Index" visible="1">
+   </PIN>
+   <PIN pinname="Dimensions  WH" visible="1">
+   </PIN>
+   <PIN pinname="Rotated" visible="1">
+   </PIN>
+   <PIN pinname="Square Box" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="43" srcpinname="Packed Rectangles  Bin Size" dstnodeid="45" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Packed Rectangles  XYWH" dstnodeid="44" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Former Index Bin Size" dstnodeid="46" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Former Index" dstnodeid="46" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Dimensions  WH" dstnodeid="56" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="43" dstpinname="Rectangle  WH">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Rotated" dstnodeid="66" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Dimensions  WH" dstnodeid="70" dstpinname="Source Maximum">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="73">
+   <BOUNDS type="Box" left="3150" top="3135" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3150" top="3135" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="16383">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="73" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Square Box">
    </LINK>
    </PATCH>

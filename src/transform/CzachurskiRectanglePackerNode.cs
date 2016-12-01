@@ -402,7 +402,7 @@ namespace VVVV.Nodes
 
     [PluginInfo(Name = "RectPack",
         Category = "2d",
-        Version = "JimScott",
+        Version = "Czachurski",
         Author = "microdee")]
     public class JimScottRectanglePackerNode : IPluginEvaluate
     {

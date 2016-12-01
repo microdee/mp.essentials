@@ -136,7 +136,7 @@
     <Compile Include="string\StringSHA_256Node.cs" />
     <Compile Include="System\FileDownloadNode.cs" />
     <Compile Include="System\UDPAsyncNode.cs" />
-    <Compile Include="transform\JimScottRectanglePackerNode.cs" />
+    <Compile Include="transform\CzachurskiRectanglePackerNode.cs" />
     <Compile Include="transform\ChevyRayRectanglePackerNode.cs" />
     <Compile Include="transform\TransformGetQuaternionNode.cs" />
     <Compile Include="value\BeatValueLFO.cs" />
