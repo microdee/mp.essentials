@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" systemname="PutWindowOnMyScreen (VVVV)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" scrollx="30" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" systemname="PutWindowOnMyScreen (VVVV)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" scrollx="30" scrolly="0">
    <BOUNDS type="Window" left="6555" top="7830" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
@@ -43,9 +43,9 @@
    <LINK srcnodeid="1" srcpinname="Output 1XY" dstnodeid="2" dstpinname="PositionXY">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3120" top="1920" width="480" height="480">
+   <BOUNDS type="Box" left="3780" top="1845" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="3120" top="1920" width="0" height="0">
+   <BOUNDS type="Node" left="3780" top="1845" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -58,6 +58,8 @@
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Set">
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Set">
@@ -92,4 +94,6 @@
    </NODE>
    <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Handle In">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
    </PATCH>

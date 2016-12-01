@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\transform\BezierPath (Transform).v4p" systemname="BezierPath (Transform)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\BezierPath (Transform).v4p" scrollx="0" scrolly="1215">
-   <BOUNDS type="Window" left="9540" top="1020" width="14235" height="11475">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\BezierPath (Transform).v4p" systemname="BezierPath (Transform)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\BezierPath (Transform).v4p" scrollx="0" scrolly="1080">
+   <BOUNDS type="Window" left="9555" top="-13065" width="14235" height="11475">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
@@ -519,7 +519,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="11280" top="2520" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -704,4 +704,6 @@
    </LINK>
    <LINK srcnodeid="42" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Input 2">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
    </PATCH>
