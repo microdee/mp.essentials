@@ -50,6 +50,7 @@ namespace VVVV.Nodes
                 var clist = ((RectXywhFlipped[]) vlist.Clone()).ToList();
                 ordered.Add(clist);
                 clist.Sort((a, b) => funcs[ii](a, b));
+                clist.Reverse();
             }
 
             var minbin = new RectXywh
