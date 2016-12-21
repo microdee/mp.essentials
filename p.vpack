@@ -6,12 +6,7 @@
 		<dependencies>
 			<dependency>
 				<name>vvvv-Message</name>
-				<source>vpms://raw.githubusercontent.com/microdee/vvvv-Message/mdtemp/copy/.vpack</source>
-			</dependency>
-			<dependency>
-				<name>vvvv-Patchbox</name>
-				<source>https://raw.githubusercontent.com/vvvvpm/vpdb/master/velcrome/Patchbox/contrib.1.21.csx</source>
-				<aliases>Patchbox</aliases>
+				<source>vpms://raw.githubusercontent.com/velcrome/vvvv-Message/master/copy/vvvv-Message.vpack</source>
 			</dependency>
 		</dependencies>
 	</meta>
