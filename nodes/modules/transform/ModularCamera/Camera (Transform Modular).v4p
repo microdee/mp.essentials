@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.106.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="10305">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="7650">
    <BOUNDS type="Window" left="2115" top="3225" width="16200" height="10380">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.7">
@@ -123,7 +123,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5625" top="1575" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1239,7 +1239,7 @@
    <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="80">
    <BOUNDS type="Node" left="6540" top="12150" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Source Maximum" slicecount="1" values="0.1" visible="1">
+   <PIN pinname="Source Maximum" slicecount="1" visible="1" values="0.1">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>

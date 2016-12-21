@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="-195">
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="-195">
    <BOUNDS type="Window" left="9195" top="-15075" width="11355" height="15705">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.7">
@@ -9,7 +9,7 @@
    <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="SpaceMouse (Devices HID)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" nodename="SpaceMouse (Devices HID)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="4875" top="3600" width="100" height="100">
+   <BOUNDS type="Node" left="4875" top="3270" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Rotation" visible="1">
    </PIN>
@@ -51,7 +51,7 @@
    </BOUNDS>
    <PIN pinname="Formular" slicecount="1" values="None">
    </PIN>
-   <PIN pinname="Configuration" slicecount="1" values="|Message CameraDelta, Message Reset|">
+   <PIN pinname="Configuration" slicecount="1" values="|Message CameraDelta, Message Reset, Message InteractIn|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -61,6 +61,8 @@
    </PIN>
    <PIN pinname="Reset" visible="1" slicecount="1" values="||">
    </PIN>
+   <BOUNDS type="Window" left="690" top="-6900" width="6000" height="4500">
+   </BOUNDS>
    </NODE>
    <NODE systemname="Euler (Quaternion Set Vector)" nodename="Euler (Quaternion Set Vector)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="5445" top="5055" width="100" height="100">
@@ -87,8 +89,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="5" srcpinname="Output" dstnodeid="7" dstpinname="Rotate XYZ">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Rotation" dstnodeid="5" dstpinname="Input 1">
    </LINK>
    <NODE systemname="AxisAngle (Quaternion Set Vector)" nodename="AxisAngle (Quaternion Set Vector)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="5430" top="6945" width="100" height="100">
@@ -342,8 +342,6 @@
    </NODE>
    <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="Translation" dstnodeid="31" dstpinname="Input 1">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
    <BOUNDS type="Box" left="3585" top="2490" width="795" height="240">
    </BOUNDS>
@@ -489,5 +487,99 @@
    <LINK srcnodeid="39" srcpinname="Output" dstnodeid="18" dstpinname="Translation">
    </LINK>
    <LINK srcnodeid="39" srcpinname="Output" dstnodeid="18" dstpinname="Rotation">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="3900" top="4485" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Translation" dstnodeid="42" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Output" dstnodeid="31" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="8070" top="3210" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Destination Minimum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Destination Maximum" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="44" exposed="0">
+   <BOUNDS type="Box" left="8070" top="2325" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8070" top="2325" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Invert">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="44" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="42" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="45">
+   <BOUNDS type="Node" left="5160" top="3795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="45" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Rotation" dstnodeid="45" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="45" srcpinname="Output" dstnodeid="5" dstpinname="Input 1">
+   </LINK>
+   <NODE id="46" componentmode="Hidden" systemname="Create (Message Formular)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Create (Message Formular)" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="7680" top="8865" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3240" top="0" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Configuration" pintype="Configuration" slicecount="1" values="|bool LockMouse|">
+   </PIN>
+   <PIN pinname="New" pintype="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Formular" pintype="Input" visible="1" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Topic" pintype="Input" visible="1" slicecount="1" values="Event">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Output" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="LockMouse" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="46" srcpinname="Output" dstnodeid="4" dstpinname="InteractIn">
    </LINK>
    </PATCH>
