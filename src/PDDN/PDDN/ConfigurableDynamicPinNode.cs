@@ -26,11 +26,11 @@ namespace VVVV.Nodes.PDDN
         }
         private void _OnConfigPinChanged(IDiffSpread<TConfigType> spread)
         {
-            OnConfigPinChanged();
             if (Initialized) return;
             if (IsConfigDefault()) return;
             Initialize();
             Initialized = true;
+            OnConfigPinChanged();
         }
     }
 }
