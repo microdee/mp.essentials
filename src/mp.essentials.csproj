@@ -33,6 +33,18 @@
     <Reference Include="LzmaSharp">
       <HintPath>Dependencies\LzmaSharp.dll</HintPath>
     </Reference>
+    <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
+      <HintPath>packages\MsgPack.Cli.0.8.0\lib\net46\MsgPack.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SharpMessage, Version=2.9.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SharpMessage.2.9.6\lib\net46\SharpMessage.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SlimDX">
       <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\SlimDX.dll</HintPath>
       <Private>False</Private>
@@ -86,12 +98,16 @@
       <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Nodes.Generic.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="VVVV.Packs.Timing, Version=0.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\VVVV.Packs.Timing.0.8.2\lib\net46\VVVV.Packs.Timing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="VVVV.PluginInterfaces">
       <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.PluginInterfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VVVV.Utils">
-      <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Utils.dll</HintPath>
+    <Reference Include="VVVV.Utils, Version=35.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\VVVV.Utils.35.0.0\lib\net46\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
@@ -113,10 +129,19 @@
     <Compile Include="devices\DevicesDirectInputNode.cs" />
     <Compile Include="devices\ValueTouchProcessorNode.cs" />
     <Compile Include="devices\vjoy.cs" />
+    <Compile Include="generic\CastToAll.cs" />
     <Compile Include="generic\GenericAsObjectNode.cs" />
     <Compile Include="generic\GenericKeepLastNode.cs" />
     <Compile Include="generic\NodeEvaluateNode.cs" />
+    <Compile Include="generic\ObjectUtils.cs" />
     <Compile Include="generic\StringSpreadToFramesNode.cs" />
+    <Compile Include="generic\TupleNodes.cs" />
+    <Compile Include="messages\MessagePathExtensions.cs" />
+    <Compile Include="messages\MessagePathNode.cs" />
+    <Compile Include="network\http\ClientConstructNodes.cs" />
+    <Compile Include="network\http\ClientSendNodes.cs" />
+    <Compile Include="network\http\HeadersNodes.cs" />
+    <Compile Include="network\http\HttpClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="quaternion\SpectralQuaternionMultiplyNode.cs" />
     <Compile Include="raw\RawLZMANode.cs" />
@@ -134,13 +159,14 @@
     <Compile Include="string\StringRouterNode.cs" />
     <Compile Include="string\StringSeparateFixNode.cs" />
     <Compile Include="string\StringSHA_256Node.cs" />
-    <Compile Include="System\FileDownloadNode.cs" />
-    <Compile Include="System\UDPAsyncNode.cs" />
+    <Compile Include="network\FileDownloadNode.cs" />
+    <Compile Include="network\UDPAsyncNode.cs" />
     <Compile Include="transform\CzachurskiRectanglePackerNode.cs" />
     <Compile Include="transform\ChevyRayRectanglePackerNode.cs" />
     <Compile Include="transform\TransformGetQuaternionNode.cs" />
     <Compile Include="value\BeatValueLFO.cs" />
     <Compile Include="value\LongitudeLatitude.cs" />
+    <Compile Include="value\Stopwatch.cs" />
     <Compile Include="value\ValueAllowFeedbackNode.cs" />
     <Compile Include="value\ValueCountSpreadsNode.cs" />
     <Compile Include="value\ValueGetSpreadAltNode.cs" />
@@ -174,6 +200,15 @@
     <Content Include="vJoyInterface.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PDDN\PDDN\PDDN.csproj">
+      <Project>{669ef59d-dd08-4080-98eb-cbdb45a8ec9c}</Project>
+      <Name>PDDN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

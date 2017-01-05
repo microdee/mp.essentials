@@ -12,9 +12,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "NodePath", Category = "VVVV", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "NodePath",
+        Category = "VVVV",
+        Author = "microdee"
+        )]
 	public class VVVVNodePathNode : IPluginEvaluate
 	{
 		[Import]

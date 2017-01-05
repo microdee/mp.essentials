@@ -17,9 +17,11 @@ using WPoint = System.Drawing.Point;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "HandleFromCursor", Category = "Windows", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "HandleFromCursor",
+        Category = "Windows",
+        Author = "microdee"
+        )]
 	public class WindowsHandleFromPointNode : IPluginEvaluate
 	{		
 		[Input("Update", DefaultBoolean = true)]

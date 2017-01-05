@@ -13,7 +13,12 @@ using VVVV.Core.Logging;
 namespace VVVV.Nodes
 {
 	#region PluginInfo
-	[PluginInfo(Name = "OR", Category = "Value", Version = "Bitwise", Help = "Basic template with one value in/out", Tags = "")]
+	[PluginInfo(
+        Name = "OR",
+        Category = "Value",
+        Version = "Bitwise",
+        Author = "microdee"
+        )]
 	#endregion PluginInfo
 	public class BitwiseValueORNode : IPluginEvaluate
 	{

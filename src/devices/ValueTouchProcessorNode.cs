@@ -103,7 +103,12 @@ namespace VVVV.Nodes
 		}
 	}
 	#region PluginInfo
-	[PluginInfo(Name = "TouchProcessor", Category = "Join", AutoEvaluate = true)]
+	[PluginInfo(
+        Name = "TouchProcessor",
+        Category = "Join",
+        Author = "microdee",
+        AutoEvaluate = true
+        )]
 	#endregion PluginInfo
 	public class JoinTouchProcessorNode : IPluginEvaluate, IPartImportsSatisfiedNotification
 	{

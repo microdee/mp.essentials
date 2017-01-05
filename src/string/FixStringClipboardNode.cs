@@ -14,9 +14,13 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Clipboard", Category = "String", Version = "Fix", AutoEvaluate = true, Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Clipboard",
+        Category = "String",
+        Version = "Fix",
+        AutoEvaluate = true,
+        Author = "microdee"
+        )]
 	public class FixStringClipboardNode : IPluginEvaluate
 	{
 		#region fields & pins

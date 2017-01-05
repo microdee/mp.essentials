@@ -13,9 +13,12 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Dictionary", Category = "String", Version = "Set")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Dictionary",
+        Category = "String",
+        Version = "Set",
+        Author = "microdee"
+        )]
 	public class SetStringDictionaryNode : IPluginEvaluate
 	{
 		#region fields & pins

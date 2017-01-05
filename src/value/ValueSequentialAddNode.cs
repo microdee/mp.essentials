@@ -12,9 +12,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "SequentialAdd", Category = "Value", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "SequentialAdd",
+        Category = "Value",
+        Author = "microdee"
+        )]
 	public class ValueSequentialAddNode : IPluginEvaluate
 	{
 		#region fields & pins

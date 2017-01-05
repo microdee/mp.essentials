@@ -12,9 +12,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "SiftSet", Category = "Value", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "SiftSet",
+        Category = "Value",
+        Author = "microdee"
+        )]
 	public class ValueSiftSetNode : IPluginEvaluate
 	{
 		#region fields & pins

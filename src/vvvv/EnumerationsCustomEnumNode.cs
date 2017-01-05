@@ -13,12 +13,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
 	[PluginInfo(Name = "CustomEnum", 
 	            Category = "Enumerations",
 				AutoEvaluate = true,
-	            Tags = "")]
-	#endregion PluginInfo
+                Author = "microdee"
+        )]
 	public class EnumerationsCustomEnum : IPluginEvaluate
 	{
 		#region fields & pins

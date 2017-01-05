@@ -12,9 +12,11 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "GetWindowText", Category = "Windows", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "GetWindowText",
+        Category = "Windows",
+        Author = "microdee"
+        )]
 	public class WindowsGetWindowTextNode : IPluginEvaluate
 	{
 		#region fields & pins

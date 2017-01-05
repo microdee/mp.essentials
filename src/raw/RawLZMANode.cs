@@ -22,9 +22,12 @@ namespace VVVV.Nodes
 		public byte[] InBytes;
 		public byte[] OutBytes;
 	}
-	#region PluginInfo
-	[PluginInfo(Name = "LZMA", Category = "Raw", Version = "Compress", Tags = "")]
-	#endregion PluginInfo
+
+	[PluginInfo(
+        Name = "LZMA",
+        Category = "Raw",
+        Version = "Compress",
+        Author = "microdee")]
 	public class CompressRawLZMANode : IPluginEvaluate, IPartImportsSatisfiedNotification
 	{
 		#region fields & pins
@@ -121,9 +124,13 @@ namespace VVVV.Nodes
 			FStreamOut.Flush(true);
 		}
 	}
-	#region PluginInfo
-	[PluginInfo(Name = "LZMA", Category = "Raw", Version = "Decompress", Tags = "")]
-	#endregion PluginInfo
+
+	[PluginInfo(
+        Name = "LZMA",
+        Category = "Raw",
+        Version = "Decompress",
+        Author = "microdee"
+        )]
 	public class DecompressRawLZMANode : IPluginEvaluate, IPartImportsSatisfiedNotification
 	{
 		#region fields & pins

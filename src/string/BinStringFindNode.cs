@@ -13,9 +13,12 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Find", Category = "String", Version = "Bin", Help = "Basic template with one string in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Find",
+        Category = "String",
+        Version = "Bin",
+        Author = "microdee"
+        )]
 	public class BinStringFindNode : IPluginEvaluate
 	{
 		#region fields & pins

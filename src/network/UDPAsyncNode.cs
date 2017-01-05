@@ -17,16 +17,14 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-    #region PluginInfo
     [PluginInfo(
         Name = "UDPClient",
         Category = "Network",
         Version = "Async",
         Help = "Asynchronous UDP",
-        Tags = "",
+        Author = "microdee",
         AutoEvaluate = true
         )]
-    #endregion PluginInfo
     public class UdpAsyncNode : IPluginEvaluate
     {
         #region fields & pins

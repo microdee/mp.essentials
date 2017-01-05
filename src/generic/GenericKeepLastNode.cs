@@ -70,12 +70,27 @@ namespace VVVV.Nodes
 	
 	// Miss a type? Can you see the pattern here? ;)
 	
-	[PluginInfo(Name = "KeepLast", Category = "Value", Tags = "")]
+	[PluginInfo(
+        Name = "KeepLast",
+        Category = "Value",
+        Tags = "",
+        Author = "microdee"
+        )]
 	public class ValueKeepLastNode : KeepLastNode<double> { }
 	
-	[PluginInfo(Name = "KeepLast", Category = "String", Tags = "")]
-	public class StringKeepLastNode : KeepLastNode<string> { }
+	[PluginInfo(
+        Name = "KeepLast",
+        Category = "String",
+        Tags = "",
+        Author = "microdee"
+        )]
+    public class StringKeepLastNode : KeepLastNode<string> { }
 	
-	[PluginInfo(Name = "KeepLast", Category = "Transform", Tags = "")]
-	public class TransformKeepLastNode : KeepLastNode<Matrix4x4> { }
+	[PluginInfo(
+        Name = "KeepLast",
+        Category = "Transform",
+        Tags = "",
+        Author = "microdee"
+        )]
+    public class TransformKeepLastNode : KeepLastNode<Matrix4x4> { }
 }

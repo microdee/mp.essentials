@@ -11,9 +11,12 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "PID", Category = "Windows", Version = "Handle", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "PID",
+        Category = "Windows",
+        Version = "Handle",
+        Author = "microdee"
+        )]
 	public class HandleWindowsPIDNode : IPluginEvaluate
 	{
 		#region fields & pins

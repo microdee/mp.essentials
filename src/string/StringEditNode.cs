@@ -12,9 +12,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Edit", Category = "String", Help = "Replace specific characters in string", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Edit",
+        Category = "String",
+        Author = "microdee"
+        )]
 	public class StringEditNode : IPluginEvaluate
 	{
 		#region fields & pins

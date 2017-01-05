@@ -12,9 +12,12 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Handle", Category = "Windows", Version = "PID", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Handle",
+        Category = "Windows",
+        Version = "PID",
+        Author = "microdee"
+        )]
 	public class PIDWindowsHandleNode : IPluginEvaluate
 	{
     	public delegate bool EnumDelegate(IntPtr hWnd, int lParam);

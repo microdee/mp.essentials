@@ -13,7 +13,7 @@ namespace VVVV.Nodes
     [PluginInfo(Name = "Distance",
                 Category = "2d",
                 Version = "LongLat",
-                Tags = "")]
+                Author = "microdee")]
     public class LongLatDistanceNode : IPluginEvaluate
     {
         [Input("Input 1")]

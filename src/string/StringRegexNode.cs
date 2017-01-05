@@ -13,9 +13,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Regex", Category = "String", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Regex",
+        Category = "String",
+        Author = "microdee"
+        )]
 	public class StringRegexNode : IPluginEvaluate
 	{
 		#region fields & pins

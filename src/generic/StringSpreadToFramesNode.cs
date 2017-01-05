@@ -12,10 +12,18 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	[PluginInfo(Name = "SpreadToFrames", Category = "Spreads")]
+	[PluginInfo(
+        Name = "SpreadToFrames",
+        Category = "Spreads",
+        Author = "microdee"
+        )]
 	public class SpreadsSpreadToFramesNode : SpreadToFrames<double> { }
 	
-	[PluginInfo(Name = "SpreadToFrames", Category = "String")]
+	[PluginInfo(
+        Name = "SpreadToFrames",
+        Category = "String",
+        Author = "microdee"
+        )]
 	public class StringSpreadToFramesNode : SpreadToFrames<string> { }
 	
 	public abstract class SpreadToFrames<T> : IPluginEvaluate, IPartImportsSatisfiedNotification

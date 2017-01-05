@@ -15,9 +15,13 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "FakeMenu", Category = "GUI", Version = "Dynamic", Help = "Template with a dynamic set of gui elements", Tags = "", AutoEvaluate = true)]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "FakeMenu",
+        Category = "GUI",
+        Version = "Dynamic",
+        Author = "microdee",
+        AutoEvaluate = true
+        )]
 	public class DynamicGUIFakeMenuNode : UserControl, IPluginEvaluate
 	{
 		#region fields & pins

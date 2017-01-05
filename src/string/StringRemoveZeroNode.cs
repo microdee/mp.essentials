@@ -12,9 +12,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "RemoveZero", Category = "String", Help = "Basic template with one string in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "RemoveZero",
+        Category = "String",
+        Author = "microdee"
+        )]
 	public class StringRemoveZeroNode : IPluginEvaluate
 	{
 		#region fields & pins

@@ -12,9 +12,11 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "GetForegroundWindow", Category = "Windows", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "GetForegroundWindow",
+        Category = "Windows",
+        Author = "microdee"
+        )]
 	public class WindowsGetForegroundWindowNode : IPluginEvaluate
 	{
 		#region fields & pins

@@ -11,9 +11,11 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "GetParent", Category = "Windows", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "GetParent",
+        Category = "Windows",
+        Author = "microdee"
+        )]
 	public class WindowsGetParentNode : IPluginEvaluate
 	{
 		#region fields & pins

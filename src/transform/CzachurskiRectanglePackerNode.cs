@@ -404,7 +404,8 @@ namespace VVVV.Nodes
     [PluginInfo(Name = "RectPack",
         Category = "2d",
         Version = "Czachurski",
-        Author = "microdee")]
+        Author = "microdee"
+        )]
     public class JimScottRectanglePackerNode : IPluginEvaluate
     {
         [Input("Rectangle ", DimensionNames = new[] { "W", "H" }, DefaultValues = new[] { 100.0, 100.0 })]

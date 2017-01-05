@@ -17,9 +17,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "DirectInput", Category = "Devices", Help = "Access mouse and keyboard data using DirectInput", Tags = "Mouse, Keyboard")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "DirectInput",
+        Category = "Devices",
+        Author = "microdee"
+        )]
 	public class DevicesDirectInputNode : IPluginEvaluate
 	{
 		#region fields & pins
@@ -140,9 +142,13 @@ namespace VVVV.Nodes
 		}
 	}
 	
-	#region PluginInfo
-	[PluginInfo(Name = "GameController", Category = "Devices", Version = "DirectInput", Tags = "Joystick, Gamepad, Analog")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "GameController",
+        Category = "Devices",
+        Version = "DirectInput",
+        Tags = "Joystick, Gamepad, Analog",
+        Author = "microdee"
+        )]
 	public class DirectInputDevicesGameControllerNode : IPluginEvaluate
 	{
 		#region fields & pins
@@ -333,9 +339,13 @@ namespace VVVV.Nodes
 			}
 		}
 	}
-	#region PluginInfo
-	[PluginInfo(Name = "DeviceObject", Category = "Devices", Version = "DirectInput")]
-	#endregion PluginInfo
+
+	[PluginInfo(
+        Name = "DeviceObject",
+        Category = "Devices",
+        Version = "DirectInput",
+        Author = "microdee"
+        )]
 	public class DirectInputDevicesDeviceObjectNode : IPluginEvaluate
 	{
 		[Input("Device Object")]

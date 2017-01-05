@@ -15,10 +15,12 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "DragAndDrop", Category = "Control", Help = "Template with some gui elements", Tags = "", AutoEvaluate = true)]
-	#endregion PluginInfo
-	// UserControl,
+	[PluginInfo(
+        Name = "DragAndDrop",
+        Category = "Control",
+        Author = "microdee",
+        AutoEvaluate = true
+        )]
 	public class ControlDragAndDropNode : IPluginEvaluate
 	{
 		#region fields & pins

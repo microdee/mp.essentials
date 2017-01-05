@@ -12,9 +12,12 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "Multiply", Category = "Quaternion", Version = "Spectral", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "Multiply",
+        Category = "Quaternion",
+        Version = "Spectral",
+        Author = "microdee"
+        )]
 	public class SpectralQuaternionMultiplyNode : IPluginEvaluate
 	{
 		#region fields & pins

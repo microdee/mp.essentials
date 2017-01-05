@@ -14,9 +14,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "RegexSplit", Category = "String", Help = "Basic template with one string in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "RegexSplit",
+        Category = "String",
+        Author = "microdee"
+        )]
 	public class StringSeparateFixNode : IPluginEvaluate
 	{
 		#region fields & pins

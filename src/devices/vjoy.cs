@@ -14,6 +14,7 @@ namespace VVVV.Nodes
     [PluginInfo(
         Name = "VJoyFeeder",
         Category = "Devices",
+        Author = "microdee",
         AutoEvaluate = true
     )]
     public class DevicesVJoyFeederNode : IPluginEvaluate

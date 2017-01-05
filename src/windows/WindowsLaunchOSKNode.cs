@@ -15,9 +15,11 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "LaunchOSK", Category = "Windows", AutoEvaluate = true)]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "LaunchOSK",
+        Category = "Windows",
+        Author = "microdee",
+        AutoEvaluate = true)]
 	public class WindowsLaunchOSKNode : IPluginEvaluate
 	{
 		#region fields & pins

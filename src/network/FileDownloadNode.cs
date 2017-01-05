@@ -58,9 +58,12 @@ namespace VVVV.Nodes
             Client.DownloadFileAsync(new Uri(URL), Destination);
         }
 	}
-	#region PluginInfo
-	[PluginInfo(Name = "Download", Category = "File", Help = "Basic template with one string in/out", Tags = "")]
-	#endregion PluginInfo
+
+	[PluginInfo(
+        Name = "Download",
+        Category = "File",
+        Author = "microdee"
+        )]
 	public class FileDownloadNode : IPluginEvaluate
 	{
 		#region fields & pins

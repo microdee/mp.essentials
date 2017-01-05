@@ -12,12 +12,10 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
 	[PluginInfo(Name = "LFO",
 	            Category = "Value",
             	Version = "Beat",
-	            Tags = "")]
-	#endregion PluginInfo
+                Author = "microdee")]
 	public class Template : IPluginEvaluate
 	{
 		[Import]

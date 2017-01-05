@@ -13,9 +13,11 @@ using QRCode4CS;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "QRCode", Category = "Boolean", Help = "Basic template with one boolean in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "QRCode",
+        Category = "Boolean",
+        Author = "microdee"
+        )]
 	public class BooleanQRCodeNode : IPluginEvaluate
 	{
 		#region fields & pins

@@ -16,7 +16,12 @@ using VVVV.Core.Logging;
 namespace VVVV.Nodes
 {
 	#region PluginInfo
-	[PluginInfo(Name = "DropBox", Category = "GUI", Help = "Template with some gui elements", Tags = "", AutoEvaluate = true)]
+	[PluginInfo(
+        Name = "DropBox",
+        Category = "GUI",
+        Author = "microdee",
+        AutoEvaluate = true
+        )]
 	#endregion PluginInfo
 	public class GUIDropBoxNode : UserControl, IPluginEvaluate
 	{

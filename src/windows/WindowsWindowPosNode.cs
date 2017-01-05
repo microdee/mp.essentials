@@ -45,9 +45,12 @@ namespace VVVV.Nodes
 		Top,
 		TopMost
 	}
-	#region PluginInfo
-	[PluginInfo(Name = "WindowPos", Category = "Windows", AutoEvaluate = true, Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "WindowPos",
+        Category = "Windows",
+        AutoEvaluate = true,
+        Author = "microdee"
+        )]
 	public class WindowsWindowPosNode : IPluginEvaluate
 	{
 		#region fields & pins

@@ -12,9 +12,12 @@ using VVVV.Core.Logging;
 
 namespace VVVV.Nodes
 {
-	#region PluginInfo
-	[PluginInfo(Name = "SplitUint32", Category = "Value", Version = "Bitwise", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
+	[PluginInfo(
+        Name = "SplitUint32",
+        Category = "Value",
+        Version = "Bitwise",
+        Author = "microdee"
+        )]
 	public class BitwiseValueSplitUint32Node : IPluginEvaluate
 	{
 		#region fields & pins
@@ -48,10 +51,13 @@ namespace VVVV.Nodes
 		}
 	}
 	
-	#region PluginInfo
-	[PluginInfo(Name = "JoinUint32", Category = "Value", Version = "Bitwise", Help = "Basic template with one value in/out", Tags = "")]
-	#endregion PluginInfo
-	public class BitwiseValueJoinUint32Node : IPluginEvaluate
+	[PluginInfo(
+        Name = "JoinUint32",
+        Category = "Value",
+        Version = "Bitwise",
+        Author = "microdee"
+        )]
+    public class BitwiseValueJoinUint32Node : IPluginEvaluate
 	{
 		#region fields & pins
 		[Input("Input")]

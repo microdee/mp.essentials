@@ -13,7 +13,11 @@ using VVVV.Core.Logging;
 namespace VVVV.Nodes
 {
 	#region PluginInfo
-	[PluginInfo(Name = "Evaluate", Category = "Node", Help = "Simple AutoEvaluate", AutoEvaluate = true)]
+	[PluginInfo(
+        Name = "Evaluate",
+        Category = "Node",
+        Help = "Simple AutoEvaluate",
+        AutoEvaluate = true)]
 	#endregion PluginInfo
 	public class NodeEvaluateNode : IPluginEvaluate, IPartImportsSatisfiedNotification
 	{
