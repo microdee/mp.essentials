@@ -1,8 +1,8 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="7650">
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="4410">
    <BOUNDS type="Window" left="2115" top="3225" width="16200" height="10380">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.7">
+   <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
@@ -329,8 +329,6 @@
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
-   </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector3d Translation, Vector4d Rotation, double PivotDistance, double FOV, float Near, float Far|">
    </PIN>
    <PIN pinname="Update" visible="1">
@@ -469,8 +467,6 @@
    </PIN>
    <PIN pinname="Output Object" visible="1">
    </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="CameraData">
-   </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector3d Translation, Vector4d Rotation, double PivotDistance, double FOV, float Near, float Far|">
    </PIN>
    <PIN pinname="Update" visible="1">
@@ -531,8 +527,6 @@
    </PIN>
    <PIN pinname="Output Object" visible="1">
    </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="CameraData">
-   </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector3d Translation, Vector4d Rotation, double PivotDistance, double FOV, float Near, float Far|">
    </PIN>
    <PIN pinname="Update" visible="1">
@@ -592,8 +586,6 @@
    <PIN pinname="Far" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
    </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector3d Translation, Vector4d Rotation, double PivotDistance, double FOV|">
    </PIN>
@@ -657,8 +649,6 @@
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
-   </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector3d Translation|">
    </PIN>
    <PIN pinname="Update" visible="1" slicecount="1" values="1">
@@ -698,8 +688,6 @@
    <PIN pinname="Far" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
    </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Vector4d Rotation|">
    </PIN>
@@ -741,8 +729,6 @@
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
-   </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|double PivotDistance|">
    </PIN>
    <PIN pinname="Update" visible="1" slicecount="1" values="1">
@@ -782,8 +768,6 @@
    <PIN pinname="Far" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
    </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|double FOV|">
    </PIN>
@@ -974,8 +958,6 @@
    <PIN pinname="Far" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Message Formular" slicecount="1" values="None">
    </PIN>
    <PIN pinname="Configuration" slicecount="1" values="|Message CameraDelta, Message Reset, Message InteractIn|">
    </PIN>
@@ -2544,4 +2526,6 @@
    </LINK>
    <LINK srcnodeid="195" srcpinname="Value Output" dstnodeid="81" dstpinname="Switch">
    </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
+   </PACK>
    </PATCH>
