@@ -1,0 +1,187 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\S (Color InPatch).v4p" systemname="S (Color InPatch)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\S (Color InPatch).v4p" scrollx="0" scrolly="1605">
+   <BOUNDS type="Window" left="16815" top="9045" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <NODE systemname="NodePath (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\vvvv\vvvvNodePath\vvvvNodePath.csproj" nodename="NodePath (VVVV)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="2760" top="795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Node Path" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Find (String)" nodename="Find (String)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="2775" top="1845" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Occurence Mode" slicecount="1" visible="1" values="Last">
+   </PIN>
+   <PIN pinname="Substring" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Position" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="3330" top="1590" width="705" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3330" top="1590" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Last">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="11" dstpinname="Occurence Mode">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Box" left="2985" top="1140" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2985" top="1140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="/">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="11" dstpinname="Substring">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Node Path" dstnodeid="11" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Copy (String)" nodename="Copy (String)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="2355" top="2295" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Position" dstnodeid="8" dstpinname="Count">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Node Path" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Find (String)" nodename="Find (String)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2790" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Occurence Mode" slicecount="1" visible="1" values="Last">
+   </PIN>
+   <PIN pinname="Substring" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Position" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="6">
+   <BOUNDS type="Box" left="3345" top="2790" width="705" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3345" top="2790" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Last">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output Enum" dstnodeid="7" dstpinname="Occurence Mode">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="3000" top="2340" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3000" top="2340" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="/">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="7" dstpinname="Substring">
+   </LINK>
+   <NODE systemname="Copy (String)" nodename="Copy (String)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2370" top="3495" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Position" dstnodeid="4" dstpinname="Count">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="4" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2370" top="4275" width="600" height="270">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Intersperse" slicecount="1" values="UnixPath">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="3" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="4545" top="2745" width="795" height="300">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4545" top="2745" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="devnul">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="devnul">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Send String|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="3" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="S (Color)" nodename="S (Color)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="1305" top="4920" width="1125" height="270">
+   </BOUNDS>
+   <PIN pinname="Send String" visible="1">
+   </PIN>
+   <PIN pinname="Input Value" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="1" dstpinname="Send String">
+   </LINK>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="13">
+   <BOUNDS type="Box" left="1245" top="3585" width="750" height="780">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1245" top="3585" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Input Value|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Color Output" dstnodeid="1" dstpinname="Input Value">
+   </LINK>
+   </PATCH>
