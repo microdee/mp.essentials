@@ -39,7 +39,12 @@ namespace VVVV.Nodes
         }
     }
 
-    [PluginInfo(Name = "Cast", Category = "Node", AutoEvaluate = true)]
+    [PluginInfo(
+        Name = "Cast",
+        Category = "Node",
+        Author = "microdee",
+        AutoEvaluate = true
+        )]
     public class CastToAllInheritedNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import]
