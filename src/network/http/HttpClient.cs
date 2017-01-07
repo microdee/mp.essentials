@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using VVVV.Utils;
 
 namespace VVVV.Nodes
 {
@@ -15,25 +19,34 @@ namespace VVVV.Nodes
         Put,
         Trace
     }
+
+    public class HttpRequestContainer
+    {
+        public Task<HttpResponseMessage> OngoingRequest { set; get; }
+        public Task CopyTask;
+    }
     public class HttpClientContainer : IDisposable
     {
-        public HttpClient Client = new HttpClient();
-        public List<Task<HttpResponseMessage>> OngoingRequests = new List<Task<HttpResponseMessage>>();
+        public HttpClient Client;
+        public List<HttpRequestContainer> OngoingRequests = new List<HttpRequestContainer>();
 
-        public HttpClientContainer() { }
-
-        public Task<HttpResponseMessage> Send(HttpRequestMessage hrm, HttpCompletionOption hco)
+        public HttpClientContainer()
         {
-            Task<HttpResponseMessage> returntask = this.Client.SendAsync(hrm, hco);
-            this.OngoingRequests.Add(returntask);
-            return returntask;
+            Client = new HttpClient();
+        }
+
+        public HttpRequestContainer Send(HttpRequestMessage hrm, HttpCompletionOption hco)
+        {
+            var hrc = new HttpRequestContainer {OngoingRequest = Client.SendAsync(hrm, hco)};
+            OngoingRequests.Add(hrc);
+            return hrc;
         }
 
         public void Dispose()
         {
-            this.OngoingRequests.Clear();
-            this.Client.CancelPendingRequests();
-            this.Client.Dispose();
+            OngoingRequests.Clear();
+            Client.CancelPendingRequests();
+            Client.Dispose();
         }
     }
 }
