@@ -185,7 +185,7 @@ namespace VVVV.Nodes
         AutoEvaluate = true)]
     public class GetSignatureNode : IPluginEvaluate
     {
-        [Input("Tuple")]
+        [Input("Input")]
         public Pin<object> FInput;
 
         [Output("Signature")]
