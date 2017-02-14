@@ -319,6 +319,7 @@ namespace VVVV.Nodes.VObjects
             foreach (var field in CType.GetFields())
             {
                 if (field.IsStatic) continue;
+                if (field.FieldType.IsPointer) continue;
                 if (!field.IsPublic) continue;
                 var enumerable = false;
                 if ((field.FieldType.GetInterface("IEnumerable") != null) && (field.FieldType != typeof(string)))
@@ -342,7 +343,7 @@ namespace VVVV.Nodes.VObjects
                                 }
                             })
                             .ToArray()[0];
-                        Pd.AddOutputBinSized(stype, new OutputAttribute(field.Name));
+                        Pd.AddOutputBinSized(field.FieldType.GetGenericArguments()[0], new OutputAttribute(field.Name));
                         enumerable = true;
                     }
                     catch (Exception)
