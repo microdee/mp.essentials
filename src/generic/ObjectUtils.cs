@@ -288,6 +288,12 @@ namespace VVVV.Nodes.VObjects
         {
             ConfigPinCopy = FType;
             Pd = new PinDictionary(FIOFactory);
+            foreach (var pin in FPluginHost.GetPins())
+            {
+                if (pin.Name != "Descriptive Name") continue;
+                pin.SetSlice(0, "");
+                break;
+            }
         }
 
         protected override bool IsConfigDefault()
@@ -300,6 +306,12 @@ namespace VVVV.Nodes.VObjects
 
         protected override void OnConfigPinChanged()
         {
+            foreach (var pin in FPluginHost.GetPins())
+            {
+                if (pin.Name != "Descriptive Name") continue;
+                pin.SetSlice(0, "");
+                break;
+            }
             if (IsConfigDefault()) return;
             Pd.RemoveAllInput();
             Pd.RemoveAllOutput();
