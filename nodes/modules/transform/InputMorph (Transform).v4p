@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\transform\InputMorph (Transform).v4p" systemname="InputMorph (Transform)" filename="D:\vvvv\external\modules\vvvv group\Transform\InputMorph (Transform).v4p" scrollx="180" scrolly="510">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\InputMorph (Transform).v4p" systemname="InputMorph (Transform)" filename="D:\vvvv\external\modules\vvvv group\Transform\InputMorph (Transform).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="10410" top="2775" width="5115" height="5925">
    </BOUNDS>
    <NODE systemname="IOBox (Node)" nodename="IOBox (Node)" componentmode="InABox" id="1">
@@ -25,7 +25,7 @@
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
    <BOUNDS type="Node" left="1245" top="300" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1245" top="300" width="795" height="240">
+   <BOUNDS type="Box" left="1245" top="300" width="780" height="240">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -166,10 +166,6 @@
    </LINK>
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="13" dstpinname="Transform In">
    </LINK>
-   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Switch">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Switch">
-   </LINK>
    <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="18" dstpinname="Transform In">
@@ -178,7 +174,7 @@
    </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <LINK srcnodeid="13" srcpinname="Transform Out" dstnodeid="11" dstpinname="Transform In">
    </LINK>
@@ -187,5 +183,25 @@
    <LINK srcnodeid="12" srcpinname="Transform Out" dstnodeid="10" dstpinname="Input Node">
    </LINK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="990" top="1125" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Select" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="19" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output" dstnodeid="16" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output" dstnodeid="15" dstpinname="Switch">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
    </PATCH>
