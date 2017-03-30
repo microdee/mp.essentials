@@ -1,0 +1,299 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\girlpower\SkeletonV2.v4p" scrollx="0" scrolly="0" systemname="SkeletonV2" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\SkeletonV2.v4p">
+   <BOUNDS type="Window" left="10740" top="3420" width="13515" height="9285">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE systemname="ViewSkeleton (Skeleton V2)" filename="..\..\..\..\..\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" componentmode="Hidden" id="29" nodename="..\..\..\..\..\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p">
+   <BOUNDS type="Node" left="3585" top="7350" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3585" top="7350" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="15360" top="2670" width="10290" height="12405">
+   </BOUNDS>
+   <PIN pinname="Skeleton" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="49" nodename="IOBox (String)">
+   <BOUNDS height="0" left="3975" top="3360" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="420" left="3975" top="3360" type="Box" width="930">
+   </BOUNDS>
+   <BOUNDS height="160" left="2850" top="2625" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Input String" slicecount="2" values="Lschulter,Lellbogen">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="48" nodename="Rotate (Transform)">
+   <BOUNDS height="0" left="3765" top="2865" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Z" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="47" nodename="LFO (Animation)">
+   <BOUNDS height="0" left="4335" top="1365" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="46" nodename="WaveShaper (Value)">
+   <BOUNDS height="0" left="4335" top="1815" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Shape" slicecount="1" values="Sine">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="46" dstpinname="Input" srcnodeid="47" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="45" nodename="Map (Value)">
+   <BOUNDS height="0" left="4335" top="2250" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Destination Maximum" slicecount="1" values="0.17">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="45" dstpinname="Input" srcnodeid="46" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="48" dstpinname="Z" srcnodeid="45" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" id="43" nodename="IOBox (String)">
+   <BOUNDS height="0" left="6420" top="3450" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="6420" top="3450" type="Box" width="795">
+   </BOUNDS>
+   <BOUNDS height="160" left="4530" top="4725" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="joint2">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="42" nodename="Rotate (Transform)">
+   <BOUNDS height="0" left="6090" top="2865" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Z" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="41" nodename="LFO (Animation)">
+   <BOUNDS height="0" left="6690" top="1365" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="2.74999999999999">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="40" nodename="WaveShaper (Value)">
+   <BOUNDS height="0" left="6690" top="1815" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Shape" slicecount="1" values="Sine">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="40" dstpinname="Input" srcnodeid="41" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="39" nodename="Map (Value)">
+   <BOUNDS height="0" left="6690" top="2250" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Destination Maximum" slicecount="1" values="-0.22">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="39" dstpinname="Input" srcnodeid="40" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="42" dstpinname="Z" srcnodeid="39" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" id="34" nodename="IOBox (String)">
+   <BOUNDS height="270" left="2580" top="4305" type="Node" width="1260">
+   </BOUNDS>
+   <BOUNDS height="270" left="2580" top="4305" type="Box" width="1260">
+   </BOUNDS>
+   <BOUNDS height="160" left="0" top="0" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Wave Animation|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="33" nodename="IOBox (String)">
+   <BOUNDS height="270" left="4905" top="4305" type="Node" width="1155">
+   </BOUNDS>
+   <BOUNDS height="270" left="4905" top="4305" type="Box" width="1155">
+   </BOUNDS>
+   <BOUNDS height="160" left="0" top="0" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Leg Animation|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="CreateHumanoidSkeleton (Skeleton V2)" filename="..\..\..\..\..\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\CreateHumanoidSkeleton (Skeleton V2).v4p" componentmode="Hidden" id="54" nodename="..\..\..\..\..\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\CreateHumanoidSkeleton (Skeleton V2).v4p" debug="0">
+   <BOUNDS type="Node" left="1485" top="2025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1485" top="2025" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="2625" top="3060" width="15915" height="10245">
+   </BOUNDS>
+   <PIN pinname="Skeleton" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="50" nodename="SetJoint (Skeleton V2)" systemname="SetJoint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
+   <BOUNDS height="0" left="2460" top="3975" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="2460" top="3975" type="Box" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="2985" top="3165" type="Window" width="0">
+   </BOUNDS>
+   <PIN pinname="Skeleton" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Joint Name" visible="1">
+   </PIN>
+   <PIN pinname="Animation Transform" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Animation 1|">
+   </PIN>
+   <PIN pinname="Skeleton Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="50" dstpinname="Joint Name" srcnodeid="49" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="50" dstpinname="Animation Transform" srcnodeid="48" srcpinname="Transform Out">
+   </LINK>
+   <NODE componentmode="Hidden" id="44" nodename="SetJoint (Skeleton V2)" systemname="SetJoint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
+   <BOUNDS height="0" left="4800" top="3975" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="4800" top="3975" type="Box" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="4470" top="5775" type="Window" width="0">
+   </BOUNDS>
+   <PIN pinname="Skeleton" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Joint Name" visible="1">
+   </PIN>
+   <PIN pinname="Animation Transform" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Animation 2|">
+   </PIN>
+   <PIN pinname="Skeleton Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="44" dstpinname="Joint Name" srcnodeid="43" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="44" dstpinname="Animation Transform" srcnodeid="42" srcpinname="Transform Out">
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Skeleton" dstnodeid="50" dstpinname="Skeleton">
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Skeleton" dstnodeid="44" dstpinname="Skeleton">
+   </LINK>
+   <NODE componentmode="Hidden" id="38" nodename="MixPose (Skeleton V2)" systemname="MixPose (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
+   <BOUNDS height="270" left="2460" top="5655" type="Node" width="750">
+   </BOUNDS>
+   <BOUNDS height="0" left="2460" top="5655" type="Box" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="3225" top="7005" type="Window" width="0">
+   </BOUNDS>
+   <PIN pinname="Pose 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Pose 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mixed Pose" visible="1">
+   </PIN>
+   <PIN pinname="Amount 1" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Amount 2" visible="1">
+   </PIN>
+   <PIN pinname="Amount 0" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Pose 0" visible="1">
+   </PIN>
+   <PIN pinname="Skeleton" visible="1">
+   </PIN>
+   <PIN pinname="Animation Only" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="38" dstpinname="Pose 2" srcnodeid="44" srcpinname="Skeleton">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Skeleton Out" dstnodeid="38" dstpinname="Pose 0">
+   </LINK>
+   <LINK srcnodeid="44" srcpinname="Skeleton Out" dstnodeid="38" dstpinname="Pose 1">
+   </LINK>
+   <NODE componentmode="Hidden" id="55" nodename="MixPose (Skeleton V2)" systemname="MixPose (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
+   <BOUNDS height="270" left="4110" top="5685" type="Node" width="750">
+   </BOUNDS>
+   <BOUNDS height="0" left="4110" top="5685" type="Box" width="0">
+   </BOUNDS>
+   <BOUNDS height="0" left="3225" top="7005" type="Window" width="0">
+   </BOUNDS>
+   <PIN pinname="Pose 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Pose 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mixed Pose" visible="1">
+   </PIN>
+   <PIN pinname="Amount 1" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Amount 2" visible="1">
+   </PIN>
+   <PIN pinname="Amount 0" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pose 0" visible="1">
+   </PIN>
+   <PIN pinname="Skeleton" visible="1">
+   </PIN>
+   <PIN pinname="Animation Only" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="55" dstpinname="Pose 2" srcnodeid="44" srcpinname="Skeleton">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Skeleton Out" dstnodeid="55" dstpinname="Pose 0">
+   </LINK>
+   <LINK srcnodeid="44" srcpinname="Skeleton Out" dstnodeid="55" dstpinname="Pose 1">
+   </LINK>
+   <NODE systemname="Cons (Skeleton.V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cons (Skeleton.V2)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="3495" top="6450" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="38" srcpinname="Skeleton" dstnodeid="56" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Skeleton" dstnodeid="56" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="29" dstpinname="Skeleton">
+   </LINK>
+   </PATCH>

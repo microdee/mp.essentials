@@ -146,6 +146,14 @@
     <Compile Include="quaternion\SpectralQuaternionMultiplyNode.cs" />
     <Compile Include="raw\RawLZMANode.cs" />
     <Compile Include="raw\RawReadRangeNode.cs" />
+    <Compile Include="skeleton\CreateJoint.cs" />
+    <Compile Include="skeleton\Generics.cs" />
+    <Compile Include="skeleton\GetJointTransform.cs" />
+    <Compile Include="skeleton\JointInfo.cs" />
+    <Compile Include="skeleton\MixPose.cs" />
+    <Compile Include="skeleton\NewJoint.cs" />
+    <Compile Include="skeleton\SetJoint.cs" />
+    <Compile Include="skeleton\V1ToV2.cs" />
     <Compile Include="string\AdvancedStringSiftNode.cs" />
     <Compile Include="string\BinStringFindNode.cs" />
     <Compile Include="string\ControlDragAndDropNode.cs" />
@@ -210,6 +218,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
