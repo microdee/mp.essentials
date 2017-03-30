@@ -49,6 +49,57 @@ namespace VVVV.Nodes.VObjects
         }
     }
     [PluginInfo(
+         Name = "GetAllTypes",
+         Category = "Object",
+         Author = "microdee"
+     )]
+    public class ObjectGetAllTypesNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    {
+        [Import]
+        public IPluginHost2 FPluginHost;
+
+        protected GenericInput FInput;
+
+        [Input("Inheritence Level", DefaultValue = -1, Order = 2)]
+        public ISpread<int> FInhLevel;
+        [Output("Object Type")]
+        public ISpread<ISpread<string>> FType;
+
+        public void OnImportsSatisfied()
+        {
+            FInput = new GenericInput(FPluginHost, new InputAttribute("Input"));
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FInput.Connected)
+            {
+                FType.SliceCount = FInput.Pin.SliceCount;
+                for (int i = 0; i < FInput.Pin.SliceCount; i++)
+                {
+                    var types = FInput[i].GetType().GetTypes().ToArray();
+                    if (FInhLevel[i] < 0)
+                    {
+                        FType[i].SliceCount = types.Length;
+                        for (int j = 0; j < types.Length; j++)
+                        {
+                            FType[i][j] = types[j].AssemblyQualifiedName;
+                        }
+                    }
+                    else
+                    {
+                        FType[i].SliceCount = 1;
+                        FType[i][0] = types[Math.Min(FInhLevel[i], types.Length-1)].AssemblyQualifiedName;
+                    }
+                }
+            }
+            else
+            {
+                FType.SliceCount = 0;
+            }
+        }
+    }
+    [PluginInfo(
         Name = "GetType",
         Category = "Object",
         Version = "PluginInterfaces.V2",
