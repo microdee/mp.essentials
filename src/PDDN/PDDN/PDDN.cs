@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using VVVV.PluginInterfaces.V2;
+using VVVV.PluginInterfaces.V2.NonGeneric;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
@@ -8,6 +10,7 @@ namespace VVVV.Nodes.PDDN
 {
     public abstract class SimplePin
     {
+        public object CustomData;
         public Type Type;
         public IOAttribute Attributes;
         public IIOContainer IOContainer;
@@ -74,6 +77,11 @@ namespace VVVV.Nodes.PDDN
                 pin.Type = T;
             }
         }
+        public void AddInput(Type T, InputAttribute attr, object obj)
+        {
+            AddInput(T, attr);
+            InputPins[attr.Name].CustomData = obj;
+        }
         public void AddInputBinSized(Type T, InputAttribute attr)
         {
             if (!InputPins.ContainsKey(attr.Name))
@@ -85,6 +93,11 @@ namespace VVVV.Nodes.PDDN
                 InputPins.Add(attr.Name, pin);
                 pin.Type = T;
             }
+        }
+        public void AddInputBinSized(Type T, InputAttribute attr, object obj)
+        {
+            AddInputBinSized(T, attr);
+            InputPins[attr.Name].CustomData = obj;
         }
         public void ChangeInputType(string name, Type T, bool BinSizable = false)
         {
@@ -119,6 +132,11 @@ namespace VVVV.Nodes.PDDN
                 pin.Type = T;
             }
         }
+        public void AddOutput(Type T, OutputAttribute attr, object obj)
+        {
+            AddOutput(T, attr);
+            OutputPins[attr.Name].CustomData = obj;
+        }
         public void AddOutputBinSized(Type T, OutputAttribute attr)
         {
             if (!OutputPins.ContainsKey(attr.Name))
@@ -130,6 +148,11 @@ namespace VVVV.Nodes.PDDN
                 OutputPins.Add(attr.Name, pin);
                 pin.Type = T;
             }
+        }
+        public void AddOutputBinSized(Type T, OutputAttribute attr, object obj)
+        {
+            AddOutputBinSized(T, attr);
+            OutputPins[attr.Name].CustomData = obj;
         }
         public void ChangeOutputType(string name, Type T, bool BinSizable = false)
         {
@@ -198,5 +221,12 @@ namespace VVVV.Nodes.PDDN
             }
             OutputPins.Clear();
         }
+
+        public int InputSpreadMax => InputPins.Values.Max(pin => pin.Spread.SliceCount);
+        public int OutputSpreadMax => OutputPins.Values.Max(pin => pin.Spread.SliceCount);
+        public int InputSpreadMin => InputPins.Values.Min(pin => pin.Spread.SliceCount);
+        public int OutputSpreadMin => OutputPins.Values.Min(pin => pin.Spread.SliceCount);
+
+        public bool InputChanged => InputPins.Values.Any(pin => pin.Spread.IsChanged);
     }
 }
