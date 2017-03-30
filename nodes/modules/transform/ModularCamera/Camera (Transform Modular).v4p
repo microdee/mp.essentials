@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="4410">
-   <BOUNDS type="Window" left="2115" top="3225" width="16200" height="10380">
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="13680">
+   <BOUNDS type="Window" left="12270" top="3615" width="16200" height="10380">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
@@ -91,7 +91,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4395" top="1380" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="22">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1407,7 +1407,7 @@
    </BOUNDS>
    <PIN pinname="Quaternion 2 XYZW" visible="1" slicecount="4" values="0,-0.827080547809601,0,0.56208336353302">
    </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="0.00929741046866184">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0.00833353865345998">
    </PIN>
    <PIN pinname="Quaternion XYZW" visible="1">
    </PIN>
@@ -2186,24 +2186,12 @@
    </LINK>
    <LINK srcnodeid="1" srcpinname="Output" dstnodeid="34" dstpinname="Input">
    </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="161">
-   <BOUNDS type="Node" left="7500" top="16140" width="330" height="270">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="94" srcpinname="Output" dstnodeid="161" dstpinname="Input 1">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="162">
    <BOUNDS type="Box" left="8355" top="1395" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="8355" top="1395" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -2212,10 +2200,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Max Rotation Speed|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="162" srcpinname="Y Output Value" dstnodeid="161" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="161" srcpinname="Output" dstnodeid="97" dstpinname="Input">
-   </LINK>
    <NODE systemname="Decompose (Transform Quaternion)" filename="%VVVV%\addonpack\lib\nodes\plugins\TransformsAdvanced.dll" nodename="Decompose (Transform Quaternion)" componentmode="Hidden" id="167">
    <BOUNDS type="Node" left="270" top="13740" width="100" height="100">
    </BOUNDS>
@@ -2518,4 +2502,20 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
+   <NODE id="161" systemname="Min (Value)" nodename="Min (Value)" componentmode="Hidden">
+   <BOUNDS type="Node" left="7500" top="16140" width="330" height="270">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="161" srcpinname="Output" dstnodeid="97" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="162" srcpinname="Y Output Value" dstnodeid="161" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Output" dstnodeid="161" dstpinname="Input 1">
+   </LINK>
    </PATCH>
