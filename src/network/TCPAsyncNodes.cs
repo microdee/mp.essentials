@@ -18,14 +18,14 @@ using VVVV.Core.Logging;
 namespace VVVV.Nodes
 {
     [PluginInfo(
-        Name = "UDPClient",
+        Name = "TCPClient",
         Category = "Network",
         Version = "Async",
-        Help = "Asynchronous UDP",
+        Help = "Asynchronous TCP",
         Author = "microdee",
         AutoEvaluate = true
         )]
-    public class UdpAsyncNode : IPluginEvaluate
+    public class TCPClientAsyncNode : IPluginEvaluate
     {
         #region fields & pins
         [Input("Data")]
@@ -39,7 +39,7 @@ namespace VVVV.Nodes
         [Input("Send", IsBang = true)]
         public ISpread<bool> FSend;
 
-        protected UdpClient UDP;
+        protected TcpClient TCP;
 
         [Import()]
         public ILogger FLogger;
@@ -50,9 +50,9 @@ namespace VVVV.Nodes
         {
             if (FDST.IsChanged || FLPort.IsChanged || FRPort.IsChanged)
             {
-                UDP?.Dispose();
-                UDP = new UdpClient(FLPort[0]);
-                UDP.Connect(FDST[0], FRPort[0]);
+                TCP?.Dispose();
+                TCP = new TcpClient(FDST[0], FRPort[0]);
+                TCP.
             }
             if (FSend[0] && UDP != null)
             {
