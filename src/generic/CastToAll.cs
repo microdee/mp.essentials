@@ -12,11 +12,9 @@ namespace VVVV.Nodes
         public static IEnumerable<Type> GetTypes(this Type type)
         {
             // is there any base type?
-            if ((type == null) || (type.BaseType == null))
-            {
-                yield break;
-            }
+            if (type == null) yield break;
             yield return type;
+            if (type.BaseType == null) yield break;
             // return all implemented or inherited interfaces
             foreach (var i in type.GetInterfaces())
             {
