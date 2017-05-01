@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" systemname="R (Value InPatch)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" scrollx="0" scrolly="1800">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" systemname="R (Value InPatch)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="2160" top="1965" width="11610" height="8640">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
@@ -324,7 +324,7 @@
    </LINK>
    <LINK srcnodeid="52" srcpinname="Output" dstnodeid="50" dstpinname="Input 2">
    </LINK>
-   <NODE id="53" systemname="Performer (String)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\Performer (String).v4p" nodename="Performer (String)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <NODE id="53" systemname="Performer (String)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\Performer (String).v4p" nodename="Performer (String)" componentmode="Hidden" hiddenwhenlocked="0" managers="" debug="0">
    <BOUNDS type="Node" left="4410" top="8625" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="45" top="1755" width="4800" height="3600">

@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="-195">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="-195">
    <BOUNDS type="Window" left="9195" top="-15075" width="11355" height="15705">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.7">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="SpaceMouse (Devices HID)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" nodename="SpaceMouse (Devices HID)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="4875" top="3270" width="100" height="100">
@@ -343,11 +343,11 @@
    <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
-   <BOUNDS type="Box" left="3585" top="2490" width="795" height="240">
+   <BOUNDS type="Box" left="3615" top="2415" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3585" top="2490" width="0" height="0">
+   <BOUNDS type="Node" left="3615" top="2415" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.31">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
