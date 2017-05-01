@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using VVVV.PluginInterfaces.V2;
 using VVVV.SkeletonInterfaces;
@@ -23,6 +24,8 @@ namespace VVVV.Nodes.SkeletonV2
         public ISpread<ISpread<Matrix4x4>> FInvBindTr;
         [Input("Joint Name")]
         public ISpread<ISpread<string>> FJointName;
+        [Input("Regex Search", Visibility = PinVisibility.Hidden)]
+        public IDiffSpread<bool> FRegexSearch;
 
         [Output("Transform Out")]
         public ISpread<ISpread<Matrix4x4>> FOut;
@@ -41,7 +44,10 @@ namespace VVVV.Nodes.SkeletonV2
                 return;
             }
             if (FSkeletonIn[0] == null) return;
-            if (FSkeletonIn.IsChanged || FJointName.IsChanged || FInvBindTr.IsChanged)
+            if (FSkeletonIn.IsChanged ||
+                FJointName.IsChanged ||
+                FInvBindTr.IsChanged ||
+                FRegexSearch.IsChanged)
             {
                 FOut.SliceCount = FSkeletonIn.SliceCount;
                 FSucc.SliceCount = FSkeletonIn.SliceCount;
@@ -68,6 +74,37 @@ namespace VVVV.Nodes.SkeletonV2
                             {
                                 FOut[i][j] = FInvBindTr[i][j] * joints[j].CombinedTransform;
                                 FJoint[i][j] = joints[j];
+                                FSucc[i][j] = true;
+                            }
+                            catch
+                            {
+                                FSucc[i][j] = false;
+                            }
+                        }
+                    }
+                    else if(FRegexSearch[i])
+                    {
+                        if (FJointName.IsChanged)
+                        {
+                            FJoint[i].SliceCount = 0;
+                            FSucc[i].SliceCount = 0;
+                            for (int j = 0; j < FJointName[i].SliceCount; j++)
+                            {
+                                var pattern = new Regex(FJointName[i][j], RegexOptions.CultureInvariant | RegexOptions.Multiline);
+                                foreach (var joint in FSkeletonIn[i].JointTable.Values)
+                                {
+                                    if (!pattern.IsMatch(joint.Name)) continue;
+                                    FJoint[i].Add(joint);
+                                    FSucc[i].Add(true);
+                                }
+                            }
+                        }
+                        FOut[i].SliceCount = FJoint[i].SliceCount;
+                        for (int j = 0; j < FJoint[i].SliceCount; j++)
+                        {
+                            try
+                            {
+                                FOut[i][j] = FInvBindTr[i][j] * FJoint[i][j].CombinedTransform;
                                 FSucc[i][j] = true;
                             }
                             catch

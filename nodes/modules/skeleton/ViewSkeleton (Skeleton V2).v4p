@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" systemname="ViewSkeleton (Skeleton V2)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" scrollx="4215" scrolly="0">
-   <BOUNDS type="Window" left="9555" top="2145" width="10290" height="12405">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" systemname="ViewSkeleton (Skeleton V2)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" scrollx="3360" scrolly="10695">
+   <BOUNDS type="Window" left="11985" top="2430" width="10290" height="12405">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
@@ -59,7 +59,7 @@
    </PIN>
    <PIN pinname="Depth Buffer Mode" slicecount="1" values="Standard">
    </PIN>
-   <PIN pinname="Depth Buffer Format" slicecount="1" values="D32_Float">
+   <PIN pinname="Depth Buffer Format" slicecount="1" values="D24_UNorm_S8_UInt">
    </PIN>
    <PIN pinname="Window Handle" visible="1" pintype="Output">
    </PIN>
@@ -153,11 +153,13 @@
    </PIN>
    <PIN pinname="Custom RenderState" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Additional Depth" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Actual BackBuffer SizeXY" dstnodeid="22" dstpinname="Resolution">
    </LINK>
    <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="26">
-   <BOUNDS type="Node" left="6135" top="19755" width="100" height="100">
+   <BOUNDS type="Node" left="5955" top="20895" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In Count" slicecount="1" values="3">
    </PIN>
@@ -171,7 +173,7 @@
    </PIN>
    </NODE>
    <NODE systemname="AspectRatio (Transform)" nodename="AspectRatio (Transform)" componentmode="Hidden" id="27">
-   <BOUNDS type="Node" left="7080" top="18870" width="100" height="100">
+   <BOUNDS type="Node" left="6900" top="20010" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Aspect Width" visible="1">
    </PIN>
@@ -183,7 +185,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="28">
-   <BOUNDS type="Node" left="7230" top="18465" width="100" height="100">
+   <BOUNDS type="Node" left="7050" top="19605" width="100" height="100">
    </BOUNDS>
    <PIN pinname="X" visible="1">
    </PIN>
@@ -199,7 +201,7 @@
    <LINK srcnodeid="2" srcpinname="Actual BackBuffer SizeXY" dstnodeid="28" dstpinname="XY">
    </LINK>
    <NODE systemname="Inverse (Transform)" filename="" nodename="Inverse (Transform)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="7305" top="19395" width="100" height="100">
+   <BOUNDS type="Node" left="7125" top="20535" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
@@ -218,8 +220,6 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="36" srcpinname="Layer Out" dstnodeid="21" dstpinname="Layer 2">
-   </LINK>
    <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="38">
    <BOUNDS type="Node" left="3600" top="13635" width="100" height="100">
    </BOUNDS>
@@ -729,7 +729,7 @@
    </PIN>
    <PIN pinname="Layer 4" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Layer 3" visible="1">
+   <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="104" srcpinname="Layer Out" dstnodeid="36" dstpinname="Layer In">
@@ -845,12 +845,12 @@
    </PIN>
    <PIN pinname="Render State" visible="1">
    </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="111" srcpinname="Transform Out" dstnodeid="113" dstpinname="Transform">
    </LINK>
    <LINK srcnodeid="113" srcpinname="Layer" dstnodeid="109" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="22" srcpinname="Layer" dstnodeid="109" dstpinname="Layer 2">
    </LINK>
    <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="114">
    <BOUNDS type="Node" left="6810" top="14310" width="100" height="100">
@@ -1159,7 +1159,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="14415" top="6705" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1177,8 +1177,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="142" srcpinname="Y Output Value" dstnodeid="109" dstpinname="Enabled">
-   </LINK>
-   <LINK srcnodeid="109" srcpinname="Layer Out" dstnodeid="104" dstpinname="Layer 3">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="143">
    <BOUNDS type="Box" left="12945" top="12645" width="795" height="240">
@@ -1281,7 +1279,7 @@
    <LINK srcnodeid="142" srcpinname="Y Output Value" dstnodeid="148" dstpinname="Input 2">
    </LINK>
    <NODE systemname="Camera (Transform Orbit)" filename="%VVVV%\lib\packs\VL.EditingFramework.0.47.192-ga2951b99d5\vvvv\nodes\modules\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="149">
-   <BOUNDS type="Node" left="5430" top="17955" width="100" height="100">
+   <BOUNDS type="Node" left="5250" top="19095" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View" visible="1">
    </PIN>
@@ -1485,7 +1483,7 @@
    <NODE systemname="CreateNode (VVVV)" nodename="CreateNode (VVVV)" componentmode="Hidden" id="174">
    <BOUNDS type="Node" left="5160" top="16245" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Node Name" visible="1" slicecount="1" values="C:\vvvv\app\vvvv-vpm\packs\dx11\nodes\dx11\Constant.fx">
+   <PIN pinname="Node Name" visible="1" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\dx11\nodes\dx11\Constant.fx">
    </PIN>
    <PIN pinname="Parent Patch" visible="1">
    </PIN>
@@ -1523,5 +1521,27 @@
    <LINK srcnodeid="168" srcpinname="Shader Path" dstnodeid="174" dstpinname="Node Name">
    </LINK>
    <LINK srcnodeid="168" srcpinname="ID" dstnodeid="174" dstpinname="Node ID">
+   </LINK>
+   <LINK srcnodeid="109" srcpinname="Layer Out" dstnodeid="104" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Layer Out" dstnodeid="21" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="22" srcpinname="Layer" dstnodeid="109" dstpinname="Layer 2">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="177">
+   <BOUNDS type="Box" left="12390" top="14205" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12390" top="14205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="120" srcpinname="Output" dstnodeid="177" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
