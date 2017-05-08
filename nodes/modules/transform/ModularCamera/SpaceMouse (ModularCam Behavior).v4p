@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="-195">
-   <BOUNDS type="Window" left="9195" top="-15075" width="11355" height="15705">
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" systemname="SpaceMouse (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (ModularCam Behavior).v4p" scrollx="0" scrolly="1200">
+   <BOUNDS type="Window" left="3000" top="1530" width="11355" height="15705">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
@@ -21,7 +21,7 @@
    </PIN>
    <PIN pinname="Device Type" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="5595" top="285" width="9000" height="10800">
+   <BOUNDS type="Window" left="7050" top="-13845" width="9000" height="10800">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="0" systemname="IOBox (Enumerations)">
@@ -317,7 +317,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2145" top="2265" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="60">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -581,5 +581,21 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="46" srcpinname="Output" dstnodeid="4" dstpinname="InteractIn">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53">
+   <BOUNDS type="Box" left="2430" top="5865" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2430" top="5865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Rotation" dstnodeid="53" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
