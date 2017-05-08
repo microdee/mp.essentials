@@ -30,6 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="GraphSharp">
+      <HintPath>Dependencies\GraphSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="LzmaSharp">
       <HintPath>Dependencies\LzmaSharp.dll</HintPath>
     </Reference>
@@ -40,6 +51,10 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QuickGraph">
+      <HintPath>Dependencies\QuickGraph.dll</HintPath>
     </Reference>
     <Reference Include="SharpMessage, Version=2.9.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\SharpMessage.2.9.6\lib\net46\SharpMessage.dll</HintPath>
@@ -129,6 +144,7 @@
     <Compile Include="devices\DevicesDirectInputNode.cs" />
     <Compile Include="devices\ValueTouchProcessorNode.cs" />
     <Compile Include="devices\vjoy.cs" />
+    <Compile Include="excel\ExcelReader.cs" />
     <Compile Include="generic\CastToAll.cs" />
     <Compile Include="generic\GenericAsObjectNode.cs" />
     <Compile Include="generic\GenericKeepLastNode.cs" />
@@ -136,6 +152,12 @@
     <Compile Include="generic\ObjectUtils.cs" />
     <Compile Include="generic\StringSpreadToFramesNode.cs" />
     <Compile Include="generic\TupleNodes.cs" />
+    <Compile Include="graphs\AbstractGraphGeneratorNode.cs" />
+    <Compile Include="graphs\Neighbours.cs" />
+    <Compile Include="graphs\Dijkstra.cs" />
+    <Compile Include="graphs\DistanceFromReference.cs" />
+    <Compile Include="graphs\LayoutNodes.cs" />
+    <Compile Include="graphs\FRLayoutNode.cs" />
     <Compile Include="messages\MessagePathExtensions.cs" />
     <Compile Include="messages\MessagePathNode.cs" />
     <Compile Include="network\http\ClientConstructNodes.cs" />
