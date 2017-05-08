@@ -1,0 +1,267 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
+   <PATCH nodename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\girlpower\Excel.v4p" scrollx="0" scrolly="0" systemname="Excel" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\girlpower\Excel.v4p">
+   <BOUNDS type="Window" left="9900" top="3315" width="10440" height="8160">
+   </BOUNDS>
+   <NODE systemname="Reader (Raw)" nodename="Reader (Raw)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="2655" top="1995" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Read" visible="1">
+   </PIN>
+   <PIN pinname="Content" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2490" top="1200" width="780" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2490" top="1200" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="file.txt">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Text Formats (*.csv, *.dtd, *.html, *.txt, *.xml)||*.csv;*.dtd;*.html;*.htm;*.txt;*.xml||Text (*.txt)||*.txt||XML (*.xml)||*.xml||CSV (*.csv)||*.csv||DTD (*.dtd)||*.dtd||HTML (*.html, *.htm)||*.html;*.htm|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="1" dstpinname="Filename">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3705" top="1380" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3705" top="1380" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Read">
+   </LINK>
+   <NODE systemname="Excel (Raw)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Excel (Raw)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="2685" top="2805" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Tables" visible="1">
+   </PIN>
+   <PIN pinname="First Row is Column Names" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Data XML" visible="1">
+   </PIN>
+   <PIN pinname="Data Set" visible="1">
+   </PIN>
+   <PIN pinname="Data Reader" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Content" dstnodeid="6" dstpinname="Spreadsheet Binary">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.6">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="4500" top="3720" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|System.Data.DataTable, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="DataTable">
+   </PIN>
+   </NODE>
+   <NODE systemname="Table (Excel)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Table (Excel)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="3180" top="4020" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Spreadsheet Binary" visible="1">
+   </PIN>
+   <PIN pinname="Rows" visible="1">
+   </PIN>
+   <PIN pinname="Columns" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="3195" top="3465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Tables" dstnodeid="11" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="10" dstpinname="Spreadsheet Binary">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="1785" top="4875" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|System.Data.DataRow, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="ItemArray" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="DataRow">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Rows" dstnodeid="12" dstpinname="Input">
+   </LINK>
+   <NODE systemname="QueryColumn (Excel)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="QueryColumn (Excel)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="3435" top="5520" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Row" visible="1">
+   </PIN>
+   <PIN pinname="Label Row" visible="1">
+   </PIN>
+   <PIN pinname="Column Label" visible="1">
+   </PIN>
+   <PIN pinname="Result" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Rows" dstnodeid="15" dstpinname="Row">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16">
+   <BOUNDS type="Box" left="4440" top="5145" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4440" top="5145" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Label Row">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="17">
+   <BOUNDS type="Box" left="3690" top="4680" width="1035" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3690" top="4680" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Person Role|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="15" dstpinname="Column Label">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="5400" top="4695" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|System.Data.DataColumn, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Columns" dstnodeid="20" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="21">
+   <BOUNDS type="Box" left="3420" top="6105" width="1170" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3420" top="6105" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Result" dstnodeid="21" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="22">
+   <BOUNDS type="Node" left="2520" top="780" width="630" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2520" top="780" width="630" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|xlsx in|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="23">
+   <BOUNDS type="Node" left="3615" top="2970" width="1365" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3615" top="2970" width="1365" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|all this shit out...|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="26">
+   <BOUNDS type="Box" left="6540" top="6510" width="2895" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6540" top="6510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="5610" top="3060" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|System.Data.DataSet, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Data Set" dstnodeid="27" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="600" top="3675" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|Excel.IExcelDataReader, Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetAllTypes (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetAllTypes (Object)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="6570" top="5940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Object Type" visible="1">
+   </PIN>
+   <PIN pinname="Inheritence Level" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Object Type" dstnodeid="26" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Data Reader" dstnodeid="25" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Data Reader" dstnodeid="28" dstpinname="Input">
+   </LINK>
+   </PATCH>
