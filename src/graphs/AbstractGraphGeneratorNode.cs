@@ -12,8 +12,40 @@ using VVVV.Utils.VMath;
 
 namespace VVVV.Nodes
 {
-    public class MessageEdge : IEdge<Message>
+    public static class GraphHelper
     {
+        public static IEdge<TVertex>[] GetConnected<TVertex>(this IVertexAndEdgeListGraph<TVertex, IEdge<TVertex>> graph, TVertex src)
+        {
+            var res = new List<IEdge<TVertex>>();
+            foreach (var edge in graph.Edges)
+            {
+                if (!edge.Source.Equals(src) && !edge.Target.Equals(src)) continue;
+                if(res.Contains(edge)) continue;
+                res.Add(edge);
+            }
+            return res.ToArray();
+        }
+    }
+    public class MessageEdge : IEdge<Message>, IEquatable<MessageEdge>
+    {
+        public bool Equals(MessageEdge other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(Source, other.Source) && Equals(Target, other.Target) && ID == other.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Source != null ? Source.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Target != null ? Target.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ ID;
+                return hashCode;
+            }
+        }
+
         public MessageEdge(Message s, Message t)
         {
             Source = s;
@@ -22,6 +54,15 @@ namespace VVVV.Nodes
         public Message Source { get; }
         public Message Target { get; }
         public int ID { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof(MessageEdge)) return false;
+            return Equals((MessageEdge) obj);
+        }
+        
     }
 
     public abstract class AbstractGraphLayoutGeneratorNode<TVertex, TEdge, TGraph, TLayout, TLayoutParams> : IPluginEvaluate, IPartImportsSatisfiedNotification
