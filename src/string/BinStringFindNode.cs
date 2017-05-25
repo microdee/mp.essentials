@@ -1,8 +1,9 @@
 #region usings
 using System;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Linq;
-
+using mp.essentials;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
@@ -26,10 +27,14 @@ namespace VVVV.Nodes
 		public ISpread<string> FInput;
 		[Input("SubStrings")]
 		public ISpread<ISpread<string>> FSubString;
-		[Input("Last")]
+	    [Input("Comparison Mode", DefaultEnumEntry = "InvariantCulture")]
+	    public ISpread<StringComparison> FCompMode;
+        [Input("Last")]
 		public ISpread<bool> FLast;
+	    [Input("Ignore Diacritics")]
+	    public ISpread<bool> FIgnoreDiac;
 
-		[Output("Found")]
+        [Output("Found")]
 		public ISpread<ISpread<bool>> FFound;
 		[Output("Start")]
 		public ISpread<ISpread<int>> FPosition;
@@ -51,15 +56,18 @@ namespace VVVV.Nodes
 				
 				for(int j=0; j<FFound[i].SliceCount; j++)
 				{
-					FFound[i][j] = FInput[i].Contains(FSubString[i][j]);
+                    if(FIgnoreDiac[i]) FFound[i][j] = FInput[i].RemoveDiacritics().Contains(FSubString[i][j].RemoveDiacritics(), FCompMode[i]);
+                    else FFound[i][j] = FInput[i].Contains(FSubString[i][j], FCompMode[i]);
 					if(FLast[i])
 					{
-						FPosition[i][j] = FInput[i].LastIndexOf(FSubString[i][j]);
-					}
+					    if (FIgnoreDiac[i]) FPosition[i][j] = FInput[i].RemoveDiacritics().LastIndexOf(FSubString[i][j].RemoveDiacritics(), FCompMode[i]);
+                        else FPosition[i][j] = FInput[i].LastIndexOf(FSubString[i][j], FCompMode[i]);
+                    }
 					else
 					{
-						FPosition[i][j] = FInput[i].IndexOf(FSubString[i][j]);
-					}
+					    if (FIgnoreDiac[i]) FPosition[i][j] = FInput[i].RemoveDiacritics().IndexOf(FSubString[i][j].RemoveDiacritics(), FCompMode[i]);
+					    else FPosition[i][j] = FInput[i].IndexOf(FSubString[i][j], FCompMode[i]);
+                    }
 				}
 			}
 

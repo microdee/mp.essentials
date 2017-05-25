@@ -1,7 +1,7 @@
 #region usings
 using System;
 using System.ComponentModel.Composition;
-
+using mp.essentials;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
@@ -27,8 +27,12 @@ namespace VVVV.Nodes
 		public ISpread<ISpread<string>> FFilter;
 		[Input("Contains")]
 		public ISpread<bool> FContains;
+	    [Input("Comparison Mode", DefaultEnumEntry = "InvariantCulture")]
+	    public ISpread<StringComparison> FCompMode;
+	    [Input("Ignore Diacritics")]
+	    public ISpread<bool> FIgnoreDiac;
 
-		[Output("Input Index")]
+        [Output("Input Index")]
 		public ISpread<ISpread<int>> FInIndex;
 		[Output("Input Absolute Index")]
 		public ISpread<ISpread<int>> FInAbsIndex;
@@ -56,10 +60,15 @@ namespace VVVV.Nodes
 					for(int k=0; k<FFilter[i].SliceCount; k++)
 					{
 						bool valid = false;
-						if(FContains[0]) valid = FInput[i][j].Contains(FFilter[i][k]);
-						else valid = FInput[i][j] == FFilter[i][k];
-						
-						if(valid)
+					    if (FIgnoreDiac[i]) valid = FContains[0]
+					            ? FInput[i][j].RemoveDiacritics().Contains(FFilter[i][k].RemoveDiacritics(), FCompMode[i])
+					            : FInput[i][j].RemoveDiacritics().Equals(FFilter[i][k].RemoveDiacritics(), FCompMode[i]);
+					    else valid = FContains[0]
+					            ? FInput[i][j].Contains(FFilter[i][k], FCompMode[i])
+					            : FInput[i][j].Equals(FFilter[i][k], FCompMode[i]);
+
+
+                        if (valid)
 						{
 							FInIndex[i].Add(j);
 							FInAbsIndex[i].Add(ii);

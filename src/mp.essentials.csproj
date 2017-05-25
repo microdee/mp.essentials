@@ -60,6 +60,9 @@
       <HintPath>packages\SharpMessage.2.9.6\lib\net46\SharpMessage.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SimMetrics.Net, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SimMetrics.Net.1.0.3\lib\net45\SimMetrics.Net.dll</HintPath>
+    </Reference>
     <Reference Include="SlimDX">
       <HintPath>..\..\..\..\..\app\vvvv-vpm\lib\core\SlimDX.dll</HintPath>
       <Private>False</Private>
@@ -148,6 +151,7 @@
     <Compile Include="generic\CastToAll.cs" />
     <Compile Include="generic\GenericAsObjectNode.cs" />
     <Compile Include="generic\GenericKeepLastNode.cs" />
+    <Compile Include="generic\GenericZip.cs" />
     <Compile Include="generic\NodeEvaluateNode.cs" />
     <Compile Include="generic\ObjectUtils.cs" />
     <Compile Include="generic\StringSpreadToFramesNode.cs" />
@@ -160,6 +164,7 @@
     <Compile Include="graphs\FRLayoutNode.cs" />
     <Compile Include="messages\MessagePathExtensions.cs" />
     <Compile Include="messages\MessagePathNode.cs" />
+    <Compile Include="MpeE.cs" />
     <Compile Include="network\http\ClientConstructNodes.cs" />
     <Compile Include="network\http\ClientSendNodes.cs" />
     <Compile Include="network\http\HeadersNodes.cs" />
@@ -176,6 +181,7 @@
     <Compile Include="skeleton\NewJoint.cs" />
     <Compile Include="skeleton\SetJoint.cs" />
     <Compile Include="skeleton\V1ToV2.cs" />
+    <Compile Include="string\AbstractDistanceSearchNodes.cs" />
     <Compile Include="string\AdvancedStringSiftNode.cs" />
     <Compile Include="string\BinStringFindNode.cs" />
     <Compile Include="string\ControlDragAndDropNode.cs" />
@@ -183,6 +189,7 @@
     <Compile Include="string\SetStringDictionaryNode.cs" />
     <Compile Include="string\StatesStateServerNode.cs" />
     <Compile Include="string\StringAddHeadCutTailNode.cs" />
+    <Compile Include="string\StringDistanceNodes.cs" />
     <Compile Include="string\StringEditNode.cs" />
     <Compile Include="string\StringRegexNode.cs" />
     <Compile Include="string\StringRemoveZeroNode.cs" />
