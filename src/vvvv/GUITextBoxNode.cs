@@ -32,13 +32,23 @@ namespace VVVV.Nodes
 		ISpread<bool> FSet;
 		[Input("Select All", IsSingle = true, IsBang = true)]
 		ISpread<bool> FSelectAll;
+	    [Input("Selection Start In")]
+	    ISpread<int> FSelStartIn;
+	    [Input("Selection Length In")]
+	    ISpread<int> FSelLengthIn;
+	    [Input("Select", IsSingle = true, IsBang = true)]
+	    ISpread<bool> FSelect;
 
-		[Output("Output")]
+        [Output("Output")]
 		ISpread<string> FOut;
 		[Output("Width")]
 		ISpread<float> FWidth;
+	    [Output("Selection Start")]
+	    ISpread<int> FSelStart;
+	    [Output("Selection Length")]
+	    ISpread<int> FSelLength;
 
-		[Import()]
+        [Import()]
 		ILogger FLogger;
 
 		//gui controls
@@ -74,9 +84,16 @@ namespace VVVV.Nodes
 		{
 			if(FSet[0]) FTextBox.Text = FIn[0];
 			FOut[0] = FTextBox.Text;
-			if(FOut.IsChanged)
+		    FSelStart[0] = FTextBox.SelectionStart;
+		    FSelLength[0] = FTextBox.SelectionLength;
+		    if (FSelect[0])
+		    {
+		        FTextBox.SelectionStart = FSelStartIn[0];
+		        FTextBox.SelectionLength = FSelLengthIn[0];
+            }
+            if (FOut.IsChanged)
 			{
-				System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(new Bitmap(1, 1));
+				Graphics graphics = Graphics.FromImage(new Bitmap(1, 1));
 				SizeF size = graphics.MeasureString(FOut[0], new Font("Segoe UI", 11, FontStyle.Regular, GraphicsUnit.Pixel));
 				FWidth[0] = size.Width;
 			}
