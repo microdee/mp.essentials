@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="CommonAbstractNodePatterns.cs" />
     <Compile Include="ConfigurableDynamicPinNode.cs" />
+    <Compile Include="NodeExtensions.cs" />
     <Compile Include="NodePinSimple.cs" />
     <Compile Include="PDDN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
