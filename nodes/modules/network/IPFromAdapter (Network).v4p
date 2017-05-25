@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50debug34.100.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p" systemname="IPFromAdapter (Network)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p" systemname="IPFromAdapter (Network)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p">
    <BOUNDS type="Window" left="12225" top="2490" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE id="10" systemname="IOBox (Enumerations)" nodename="IOBox (Enumerations)" componentmode="InABox" hiddenwhenlocked="0" managers="">
    <BOUNDS type="Node" left="4575" top="615" width="100" height="100">
@@ -60,18 +60,6 @@
    <PIN pinname="Enum Name" pintype="Output" visible="1">
    </PIN>
    <PIN pinname="Enum Count" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="ID" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
-   <NODE id="8" systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <BOUNDS type="Node" left="5460" top="4395" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive" visible="1" pintype="Input" slicecount="1" values="(nil)">
-   </PIN>
-   <PIN pinname="Enum" slicecount="1" pintype="Input" visible="1" values="IPs">
-   </PIN>
-   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
    </PIN>
    <PIN pinname="ID" pintype="Output" visible="-1">
    </PIN>
@@ -310,8 +298,6 @@
    </LINK>
    <LINK srcnodeid="6" srcpinname="Output String" dstnodeid="5" dstpinname="EnumName">
    </LINK>
-   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="8" dstpinname="Receive">
-   </LINK>
    <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="9" dstpinname="Enum">
    </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="11">
@@ -448,6 +434,28 @@
    </LINK>
    <LINK srcnodeid="16" srcpinname="Changed" dstnodeid="18" dstpinname="Input 2">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.7">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="19">
+   <BOUNDS type="Box" left="5640" top="3900" width="660" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5640" top="3900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="IPs">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="AllEnums">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE id="20" systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="5460" top="4395" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="20" dstpinname="Receive">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output Enum" dstnodeid="20" dstpinname="Enum">
+   </LINK>
    </PATCH>
