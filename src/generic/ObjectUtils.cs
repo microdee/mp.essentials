@@ -334,10 +334,18 @@ namespace VVVV.Nodes.VObjects
 
         [Config("Type", DefaultString = "")] public IDiffSpread<string> FType;
         [Input("Force Update", Order = 100)] public ISpread<bool> FForceUpdate;
+        public GenericInput FRefType;
+        [Input("Learnt Type Inheritence Level", Order = 102, Visibility = PinVisibility.Hidden, DefaultValue = 0)]
+        public ISpread<int> FTypeInheritence;
+        [Input("Learn Type", Order = 103, IsBang = true)] public ISpread<bool> FLearnType;
 
         protected override void PreInitialize()
         {
             ConfigPinCopy = FType;
+            FRefType = new GenericInput(FPluginHost, new InputAttribute("Reference Type")
+            {
+                Order = 101
+            });
             Pd = new PinDictionary(FIOFactory);
             foreach (var pin in FPluginHost.GetPins())
             {
@@ -357,6 +365,7 @@ namespace VVVV.Nodes.VObjects
 
         protected override void OnConfigPinChanged()
         {
+            FType.Stream.IsChanged = false;
             foreach (var pin in FPluginHost.GetPins())
             {
                 if (pin.Name != "Descriptive Name") continue;
@@ -472,7 +481,17 @@ namespace VVVV.Nodes.VObjects
 
         public void Evaluate(int SpreadMax)                                                               
         {
-            if (IsConfigDefault()) return;
+            if (FLearnType[0])
+            {
+                try
+                {
+                    var types = FRefType[0].GetType().GetTypes().ToArray();
+                    FType[0] = types[Math.Min(FTypeInheritence[0], types.Length - 1)].AssemblyQualifiedName;
+                    FType.Stream.IsChanged = true;
+                }
+                catch (Exception e)
+                { }
+            }
             if (InitDescSet < 5)
             {
                 foreach (var pin in FPluginHost.GetPins())
@@ -483,7 +502,8 @@ namespace VVVV.Nodes.VObjects
                     break;
                 }
             }
-            if(!Pd.InputPins.ContainsKey("Input")) return;
+            if (IsConfigDefault()) return;
+            if (!Pd.InputPins.ContainsKey("Input")) return;
             if (Pd.InputPins["Input"].Spread.SliceCount == 0)
             {
                 foreach (var outpin in Pd.OutputPins.Values)
