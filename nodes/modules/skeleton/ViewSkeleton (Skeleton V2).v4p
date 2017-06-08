@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.4.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" systemname="ViewSkeleton (Skeleton V2)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" scrollx="3360" scrolly="10695">
-   <BOUNDS type="Window" left="11985" top="2430" width="10290" height="12405">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" systemname="ViewSkeleton (Skeleton V2)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\skeleton\ViewSkeleton (Skeleton V2).v4p" scrollx="0" scrolly="12030">
+   <BOUNDS type="Window" left="15360" top="2670" width="10290" height="12405">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>

@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\value\ResampleGamma (Value).v4p" systemname="ResampleGamma (Value)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\value\ResampleGamma (Value).v4p" scrollx="45" scrolly="1080">
-   <BOUNDS type="Window" left="38865" top="9510" width="9000" height="6000">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\value\ResampleGamma (Value).v4p" systemname="ResampleGamma (Value)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\value\ResampleGamma (Value).v4p" scrollx="0" scrolly="4170">
+   <BOUNDS type="Window" left="735" top="2580" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="InputMorph (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\VVVV.Nodes.AnimAdvanced.dll" nodename="InputMorph (Value Advanced)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="1170" top="6585" width="100" height="100">
@@ -177,7 +177,7 @@
    </PIN>
    <PIN pinname="Transition Mode" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Transition Type" slicecount="1" values="1" visible="1">
+   <PIN pinname="Transition Type" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Inverse" slicecount="1" values="0">
    </PIN>
@@ -292,4 +292,6 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Output" dstnodeid="0" dstpinname="Switch">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.6">
+   </PACK>
    </PATCH>
