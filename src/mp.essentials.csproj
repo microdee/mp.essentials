@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\nodes\plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -144,6 +144,10 @@
     <Compile Include="boolean\BooleanQRCodeNode.cs" />
     <Compile Include="boolean\QRCodeCS.cs" />
     <Compile Include="boolean\ValueCountBangsNode.cs" />
+    <Compile Include="Camera\CamDeltaNode.cs" />
+    <Compile Include="Camera\MouseKeyboardCamDeltaNode.cs" />
+    <Compile Include="Camera\ModularCam.cs" />
+    <Compile Include="Camera\ModularCamNode.cs" />
     <Compile Include="devices\DevicesDirectInputNode.cs" />
     <Compile Include="devices\ValueTouchProcessorNode.cs" />
     <Compile Include="devices\vjoy.cs" />

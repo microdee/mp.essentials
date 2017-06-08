@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="13680">
-   <BOUNDS type="Window" left="12270" top="3615" width="16200" height="10380">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" systemname="Camera (Transform Modular)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\Camera (Transform Modular).v4p" scrollx="0" scrolly="7545">
+   <BOUNDS type="Window" left="11610" top="2040" width="16200" height="10380">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
@@ -1562,8 +1562,6 @@
    </LINK>
    <LINK srcnodeid="101" srcpinname="Output" dstnodeid="29" dstpinname="FOV">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="29" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="1" srcpinname="Output" dstnodeid="73" dstpinname="Input">
    </LINK>
    <NODE id="110" componentmode="Hidden" systemname="Split (Message Formular)" filename="%VVVV%\packs\vvvv-Message\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Split (Message Formular)" hiddenwhenlocked="0" managers="">
@@ -1634,8 +1632,6 @@
    </NODE>
    <LINK srcnodeid="135" srcpinname="Output 1" dstnodeid="136" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="135" srcpinname="Output 1" dstnodeid="137" dstpinname="Set">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="134">
    <BOUNDS type="Node" left="13710" top="10365" width="100" height="100">
    </BOUNDS>
@@ -1689,7 +1685,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="129">
-   <BOUNDS type="Node" left="14475" top="6705" width="100" height="100">
+   <BOUNDS type="Node" left="14640" top="7275" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Select" visible="1" slicecount="1" values="0">
    </PIN>
@@ -1744,6 +1740,8 @@
    <PIN pinname="Update" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Handle Out" visible="1">
+   </PIN>
+   <PIN pinname="Title" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="124" srcpinname="Cursor Pos" dstnodeid="138" dstpinname="Input">
@@ -1903,6 +1901,8 @@
    </PIN>
    <PIN pinname="Device Description" visible="1">
    </PIN>
+   <BOUNDS type="Window" left="2145" top="3090" width="13545" height="9780">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="116" srcpinname="Y Output Value" dstnodeid="112" dstpinname="Mouse Device">
    </LINK>
@@ -1974,8 +1974,6 @@
    <PIN pinname="CalculatedCamera" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="40" srcpinname="Output Node" dstnodeid="142" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="64" srcpinname="Output" dstnodeid="142" dstpinname="CalculatedCamera">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="143">
@@ -2275,7 +2273,7 @@
    <LINK srcnodeid="96" srcpinname="Output" dstnodeid="173" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="Normalize (Quaternion Vector)" nodename="Normalize (Quaternion Vector)" componentmode="Hidden" id="177">
-   <BOUNDS type="Node" left="495" top="15945" width="100" height="100">
+   <BOUNDS type="Node" left="195" top="16005" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZW" visible="1" slicecount="4" values="0,0,0,1">
    </PIN>
@@ -2517,5 +2515,57 @@
    <LINK srcnodeid="162" srcpinname="Y Output Value" dstnodeid="161" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="94" srcpinname="Output" dstnodeid="161" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="196">
+   <BOUNDS type="Node" left="14355" top="12075" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="135" srcpinname="Output 1" dstnodeid="196" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="196" srcpinname="Output" dstnodeid="137" dstpinname="Set">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="197">
+   <BOUNDS type="Box" left="15300" top="11160" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="15300" top="11160" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Lock Cursor|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="196" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="29" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Output Node" dstnodeid="142" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="199">
+   <BOUNDS type="Box" left="16905" top="2085" width="1080" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="16905" top="2085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="124" srcpinname="Handle Out" dstnodeid="199" dstpinname="Y Input Value">
    </LINK>
    </PATCH>

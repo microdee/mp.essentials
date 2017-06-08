@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\girlpower\SkeletonV2.v4p" scrollx="0" scrolly="0" systemname="SkeletonV2" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\SkeletonV2.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\girlpower\SkeletonV2.v4p" scrollx="15" scrolly="15" systemname="SkeletonV2" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\SkeletonV2.v4p">
    <BOUNDS type="Window" left="10740" top="3420" width="13515" height="9285">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>

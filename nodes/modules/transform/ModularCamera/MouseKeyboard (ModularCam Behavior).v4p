@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" systemname="MouseKeyboard (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" scrollx="0" scrolly="10785">
-   <BOUNDS type="Window" left="12600" top="2400" width="13605" height="12630">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" systemname="MouseKeyboard (ModularCam Behavior)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\MouseKeyboard (ModularCam Behavior).v4p" scrollx="1275" scrolly="2205">
+   <BOUNDS type="Window" left="12240" top="2790" width="13605" height="12630">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.6">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
@@ -1485,7 +1485,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="121">
-   <BOUNDS type="Node" left="2655" top="12225" width="100" height="100">
+   <BOUNDS type="Node" left="2865" top="12225" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -1497,7 +1497,7 @@
    <LINK srcnodeid="122" srcpinname="X" dstnodeid="121" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="120">
-   <BOUNDS type="Node" left="3195" top="12165" width="100" height="100">
+   <BOUNDS type="Node" left="3405" top="12165" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -1509,7 +1509,7 @@
    <LINK srcnodeid="122" srcpinname="Y" dstnodeid="120" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="119">
-   <BOUNDS type="Node" left="3810" top="12180" width="100" height="100">
+   <BOUNDS type="Node" left="4020" top="12180" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
    </PIN>
@@ -1523,7 +1523,7 @@
    <LINK srcnodeid="123" srcpinname="Output" dstnodeid="122" dstpinname="XYZ">
    </LINK>
    <NODE systemname="Vector (3d Join)" nodename="Vector (3d Join)" componentmode="Hidden" id="118">
-   <BOUNDS type="Node" left="2760" top="13530" width="100" height="100">
+   <BOUNDS type="Node" left="3750" top="13425" width="100" height="100">
    </BOUNDS>
    <PIN pinname="X" visible="1">
    </PIN>
@@ -1539,7 +1539,7 @@
    <LINK srcnodeid="119" srcpinname="Output" dstnodeid="118" dstpinname="Z">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="117">
-   <BOUNDS type="Node" left="3225" top="13035" width="100" height="100">
+   <BOUNDS type="Node" left="3990" top="12765" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1" slicecount="1" values="1">
    </PIN>
@@ -1937,20 +1937,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="156" srcpinname="Output" dstnodeid="158" dstpinname="Input 1">
-   </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="155">
-   <BOUNDS type="Node" left="12375" top="14130" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="158" srcpinname="Output" dstnodeid="155" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="155" srcpinname="Output" dstnodeid="157" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="159" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="10065" top="2220" width="795" height="240">
@@ -2369,9 +2355,9 @@
    <LINK srcnodeid="201" srcpinname="XYZ Transformed" dstnodeid="202" dstpinname="Axis XYZ">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="200">
-   <BOUNDS type="Box" left="6405" top="16470" width="795" height="720">
+   <BOUNDS type="Box" left="6960" top="16215" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="6405" top="16470" width="0" height="0">
+   <BOUNDS type="Node" left="6960" top="16215" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,-1,0">
    </PIN>
@@ -2519,5 +2505,7 @@
    <LINK srcnodeid="187" srcpinname="Quaternion XYZW" dstnodeid="204" dstpinname="Quaternion 1 XYZW">
    </LINK>
    <LINK srcnodeid="202" srcpinname="Quaternion XYZW" dstnodeid="204" dstpinname="Quaternion 2 XYZW">
+   </LINK>
+   <LINK srcnodeid="158" srcpinname="Output" dstnodeid="157" dstpinname="Input 2">
    </LINK>
    </PATCH>
