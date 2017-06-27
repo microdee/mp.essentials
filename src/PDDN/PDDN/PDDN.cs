@@ -222,10 +222,10 @@ namespace VVVV.Nodes.PDDN
             OutputPins.Clear();
         }
 
-        public int InputSpreadMax => InputPins.Values.Max(pin => pin.Spread.SliceCount);
-        public int OutputSpreadMax => OutputPins.Values.Max(pin => pin.Spread.SliceCount);
-        public int InputSpreadMin => InputPins.Values.Min(pin => pin.Spread.SliceCount);
-        public int OutputSpreadMin => OutputPins.Values.Min(pin => pin.Spread.SliceCount);
+        public int InputSpreadMax => InputPins.Count > 0 ? InputPins.Values.Max(pin => pin.Spread.SliceCount) : 0;
+        public int OutputSpreadMax => OutputPins.Count > 0 ? OutputPins.Values.Max(pin => pin.Spread.SliceCount) : 0;
+        public int InputSpreadMin => InputPins.Count > 0 ? InputPins.Values.Min(pin => pin.Spread.SliceCount) : 0;
+        public int OutputSpreadMin => OutputPins.Count > 0 ? OutputPins.Values.Min(pin => pin.Spread.SliceCount) : 0;
 
         public bool InputChanged => InputPins.Values.Any(pin => pin.Spread.IsChanged);
     }
