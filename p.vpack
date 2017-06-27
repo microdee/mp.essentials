@@ -7,7 +7,7 @@
 		<dependencies>
 			<dependency>
 				<name>vvvv-Message</name>
-				<source>vpms://raw.githubusercontent.com/vvvvpm/vpdb/master/velcrome/Message/vvvv-Message.2.9.6.vpack</source>
+				<source>vpms://raw.githubusercontent.com/vvvvpm/vpdb/master/velcrome/Message/vvvv-Message_Node17.vpack</source>
 			</dependency>
 		</dependencies>
 	</meta>
