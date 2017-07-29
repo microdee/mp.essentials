@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\girlpower\BezierPathTransform.v4p" systemname="BezierPathTransform" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" scrollx="0" scrolly="5475">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\girlpower\BezierPathTransform.v4p" systemname="BezierPathTransform" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\girlpower\BezierPathTransform.v4p" scrollx="0" scrolly="3240">
    <BOUNDS type="Window" left="555" top="2070" width="13170" height="11430">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
@@ -386,7 +386,7 @@
    </NODE>
    <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Look Ahead">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.6">
+   <PACK Name="vvvv-Message" Version="2.9.9">
    </PACK>
    <NODE systemname="Line (DX11 StructuredBuffer)" filename="%VVVV%\packs\mp.dx\nodes\modules\essentials\Line (DX11 StructuredBuffer).v4p" nodename="Line (DX11 StructuredBuffer)" componentmode="Hidden" id="14">
    <BOUNDS type="Node" left="3615" top="10695" width="100" height="100">
@@ -401,11 +401,13 @@
    </PIN>
    <PIN pinname="Line Bin Size" visible="1">
    </PIN>
-   <PIN pinname="Segment Sorting CS" slicecount="1" values="0" visible="1">
+   <PIN pinname="Segment Sorting CS" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Width" visible="1">
    </PIN>
    <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="14" srcpinname="Layer" dstnodeid="39" dstpinname="Layer 1">
@@ -413,7 +415,7 @@
    <LINK srcnodeid="41" srcpinname="Debug" dstnodeid="14" dstpinname="Segments">
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer 4d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 4d)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="3960" top="10020" width="100" height="100">
+   <BOUNDS type="Node" left="3450" top="10125" width="100" height="100">
    </BOUNDS>
    <PIN pinname="DataXYZW" visible="1">
    </PIN>
@@ -421,7 +423,7 @@
    </PIN>
    </NODE>
    <NODE systemname="xyzW (4d XYZ)" filename="%VVVV%\addonpack\lib\nodes\plugins\Swizzle4d.dll" nodename="xyzW (4d XYZ)" componentmode="Hidden" id="59">
-   <BOUNDS type="Node" left="3945" top="9255" width="100" height="100">
+   <BOUNDS type="Node" left="3435" top="9360" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZ" visible="1">
    </PIN>
@@ -439,9 +441,9 @@
    <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Line Bin Size">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="60">
-   <BOUNDS type="Box" left="4350" top="8805" width="795" height="240">
+   <BOUNDS type="Box" left="3840" top="8910" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4350" top="8805" width="0" height="0">
+   <BOUNDS type="Node" left="3840" top="8910" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -573,7 +575,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7515" top="7290" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -585,7 +587,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="72" srcpinname="Y Output Value" dstnodeid="71" dstpinname="Input">
@@ -676,8 +678,6 @@
    </NODE>
    <LINK srcnodeid="73" srcpinname="Output" dstnodeid="78" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="78" srcpinname="Up Edge" dstnodeid="14" dstpinname="Segment Sorting CS">
-   </LINK>
    <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="80">
    <BOUNDS type="Node" left="8100" top="14055" width="100" height="100">
    </BOUNDS>
@@ -701,5 +701,45 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="75" srcpinname="Mickies" dstnodeid="81" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82">
+   <BOUNDS type="Box" left="5550" top="7920" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5550" top="7920" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Gradient (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Source\Gradient.tfx" nodename="Gradient (DX11.TextureFX)" componentmode="Hidden" id="83">
+   <BOUNDS type="Node" left="4935" top="9465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="83" srcpinname="Texture Out" dstnodeid="14" dstpinname="Texture">
+   </LINK>
+   <NODE systemname="Rotate (Transform)" nodename="Rotate (Transform)" componentmode="Hidden" id="84">
+   <BOUNDS type="Node" left="5160" top="8655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Z" slicecount="1" values="0.25">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="84" srcpinname="Transform Out" dstnodeid="83" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Up Edge" dstnodeid="14" dstpinname="Segment Sorting CS">
    </LINK>
    </PATCH>

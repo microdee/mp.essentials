@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" systemname="Camera (Transform Pan)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" scrollx="0" scrolly="1290">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" systemname="Camera (Transform Pan)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="17040" top="4830" width="11010" height="10620">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="GetForegroundWindow (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\windows\WindowsGetForegroundWindow\WindowsGetForegroundWindow.csproj" nodename="GetForegroundWindow (Windows)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="3525" top="4440" width="100" height="100">
@@ -201,7 +201,7 @@
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="ScaleXY" slicecount="2" visible="1" values="1,1">
+   <PIN pinname="ScaleXY" slicecount="2" visible="1" values="-0.0542475354905841,-0.0842630910673355">
    </PIN>
    <PIN pinname="CenterXY" visible="1">
    </PIN>
@@ -248,8 +248,6 @@
    </LINK>
    <LINK srcnodeid="32" srcpinname="Output 1" dstnodeid="27" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="30" dstpinname="CenterXY">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="36">
    <BOUNDS type="Node" left="5010" top="7815" width="100" height="100">
    </BOUNDS>
@@ -294,14 +292,12 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="42" srcpinname="Output" dstnodeid="30" dstpinname="ScaleXY">
-   </LINK>
    <LINK srcnodeid="38" srcpinname="Output" dstnodeid="42" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="43" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4710" top="9585" width="795" height="240">
+   <BOUNDS type="Box" left="5220" top="9480" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4710" top="9585" width="0" height="0">
+   <BOUNDS type="Node" left="5220" top="9480" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -377,7 +373,7 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="2" values="0,">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0,">
    </PIN>
    <PIN pinname="Vector Size" slicecount="1" values="2">
    </PIN>
@@ -386,8 +382,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Translation">
    </PIN>
    </NODE>
-   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="49" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3750" top="10590" width="795" height="240">
    </BOUNDS>
@@ -399,9 +393,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Scale">
    </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="42" srcpinname="Output" dstnodeid="50" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="52" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3510" top="3825" width="480" height="480">
    </BOUNDS>
@@ -493,5 +487,55 @@
    <LINK srcnodeid="71" srcpinname="Wheel" dstnodeid="45" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="71" srcpinname="Buttons" dstnodeid="24" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Damper (Animation)" nodename="Damper (Animation)" componentmode="Hidden" id="76">
+   <BOUNDS type="Node" left="3765" top="9165" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Go To Position" visible="1">
+   </PIN>
+   <PIN pinname="Position Out" visible="1">
+   </PIN>
+   <PIN pinname="FilterTime" slicecount="1" values="0.27">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="42" srcpinname="Output" dstnodeid="76" dstpinname="Go To Position">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Position Out" dstnodeid="50" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Damper (Animation)" nodename="Damper (Animation)" componentmode="Hidden" id="77">
+   <BOUNDS type="Node" left="2490" top="9855" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Go To Position" visible="1">
+   </PIN>
+   <PIN pinname="Position Out" visible="1">
+   </PIN>
+   <PIN pinname="FilterTime" slicecount="1" values="0.27">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="77" dstpinname="Go To Position">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Position Out" dstnodeid="30" dstpinname="ScaleXY">
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="Position Out" dstnodeid="30" dstpinname="CenterXY">
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="Position Out" dstnodeid="49" dstpinname="Y Input Value">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.9">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="78">
+   <BOUNDS type="Box" left="2655" top="2760" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2655" top="2760" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="71" srcpinname="Mickies" dstnodeid="78" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
