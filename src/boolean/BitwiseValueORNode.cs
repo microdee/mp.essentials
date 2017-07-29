@@ -15,12 +15,12 @@ namespace VVVV.Nodes
 	#region PluginInfo
 	[PluginInfo(
         Name = "OR",
-        Category = "Value",
+        Category = "Spectral",
         Version = "Bitwise",
         Author = "microdee"
         )]
 	#endregion PluginInfo
-	public class BitwiseValueORNode : IPluginEvaluate
+	public class SpectralBitwiseValueORNode : IPluginEvaluate
 	{
 		#region fields & pins
 		[Input("Input", DefaultValue = 1.0)]
@@ -50,5 +50,45 @@ namespace VVVV.Nodes
 
 			//FLogger.Log(LogType.Debug, "hi tty!");
 		}
-	}
+    }
+
+    #region PluginInfo
+    [PluginInfo(
+        Name = "OR",
+        Category = "Value",
+        Version = "Bitwise",
+        Author = "microdee"
+    )]
+    #endregion PluginInfo
+    public class BitwiseValueORNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("Input", DefaultValue = 1.0, IsPinGroup = true)]
+        public ISpread<ISpread<uint>> FInput;
+
+        [Output("Output")]
+        public ISpread<uint> FOutput;
+
+        [Import()]
+        public ILogger FLogger;
+        #endregion fields & pins
+
+        //called when data for any output pin is requested
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = SpreadMax;
+
+            for (int j = 0; j < SpreadMax; j++)
+            {
+                uint flag = 0;
+                for (int i = 0; i < FInput.SliceCount; i++)
+                {
+                    flag = flag | FInput[i][j];
+                }
+                FOutput[j] = flag;
+            }
+
+            //FLogger.Log(LogType.Debug, "hi tty!");
+        }
+    }
 }
