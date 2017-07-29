@@ -52,6 +52,9 @@
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PowerArgs, Version=2.8.1.0, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
+      <HintPath>packages\PowerArgs.2.8.1.0\lib\net45\PowerArgs.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="QuickGraph">
       <HintPath>Dependencies\QuickGraph.dll</HintPath>
