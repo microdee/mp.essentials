@@ -7,7 +7,7 @@ using SimMetrics.Net.API;
 using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Strings
 {
     public abstract class AbstractStringDistanceNode<TMetrics> : IPluginEvaluate where TMetrics : AbstractStringMetric, new()
     {

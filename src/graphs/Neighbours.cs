@@ -7,7 +7,7 @@ using QuickGraph;
 using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Graphs
 {
     [PluginInfo(
         Name = "Neighbours",

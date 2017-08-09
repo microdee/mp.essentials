@@ -9,7 +9,7 @@ using VVVV.SkeletonInterfaces;
 using VVVV.Utils.Streams;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes.SkeletonV2
+namespace mp.essentials.Nodes.SkeletonV2
 {
     [PluginInfo(
         Name = "Joint",

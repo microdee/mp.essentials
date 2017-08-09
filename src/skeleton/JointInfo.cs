@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes.SkeletonV2
+namespace mp.essentials.Nodes.SkeletonV2
 {
     public static class MatExt
     {

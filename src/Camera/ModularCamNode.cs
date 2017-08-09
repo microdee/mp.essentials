@@ -9,7 +9,7 @@ using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
 using WPoint = System.Drawing.Point;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Camera
 {
     [PluginInfo(
         Name = "Camera",

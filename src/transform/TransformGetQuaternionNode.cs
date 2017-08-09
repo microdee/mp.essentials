@@ -10,7 +10,7 @@ using VVVV.Utils.VMath;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Transform
 {
 	#region PluginInfo
 	[PluginInfo(Name = "GetQuaternion", Category = "Transform", Help = "Basic template with one transform in/out", Tags = "matrix")]

@@ -15,7 +15,7 @@ using VVVV.Utils.Animation;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Devices
 {
 	public class TouchContainer
 	{

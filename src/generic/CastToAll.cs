@@ -4,7 +4,7 @@ using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 using System.ComponentModel.Composition;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Generic
 {
 
     public static class TypeUtils

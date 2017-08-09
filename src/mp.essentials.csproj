@@ -140,6 +140,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="YoutubeExtractor, Version=0.10.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\YoutubeExtractor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="boolean\BitwiseValueORNode.cs" />
@@ -171,7 +175,8 @@
     <Compile Include="graphs\FRLayoutNode.cs" />
     <Compile Include="messages\MessagePathExtensions.cs" />
     <Compile Include="messages\MessagePathNode.cs" />
-    <Compile Include="MpeE.cs" />
+    <Compile Include="mp.essentials.extensions.cs" />
+    <Compile Include="network\YoutubeDownloader.cs" />
     <Compile Include="network\http\ClientConstructNodes.cs" />
     <Compile Include="network\http\ClientSendNodes.cs" />
     <Compile Include="network\http\HeadersNodes.cs" />
@@ -180,6 +185,7 @@
     <Compile Include="quaternion\SpectralQuaternionMultiplyNode.cs" />
     <Compile Include="raw\RawLZMANode.cs" />
     <Compile Include="raw\RawReadRangeNode.cs" />
+    <Compile Include="shaders\PreprocessorOptionsNode.cs" />
     <Compile Include="skeleton\CreateJoint.cs" />
     <Compile Include="skeleton\Generics.cs" />
     <Compile Include="skeleton\GetJointTransform.cs" />

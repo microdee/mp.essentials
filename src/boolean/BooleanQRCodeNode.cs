@@ -11,7 +11,7 @@ using VVVV.Core.Logging;
 using QRCode4CS;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Boolean
 {
 	[PluginInfo(
         Name = "QRCode",

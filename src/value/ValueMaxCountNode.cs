@@ -10,7 +10,7 @@ using VVVV.Utils.VMath;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Values
 {
 	#region PluginInfo
 	[PluginInfo(Name = "MaxCount", Category = "Value", Help = "Basic template with one value in/out", Tags = "")]

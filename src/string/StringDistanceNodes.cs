@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SimMetrics.Net.Metric;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Strings
 {
     [PluginInfo(
         Version = "Distance",

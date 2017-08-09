@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Camera
 {
     [PluginInfo(
         Name = "CameraDelta",

@@ -16,7 +16,7 @@ using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Generic
 {
 	#region PluginInfo
 	[PluginInfo(

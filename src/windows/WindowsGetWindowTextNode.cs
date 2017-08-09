@@ -10,7 +10,7 @@ using VVVV.PluginInterfaces.V2;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Windows
 {
 	[PluginInfo(
         Name = "GetWindowText",

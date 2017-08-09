@@ -17,7 +17,7 @@ using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Graphs
 {
     [PluginInfo(
         Name = "FR",

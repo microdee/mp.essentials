@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Generic
 {
     [PluginInfo(
         Name = "Tuple",

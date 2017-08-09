@@ -8,7 +8,7 @@ using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Values
 {
     [PluginInfo(Name = "Distance",
                 Category = "2d",

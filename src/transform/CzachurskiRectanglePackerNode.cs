@@ -8,7 +8,7 @@ using SlimDX;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Transform
 {
     public static class RectPackHelper
     {

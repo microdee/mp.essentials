@@ -12,7 +12,7 @@ using VVVV.Utils.VMath;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Windows
 {
 	public struct LPRECT {
 		public long left;

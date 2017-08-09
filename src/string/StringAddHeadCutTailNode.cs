@@ -11,7 +11,7 @@ using VVVV.Utils.VMath;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Strings
 {
 	#region PluginInfo
 	[PluginInfo(Name = "AddHeadCutTail", Category = "String", Help = "Basic template with one string in/out", Tags = "")]

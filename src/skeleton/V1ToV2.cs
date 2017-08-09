@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.SkeletonInterfaces;
 
-namespace VVVV.Nodes.SkeletonV2
+namespace mp.essentials.Nodes.SkeletonV2
 {
     [PluginInfo(
         Name = "V1ToV2",

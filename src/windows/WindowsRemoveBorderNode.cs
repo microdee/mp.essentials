@@ -12,7 +12,7 @@ using VVVV.Utils.VMath;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Windows
 {
 	#region PluginInfo
 	[PluginInfo(Name = "SetWindowBorder", Category = "Windows", AutoEvaluate = true, Tags = "")]

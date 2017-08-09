@@ -10,7 +10,7 @@ using VVVV.PluginInterfaces.V2;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Generic
 {
     [PluginInfo(
         Name = "Zip",

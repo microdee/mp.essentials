@@ -11,7 +11,7 @@ using VVVV.Utils.Reflection;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
-namespace VVVV.Nodes.VObjects
+namespace mp.essentials.Nodes.Generic
 {
 
     [PluginInfo(

@@ -4,7 +4,7 @@ using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Values
 {
     [PluginInfo(
         Name = "Construct",

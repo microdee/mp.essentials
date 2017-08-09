@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Excel;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Excel
 {
     public enum ExcelReaderMode
     {

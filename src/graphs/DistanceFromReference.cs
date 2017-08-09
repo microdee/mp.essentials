@@ -4,7 +4,7 @@ using QuickGraph.Algorithms.ShortestPath;
 using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Graphs
 {
     [PluginInfo(
         Name = "DistanceFromReference",

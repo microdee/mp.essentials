@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V1;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Devices
 {
     [PluginInfo(
         Name = "VJoyFeeder",

@@ -15,7 +15,7 @@ using WPoint = System.Drawing.Point;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Windows
 {
 	[PluginInfo(
         Name = "HandleFromCursor",

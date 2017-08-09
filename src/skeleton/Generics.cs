@@ -4,7 +4,7 @@ using VVVV.Nodes.Generic;
 using VVVV.SkeletonInterfaces;
 using VVVV.Utils.Streams;
 
-namespace VVVV.Nodes.SkeletonV2
+namespace mp.essentials.Nodes.SkeletonV2
 {
     [PluginInfo(Name = "FrameDelay",
                 Category = "Skeleton.V2",

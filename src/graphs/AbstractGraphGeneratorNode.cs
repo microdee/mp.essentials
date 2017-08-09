@@ -10,7 +10,7 @@ using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Graphs
 {
     public static class GraphHelper
     {

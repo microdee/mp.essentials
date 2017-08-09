@@ -10,7 +10,7 @@ using VVVV.Utils.VMath;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Quaternions
 {
 	[PluginInfo(
         Name = "Multiply",

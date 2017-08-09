@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,19 @@ namespace mp.essentials
                     .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) !=
                                  UnicodeCategory.NonSpacingMark)
             ).Normalize(NormalizationForm.FormC);
+        }
+
+        public static Tuple<int, int> LineRangeFromCharIndex(this string input, int charid)
+        {
+            int linestart = 0;
+            int lineend = 0;
+            while (true)
+            {
+                lineend = input.IndexOfAny(new [] {'\r','\n'}, lineend)+1;
+                if(charid >= linestart && charid < lineend) break;
+                linestart = lineend;
+            }
+            return new Tuple<int, int>(linestart, lineend);
         }
     }
 
