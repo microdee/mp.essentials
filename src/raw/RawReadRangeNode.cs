@@ -11,7 +11,7 @@ using VVVV.Utils.VMath;
 using VVVV.Core.Logging;
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Raw
 {
 	#region PluginInfo
 	[PluginInfo(Name = "ReadRange", Category = "Raw", Help = "Basic raw template which copies up to count bytes from the input to the output", Tags = "")]

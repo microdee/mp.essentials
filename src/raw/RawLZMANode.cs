@@ -14,7 +14,7 @@ using SevenZip.Compression.LZMA;
 
 #endregion usings
 
-namespace VVVV.Nodes
+namespace mp.essentials.Nodes.Raw
 {
 	public class CompressorIO
 	{
