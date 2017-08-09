@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V2.NonGeneric;
+using VVVV.Utils.IO;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
@@ -64,9 +65,46 @@ namespace VVVV.Nodes.PDDN
         public Dictionary<string, SpreadPin> OutputPins = new Dictionary<string, SpreadPin>();
         public List<string> InputTaggedForRemove = new List<string>();
         public List<string> OutputTaggedForRemove = new List<string>();
+        public bool ExchangingInput = false;
+        public bool ExchangingOutput = false;
+
+        public void BeginInputExchange()
+        {
+            if(ExchangingInput) return;
+            ExchangingInput = true;
+            InputTaggedForRemove = InputPins.Keys.ToList();
+        }
+
+        public void EndInputExchange()
+        {
+            if(!ExchangingInput) return;
+            ExchangingInput = false;
+            RemoveTaggedInput();
+        }
+
+        public void BeginOutputExchange()
+        {
+            if(ExchangingOutput) return;
+            ExchangingOutput = true;
+            OutputTaggedForRemove = OutputPins.Keys.ToList();
+        }
+
+        public void EndOutputExchange()
+        {
+            if (!ExchangingOutput) return;
+            ExchangingOutput = false;
+            RemoveTaggedOutput();
+        }
 
         public void AddInput(Type T, InputAttribute attr)
         {
+            if (ExchangingInput && InputTaggedForRemove.Contains(attr.Name))
+                InputTaggedForRemove.Remove(attr.Name);
+
+            if (InputPins.ContainsKey(attr.Name) && InputPins[attr.Name].Type != T)
+            {
+                RemoveInput(attr.Name);
+            }
             if (!InputPins.ContainsKey(attr.Name))
             {
                 Type pinType = typeof (IDiffSpread<>).MakeGenericType(T);
@@ -84,6 +122,13 @@ namespace VVVV.Nodes.PDDN
         }
         public void AddInputBinSized(Type T, InputAttribute attr)
         {
+            if (ExchangingInput && InputTaggedForRemove.Contains(attr.Name))
+                InputTaggedForRemove.Remove(attr.Name);
+
+            if (InputPins.ContainsKey(attr.Name) && InputPins[attr.Name].Type != T)
+            {
+                RemoveInput(attr.Name);
+            }
             if (!InputPins.ContainsKey(attr.Name))
             {
                 Type pinType = typeof (IDiffSpread<>).MakeGenericType(typeof (ISpread<>).MakeGenericType(T));
@@ -122,6 +167,13 @@ namespace VVVV.Nodes.PDDN
         }
         public void AddOutput(Type T, OutputAttribute attr)
         {
+            if (ExchangingOutput && OutputTaggedForRemove.Contains(attr.Name))
+                OutputTaggedForRemove.Remove(attr.Name);
+
+            if (OutputPins.ContainsKey(attr.Name) && OutputPins[attr.Name].Type != T)
+            {
+                RemoveOutput(attr.Name);
+            }
             if (!OutputPins.ContainsKey(attr.Name))
             {
                 Type pinType = typeof (ISpread<>).MakeGenericType(T);
@@ -139,6 +191,13 @@ namespace VVVV.Nodes.PDDN
         }
         public void AddOutputBinSized(Type T, OutputAttribute attr)
         {
+            if (ExchangingOutput && OutputTaggedForRemove.Contains(attr.Name))
+                OutputTaggedForRemove.Remove(attr.Name);
+
+            if (OutputPins.ContainsKey(attr.Name) && OutputPins[attr.Name].Type != T)
+            {
+                RemoveOutput(attr.Name);
+            }
             if (!OutputPins.ContainsKey(attr.Name))
             {
                 Type pinType = typeof (ISpread<>).MakeGenericType(typeof (ISpread<>).MakeGenericType(T));
