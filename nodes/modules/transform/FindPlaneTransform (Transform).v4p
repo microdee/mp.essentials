@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\FindPlaneTransform (Transform).v4p" systemname="FindPlaneTransform (Transform)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\FindPlaneTransform (Transform).v4p" scrollx="0" scrolly="4170">
-   <BOUNDS type="Window" left="9585" top="3465" width="10230" height="9390">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\FindPlaneTransform (Transform).v4p" systemname="FindPlaneTransform (Transform)" filename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\FindPlaneTransform (Transform).v4p" scrollx="315" scrolly="4380">
+   <BOUNDS type="Window" left="15450" top="-13305" width="10590" height="10410">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="17">
    <BOUNDS type="Node" left="1935" top="975" width="100" height="100">
@@ -221,15 +221,15 @@
    <LINK srcnodeid="1" srcpinname="Distance" dstnodeid="19" dstpinname="Y">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="20" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3555" top="11745" width="795" height="240">
+   <BOUNDS type="Box" left="3600" top="12885" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3555" top="11745" width="0" height="0">
+   <BOUNDS type="Node" left="3600" top="12885" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Transform Out|">
    </PIN>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Transform Out" dstnodeid="20" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="21" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="9900" top="3855" width="795" height="240">
    </BOUNDS>
@@ -239,9 +239,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Pre-Scale Transform|">
    </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="Output Node" dstnodeid="18" dstpinname="Transform In 2">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="22" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="795" top="3120" width="795" height="240">
    </BOUNDS>
@@ -273,7 +273,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8985" top="2550" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -530,8 +530,6 @@
    </LINK>
    <LINK srcnodeid="12" srcpinname="Transform Out" dstnodeid="43" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="18" dstpinname="Transform In 3">
-   </LINK>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="45">
    <BOUNDS type="Node" left="3885" top="6900" width="100" height="100">
    </BOUNDS>
@@ -718,12 +716,10 @@
    </NODE>
    <LINK srcnodeid="45" srcpinname="Output" dstnodeid="60" dstpinname="XYZ">
    </LINK>
-   <LINK srcnodeid="60" srcpinname="Transform Out" dstnodeid="18" dstpinname="Transform In 4">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="61" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5370" top="11670" width="795" height="240">
+   <BOUNDS type="Box" left="5415" top="12810" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5370" top="11670" width="0" height="0">
+   <BOUNDS type="Node" left="5415" top="12810" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Orientation">
    </PIN>
@@ -749,5 +745,41 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="3" srcpinname="Output XYZ" dstnodeid="62" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="UniformScale (Transform)" nodename="UniformScale (Transform)" componentmode="Hidden" id="63">
+   <BOUNDS type="Node" left="4575" top="10560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="XYZ" slicecount="1" values="1" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Transform Out" dstnodeid="20" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="18" dstpinname="Transform In 3">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output Node" dstnodeid="18" dstpinname="Transform In 2">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Transform Out" dstnodeid="63" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Transform Out" dstnodeid="18" dstpinname="Transform In 4">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.9">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64">
+   <BOUNDS type="Box" left="9000" top="10095" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9000" top="10095" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="63" dstpinname="XYZ">
    </LINK>
    </PATCH>
