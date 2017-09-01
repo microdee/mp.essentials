@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
    <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\plugins\PreprocessorOptions (File) help.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="2985" top="2415" width="16530" height="7875">
+   <BOUNDS type="Window" left="3105" top="1005" width="16530" height="13950">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
-   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   <BOUNDS type="Node" left="300" top="345" width="5100" height="450">
    </BOUNDS>
-   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   <BOUNDS type="Box" left="300" top="345" width="5100" height="450">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="0" values="|PreprocessorOptions (File)|">
    </PIN>
@@ -15,9 +15,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
-   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   <BOUNDS type="Node" left="300" top="720" width="5100" height="600">
    </BOUNDS>
-   <BOUNDS type="Box" left="225" top="600" width="5055" height="360">
+   <BOUNDS type="Box" left="300" top="720" width="5055" height="360">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="0" values="|Creates dynamic pins for &apos;#if defined(...)&apos; preprocessors|">
    </PIN>
@@ -29,7 +29,7 @@
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="DisneyForwardSimpleNaive (DX11.Effect)" filename="%VVVV%\packs\mp.dx\nodes\dx11\DisneyForwardSimpleNaive.fx" nodename="DisneyForwardSimpleNaive (DX11.Effect)" componentmode="Hidden" id="4">
-   <BOUNDS type="Node" left="2505" top="2760" width="100" height="100">
+   <BOUNDS type="Node" left="885" top="9600" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Shader Path" visible="1" pintype="Output">
    </PIN>
@@ -41,7 +41,7 @@
    </PIN>
    </NODE>
    <NODE systemname="MXAO (DX11.TextureFX)" filename="%VVVV%\packs\mp.dx\nodes\texture11\ReShade\MXAO.tfx" nodename="MXAO (DX11.TextureFX)" componentmode="Hidden" id="5">
-   <BOUNDS type="Node" left="6030" top="4380" width="100" height="100">
+   <BOUNDS type="Node" left="4530" top="10785" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Query" visible="1" pintype="Output">
    </PIN>
@@ -51,9 +51,9 @@
    </PIN>
    </NODE>
    <NODE nodename="PreprocessorOptions (File)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="9240" top="3630" width="0" height="0">
+   <BOUNDS type="Node" left="7740" top="10035" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="9240" top="3630" width="0" height="0">
+   <BOUNDS type="Box" left="7740" top="10035" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Defines" visible="1">
    </PIN>
@@ -70,30 +70,10 @@
    </LINK>
    <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="5" dstpinname="Defines">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24">
-   <BOUNDS type="Box" left="9510" top="375" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9510" top="375" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="27">
-   <BOUNDS type="Box" left="9330" top="1410" width="6630" height="240">
+   <BOUNDS type="Box" left="7830" top="7815" width="6630" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9330" top="1410" width="0" height="0">
+   <BOUNDS type="Node" left="7830" top="7815" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -106,40 +86,8 @@
    </NODE>
    <LINK srcnodeid="4" srcpinname="Shader Path" dstnodeid="27" dstpinname="Input String">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="28">
-   <BOUNDS type="Node" left="10065" top="450" width="2310" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="10065" top="450" width="4050" height="300">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|hit learn or copy shader path to config pin|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
-   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="13800" top="2145" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31">
-   <BOUNDS type="Box" left="13695" top="2700" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="13695" top="2700" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="30" srcpinname="Output" dstnodeid="31" dstpinname="Y Input Value">
-   </LINK>
    <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="32">
-   <BOUNDS type="Node" left="12315" top="2730" width="100" height="100">
+   <BOUNDS type="Node" left="9225" top="10680" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -149,9 +97,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="33">
-   <BOUNDS type="Box" left="12315" top="3360" width="5220" height="3240">
+   <BOUNDS type="Box" left="9225" top="11310" width="5220" height="3240">
    </BOUNDS>
-   <BOUNDS type="Node" left="12315" top="3360" width="0" height="0">
+   <BOUNDS type="Node" left="9225" top="11310" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -163,9 +111,9 @@
    <LINK srcnodeid="32" srcpinname="Output" dstnodeid="33" dstpinname="Input String">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="34">
-   <BOUNDS type="Box" left="9735" top="4320" width="795" height="240">
+   <BOUNDS type="Box" left="8235" top="10725" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9735" top="4320" width="0" height="0">
+   <BOUNDS type="Node" left="8235" top="10725" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -177,9 +125,9 @@
    <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="34" dstpinname="Input String">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35">
-   <BOUNDS type="Box" left="9885" top="2700" width="795" height="240">
+   <BOUNDS type="Box" left="8385" top="9105" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9885" top="2700" width="0" height="0">
+   <BOUNDS type="Node" left="8385" top="9105" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -191,9 +139,9 @@
    <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="32" dstpinname="Input">
    </LINK>
    <NODE nodename="PreprocessorOptions (File)" componentmode="Hidden" id="41" systemname="PreprocessorOptions (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
-   <BOUNDS type="Node" left="9210" top="1860" width="0" height="0">
+   <BOUNDS type="Node" left="7710" top="8265" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="9210" top="1860" width="0" height="0">
+   <BOUNDS type="Box" left="7710" top="8265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Shader Path Config" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\mp.dx\nodes\dx11\DisneyForwardSimpleNaive.fx">
    </PIN>
@@ -204,8 +152,268 @@
    </LINK>
    <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="41" dstpinname="Shader Path">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Learn">
-   </LINK>
    <LINK srcnodeid="5" srcpinname="Shader Path" dstnodeid="19" dstpinname="Shader Path">
    </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="42">
+   <BOUNDS type="Node" left="450" top="1200" width="825" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="1200" width="5025" height="750">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|This node looks at a source file and looks for #if defined(MYDEF) preprocessors which are followed by 3 comment slashes (like ///)&cr;&lf;Example:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="43">
+   <BOUNDS type="Node" left="450" top="1920" width="2745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="1920" width="4080" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|#if !defined(MYDEF) /// -type token&cr;&lf;#define MYDEF theDefaultValue&cr;&lf;#endif|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="44">
+   <BOUNDS type="Node" left="2055" top="2625" width="315" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2055" top="2625" width="315" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="or">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="45">
+   <BOUNDS type="Node" left="450" top="2970" width="2745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="2970" width="4275" height="780">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|#if defined(MYSWITCH) /// -type switch&cr;&lf;// my code to be switched&cr;&lf;#endif|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="46">
+   <BOUNDS type="Node" left="450" top="4020" width="2745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="4020" width="4470" height="1080">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|#if !defined(MYDEF) /// -type &quot;token int&quot;&cr;&lf;#define MYDEFINE theDefaultValue&cr;&lf;#define MYINTEGER 0&cr;&lf;#endif|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="47">
+   <BOUNDS type="Node" left="450" top="3705" width="4110" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="3705" width="7005" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|It supports multiple defines under one #if preprocessor (definition groups (not official name ;) ))|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="49">
+   <BOUNDS type="Node" left="450" top="5280" width="2745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="5280" width="6390" height="690">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|#if defined(MYDEF) &amp;&amp; !defined(MYOTHERDEF) /// -type switch&cr;&lf;...&cr;&lf;#endif|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="48">
+   <BOUNDS type="Node" left="450" top="4965" width="4110" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="450" top="4965" width="4110" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Or more defined(...) tests after an #if|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="50">
+   <BOUNDS type="Node" left="8100" top="540" width="975" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="540" width="2640" height="255">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Arguments: (*: required)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="52">
+   <BOUNDS type="Node" left="8100" top="885" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="885" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="-type*">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="51">
+   <BOUNDS type="Node" left="8100" top="1260" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="1260" width="5310" height="2655">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|enumeration to choose pin type and string representation. possible values are: (case is ignored)&cr;&lf;&cr;&lf;Switch (it is used to turn on or off codeblocks)&cr;&lf;Bool (either &quot;true&quot; or &quot;false&quot; without quotes)&cr;&lf;Int&cr;&lf;Float&cr;&lf;Token (defines an arbitrary text which will be part of the compiled code)&cr;&lf;String (defines an arbitrary text put inside quotes)&cr;&lf;&cr;&lf;For a given definition group you can define more types putting them in a quote and separated by space|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="54">
+   <BOUNDS type="Node" left="8100" top="3930" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="3930" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="-pin">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="53">
+   <BOUNDS type="Node" left="8100" top="4305" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="4305" width="5025" height="300">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Provide options for the generated pin. Example:|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="56">
+   <BOUNDS type="Node" left="8145" top="4590" width="2745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8145" top="4590" width="5115" height="300">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|... /// -type switch -pin &quot;-visibility hidden&quot;|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="57">
+   <BOUNDS type="Node" left="8130" top="4875" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8130" top="4875" width="5715" height="360">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Note the quotes are required. Think of it as subarguments for pins which are:|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="58">
+   <BOUNDS type="Node" left="8580" top="5190" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8580" top="5190" width="1260" height="1635">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|-name&cr;&lf;-min&cr;&lf;-max&cr;&lf;-stepsize&cr;&lf;-visibility|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="12">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="59">
+   <BOUNDS type="Node" left="9855" top="5235" width="4515" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9855" top="5235" width="4515" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Use a friendlier name for the pin (note spaces are not allowed)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="60">
+   <BOUNDS type="Node" left="9870" top="6465" width="2865" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9870" top="6465" width="4155" height="1200">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|pin visibility mode. Possible values are: (case is ignored)&cr;&lf;True (default)&cr;&lf;Hidden&cr;&lf;OnlyInspector&cr;&lf;False|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
    </PATCH>
