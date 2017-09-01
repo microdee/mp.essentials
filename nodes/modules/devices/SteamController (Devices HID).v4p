@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="4860" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
-   <BOUNDS type="Window" left="7665" top="3180" width="16290" height="12165">
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="1065" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
+   <BOUNDS type="Window" left="15720" top="1755" width="16290" height="12165">
    </BOUNDS>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="8100" top="7500" width="1590" height="270">
@@ -2437,9 +2437,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="344">
-   <BOUNDS type="Box" left="3765" top="4485" width="720" height="240">
+   <BOUNDS type="Box" left="3675" top="4695" width="720" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3765" top="4485" width="0" height="0">
+   <BOUNDS type="Node" left="3675" top="4695" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="60">
    </PIN>
@@ -2465,7 +2465,7 @@
    </PIN>
    </NODE>
    <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="346">
-   <BOUNDS type="Node" left="2220" top="4560" width="100" height="100">
+   <BOUNDS type="Node" left="2280" top="4695" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Or" visible="1">
    </PIN>
@@ -2473,9 +2473,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="347">
-   <BOUNDS type="Box" left="2265" top="3870" width="480" height="480">
+   <BOUNDS type="Box" left="2265" top="3465" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="2265" top="3870" width="0" height="0">
+   <BOUNDS type="Node" left="2265" top="3465" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -2491,9 +2491,9 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="347" srcpinname="Y Output Value" dstnodeid="346" dstpinname="Or">
-   </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="348">
    <BOUNDS type="Node" left="3270" top="6225" width="2760" height="270">
    </BOUNDS>
@@ -2855,5 +2855,55 @@
    <LINK srcnodeid="403" srcpinname="Output" dstnodeid="351" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="400" srcpinname="Output" dstnodeid="348" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="OnActivate (VVVV)" nodename="OnActivate (VVVV)" componentmode="Hidden" id="404">
+   <BOUNDS type="Node" left="3615" top="3480" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Bang" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="406">
+   <BOUNDS type="Node" left="2325" top="4230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="347" srcpinname="Y Output Value" dstnodeid="406" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="406" srcpinname="Output" dstnodeid="346" dstpinname="Or">
+   </LINK>
+   <NODE systemname="MonoFlop (Animation)" filename="" nodename="MonoFlop (Animation)" componentmode="Hidden" id="407">
+   <BOUNDS type="Node" left="3570" top="3825" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3570" top="3825" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="404" srcpinname="Bang" dstnodeid="407" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="404" srcpinname="Bang" dstnodeid="407" dstpinname="Set">
+   </LINK>
+   <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="408">
+   <BOUNDS type="Node" left="3585" top="4185" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Down Edge" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="407" srcpinname="Output" dstnodeid="408" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="408" srcpinname="Down Edge" dstnodeid="406" dstpinname="Input 2">
    </LINK>
    </PATCH>

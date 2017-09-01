@@ -1,8 +1,8 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
-   <PATCH nodename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID) help.v4p" scrollx="60" scrolly="330">
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID) help.v4p" scrollx="60" scrolly="-360">
    <BOUNDS type="Window" left="3255" top="-15270" width="22035" height="13785">
    </BOUNDS>
-   <NODE nodename="SteamController (Devices HID)" componentmode="Hidden" id="0">
+   <NODE nodename="SteamController (Devices HID)" componentmode="InAWindow" id="0">
    <BOUNDS type="Node" left="4995" top="2610" width="4800" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="4995" top="2610" width="0" height="0">
@@ -13,7 +13,7 @@
    </PIN>
    <PIN pinname="Right Touchpad" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="7665" top="3180" width="16290" height="12165">
+   <BOUNDS type="Window" left="15720" top="1755" width="16290" height="12165">
    </BOUNDS>
    <PIN pinname="Grip Right" visible="1">
    </PIN>
@@ -56,6 +56,8 @@
    <PIN pinname="Touchpad CoordSys Rotation" slicecount="1" values="-0.04">
    </PIN>
    <PIN pinname="Device" visible="1">
+   </PIN>
+   <PIN pinname="Active" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InABox" id="16">
@@ -555,7 +557,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="11625" top="765" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="3">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -585,7 +587,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6225" top="1650" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller 1|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="Undefined">
    </PIN>
@@ -607,5 +609,21 @@
    <LINK srcnodeid="59" srcpinname="X" dstnodeid="57" dstpinname="Rumble">
    </LINK>
    <LINK srcnodeid="59" srcpinname="Y" dstnodeid="58" dstpinname="Rumble">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="74">
+   <BOUNDS type="Box" left="5295" top="3375" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5295" top="3375" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Active" dstnodeid="74" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
