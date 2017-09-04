@@ -361,7 +361,7 @@ namespace mp.essentials.Nodes.Shaders
                 Init = false;
                 //OnConfigPinChanged();
             }
-            if (Pd.InputChanged || Invalidate)
+            if (Pd.InputChanged || Invalidate || FDefinesInput.IsChanged)
             {
                 Invalidate = false;
                 FDefineOut.SliceCount = 0;
