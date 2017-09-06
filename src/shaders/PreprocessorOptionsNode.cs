@@ -291,7 +291,8 @@ namespace mp.essentials.Nodes.Shaders
         {
             FShaderPathConf.Stream.IsChanged = false;
             if (IsConfigDefault()) return;
-            if (!File.Exists(FShaderPathConf[0])) FShaderPathConf[0] = FShaderPath[0];
+            if (!File.Exists(FShaderPathConf[0])) FShaderPathConf[0] = FShaderPath[0] ?? "";
+            if (IsConfigDefault()) return;
             if (!File.Exists(FShaderPathConf[0])) return;
             CurrentShader = new ShaderFile(FShaderPathConf[0]);
             Pd.BeginInputExchange();
