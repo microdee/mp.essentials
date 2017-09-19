@@ -23,7 +23,7 @@ namespace mp.essentials
             ).Normalize(NormalizationForm.FormC);
         }
 
-        public static Tuple<int, int> LineRangeFromCharIndex(this string input, int charid)
+        public static Tuple<int, int, int> LineRangeFromCharIndex(this string input, int charid)
         {
             int linestart = 0;
             int lineend = 0;
@@ -33,7 +33,9 @@ namespace mp.essentials
                 if(charid >= linestart && charid < lineend) break;
                 linestart = lineend;
             }
-            return new Tuple<int, int>(linestart, lineend);
+            var linelength = lineend - linestart;
+            //if (lineend < input.Length) linelength++;
+            return new Tuple<int, int, int>(linestart, lineend, linelength);
         }
     }
 
