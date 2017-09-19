@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\plugins\PreprocessorOptions (File) help.v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\plugins\PreprocessorOptions (File) help.v4p" scrollx="0" scrolly="2160">
    <BOUNDS type="Window" left="3105" top="1005" width="16530" height="13950">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
@@ -26,7 +26,7 @@
    </NODE>
    <PACK Name="vvvv-Message" Version="2.9.9">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="DisneyForwardSimpleNaive (DX11.Effect)" filename="%VVVV%\packs\mp.dx\nodes\dx11\DisneyForwardSimpleNaive.fx" nodename="DisneyForwardSimpleNaive (DX11.Effect)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="885" top="9600" width="100" height="100">
@@ -47,33 +47,13 @@
    </PIN>
    <PIN pinname="Shader Path" visible="1" pintype="Output">
    </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   <PIN pinname="Defines" visible="1" pintype="Input">
    </PIN>
    </NODE>
-   <NODE nodename="PreprocessorOptions (File)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="7740" top="10035" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="7740" top="10035" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Defines" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path Config" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\mp.dx\nodes\texture11\ReShade\MXAO.tfx">
-   </PIN>
-   <PIN pinname="Defines Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\mp.dx\nodes\texture11\ReShade\MXAO.tfx">
-   </PIN>
-   <PIN pinname="DEPTH_LOGARITHMIC" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="4" srcpinname="Shader Path" dstnodeid="19" dstpinname="Shader Path Config">
-   </LINK>
-   <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="5" dstpinname="Defines">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="27">
-   <BOUNDS type="Box" left="7830" top="7815" width="6630" height="240">
+   <BOUNDS type="Box" left="7860" top="7650" width="6450" height="255">
    </BOUNDS>
-   <BOUNDS type="Node" left="7830" top="7815" width="0" height="0">
+   <BOUNDS type="Node" left="7860" top="7650" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -89,7 +69,7 @@
    <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="9225" top="10680" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Intersperse" slicecount="1" values="CarriageReturnLineFeed">
    </PIN>
@@ -122,8 +102,6 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="34" dstpinname="Input String">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35">
    <BOUNDS type="Box" left="8385" top="9105" width="795" height="240">
    </BOUNDS>
@@ -136,8 +114,6 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Defines" dstnodeid="32" dstpinname="Input">
-   </LINK>
    <NODE nodename="PreprocessorOptions (File)" componentmode="Hidden" id="41" systemname="PreprocessorOptions (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll">
    <BOUNDS type="Node" left="7710" top="8265" width="0" height="0">
    </BOUNDS>
@@ -145,14 +121,18 @@
    </BOUNDS>
    <PIN pinname="Shader Path Config" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\mp.dx\nodes\dx11\DisneyForwardSimpleNaive.fx">
    </PIN>
+   <PIN pinname="Defines Extract" visible="1">
+   </PIN>
+   <PIN pinname="Defines Extract Config" slicecount="1" values="|#if !defined(AESAMPLES_W) /// -type int&lf;#define AESAMPLES_W 10&lf;#define AESAMPLES_H 10&lf;#endif&lf;#if defined(FIXSHALLOWEYE) /// -type switch&lf;#endif&lf;#if !defined(MDP_MAINUVLAYER) /// -type token&lf;#define MDP_MAINUVLAYER TEXCOORD0&lf;#endif&lf;#if defined(HAS_TEXCOORD0) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_TANGENT) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_PREVPOS) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_SUBSETID) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_MATERIALID) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_INSTANCEID) &amp;&amp; !defined(USE_SVINSTANCEID) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(HAS_INSTANCEID) &amp;&amp; !defined(USE_SVINSTANCEID) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(TESSELLATE) /// -type switch&lf;#endif&lf;#if defined(USE_SUBSETTRANSFORMS) &amp;&amp; !defined(IGNORE_BUFFERS) /// -type switch&lf;#endif&lf;#if defined(USE_SUBSETTRANSFORMS) &amp;&amp; !defined(IGNORE_BUFFERS) /// -type switch&lf;#endif&lf;#if defined(INV_NORMALS) /// -type switch&lf;#endif&lf;#if defined(HAS_TANGENT_WINDING) /// -type switch -pin &quot;-visibility hidden&quot;&lf;#endif&lf;#if defined(FLATNORMALS) /// -type switch&lf;#endif&lf;|">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="HAS_TANGENT_WINDING" slicecount="1" visible="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="41" srcpinname="Defines" dstnodeid="4" dstpinname="Defines">
    </LINK>
    <LINK srcnodeid="41" srcpinname="Defines" dstnodeid="35" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="41" dstpinname="Shader Path">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Shader Path" dstnodeid="19" dstpinname="Shader Path">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="42">
    <BOUNDS type="Node" left="450" top="1200" width="825" height="270">
@@ -416,4 +396,48 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE nodename="PreprocessorOptions (File)" componentmode="Hidden" id="64">
+   <BOUNDS type="Node" left="7740" top="10035" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7740" top="10035" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Shader Path Config" slicecount="1" values="C:\vvvv_system\app\vvvv-vpm\packs\mp.dx\nodes\texture11\ReShade\MXAO.tfx">
+   </PIN>
+   <PIN pinname="Defines Extract Config" slicecount="1" values="|#if !defined(MXAO_NORMALS_FORMAT) /// -type string&lf;#define MXAO_NORMALS_FORMAT &quot;R16G16B16A16_Float&quot;&lf;#endif&lf;#if !defined(OUTFORMAT) /// -type string&lf;#define OUTFORMAT &quot;R16G16B16A16_Float&quot;&lf;#endif&lf;#if !defined(MXAO_BLUR_GAMMA) /// -type float&lf;#define MXAO_BLUR_GAMMA 2.0&lf;#endif&lf;#if !defined(MXAO_MIPLEVEL_AO) /// -type int&lf;#define MXAO_MIPLEVEL_AO 0&lf;#endif&lf;#if !defined(MXAO_MIPLEVEL_IL) /// -type int&lf;#define MXAO_MIPLEVEL_IL 2&lf;#endif&lf;#if defined(MXAO_IL) /// -type switch&lf;#endif&lf;#if defined(MXAO_BACKFACE) /// -type switch&lf;#endif&lf;#if defined(MXAO_SMOOTHNORMALS) /// -type switch&lf;#endif&lf;#if !defined(DEPTH_REVERSED) /// -type bool&lf;#define DEPTH_REVERSED 0&lf;#endif&lf;#if !defined(DEPTH_LOGARITHMIC) /// -type bool&lf;#define DEPTH_LOGARITHMIC 0&lf;#endif&lf;#if !defined(DEFAULT_SAMPLER_ADDRESS) /// -type token&lf;#define DEFAULT_SAMPLER_ADDRESS CLAMP&lf;#endif&lf;#if !defined(DEFAULT_SAMPLER_FILTER) /// -type token&lf;#define DEFAULT_SAMPLER_FILTER MIN_MAG_MIP_LINEAR&lf;#endif&lf;|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Shader Path" dstnodeid="64" dstpinname="Shader Path Config">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Defines" dstnodeid="5" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Defines" dstnodeid="34" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Defines" dstnodeid="32" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Shader Path" dstnodeid="64" dstpinname="Shader Path">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65">
+   <BOUNDS type="Box" left="11130" top="8040" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11130" top="8040" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="41" dstpinname="HAS_TANGENT_WINDING">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="41" dstpinname="Shader Path">
+   </LINK>
    </PATCH>

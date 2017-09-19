@@ -52,42 +52,26 @@ namespace mp.essentials.Nodes.Shaders
     {
         public readonly List<ShaderFile> FlatShaderList = new List<ShaderFile>();
         public readonly List<PreProcOption> FlatOptions = new List<PreProcOption>();
+        public string DefineExtract = "";
         public string FilePath { get; private set; }
+        public string ShaderText { get; private set; }
         public List<ShaderFile> Includes { get; set; } = new List<ShaderFile>();
         public List<PreProcOption> Options { get; set; } = new List<PreProcOption>();
         public ShaderFile Root { get; private set; }
         public bool IsRoot { get; private set; }
 
-        public ShaderFile(string path, ShaderFile root = null)
+        private void CreateOptions()
         {
-            if (root == null)
-            {
-                FlatShaderList.Clear();
-                FlatOptions.Clear();
-                Root = this;
-                IsRoot = true;
-            }
-            else
-            {
-                IsRoot = false;
-                Root = root;
-            }
-
-            FilePath = path;
-            var reldir = Path.GetDirectoryName(path);
-            if(reldir == null) throw new Exception("Problem with getting relative directory.");
-            var content = File.ReadAllText(path);
-
-            var inlinedefs = PreProcOptionsHelper.Instance.DefinedInline.Matches(content);
+            var inlinedefs = PreProcOptionsHelper.Instance.DefinedInline.Matches(ShaderText);
             foreach (Match match in inlinedefs)
             {
                 var defname = match.Groups["name"].Value;
-                if(Root.FlatOptions.Any(o => o.Name == defname)) continue;
+                if (Root.FlatOptions.Any(o => o.Name == defname)) continue;
 
-                var linerange = content.LineRangeFromCharIndex(match.Index);
-                var linelength = linerange.Item2 - linerange.Item1 + 1;
-                var defargsmatch = PreProcOptionsHelper.Instance.DefinedArgs.Match(content, linerange.Item1, linelength);
-                if(!defargsmatch.Success) continue;
+                var linerange = ShaderText.LineRangeFromCharIndex(match.Index);
+
+                var defargsmatch = PreProcOptionsHelper.Instance.DefinedArgs.Match(ShaderText, linerange.Item1, linerange.Item3);
+                if (!defargsmatch.Success) continue;
                 PreProcOptionArgs defargs;
 
                 try
@@ -99,6 +83,8 @@ namespace mp.essentials.Nodes.Shaders
                 {
                     continue;
                 }
+
+                Root.DefineExtract += ShaderText.Substring(linerange.Item1, linerange.Item3).Trim() + "\n";
 
                 var option = new PreProcOption
                 {
@@ -117,8 +103,8 @@ namespace mp.essentials.Nodes.Shaders
                 Root.FlatOptions.Add(option);
                 Options.Add(option);
 
-                var defGroupContent = content.Remove(0, linerange.Item1);
-                defGroupContent = defGroupContent.Remove(content.IndexOf("#endif", linerange.Item1, StringComparison.InvariantCultureIgnoreCase) - linerange.Item1);
+                var defGroupContent = ShaderText.Remove(0, linerange.Item1);
+                defGroupContent = defGroupContent.Remove(ShaderText.IndexOf("#endif", linerange.Item1, StringComparison.InvariantCultureIgnoreCase) - linerange.Item1);
                 var defGroup = PreProcOptionsHelper.Instance.DefaultDefines.Matches(defGroupContent);
                 int i = 0;
                 foreach (Match groupmember in defGroup)
@@ -152,11 +138,52 @@ namespace mp.essentials.Nodes.Shaders
                         Root.FlatOptions.Add(goption);
                         Options.Add(goption);
                     }
+
+                    var gdefline = defGroupContent.LineRangeFromCharIndex(groupmember.Groups["name"].Index);
+                    Root.DefineExtract += defGroupContent.Substring(gdefline.Item1, gdefline.Item3).Trim() + "\n";
+
                     i++;
                 }
+                Root.DefineExtract += "#endif\n";
+            }
+        }
+
+        public ShaderFile(string shadercontent)
+        {
+            FlatShaderList.Clear();
+            FlatOptions.Clear();
+            Root = this;
+            IsRoot = true;
+            DefineExtract = "";
+            ShaderText = shadercontent;
+
+            CreateOptions();
+        }
+
+        public ShaderFile(string path, ShaderFile root)
+        {
+            if (root == null)
+            {
+                FlatShaderList.Clear();
+                FlatOptions.Clear();
+                DefineExtract = "";
+                Root = this;
+                IsRoot = true;
+            }
+            else
+            {
+                IsRoot = false;
+                Root = root;
             }
 
-            var absincludes = PreProcOptionsHelper.Instance.AbsoluteInclude.Matches(content);
+            FilePath = path;
+            var reldir = Path.GetDirectoryName(path);
+            if(reldir == null) throw new Exception("Problem with getting relative directory.");
+            ShaderText = File.ReadAllText(path);
+
+            CreateOptions();
+
+            var absincludes = PreProcOptionsHelper.Instance.AbsoluteInclude.Matches(ShaderText);
             foreach (Match match in absincludes)
             {
                 var filename = match.Groups["file"].Value.Replace('/', '\\');
@@ -168,7 +195,7 @@ namespace mp.essentials.Nodes.Shaders
                 Includes.Add(include);
                 Root.FlatShaderList.Add(include);
             }
-            var relincludes = PreProcOptionsHelper.Instance.RelativeInclude.Matches(content);
+            var relincludes = PreProcOptionsHelper.Instance.RelativeInclude.Matches(ShaderText);
             foreach (Match match in relincludes)
             {
                 var filename = match.Groups["file"].Value.Replace('/', '\\');
@@ -248,6 +275,8 @@ namespace mp.essentials.Nodes.Shaders
         [ArgDefaultValue(1.0)]
         public double StepSize { get; set; }
     }
+
+
     [PluginInfo(
         Name = "PreprocessorOptions",
         Category = "File",
@@ -261,15 +290,18 @@ namespace mp.essentials.Nodes.Shaders
         [Import] protected IPluginHost2 FPluginHost;
         [Import] protected IIOFactory FIOFactory;
 
-        [Config("Shader Path Config")]
-        public IDiffSpread<string> FShaderPathConf;
+        [Config("Defines Extract Config")]
+        public IDiffSpread<string> FDefineExtractConf;
         [Input("Defines Input")]
         public IDiffSpread<string> FDefinesInput;
         [Input("Shader Path")]
-        public IDiffSpread<string> FShaderPath;
+        public Pin<string> FShaderPath;
 
         [Output("Defines", AllowFeedback = true)]
         public ISpread<string> FDefineOut;
+
+        [Output("Defines Extract")]
+        public ISpread<string> FDefineExtract;
 
         protected PinDictionary Pd;
         protected ShaderFile CurrentShader;
@@ -278,23 +310,34 @@ namespace mp.essentials.Nodes.Shaders
 
         protected override void PreInitialize()
         {
-            this.ConfigPinCopy = FShaderPathConf;
+            this.ConfigPinCopy = FDefineExtractConf;
             Pd = new PinDictionary(FIOFactory);
         }
 
         protected override bool IsConfigDefault()
         {
-            return string.IsNullOrWhiteSpace(FShaderPathConf[0]);
+            return string.IsNullOrWhiteSpace(FDefineExtractConf[0]);
         }
 
-        protected override void OnConfigPinChanged()
+        protected override void Initialize()
         {
-            FShaderPathConf.Stream.IsChanged = false;
-            if (IsConfigDefault()) return;
-            if (!File.Exists(FShaderPathConf[0])) FShaderPathConf[0] = FShaderPath[0] ?? "";
-            if (IsConfigDefault()) return;
-            if (!File.Exists(FShaderPathConf[0])) return;
-            CurrentShader = new ShaderFile(FShaderPathConf[0]);
+            OnShaderPathChange();
+        }
+
+        protected override void OnConfigPinChanged() { }
+
+        protected void OnShaderPathChange()
+        {
+            if (FShaderPath.SliceCount > 0 && !string.IsNullOrWhiteSpace(FShaderPath[0]))
+            {
+                CurrentShader = File.Exists(FShaderPath[0]) ? new ShaderFile(FShaderPath[0], null) : new ShaderFile(FDefineExtractConf[0]);
+            }
+            else CurrentShader = new ShaderFile(FDefineExtractConf[0]);
+
+            FDefineExtract[0] = CurrentShader.DefineExtract;
+            FDefineExtractConf[0] = CurrentShader.DefineExtract;
+            FDefineExtractConf.Stream.IsChanged = true;
+
             Pd.BeginInputExchange();
             foreach (var option in CurrentShader.FlatOptions)
             {
@@ -355,12 +398,10 @@ namespace mp.essentials.Nodes.Shaders
 
         public void Evaluate(int SpreadMax)
         {
-            if ((FShaderPath.IsChanged || Init) && !string.IsNullOrWhiteSpace(FShaderPath[0]))
+            if (FShaderPath.IsChanged || Init)
             {
-                FShaderPathConf[0] = FShaderPath[0];
-                FShaderPathConf.Stream.IsChanged = true;
+                OnShaderPathChange();
                 Init = false;
-                //OnConfigPinChanged();
             }
             if (Pd.InputChanged || Invalidate || FDefinesInput.IsChanged)
             {
@@ -375,6 +416,8 @@ namespace mp.essentials.Nodes.Shaders
                 }
                 foreach (var pin in Pd.InputPins.Values)
                 {
+                    if(pin.Spread.SliceCount == 0) continue;
+
                     var option = (PreProcOption) pin.CustomData;
                     if (FDefinesInput.Any(d => d.Contains(option.Name))) continue;
                     if (option.Type == PreProcOptionType.Switch)
