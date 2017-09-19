@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
    <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\Mickies (Devices Mouse).v4p" systemname="Mickies (Devices Mouse)" filename="C:\vvvv\app\vvvv_50alpha34.104_x64\packs\mp.essentials\nodes\modules\devices\Mickies (Devices Mouse).v4p" scrollx="0" scrolly="360">
    <BOUNDS type="Window" left="2145" top="3090" width="13545" height="9735">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="Mouse (Devices Desktop)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Desktop)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="1845" top="1935" width="1800" height="270">
@@ -314,7 +314,7 @@
    </NODE>
    <LINK srcnodeid="10" srcpinname="Position in PixelXY" dstnodeid="20" dstpinname="Y Input Value">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.6">
+   <PACK Name="vvvv-Message" Version="2.9.9">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="21">
    <BOUNDS type="Box" left="780" top="6075" width="795" height="240">
