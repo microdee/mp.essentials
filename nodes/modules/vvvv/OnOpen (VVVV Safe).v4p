@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.104.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_autoalpha\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" systemname="OnOpen (VVVV Safe)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" systemname="OnOpen (VVVV Safe)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="13920" top="5190" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="FrameCounter (Animation)" nodename="FrameCounter (Animation)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2400" top="1485" width="100" height="100">
@@ -141,5 +141,35 @@
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="4" dstpinname="Y Input Value">
    </LINK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="3285" top="3390" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Down Edge" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9">
+   <BOUNDS type="Box" left="3960" top="4065" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3960" top="4065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Down Edge|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Down Edge" dstnodeid="9" dstpinname="Y Input Value">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.9">
    </PACK>
    </PATCH>

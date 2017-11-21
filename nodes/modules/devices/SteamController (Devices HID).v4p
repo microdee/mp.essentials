@@ -1,13 +1,13 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="1065" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
-   <BOUNDS type="Window" left="15720" top="1755" width="16290" height="12165">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="18870" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
+   <BOUNDS type="Window" left="35850" top="2070" width="16290" height="12165">
    </BOUNDS>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="8100" top="7500" width="1590" height="270">
    </BOUNDS>
    <BOUNDS type="Node" left="8100" top="7500" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller 2|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="Undefined">
    </PIN>
@@ -40,6 +40,8 @@
    <PIN pinname="Input Feature" visible="1" slicecount="1" encoded="1" values="|AAAwHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&cr;&lf;AAAAAAAAAAA=|">
    </PIN>
    <PIN pinname="Do Send Feature" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Connected" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output Enum" dstnodeid="17" dstpinname="Device Type">
@@ -98,7 +100,7 @@
    </LINK>
    <PACK Name="vvvv-Message" Version="2.9.9">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="37">
    <BOUNDS type="Node" left="18870" top="15855" width="100" height="100">
@@ -585,7 +587,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="121">
-   <BOUNDS type="Node" left="2205" top="16125" width="100" height="100">
+   <BOUNDS type="Node" left="2235" top="16125" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -1035,9 +1037,9 @@
    <LINK srcnodeid="123" srcpinname="Output" dstnodeid="135" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="136" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15795" top="15030" width="480" height="480">
+   <BOUNDS type="Box" left="15840" top="15060" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="15795" top="15030" width="0" height="0">
+   <BOUNDS type="Node" left="15840" top="15060" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1603,60 +1605,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="174" srcpinname="Output" dstnodeid="176" dstpinname="Y Input Value">
-   </LINK>
-   <NODE systemname="SplitUint32 (Value Bitwise)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SplitUint32 (Value Bitwise)" componentmode="Hidden" id="185">
-   <BOUNDS type="Node" left="3840" top="12045" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3840" top="12045" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Format" slicecount="1" values="Byte">
-   </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Byte Order" slicecount="1" values="LittleEndian">
-   </PIN>
-   </NODE>
-   <NODE systemname="Reverse (Spreads)" nodename="Reverse (Spreads)" componentmode="Hidden" id="184">
-   <BOUNDS type="Node" left="3795" top="12435" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="185" srcpinname="Output" dstnodeid="184" dstpinname="Input">
-   </LINK>
-   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="183">
-   <BOUNDS type="Node" left="3840" top="11400" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Index" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="126" srcpinname="Output" dstnodeid="183" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="183" srcpinname="Output" dstnodeid="185" dstpinname="Input">
-   </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="186">
-   <BOUNDS type="Node" left="7845" top="12465" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="7845" top="12465" width="2430" height="510">
-   </BOUNDS>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Columns" slicecount="1" values="8">
-   </PIN>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="184" srcpinname="Output" dstnodeid="186" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="196" systemname="IOBox (String)">
    <BOUNDS type="Node" left="1935" top="2715" width="5220" height="270">
@@ -2905,5 +2853,53 @@
    <LINK srcnodeid="407" srcpinname="Output" dstnodeid="408" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="408" srcpinname="Down Edge" dstnodeid="406" dstpinname="Input 2">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="409">
+   <BOUNDS type="Box" left="480" top="13110" width="2040" height="570">
+   </BOUNDS>
+   <BOUNDS type="Node" left="480" top="13110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="409" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="410">
+   <BOUNDS type="Box" left="7740" top="8760" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7740" top="8760" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Connected" dstnodeid="410" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="411">
+   <BOUNDS type="Box" left="24375" top="16125" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="24375" top="16125" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="293" srcpinname="Output" dstnodeid="411" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
