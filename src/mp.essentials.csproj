@@ -239,6 +239,7 @@
     <Compile Include="windows\HandleWindowsPIDNode.cs" />
     <Compile Include="windows\PIDWindowsHandleNode.cs" />
     <Compile Include="windows\WindowsGetForegroundWindowNode.cs" />
+    <Compile Include="windows\SendKeys.cs" />
     <Compile Include="windows\WindowsGetParentNode.cs" />
     <Compile Include="windows\WindowsGetWindowTextNode.cs" />
     <Compile Include="windows\WindowsHandleFromPointNode.cs" />
