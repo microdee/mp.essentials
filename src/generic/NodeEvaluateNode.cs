@@ -49,7 +49,7 @@ namespace mp.essentials.Nodes.Generic
     {
         [Input("Input", AutoValidate = false)] public ISpread<T> FInput;
         [Input("Default")] public ISpread<T> FDefault;
-        [Input("Evaluate", IsBang = true)] public ISpread<bool> FEval;
+        [Input("Execute", IsBang = true)] public ISpread<bool> FEval;
         [Output("Output")] public ISpread<T> FOutput;
 
         private bool Initial = true;
@@ -109,7 +109,7 @@ namespace mp.essentials.Nodes.Generic
         public ISpread<int> FTypeInheritence;
         [Input("Learn Type", Order = 3, IsBang = true)] public ISpread<bool> FLearnType;
 
-        [Input("Evaluate", IsBang = true, Order = 4)]
+        [Input("Execute", IsBang = true, Order = 4)]
         public ISpread<bool> FEval;
 
         protected Type CType;
