@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\transform\Border (Transform).v4p" systemname="Border (Transform)" filename="C:\vvvv\libs\mcropack\nodes\Modules\Border (Transform).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\transform\Border (Transform).v4p" systemname="Border (Transform)" filename="C:\vvvv\libs\mcropack\nodes\Modules\Border (Transform).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="1245" top="3810" width="14430" height="11535">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE id="17" nodename="IOBox (Node)" componentmode="InABox" systemname="IOBox (Node)" hiddenwhenlocked="0" managers="">
    <BOUNDS type="Box" left="2175" top="435" width="795" height="240">
@@ -225,7 +225,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4245" top="3945" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" pintype="Input" values="10,10">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" pintype="Input" values="1,1">
    </PIN>
    <PIN pinname="Units" slicecount="1" pintype="Configuration" values="||">
    </PIN>
@@ -237,7 +237,7 @@
    </PIN>
    <PIN pinname="Default" slicecount="1" pintype="Configuration" values="|0, 0|">
    </PIN>
-   <PIN pinname="Value Type" slicecount="1" pintype="Configuration" values="Integer">
+   <PIN pinname="Value Type" slicecount="1" pintype="Configuration" values="Real">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" pintype="Configuration" values="Radius">
    </PIN>
@@ -669,7 +669,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5490" top="3180" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1080,1920">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1,1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -690,4 +690,6 @@
    </LINK>
    <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="35" dstpinname="Input">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
    </PATCH>
