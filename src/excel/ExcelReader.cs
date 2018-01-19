@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Excel;
 using VVVV.PluginInterfaces.V2;
 
@@ -13,11 +14,13 @@ namespace mp.essentials.Nodes.Excel
     public enum ExcelReaderMode
     {
         OpenXml_2007,
-        Binary_97
+        BinaryLoose_97,
+        BinaryStrict_97
     }
     [PluginInfo(
         Name = "Excel",
         Category = "Raw",
+        Version = "Legacy",
         Author = "microdee",
         Tags = "office, document"
     )]
@@ -35,9 +38,11 @@ namespace mp.essentials.Nodes.Excel
         [Output("Data Set")]
         public ISpread<DataSet> FDataSetOut;
         [Output("Data XML")]
-        public ISpread<string> FXmlOut;
+        public ISpread<XDocument> FXmlOut;
         [Output("Tables")]
         public ISpread<ISpread<DataTable>> FTables;
+        [Output("Error")]
+        public ISpread<string> FError;
 
         public void Evaluate(int SpreadMax)
         {
@@ -50,33 +55,47 @@ namespace mp.essentials.Nodes.Excel
                 FDataReaderOut.SliceCount = FSpreadsheetIn.SliceCount;
                 FXmlOut.SliceCount = FSpreadsheetIn.SliceCount;
                 FTables.SliceCount = FSpreadsheetIn.SliceCount;
+                FError.SliceCount = FSpreadsheetIn.SliceCount;
                 for (int i = 0; i < FSpreadsheetIn.SliceCount; i++)
                 {
-                    FDataReaderOut[i]?.Close();
-                    FDataSetOut[i]?.Dispose();
-                    DataSet result;
-                    IExcelDataReader excelReader;
-                    switch (FExcelMode[i])
+                    try
                     {
-                        case ExcelReaderMode.OpenXml_2007:
-                            excelReader = ExcelReaderFactory.CreateOpenXmlReader(FSpreadsheetIn[i]);
-                            break;
-                        case ExcelReaderMode.Binary_97:
-                            excelReader = ExcelReaderFactory.CreateBinaryReader(FSpreadsheetIn[i]);
-                            break;
-                        default:
-                            excelReader = null;
-                            break;
+                        FDataReaderOut[i]?.Close();
+                        FDataSetOut[i]?.Dispose();
+                        IExcelDataReader excelReader;
+                        switch (FExcelMode[i])
+                        {
+                            case ExcelReaderMode.OpenXml_2007:
+                                excelReader = ExcelReaderFactory.CreateOpenXmlReader(FSpreadsheetIn[i]);
+                                break;
+                            case ExcelReaderMode.BinaryLoose_97:
+                                excelReader = ExcelReaderFactory.CreateBinaryReader(FSpreadsheetIn[i], ReadOption.Loose);
+                                break;
+                            case ExcelReaderMode.BinaryStrict_97:
+                                excelReader = ExcelReaderFactory.CreateBinaryReader(FSpreadsheetIn[i], ReadOption.Strict);
+                                break;
+                            default:
+                                excelReader = null;
+                                break;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(excelReader.ExceptionMessage))
+                            throw new Exception(excelReader.ExceptionMessage);
+
+                        excelReader.IsFirstRowAsColumnNames = FFirstRowIsColumns[i];
+                        var result = excelReader.AsDataSet();
+                        FDataReaderOut[i] = excelReader;
+                        FDataSetOut[i] = result;
+                        FXmlOut[i] = XDocument.Parse(result.GetXml());
+                        FTables[i].SliceCount = 0;
+                        foreach (DataTable table in result.Tables)
+                        {
+                            FTables[i].Add(table);
+                        }
                     }
-                    excelReader.IsFirstRowAsColumnNames = FFirstRowIsColumns[i];
-                    result = excelReader.AsDataSet();
-                    FDataReaderOut[i] = excelReader;
-                    FDataSetOut[i] = result;
-                    FXmlOut[i] = result.GetXml();
-                    FTables[i].SliceCount = 0;
-                    foreach (DataTable table in result.Tables)
+                    catch (Exception e)
                     {
-                        FTables[i].Add(table);
+                        FError[i] = e.Message;
                     }
                 }
                 FDataReaderOut.Stream.IsChanged = true;
