@@ -1,14 +1,14 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\Flick (Transform Limited).v4p" systemname="Flick (Transform)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\Flick (Transform).v4p" scrollx="600" scrolly="315">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\transform\Flick (Transform Limited).v4p" systemname="Flick (Transform)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\Flick (Transform).v4p" scrollx="0" scrolly="1545">
    <BOUNDS type="Window" left="3975" top="-13395" width="10995" height="12585">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Transform)" componentmode="Hidden" id="9">
    <BOUNDS type="Node" left="930" top="1665" width="100" height="100">
@@ -41,7 +41,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="6">
-   <BOUNDS type="Node" left="2850" top="6555" width="100" height="100">
+   <BOUNDS type="Node" left="2730" top="7215" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -85,8 +85,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="9" srcpinname="Output 1" dstnodeid="8" dstpinname="Source">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output 1" dstnodeid="6" dstpinname="Transform In 1">
    </LINK>
    <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="3120" top="4140" width="100" height="100">
@@ -172,8 +170,6 @@
    </LINK>
    <LINK srcnodeid="10" srcpinname="Output Node" dstnodeid="5" dstpinname="Default 1">
    </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="5" dstpinname="Initialize">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="13">
    <BOUNDS type="Box" left="1905" top="660" width="795" height="240">
    </BOUNDS>
@@ -255,9 +251,9 @@
    <LINK srcnodeid="17" srcpinname="Up Edge" dstnodeid="4" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="18">
-   <BOUNDS type="Box" left="3150" top="12315" width="795" height="240">
+   <BOUNDS type="Box" left="3690" top="13065" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3150" top="12315" width="0" height="0">
+   <BOUNDS type="Node" left="3690" top="13065" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Transform Out|">
    </PIN>
@@ -277,7 +273,7 @@
    <LINK srcnodeid="2" srcpinname="Transform Out" dstnodeid="3" dstpinname="Input 2">
    </LINK>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="48">
-   <BOUNDS type="Node" left="3255" top="5295" width="100" height="100">
+   <BOUNDS type="Node" left="3180" top="5280" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -377,13 +373,13 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Max Scale|">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="10">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.5">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Decompose (Transform Vector)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Decompose (Transform Vector)" componentmode="Hidden" id="55">
-   <BOUNDS type="Node" left="3585" top="6930" width="100" height="100">
+   <BOUNDS type="Node" left="3600" top="8550" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1">
    </PIN>
@@ -415,7 +411,7 @@
    <LINK srcnodeid="55" srcpinname="Success" dstnodeid="56" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="xy (2d)" nodename="xy (2d)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="3585" top="7560" width="100" height="100">
+   <BOUNDS type="Node" left="3600" top="9180" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZ" visible="1">
    </PIN>
@@ -425,7 +421,7 @@
    <LINK srcnodeid="55" srcpinname="TranslateXYZ" dstnodeid="57" dstpinname="XYZ">
    </LINK>
    <NODE systemname="xy (2d)" nodename="xy (2d)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="4095" top="7560" width="100" height="100">
+   <BOUNDS type="Node" left="4110" top="9180" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZ" visible="1" slicecount="3" values="0,0,0">
    </PIN>
@@ -435,7 +431,7 @@
    <LINK srcnodeid="55" srcpinname="ScaleXYZ" dstnodeid="58" dstpinname="XYZ">
    </LINK>
    <NODE systemname="Translate (Transform Vector)" nodename="Translate (Transform Vector)" componentmode="Hidden" id="59">
-   <BOUNDS type="Node" left="3090" top="9390" width="100" height="100">
+   <BOUNDS type="Node" left="3105" top="11010" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZ" visible="1">
    </PIN>
@@ -443,7 +439,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="60">
-   <BOUNDS type="Node" left="3780" top="8460" width="100" height="100">
+   <BOUNDS type="Node" left="3795" top="10080" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source Minimum" visible="1">
    </PIN>
@@ -471,7 +467,7 @@
    <LINK srcnodeid="57" srcpinname="XY" dstnodeid="60" dstpinname="Input">
    </LINK>
    <NODE systemname="xyZ (3d XY)" nodename="xyZ (3d XY)" componentmode="Hidden" id="61">
-   <BOUNDS type="Node" left="3780" top="8940" width="100" height="100">
+   <BOUNDS type="Node" left="3795" top="10560" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XY" visible="1">
    </PIN>
@@ -483,7 +479,7 @@
    <LINK srcnodeid="61" srcpinname="XYZ" dstnodeid="59" dstpinname="XYZ">
    </LINK>
    <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="5055" top="8655" width="100" height="100">
+   <BOUNDS type="Node" left="5070" top="10275" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source Minimum" visible="1" slicecount="2" values="-1,-1">
    </PIN>
@@ -511,7 +507,7 @@
    <LINK srcnodeid="54" srcpinname="Y Output Value" dstnodeid="62" dstpinname="Destination Maximum">
    </LINK>
    <NODE systemname="xyZ (3d XY)" nodename="xyZ (3d XY)" componentmode="Hidden" id="63">
-   <BOUNDS type="Node" left="5040" top="9090" width="100" height="100">
+   <BOUNDS type="Node" left="5055" top="10710" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XY" visible="1" slicecount="2" values="0,0">
    </PIN>
@@ -523,7 +519,7 @@
    <LINK srcnodeid="62" srcpinname="Output" dstnodeid="63" dstpinname="XY">
    </LINK>
    <NODE systemname="Rotate (Transform Vector)" nodename="Rotate (Transform Vector)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="3420" top="9945" width="100" height="100">
+   <BOUNDS type="Node" left="3435" top="11565" width="100" height="100">
    </BOUNDS>
    <PIN pinname="XYZ" visible="1">
    </PIN>
@@ -537,7 +533,7 @@
    <LINK srcnodeid="59" srcpinname="Transform Out" dstnodeid="64" dstpinname="Transform In">
    </LINK>
    <NODE systemname="Scale (Transform Vector)" nodename="Scale (Transform Vector)" componentmode="Hidden" id="65">
-   <BOUNDS type="Node" left="3720" top="10410" width="100" height="100">
+   <BOUNDS type="Node" left="3600" top="12105" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1">
    </PIN>
@@ -553,5 +549,25 @@
    <LINK srcnodeid="65" srcpinname="Transform Out" dstnodeid="18" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="65" srcpinname="Transform Out" dstnodeid="48" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Switch (Transform Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\TransformsAdvanced.dll" nodename="Switch (Transform Advanced)" componentmode="Hidden" id="66">
+   <BOUNDS type="Node" left="2700" top="6570" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Transform 1" visible="1">
+   </PIN>
+   <PIN pinname="Transform 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="66" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output 1" dstnodeid="66" dstpinname="Transform 1">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output Node" dstnodeid="66" dstpinname="Transform 2">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Output" dstnodeid="6" dstpinname="Transform In 1">
    </LINK>
    </PATCH>
