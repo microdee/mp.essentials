@@ -159,118 +159,158 @@ namespace VVVV.Nodes.PDDN
         [Import] protected IPluginHost2 FPluginHost;
         [Import] protected IIOFactory FIOFactory;
 
+        protected bool ExposePrivate = false;
+
+        public virtual void OnImportsSatisfiedBegin() { }
+        public virtual void OnImportsSatisfiedEnd() { }
+
+        public virtual void OnEvaluateBegin() { }
+        public virtual void OnEvaluateEnd() { }
+
+        public virtual void OnChangedBegin() { }
+        public virtual void OnChangedEnd() { }
+
+        public virtual object TransformOutput(object obj, MemberInfo member, int i)
+        {
+            return obj;
+        }
+
+        public virtual Type TransformType(Type original, MemberInfo member)
+        {
+            return original;
+        }
+
+        protected Dictionary<MemberInfo, bool> IsMemberEnumerable = new Dictionary<MemberInfo, bool>();
+
+        protected Type CType;
+        protected PinDictionary Pd;
+
+        private void AddMemberPin(MemberInfo member)
+        {
+            if(!(member is FieldInfo) && !(member is PropertyInfo)) return;
+            Type memberType = typeof(object);
+            switch (member)
+            {
+                case FieldInfo field:
+                    if (field.IsStatic) return;
+                    if (field.FieldType.IsPointer) return;
+                    if (!field.FieldType.IsPublic && !ExposePrivate) return;
+
+                    memberType = field.FieldType;
+                    break;
+                case PropertyInfo prop:
+                    if(!prop.CanRead) return;
+                    if(prop.GetIndexParameters().Length > 0) return;
+
+                    memberType = prop.PropertyType;
+                    break;
+            }
+            var enumerable = false;
+            if ((memberType.GetInterface("IEnumerable") != null) && (memberType != typeof(string)))
+            {
+                try
+                {
+                    var interfaces = memberType.GetInterfaces().ToList();
+                    interfaces.Add(memberType);
+                    var stype = interfaces
+                        .Where(type =>
+                        {
+                            try
+                            {
+                                var res = type.GetGenericTypeDefinition();
+                                if (res == null) return false;
+                                return res == typeof(IEnumerable<>);
+                            }
+                            catch (Exception)
+                            {
+                                return false;
+                            }
+                        })
+                        .First().GenericTypeArguments[0];
+                    Pd.AddOutputBinSized(TransformType(stype, member), new OutputAttribute(member.Name));
+                    enumerable = true;
+                }
+                catch (Exception)
+                {
+                    Pd.AddOutput(TransformType(memberType, member), new OutputAttribute(member.Name));
+                    enumerable = false;
+                }
+            }
+            else
+            {
+                Pd.AddOutput(TransformType(memberType, member), new OutputAttribute(member.Name));
+                enumerable = false;
+            }
+            IsMemberEnumerable.Add(member, enumerable);
+        }
+
+        private void AssignMemberValue(MemberInfo member, object input, int i)
+        {
+
+            object memberValue = null;
+            switch (member)
+            {
+                case FieldInfo field:
+                    memberValue = field.GetValue(input);
+                    break;
+                case PropertyInfo prop:
+                    memberValue = prop.GetValue(input);
+                    break;
+            }
+            if (IsMemberEnumerable[member])
+            {
+                var enumerable = (IEnumerable)memberValue;
+                var spread = (ISpread)Pd.OutputPins[member.Name].Spread[i];
+                spread.SliceCount = 0;
+                foreach (var o in enumerable)
+                {
+                    spread.SliceCount++;
+                    spread[-1] = TransformOutput(o, member, i);
+                }
+            }
+            else
+            {
+                Pd.OutputPins[member.Name].Spread[i] = TransformOutput(memberValue, member, i);
+            }
+        }
+
         public void OnImportsSatisfied()
         {
             Pd = new PinDictionary(FIOFactory);
             CType = typeof(T);
 
+            OnImportsSatisfiedBegin();
+
             foreach (var field in CType.GetFields())
-            {
-                if (field.IsStatic) continue;
-                if (field.FieldType.IsPointer) continue;
-                if (!field.IsPublic) continue;
-                var enumerable = false;
-                if ((field.FieldType.GetInterface("IEnumerable") != null) && (field.FieldType != typeof(string)))
-                {
-                    try
-                    {
-                        var interfaces = field.FieldType.GetInterfaces().ToList();
-                        interfaces.Add(field.FieldType);
-                        var stype = interfaces
-                            .Where(type =>
-                            {
-                                try
-                                {
-                                    var res = type.GetGenericTypeDefinition();
-                                    if (res == null) return false;
-                                    return res == typeof(IEnumerable<>);
-                                }
-                                catch (Exception)
-                                {
-                                    return false;
-                                }
-                            })
-                            .ToArray()[0];
-                        Pd.AddOutputBinSized(field.FieldType.GetGenericArguments()[0], new OutputAttribute(field.Name));
-                        enumerable = true;
-                    }
-                    catch (Exception)
-                    {
-                        Pd.AddOutput(field.FieldType, new OutputAttribute(field.Name));
-                        enumerable = false;
-                    }
-                }
-                else
-                {
-                    Pd.AddOutput(field.FieldType, new OutputAttribute(field.Name));
-                    enumerable = false;
-                }
-                IsFieldEnumerable.Add(field, enumerable);
-            }
+                AddMemberPin(field);
             foreach (var prop in CType.GetProperties())
-            {
-                if (!prop.CanRead) continue;
-                if (prop.GetIndexParameters().Length > 0) continue;
-                var enumerable = false;
-                if ((prop.PropertyType.GetInterface("IEnumerable") != null) && (prop.PropertyType != typeof(string)))
-                {
-                    try
-                    {
-                        var interfaces = prop.PropertyType.GetInterfaces().ToList();
-                        interfaces.Add(prop.PropertyType);
-                        var stype = interfaces
-                            .Where(type =>
-                            {
-                                try
-                                {
-                                    var res = type.GetGenericTypeDefinition();
-                                    if (res == null) return false;
-                                    return res == typeof(IEnumerable<>);
-                                }
-                                catch (Exception)
-                                {
-                                    return false;
-                                }
-                            })
-                            .ToArray()[0].GenericTypeArguments[0];
-                        Pd.AddOutputBinSized(stype, new OutputAttribute(prop.Name));
-                        enumerable = true;
-                    }
-                    catch (Exception)
-                    {
-                        Pd.AddOutput(prop.PropertyType, new OutputAttribute(prop.Name));
-                        enumerable = false;
-                    }
-                }
-                else
-                {
-                    Pd.AddOutput(prop.PropertyType, new OutputAttribute(prop.Name));
-                    enumerable = false;
-                }
-                IsPropertyEnumerable.Add(prop, enumerable);
-            }
+                AddMemberPin(prop);
+
+            OnImportsSatisfiedEnd();
         }
-
-        protected Dictionary<PropertyInfo, bool> IsPropertyEnumerable = new Dictionary<PropertyInfo, bool>();
-        protected Dictionary<FieldInfo, bool> IsFieldEnumerable = new Dictionary<FieldInfo, bool>();
-
-        protected Type CType;
-        protected PinDictionary Pd;
 
         public void Evaluate(int SpreadMax)
         {
+            OnEvaluateBegin();
             if (FInput.SliceCount == 0)
             {
                 foreach (var outpin in Pd.OutputPins.Values)
                 {
                     outpin.Spread.SliceCount = 0;
                 }
+                OnEvaluateEnd();
                 return;
             }
-            if (FInput[0] == null) return;
+
+            if (FInput[0] == null)
+            {
+                OnEvaluateEnd();
+                return;
+            }
             var sprmax = FInput.SliceCount;
             if (FInput.IsChanged)
             {
+                OnChangedBegin();
                 foreach (var pin in Pd.OutputPins.Values)
                 {
                     pin.Spread.SliceCount = sprmax;
@@ -279,44 +319,12 @@ namespace VVVV.Nodes.PDDN
                 {
                     var obj = FInput[i];
                     if (obj == null) continue;
-                    foreach (var field in IsFieldEnumerable.Keys)
-                    {
-                        if (IsFieldEnumerable[field])
-                        {
-                            var enumerable = (IEnumerable)field.GetValue(obj);
-                            var spread = (ISpread)Pd.OutputPins[field.Name].Spread[i];
-                            spread.SliceCount = 0;
-                            foreach (var o in enumerable)
-                            {
-                                spread.SliceCount++;
-                                spread[-1] = o;
-                            }
-                        }
-                        else
-                        {
-                            Pd.OutputPins[field.Name].Spread[i] = field.GetValue(obj);
-                        }
-                    }
-                    foreach (var prop in IsPropertyEnumerable.Keys)
-                    {
-                        if (IsPropertyEnumerable[prop])
-                        {
-                            var enumerable = (IEnumerable)prop.GetValue(obj);
-                            var spread = (ISpread)Pd.OutputPins[prop.Name].Spread[i];
-                            spread.SliceCount = 0;
-                            foreach (var o in enumerable)
-                            {
-                                spread.SliceCount++;
-                                spread[-1] = o;
-                            }
-                        }
-                        else
-                        {
-                            Pd.OutputPins[prop.Name].Spread[i] = prop.GetValue(obj);
-                        }
-                    }
+                    foreach (var member in IsMemberEnumerable.Keys)
+                        AssignMemberValue(member, obj, i);
                 }
+                OnChangedEnd();
             }
+            OnEvaluateEnd();
         }
     }
 }
