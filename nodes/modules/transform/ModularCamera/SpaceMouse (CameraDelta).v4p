@@ -1,19 +1,19 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="1020" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="1200" scrolly="0">
    <BOUNDS type="Window" left="6570" top="2325" width="10335" height="11895">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.9">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE systemname="CameraDelta (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="4845" top="8925" width="100" height="100">
+   <BOUNDS type="Node" left="4845" top="9975" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Camera Delta Out" visible="1">
    </PIN>
    <PIN pinname="Reset Translation" visible="1">
    </PIN>
-   <PIN pinname="Reset Pitch Yaw Roll" visible="1">
+   <PIN pinname="Reset Pitch Yaw Roll" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Reset Pivot Distance" visible="1" slicecount="1" values="0">
    </PIN>
@@ -29,9 +29,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1">
-   <BOUNDS type="Box" left="4830" top="10365" width="795" height="240">
+   <BOUNDS type="Box" left="4830" top="11415" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4830" top="10365" width="0" height="0">
+   <BOUNDS type="Node" left="4830" top="11415" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Camera Delta Out|">
    </PIN>
@@ -69,7 +69,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4560" top="3015" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="SpaceNavigator">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|SpaceMouse Pro|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="Undefined">
    </PIN>
@@ -101,16 +101,16 @@
    <LINK srcnodeid="6" srcpinname="Rotation" dstnodeid="5" dstpinname="Input 1">
    </LINK>
    <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="10">
-   <BOUNDS type="Node" left="5880" top="8295" width="100" height="100">
+   <BOUNDS type="Node" left="7380" top="7050" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="10" srcpinname="Output" dstnodeid="0" dstpinname="Reset Translation">
-   </LINK>
-   <LINK srcnodeid="10" srcpinname="Output" dstnodeid="0" dstpinname="Reset Pitch Yaw Roll">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
    <BOUNDS type="Box" left="6510" top="3405" width="795" height="240">
@@ -323,5 +323,137 @@
    <LINK srcnodeid="6" srcpinname="Buttons" dstnodeid="25" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="25" srcpinname="Output" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="26">
+   <BOUNDS type="Box" left="8085" top="6615" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8085" top="6615" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="12">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Reset Translation Button|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Index">
+   </LINK>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="7800" top="7650" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Output" dstnodeid="28" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27">
+   <BOUNDS type="Box" left="8505" top="7215" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8505" top="7215" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="13">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Reset Rotation Button|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Output" dstnodeid="0" dstpinname="Reset Pitch Yaw Roll">
+   </LINK>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="8160" top="8205" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Output" dstnodeid="30" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="29">
+   <BOUNDS type="Box" left="8865" top="7770" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8865" top="7770" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Reset Distance Button|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Output" dstnodeid="0" dstpinname="Reset Pivot Distance">
+   </LINK>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="8475" top="8775" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Output" dstnodeid="32" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31">
+   <BOUNDS type="Box" left="9180" top="8340" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9180" top="8340" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Reset Fov Button|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Output" dstnodeid="0" dstpinname="Reset Fov">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="33">
+   <BOUNDS type="Box" left="7320" top="11145" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7320" top="11145" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Buttons">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Buttons" dstnodeid="33" dstpinname="Y Input Value">
    </LINK>
    </PATCH>

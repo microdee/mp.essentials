@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="0" scrolly="4350">
    <BOUNDS type="Window" left="5595" top="285" width="9000" height="10800">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -198,20 +198,6 @@
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output" dstnodeid="17" dstpinname="Input">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4065" top="7965" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4065" top="7965" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="350">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   </NODE>
    <NODE systemname="AsRaw (String)" nodename="AsRaw (String)" componentmode="Hidden" id="37">
    <BOUNDS type="Node" left="12225" top="7485" width="100" height="100">
    </BOUNDS>
@@ -484,68 +470,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Rotation">
    </PIN>
    </NODE>
-   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="7200" top="5925" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum Name" slicecount="1" values="SpaceMouseHIDAxis">
-   </PIN>
-   <PIN pinname="Strings" visible="1">
-   </PIN>
-   </NODE>
-   <NODE id="48" nodename="IOBox (String)" componentmode="InABox" systemname="IOBox (String)">
-   <BOUNDS left="7170" top="5025" width="885" height="495" type="Box">
-   </BOUNDS>
-   <BOUNDS left="6360" top="4875" width="0" height="500" type="Window">
-   </BOUNDS>
-   <BOUNDS left="7170" top="5025" width="0" height="500" type="Node">
-   </BOUNDS>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="String">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Input String" slicecount="2" values="Original,VVVV">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="48" srcpinname="Output String" dstnodeid="46" dstpinname="Strings">
-   </LINK>
-   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="5850" top="5145" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive" slicecount="1" visible="1" values="SpaceMouseHIDAxis">
-   </PIN>
-   <PIN pinname="Enum" slicecount="1" values="SpaceMouseHIDAxis">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="50" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6315" top="4410" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6315" top="4410" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="VVVV">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Coordinate System|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="50" srcpinname="Output Enum" dstnodeid="49" dstpinname="Receive">
-   </LINK>
-   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="51">
-   <BOUNDS type="Node" left="5775" top="7305" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum" visible="1">
-   </PIN>
-   <PIN pinname="Ord Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="50" srcpinname="Output Enum" dstnodeid="51" dstpinname="Enum">
-   </LINK>
    <NODE systemname="Vector (3d Split)" nodename="Vector (3d Split)" componentmode="Hidden" id="52">
    <BOUNDS type="Node" left="1080" top="11940" width="100" height="100">
    </BOUNDS>
@@ -628,8 +552,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="51" srcpinname="Ord Value" dstnodeid="64" dstpinname="Switch">
-   </LINK>
    <LINK srcnodeid="55" srcpinname="XYZ" dstnodeid="64" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="64" srcpinname="Output" dstnodeid="40" dstpinname="Y Input Value">
@@ -646,8 +568,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="51" srcpinname="Ord Value" dstnodeid="65" dstpinname="Switch">
-   </LINK>
    <LINK srcnodeid="60" srcpinname="XYZ" dstnodeid="65" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="65" srcpinname="Output" dstnodeid="43" dstpinname="Y Input Value">
@@ -908,6 +828,32 @@
    </LINK>
    <LINK srcnodeid="9" srcpinname="XYZ" dstnodeid="13" dstpinname="Input 1">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.9">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="89">
+   <BOUNDS type="Box" left="6225" top="8085" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6225" top="8085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|VVVV Coordinate System|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="89" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Switch">
+   </LINK>
    </PATCH>
