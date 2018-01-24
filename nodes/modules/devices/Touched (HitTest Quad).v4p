@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
-   <PATCH nodename="D:\vvvv\appcopy\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="0" scrolly="2010">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="75" scrolly="1605">
    <BOUNDS type="Window" left="15900" top="1125" width="9855" height="9195">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="24" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="2415" top="1740" width="795" height="240">
@@ -274,7 +274,7 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="vvvv-Message" Version="2.9.6">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
@@ -393,5 +393,23 @@
    <LINK srcnodeid="25" srcpinname="Object Hit" dstnodeid="43" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="43" srcpinname="Output" dstnodeid="7" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="45">
+   <BOUNDS type="Box" left="3600" top="8805" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3600" top="8805" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Object Hit|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Object Hit" dstnodeid="45" dstpinname="Y Input Value">
    </LINK>
    </PATCH>

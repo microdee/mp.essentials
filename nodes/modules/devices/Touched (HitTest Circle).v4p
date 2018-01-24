@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.1.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Circle).v4p" systemname="Touched (HitTest Circle)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\value\Touched (HitTest Circle).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Circle).v4p" systemname="Touched (HitTest Circle)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\value\Touched (HitTest Circle).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="1635" top="1335" width="10980" height="11940">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="35.9.0">
    </PACK>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
@@ -355,5 +355,23 @@
    <LINK srcnodeid="35" srcpinname="Object Id" dstnodeid="31" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="35" srcpinname="Point Id" dstnodeid="30" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="54">
+   <BOUNDS type="Box" left="3015" top="8580" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3015" top="8580" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Object Hit|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Object Hit" dstnodeid="54" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
