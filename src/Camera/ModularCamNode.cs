@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Runtime.InteropServices;
+using md.stdl.Interaction;
 using mp.essentials.Camera;
 using SlimDX;
 using VVVV.PluginInterfaces.V2;
@@ -41,10 +42,10 @@ namespace mp.essentials.Nodes.Camera
         [Input("Default Far", DefaultValue = 1000)]
         public IDiffSpread<double> FDefFar;
 
-        [Input("Mouse")]
-        public ISpread<Mouse> FMouse;
-        [Input("Keyboard")]
-        public ISpread<Keyboard> FKeyboard;
+        [Input("Mouse ID", DefaultValue = -1)]
+        public ISpread<int> FMouse;
+        [Input("Keyboard ID", DefaultValue = -1)]
+        public ISpread<int> FKeyboard;
         [Input("Target Window Handle", DefaultValue = -1)]
         public ISpread<int> FHandle;
 
@@ -84,8 +85,16 @@ namespace mp.essentials.Nodes.Camera
         private WPoint CursorPos;
         private double PrevFrameTime;
 
+        private MouseInputManager MouseMan = new MouseInputManager();
+        private KeyboardInputManager KeyMan = new KeyboardInputManager();
+
         public void Evaluate(int SpreadMax)
         {
+            if (FKeyboard.IsChanged || FMouse.IsChanged)
+            {
+                MouseMan.SelectDevice(FMouse[0]);
+                KeyMan.SelectDevice(FKeyboard[0]);
+            }
             if (Camera == null)
             {
                 var qrot = Quaternion.RotationYawPitchRoll((float)(FDefRot[0].y * Math.PI * 2), (float)(FDefRot[0].x * Math.PI * 2), (float)(FDefRot[0].z * Math.PI * 2));
@@ -158,8 +167,8 @@ namespace mp.essentials.Nodes.Camera
                 for (int i = 0; i < FDeltas.SliceCount; i++)
                 {
                     var delta = FDeltas[i];
-                    delta.InputMouse = FMouse[0];
-                    delta.InputKeyboard = FKeyboard[0];
+                    delta.InputMouse = MouseMan.Devices[0];
+                    delta.InputKeyboard = KeyMan.Devices[0];
                     delta.ConnectedCamera = Camera;
                     if (FHandle[0] > 0)
                     {

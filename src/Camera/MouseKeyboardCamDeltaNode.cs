@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using md.stdl.Interaction;
 using mp.essentials;
 using mp.essentials.Camera;
 using SlimDX;
@@ -118,12 +119,12 @@ namespace mp.essentials.Nodes.Camera
                     KeyboardObserver.SubscribeTo(Delta.InputKeyboard.KeyNotifications);
                 }
 
-                var carea = MouseObserver?.LastNotification?.ClientArea ?? new Size(1, 1);
-                var aspx = Math.Min(1, (double)carea.Height / (double)carea.Width);
-                var aspy = Math.Min(1, (double)carea.Width / (double)carea.Height);
+                //var carea = MouseObserver?.LastNotification?.ClientArea ?? new Size(1, 1);
+                //var aspx = Math.Min(1, (double)carea.Height / (double)carea.Width);
+                //var aspy = Math.Min(1, (double)carea.Width / (double)carea.Height);
                 var mousepos = new Vector2D(
-                    MouseObserver.AccumulatedXDelta * aspx,
-                    MouseObserver.AccumulatedYDelta * aspy);
+                    MouseObserver.AccumulatedXDelta /* aspx*/,
+                    MouseObserver.AccumulatedYDelta /* aspy*/);
                 var mousewheel = new Vector2D(
                     (double)MouseObserver.AccumulatedWheelDelta / 120,
                     (double)MouseObserver.AccumulatedHorizontalWheelDelta / 120);

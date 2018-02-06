@@ -1,7 +1,8 @@
 #region usings
 using System;
 using System.ComponentModel.Composition;
-
+using System.Linq;
+using md.stdl.Boolean;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
@@ -40,11 +41,7 @@ namespace mp.essentials.Nodes.Boolean
 
 			for (int i = 0; i < FOutput.SliceCount; i++)
 			{
-				uint flag = 0;
-				for (int j = 0; j < FInput[i].SliceCount; j++)
-				{
-					flag = flag | FInput[i][j];
-				}
+			    uint flag = BitUtils.Or(FInput[i].ToArray());
 				FOutput[i] = flag;
 			}
 
@@ -80,11 +77,7 @@ namespace mp.essentials.Nodes.Boolean
 
             for (int j = 0; j < SpreadMax; j++)
             {
-                uint flag = 0;
-                for (int i = 0; i < FInput.SliceCount; i++)
-                {
-                    flag = flag | FInput[i][j];
-                }
+                uint flag = BitUtils.Or(FInput[j].ToArray());
                 FOutput[j] = flag;
             }
 

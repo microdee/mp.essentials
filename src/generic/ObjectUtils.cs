@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
+using md.stdl.Mathematics;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Nodes.PDDN;
 using VVVV.Utils.Reflection;
+using VVVV.Utils.VMath;
+using Matrix4x4 = System.Numerics.Matrix4x4;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
@@ -340,6 +344,54 @@ namespace mp.essentials.Nodes.Generic
         public ISpread<int> FTypeInheritence;
         [Input("Learn Type", Order = 103, IsBang = true)] public ISpread<bool> FLearnType;
 
+        public Type TransformType(Type original, MemberInfo member)
+        {
+            if (original == typeof(Vector2))
+            {
+                return typeof(Vector2D);
+            }
+            if (original == typeof(Vector3))
+            {
+                return typeof(Vector3D);
+            }
+            if (original == typeof(Vector4))
+            {
+                return typeof(Vector4D);
+            }
+            if (original == typeof(Matrix4x4))
+            {
+                return typeof(VVVV.Utils.VMath.Matrix4x4);
+            }
+            return original;
+        }
+
+        public object TransformOutput(object obj, MemberInfo member, int i)
+        {
+            switch (obj)
+            {
+                case Vector2 v:
+                {
+                    return v.AsVVector();
+                }
+                case Vector3 v:
+                {
+                    return v.AsVVector();
+                }
+                case Vector4 v:
+                {
+                    return v.AsVVector();
+                }
+                case Matrix4x4 v:
+                {
+                    return v.AsVMatrix4X4();
+                }
+                default:
+                {
+                    return obj;
+                }
+            }
+        }
+
         protected override void PreInitialize()
         {
             ConfigPinCopy = FType;
@@ -405,18 +457,18 @@ namespace mp.essentials.Nodes.Generic
                             }
                         })
                         .First().GenericTypeArguments[0];
-                    Pd.AddOutputBinSized(stype, new OutputAttribute(member.Name));
+                    Pd.AddOutputBinSized(TransformType(stype, member), new OutputAttribute(member.Name));
                     enumerable = true;
                 }
                 catch (Exception)
                 {
-                    Pd.AddOutput(memberType, new OutputAttribute(member.Name));
+                    Pd.AddOutput(TransformType(memberType, member), new OutputAttribute(member.Name));
                     enumerable = false;
                 }
             }
             else
             {
-                Pd.AddOutput(memberType, new OutputAttribute(member.Name));
+                Pd.AddOutput(TransformType(memberType, member), new OutputAttribute(member.Name));
                 enumerable = false;
             }
             IsMemberEnumerable.Add(member, enumerable);
@@ -442,12 +494,12 @@ namespace mp.essentials.Nodes.Generic
                 foreach (var o in enumerable)
                 {
                     spread.SliceCount++;
-                    spread[-1] = o;
+                    spread[-1] = TransformOutput(o, member, i);
                 }
             }
             else
             {
-                Pd.OutputPins[member.Name].Spread[i] = memberValue;
+                Pd.OutputPins[member.Name].Spread[i] = TransformOutput(memberValue, member, i);
             }
         }
 

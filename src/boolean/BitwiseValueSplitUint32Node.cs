@@ -1,7 +1,8 @@
 #region usings
 using System;
 using System.ComponentModel.Composition;
-
+using System.Linq;
+using md.stdl.Boolean;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
@@ -38,13 +39,7 @@ namespace mp.essentials.Nodes.Boolean
 
 			for (int i = 0; i < FOutput.SliceCount; i++) {
 				FOutput[i].SliceCount = 32;
-				for (int j = 0; j < 32; j++)
-				{
-					uint mask = 0x80000000; 
-					mask = mask >> j;
-					uint masked = FInput[i] & mask;
-					FOutput[i][j] = masked != 0;
-				}
+                FOutput[i].AssignFrom(BitUtils.Split(FInput[i]));
 			}
 
 			//FLogger.Log(LogType.Debug, "hi tty!");
@@ -76,14 +71,7 @@ namespace mp.essentials.Nodes.Boolean
 			FOutput.SliceCount = FInput.SliceCount;
 
 			for (int i = 0; i < FOutput.SliceCount; i++) {
-				FOutput[i] = 0;
-				for (int j = 0; j < FInput[i].SliceCount; j++)
-				{
-					uint mask = 0x80000000;
-					mask = mask >> (32 - FInput[i].SliceCount);
-					mask = mask >> j;
-					if(FInput[i][j]) FOutput[i] = FOutput[i] | mask;
-				}
+				FOutput[i] = BitUtils.Join(FInput[i].ToArray());
 			}
 
 			//FLogger.Log(LogType.Debug, "hi tty!");

@@ -40,7 +40,7 @@ namespace mp.essentials.Nodes.Strings
 	        string hashString = string.Empty;
 	        foreach (byte x in hash)
 	        {
-	            hashString += String.Format("{0:x2}", x);
+	            hashString += $"{x:x2}";
 	        }
 	        return hashString;
 	    }

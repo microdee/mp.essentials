@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Linq;
+using md.stdl.String;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;

@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using md.stdl.String;
 using PowerArgs;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Nodes.PDDN;
@@ -70,7 +71,7 @@ namespace mp.essentials.Nodes.Shaders
 
                 var linerange = ShaderText.LineRangeFromCharIndex(match.Index);
 
-                var defargsmatch = PreProcOptionsHelper.Instance.DefinedArgs.Match(ShaderText, linerange.Item1, linerange.Item3);
+                var defargsmatch = PreProcOptionsHelper.Instance.DefinedArgs.Match(ShaderText, linerange.Start, linerange.Length);
                 if (!defargsmatch.Success) continue;
                 PreProcOptionArgs defargs;
 
@@ -84,7 +85,7 @@ namespace mp.essentials.Nodes.Shaders
                     continue;
                 }
 
-                Root.DefineExtract += ShaderText.Substring(linerange.Item1, linerange.Item3).Trim() + "\n";
+                Root.DefineExtract += ShaderText.Substring(linerange.Start, linerange.Length).Trim() + "\n";
 
                 var option = new PreProcOption
                 {
@@ -103,8 +104,8 @@ namespace mp.essentials.Nodes.Shaders
                 Root.FlatOptions.Add(option);
                 Options.Add(option);
 
-                var defGroupContent = ShaderText.Remove(0, linerange.Item1);
-                defGroupContent = defGroupContent.Remove(ShaderText.IndexOf("#endif", linerange.Item1, StringComparison.InvariantCultureIgnoreCase) - linerange.Item1);
+                var defGroupContent = ShaderText.Remove(0, linerange.Start);
+                defGroupContent = defGroupContent.Remove(ShaderText.IndexOf("#endif", linerange.Start, StringComparison.InvariantCultureIgnoreCase) - linerange.Start);
                 var defGroup = PreProcOptionsHelper.Instance.DefaultDefines.Matches(defGroupContent);
                 int i = 0;
                 foreach (Match groupmember in defGroup)
@@ -140,7 +141,7 @@ namespace mp.essentials.Nodes.Shaders
                     }
 
                     var gdefline = defGroupContent.LineRangeFromCharIndex(groupmember.Groups["name"].Index);
-                    Root.DefineExtract += defGroupContent.Substring(gdefline.Item1, gdefline.Item3).Trim() + "\n";
+                    Root.DefineExtract += defGroupContent.Substring(gdefline.Start, gdefline.Length).Trim() + "\n";
 
                     i++;
                 }

@@ -33,9 +33,8 @@ namespace mp.essentials.Nodes.vvvv
 		//called when data for any output pin is requested
 		public void Evaluate(int SpreadMax)
 		{
-			string hostpath, nodepath;
-			this.PluginHost.GetHostPath(out hostpath);
-			this.PluginHost.GetNodePath(false, out nodepath);
+		    PluginHost.GetHostPath(out var hostpath);
+			PluginHost.GetNodePath(false, out var nodepath);
 			FHost[0] = hostpath;
 			FNode[0] = nodepath;
 

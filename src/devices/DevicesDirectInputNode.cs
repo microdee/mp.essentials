@@ -17,6 +17,7 @@ using VVVV.Core.Logging;
 
 namespace mp.essentials.Nodes.Devices
 {
+    /*
 	[PluginInfo(
         Name = "DirectInput",
         Category = "Devices",
@@ -141,7 +142,8 @@ namespace mp.essentials.Nodes.Devices
 			FKeysCon[0] = info;
 		}
 	}
-	
+	*/
+
 	[PluginInfo(
         Name = "GameController",
         Category = "Devices",

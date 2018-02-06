@@ -1,6 +1,7 @@
 #region usings
 using System;
 using System.ComponentModel.Composition;
+using md.stdl.String;
 using mp.essentials;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;

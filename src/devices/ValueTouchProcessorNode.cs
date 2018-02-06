@@ -1,10 +1,12 @@
-#region usings
 using System;
 using System.Linq;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Collections.Generic;
-
+using System.Numerics;
+using System.Reflection;
+using md.stdl.Interaction;
+using md.stdl.Mathematics;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.IO;
@@ -13,95 +15,12 @@ using VVVV.Utils.VMath;
 using VVVV.Utils.Animation;
 
 using VVVV.Core.Logging;
-#endregion usings
+using VVVV.Nodes.PDDN;
+using VMatrix = VVVV.Utils.VMath.Matrix4x4;
+using SMatrix = System.Numerics.Matrix4x4;
 
 namespace mp.essentials.Nodes.Devices
 {
-	public class TouchContainer
-	{
-		public Vector2D PrevPoint;
-		public Vector2D PrevPointF;
-		
-		public Vector2D Point;
-		public Vector2D PointFiltered;
-		public Vector2D Velocity;
-		public Vector2D VelocityFiltered;
-		public int ID;
-		public Stopwatch Age = new Stopwatch();
-		public int ExpireFrames = 0;
-		public int AgeFrames = 0;
-		public bool UseFiltered = false;
-		
-		private OneEuroFilter FilterX;
-		private OneEuroFilter FilterY;
-		
-		public double FilterMinCutoff
-		{
-			get { return FilterX.MinCutoff; }
-			set
-			{
-				FilterX.MinCutoff = value;
-				FilterY.MinCutoff = value;
-			}
-		}
-		public double FilterBeta
-		{
-			get { return FilterX.Beta; }
-			set
-			{
-				FilterX.Beta = value;
-				FilterY.Beta = value;
-			}
-		}
-		public double FilterCutoffDerivative
-		{
-			get { return FilterX.CutoffDerivative; }
-			set
-			{
-				FilterX.CutoffDerivative = value;
-				FilterY.CutoffDerivative = value;
-			}
-		}
-		
-		public TouchContainer(double fmincutoff, double fbeta)
-		{
-			Age.Start();
-			FilterX = new OneEuroFilter(fmincutoff, fbeta);
-			FilterY = new OneEuroFilter(fmincutoff, fbeta);
-		}
-		public void Update(double deltaft)
-		{
-			var rate = 1 / deltaft;
-			
-			PointFiltered = new Vector2D(
-				FilterX.Filter(Point.x, rate),
-				FilterY.Filter(Point.y, rate)
-			);
-			
-			if(AgeFrames <= 1)
-			{
-				PrevPoint = new Vector2D(Point.x, Point.y);
-				PrevPointF = new Vector2D(PointFiltered.x, PointFiltered.y);
-				
-				Velocity = new Vector2D(0,0);
-				VelocityFiltered = new Vector2D(0,0);
-			}
-			else
-			{
-				Velocity = new Vector2D(
-					Point.x - PrevPoint.x,
-					Point.y - PrevPoint.y
-				);
-				PrevPoint = new Vector2D(Point.x, Point.y);
-				
-				VelocityFiltered = new Vector2D(
-					PointFiltered.x - PrevPointF.x,
-					PointFiltered.y - PrevPointF.y
-				);
-				PrevPointF = new Vector2D(PointFiltered.x, PointFiltered.y);
-			}
-		}
-	}
 	#region PluginInfo
 	[PluginInfo(
         Name = "TouchProcessor",
@@ -117,10 +36,6 @@ namespace mp.essentials.Nodes.Devices
 		public ISpread<Vector2D> FPoints;
 		[Input("ID's")]
 		public ISpread<int> FID;
-        [Input("Auto ID")]
-        public ISpread<bool> FAutoID;
-        [Input("Auto ID Distance Threshold", DefaultValue = 0.1)]
-        public ISpread<double> FAIDDistThr;
         [Input("Keep for Frames", DefaultValue = 1)]
         public ISpread<int> FExpire;
 
@@ -158,12 +73,9 @@ namespace mp.essentials.Nodes.Devices
 
         private Spread<Vector2D> PrevTouchSpread = new Spread<Vector2D>();
         private Spread<int> AutoIDs = new Spread<int>();
-        private Spread<int> StagingAutoIDs = new Spread<int>();
-        private Spread<bool> TagPoint = new Spread<bool>();
         private bool Init = true;
 		
 		public Dictionary<int, TouchContainer> Touches = new Dictionary<int, TouchContainer>();
-		public List<int> Removables = new List<int>();
 		
 		public double lastftime = 0;
 		
@@ -182,231 +94,113 @@ namespace mp.essentials.Nodes.Devices
                 AutoIDs.SliceCount = 0;
                 Init = false;
             }
-            if(FAutoID[0])
-            {
-                if (FPoints.SliceCount > PrevTouchSpread.SliceCount)
-                {
-                    AutoIDs.SliceCount = FPoints.SliceCount;
-                    StagingAutoIDs.SliceCount = FPoints.SliceCount;
-                    TagPoint.SliceCount = FPoints.SliceCount;
-                    for (int i = 0; i < TagPoint.SliceCount; i++)
-                    {
-                        TagPoint[i] = false;
-                    }
-                    for (int i=0; i<PrevTouchSpread.SliceCount; i++)
-                    {
-                        int paid = AutoIDs[i];
-                        double dist = double.MaxValue;
-                        int cid = 0;
-                        for (int j = 0; j < FPoints.SliceCount; j++)
-                        {
-                            double tdist = VMath.Dist(FPoints[j], PrevTouchSpread[i]);
-                            if((tdist < dist) && (!TagPoint[j]) && (tdist < FAIDDistThr[0]))
-                            {
-                                cid = j;
-                                dist = tdist;
-                            }
-                        }
-                        StagingAutoIDs[cid] = paid;
-                        TagPoint[cid] = true;
-                    }
-                    for (int i = 0; i < TagPoint.SliceCount; i++)
-                    {
-                        AutoIDs[i] = StagingAutoIDs[i];
-                        if(!TagPoint[i]) // NEW
-                        {
-                            AutoIDs[i] = new Random().Next();
-                        }
-                    }
-                }
-                if (FPoints.SliceCount < PrevTouchSpread.SliceCount)
-                {
-                    for (int i = 0; i < TagPoint.SliceCount; i++)
-                    {
-                        TagPoint[i] = false;
-                    }
-                    for (int i = 0; i < FPoints.SliceCount; i++)
-                    {
-                        double dist = double.MaxValue;
-                        int cid = 0;
-                        for (int j = 0; j < PrevTouchSpread.SliceCount; j++)
-                        {
-                            double tdist = VMath.Dist(FPoints[i], PrevTouchSpread[j]);
-                            if ((tdist < dist) && (!TagPoint[j]) && (tdist < FAIDDistThr[0]))
-                            {
-                                cid = j;
-                                dist = tdist;
-                            }
-                        }
-                        TagPoint[cid] = true;
-                    }
-                    /*
-                    if (AutoIDs.SliceCount != 0)
-                    {
-                        for (int i = 0; i < TagPoint.SliceCount; i++)
-                        {
-                            if (!TagPoint[i]) // OLD
-                            {
-                                AutoIDs.RemoveAt(i);
-                            }
-                        }
-                    }
-                    */
-                    AutoIDs.AssignFrom(AutoIDs.Where((int i, int j) => { return TagPoint[j]; }));
-                }
-                PrevTouchSpread.SliceCount = FPoints.SliceCount;
-                for(int i=0; i<PrevTouchSpread.SliceCount; i++)
-                {
-                    PrevTouchSpread[i] = new Vector2D(FPoints[i]);
-                }
-            }
 
 			SpreadMax = Math.Min(FPoints.SliceCount, FID.SliceCount);
 			
 			var dt = FHDEHost.FrameTime - lastftime;
 			lastftime = FHDEHost.FrameTime;
+
+		    foreach (var touch in Touches.Values)
+		    {
+		        touch.Mainloop();
+		    }
 			
 			for(int i=0; i < SpreadMax; i++)
 			{
                 int tid = FID[i];
-                if (FAutoID[0]) tid = AutoIDs[i];
-				if(this.Touches.ContainsKey(tid))
+				if(Touches.ContainsKey(tid))
 				{
 					TouchContainer tc = Touches[tid];
-					tc.FilterMinCutoff = FMinCutoff[i];
-					tc.FilterBeta = FBeta[i];
-					tc.FilterCutoffDerivative = FCutoffDerivative[i];
-					tc.Point = FPoints[i];
-					tc.ExpireFrames = 0;
-					tc.Update(dt);
-				}
+                    if(tc is FilteredTouch ftc)
+                    {
+                        ftc.FilterMinCutoff = FMinCutoff[i];
+                        ftc.FilterBeta = FBeta[i];
+                        ftc.FilterCutoffDerivative = FCutoffDerivative[i];
+                    }
+				    tc.Update(FPoints[i].AsSystemVector(), (float)dt);
+                }
 				else
 				{
-					TouchContainer tc = new TouchContainer(FMinCutoff[i], FBeta[i]);
-					tc.UseFiltered = FUseFilter[i];
-					tc.FilterCutoffDerivative = FCutoffDerivative[i];
-					tc.Point = FPoints[i];
-					tc.PointFiltered = FPoints[i];
-					tc.PrevPoint = FPoints[i];
-					tc.PrevPointF = FPoints[i];
-					tc.ID = tid;
-					this.Touches.Add(tid, tc);
-					tc.Update(dt);
+					TouchContainer tc = FUseFilter[i] ? new FilteredTouch(tid, FMinCutoff[i], FBeta[i]) : new TouchContainer(tid);
+                    tc.Mainloop();
+				    if (FUseFilter[i])
+				    {
+				        var ftc = (FilteredTouch) tc;
+				        ftc.FilterCutoffDerivative = FCutoffDerivative[i];
+                    }
+				    tc.Update(FPoints[i].AsSystemVector(), (float)dt);
+                    Touches.Add(tid, tc);
 				}
 			}
-			this.Removables.Clear();
-			foreach(KeyValuePair<int, TouchContainer> kvp in this.Touches)
-			{
-				if(kvp.Value.ExpireFrames > FExpire[0]) this.Removables.Add(kvp.Key);
-			}
-			for(int i=0; i<this.Removables.Count; i++)
-			{
-				this.Touches.Remove(this.Removables[i]);
-			}
+
+            (from touch in Touches.Values where touch.ExpireFrames > FExpire[0] select touch.Id).ForEach(tid => Touches.Remove(tid));
 			
-			FPointsOut.SliceCount = 0;
-			FVelOut.SliceCount = 0;
-			FIDOut.SliceCount = 0;
-			FAge.SliceCount = 0;
-			FExpiry.SliceCount = 0;
-			FNew.SliceCount = 0;
-			FContainer.SliceCount = 0;
-			int ii = 0;
-			
-			foreach(KeyValuePair<int, TouchContainer> kvp in this.Touches)
-			{
-				FContainer.Add(kvp.Value);
-				if(kvp.Value.UseFiltered)
-				{
-					FPointsOut.Add(kvp.Value.PointFiltered);
-					FVelOut.Add(kvp.Value.VelocityFiltered);
-				}
-				else
-				{
-					FPointsOut.Add(kvp.Value.Point);
-					FVelOut.Add(kvp.Value.Velocity);
-				}
-				FIDOut.Add(kvp.Value.ID);
-				FAge.Add(kvp.Value.Age.Elapsed.TotalSeconds);
-				FExpiry.Add(kvp.Value.ExpireFrames);
-				FNew.Add(kvp.Value.AgeFrames == 0);
-				
-				kvp.Value.ExpireFrames++;
-				kvp.Value.AgeFrames++;
-				ii++;
-			}
+            this.SetSliceCountForAllOutput(Touches.Count);
+		    int ii = 0;
+		    foreach (var touch in Touches.Values)
+		    {
+		        FContainer[ii] = touch;
+		        FPointsOut[ii] = touch.Point.AsVVector();
+		        FVelOut[ii] = touch.Velocity.AsVVector();
+		        FIDOut[ii] = touch.Id;
+		        FAge[ii] = touch.Age.Elapsed.TotalSeconds;
+		        FExpiry[ii] = touch.ExpireFrames;
+		        FNew[ii] = touch.AgeFrames < 1;
+		        ii++;
+		    }
 		}
 	}
 	#region PluginInfo
 	[PluginInfo(Name = "TouchProcessor", Category = "Split")]
 	#endregion PluginInfo
-	public class SplitTouchProcessorNode : IPluginEvaluate
+	public class SplitTouchProcessorNode : ObjectSplitNode<TouchContainer>
 	{
-		#region fields & pins
-		[Input("Container")]
-		public Pin<object> FInput;
-		
-		[Output("Point Out")]
-		public ISpread<Vector2D> FPointsOut;
-		[Output("Velocity Out")]
-		public ISpread<Vector2D> FVelOut;
-		
-		[Output("ID")]
-		public ISpread<int> FIDOut;
-		[Output("Age")]
-		public ISpread<double> FAge;
-		[Output("Expiry")]
-		public ISpread<int> FExpiry;
-		[Output("New", IsBang = true)]
-		public ISpread<bool> FNew;
+	    public override Type TransformType(Type original, MemberInfo member)
+	    {
+	        if (original == typeof(Vector2))
+	        {
+	            return typeof(Vector2D);
+	        }
+	        if (original == typeof(Vector3))
+	        {
+	            return typeof(Vector3D);
+	        }
+	        if (original == typeof(Vector4))
+	        {
+	            return typeof(Vector4D);
+	        }
+	        if (original == typeof(SMatrix))
+	        {
+	            return typeof(VMatrix);
+	        }
+            return original;
+	    }
 
-		[Import()]
-		public ILogger FLogger;
-		#endregion fields & pins
-
-		//called when data for any output pin is requested
-		public void Evaluate(int SpreadMax)
-		{
-			if(FInput.IsConnected && (FInput.SliceCount != 0))
-			{
-				if(FInput[0] is TouchContainer)
-				{
-					FPointsOut.SliceCount = FInput.SliceCount;
-					FVelOut.SliceCount = FInput.SliceCount;
-					FIDOut.SliceCount = FInput.SliceCount;
-					FAge.SliceCount = FInput.SliceCount;
-					FExpiry.SliceCount = FInput.SliceCount;
-					FNew.SliceCount = FInput.SliceCount;
-					
-					for(int i=0; i<FInput.SliceCount; i++)
-					{
-						var tc = FInput[i] as TouchContainer;
-						if(tc.UseFiltered)
-						{
-							FPointsOut[i] = tc.PointFiltered;
-							FVelOut[i] = tc.VelocityFiltered;
-						}
-						else
-						{
-							FPointsOut[i] = tc.Point;
-							FVelOut[i] = tc.Velocity;
-						}
-						FIDOut[i] = tc.ID;
-						FAge[i] = tc.Age.Elapsed.TotalSeconds;
-						FExpiry[i] = tc.ExpireFrames-1;
-						FNew[i] = tc.AgeFrames == 1;
-					}
-				}
-			}
-			else
-			{
-				FPointsOut.SliceCount = 0;
-				FVelOut.SliceCount = 0;
-				FIDOut.SliceCount = 0;
-				FAge.SliceCount = 0;
-				FExpiry.SliceCount = 0;
-				FNew.SliceCount = 0;
-			}
-		}
+	    public override object TransformOutput(object obj, MemberInfo member, int i)
+	    {
+	        switch (obj)
+	        {
+	            case Vector2 v:
+	            {
+	                return v.AsVVector();
+	            }
+	            case Vector3 v:
+	            {
+	                return v.AsVVector();
+	            }
+	            case Vector4 v:
+	            {
+	                return v.AsVVector();
+	            }
+	            case SMatrix v:
+	            {
+	                return v.AsVMatrix4X4();
+	            }
+	            default:
+	            {
+	                return obj;
+	            }
+            }
+        }
 	}
 }
