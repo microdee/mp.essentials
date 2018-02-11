@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +18,13 @@ namespace mp.essentials.notui
         Category = "Notui.Element",
         Author = "microdee"
     )]
-    public class GuiElementEventsSplitNodePart : IPluginEvaluate, IPluginAwareOfEvaluation
+    public class GuiElementEventsSplitNodePart : IPluginEvaluate, IPluginAwareOfEvaluation, IPartImportsSatisfiedNotification
     {
-        [Input("Element")] public Pin<IGuiElement> FElement;
-        private readonly Spread<IGuiElement> PrevElements = new Spread<IGuiElement>();
+        [Import] public IPluginHost2 PluginHost;
+        [Import] public IHDEHost Host;
+
+        [Input("Element")] public Pin<NotuiElement> FElement;
+        private readonly Spread<NotuiElement> PrevElements = new Spread<NotuiElement>();
 
         [Output("On Interaction Begin", IsBang = true)] public ISpread<bool> FOnInteractionBegin;
         [Output("On Interaction End", IsBang = true)] public ISpread<bool> FOnInteractionEnd;
@@ -28,103 +33,44 @@ namespace mp.essentials.notui
         [Output("On Hit Begin", IsBang = true)] public ISpread<bool> FOnHitBegin;
         [Output("On Hit End", IsBang = true)] public ISpread<bool> FOnHitEnd;
         [Output("Interacting")] public ISpread<bool> FOnInteracting;
-        [Output("On Children Added", IsBang = true)] public ISpread<bool> FOnChildrenAdded;
+        [Output("On Children Added", IsBang = true)] public ISpread<bool> FOnChildrenUpdated;
         [Output("On Deletion Started", IsBang = true)] public ISpread<bool> FOnDeletionStarted;
         [Output("Deleting", IsBang = true)] public ISpread<bool> FOnDeleting;
         [Output("Faded In", IsBang = true)] public ISpread<bool> FOnFadedIn;
 
-        private HashSet<ISpread> Outputs;
+        private Dictionary<ISpread<bool>, Spread<bool>> Outputs;
+        private string NodePath = "";
 
-        public void OnInteractionBegin(object sender, TouchInteractionEventArgs args)
+        private void HandledEvent(object sender, ISpread<bool> spread)
         {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnInteractionBegin[i] = true;
-            FOnInteractionBegin.Stream.IsChanged = true;
+            var element = (NotuiElement)sender;
+            if (element.EnvironmentObject is VEnvironmentData venvdat)
+            {
+                if(!venvdat.NodeSpecific.ContainsKey(NodePath)) return;
+                if(!(venvdat.NodeSpecific[NodePath] is int)) return;
+
+                var i = (int)venvdat.NodeSpecific[NodePath];
+                spread[i] = true;
+                Outputs[spread][i] = true;
+            }
         }
 
-        public void OnInteractionEnd(object sender, TouchInteractionEventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnInteractionEnd[i] = true;
-            FOnInteractionEnd.Stream.IsChanged = true;
-        }
+        public void OnInteractionBegin(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnInteractionBegin);
+        public void OnInteractionEnd(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnInteractionEnd);
+        public void OnTouchBegin(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnTouchBegin);
+        public void OnTouchEnd(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnTouchEnd);
+        public void OnHitBegin(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnHitBegin);
+        public void OnHitEnd(object sender, TouchInteractionEventArgs args) => HandledEvent(sender, FOnHitEnd);
+        public void OnInteracting(object sender, EventArgs args) => HandledEvent(sender, FOnInteracting);
+        public void OnChildrenUpdated(object sender, ChildrenUpdatedEventArgs args) => HandledEvent(sender, FOnChildrenUpdated);
+        public void OnDeletionStarted(object sender, EventArgs args) => HandledEvent(sender, FOnDeletionStarted);
+        public void OnDeleting(object sender, EventArgs args) => HandledEvent(sender, FOnDeleting);
+        public void OnFadedIn(object sender, EventArgs args) => HandledEvent(sender, FOnFadedIn);
 
-        public void OnTouchBegin(object sender, TouchInteractionEventArgs args)
+        private void Subscribe(NotuiElement element, int i)
         {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnTouchBegin[i] = true;
-            FOnTouchBegin.Stream.IsChanged = true;
-        }
+            element.AttachSliceId(NodePath, i);
 
-        public void OnTouchEnd(object sender, TouchInteractionEventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnTouchEnd[i] = true;
-            FOnTouchEnd.Stream.IsChanged = true;
-        }
-
-        public void OnHitBegin(object sender, TouchInteractionEventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnHitBegin[i] = true;
-            FOnHitBegin.Stream.IsChanged = true;
-        }
-
-        public void OnHitEnd(object sender, TouchInteractionEventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnHitEnd[i] = true;
-            FOnHitEnd.Stream.IsChanged = true;
-        }
-
-        public void OnInteracting(object sender, EventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnInteracting[i] = true;
-            FOnInteracting.Stream.IsChanged = true;
-        }
-
-        public void OnChildrenAdded(object sender, ChildrenAddedEventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnChildrenAdded[i] = true;
-            FOnChildrenAdded.Stream.IsChanged = true;
-        }
-
-        public void OnDeletionStarted(object sender, EventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnDeletionStarted[i] = true;
-            FOnDeletionStarted.Stream.IsChanged = true;
-        }
-
-        public void OnDeleting(object sender, EventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnDeleting[i] = true;
-            FOnDeleting.Stream.IsChanged = true;
-        }
-
-        public void OnFadedIn(object sender, EventArgs args)
-        {
-            var element = (IGuiElement)sender;
-            var i = FElement.IndexOf(element);
-            FOnFadedIn[i] = true;
-            FOnFadedIn.Stream.IsChanged = true;
-        }
-
-        private void Subscribe(IGuiElement element)
-        {
             element.OnInteractionBegin += OnInteractionBegin;
             element.OnInteractionEnd += OnInteractionEnd;
             element.OnTouchBegin += OnTouchBegin;
@@ -132,13 +78,15 @@ namespace mp.essentials.notui
             element.OnHitBegin += OnHitBegin;
             element.OnHitEnd += OnHitEnd;
             element.OnInteracting += OnInteracting;
-            element.OnChildrenAdded += OnChildrenAdded;
+            element.OnChildrenUpdated += OnChildrenUpdated;
             element.OnDeletionStarted += OnDeletionStarted;
             element.OnDeleting += OnDeleting;
             element.OnFadedIn += OnFadedIn;
         }
-        private void UnSubscribe(IGuiElement element)
+        private void UnSubscribe(NotuiElement element, int i)
         {
+            element.AttachSliceId(NodePath, i);
+
             element.OnInteractionBegin -= OnInteractionBegin;
             element.OnInteractionEnd -= OnInteractionEnd;
             element.OnTouchBegin -= OnTouchBegin;
@@ -146,53 +94,96 @@ namespace mp.essentials.notui
             element.OnHitBegin -= OnHitBegin;
             element.OnHitEnd -= OnHitEnd;
             element.OnInteracting -= OnInteracting;
-            element.OnChildrenAdded -= OnChildrenAdded;
+            element.OnChildrenUpdated -= OnChildrenUpdated;
             element.OnDeletionStarted -= OnDeletionStarted;
             element.OnDeleting -= OnDeleting;
             element.OnFadedIn -= OnFadedIn;
         }
 
+        public void OnImportsSatisfied()
+        {
+            PluginHost.GetNodePath(false, out NodePath);
+            Outputs = new Dictionary<ISpread<bool>, Spread<bool>>
+            {
+                {FOnInteractionBegin, new Spread<bool>()},
+                {FOnInteractionEnd, new Spread<bool>()},
+                {FOnTouchBegin, new Spread<bool>()},
+                {FOnTouchEnd, new Spread<bool>()},
+                {FOnHitBegin, new Spread<bool>()},
+                {FOnHitEnd, new Spread<bool>()},
+                {FOnInteracting, new Spread<bool>()},
+                {FOnChildrenUpdated, new Spread<bool>()},
+                {FOnDeletionStarted, new Spread<bool>()},
+                {FOnDeleting, new Spread<bool>()},
+                {FOnFadedIn, new Spread<bool>()}
+            };
+        }
+
         public void Evaluate(int SpreadMax)
         {
-            if (FElement.SliceCount != PrevElements.SliceCount)
+            if (FElement.IsConnected)
             {
-                Outputs?.Clear();
-                this.SetSliceCountForAllOutput(FElement.SliceCount, pinSet: Outputs);
-                PrevElements.SliceCount = FElement.SliceCount;
+                if (FElement.SliceCount != PrevElements.SliceCount)
+                {
+                    foreach (var kvp in Outputs)
+                    {
+                        kvp.Key.SliceCount = kvp.Value.SliceCount = FElement.SliceCount;
+                    }
+                    PrevElements.SliceCount = FElement.SliceCount;
+                }
+
+                for (int i = 0; i < FElement.SliceCount; i++)
+                {
+                    if (PrevElements[i] == null)
+                    {
+                        Subscribe(FElement[i], i);
+                    }
+                    else if (PrevElements[i] != FElement[i])
+                    {
+                        UnSubscribe(PrevElements[i], i);
+                        Subscribe(FElement[i], i);
+                    }
+
+                    PrevElements[i] = FElement[i];
+
+                    foreach (var kvp in Outputs)
+                    {
+                        if (kvp.Value[i] ^ kvp.Key[i])
+                        {
+                            kvp.Value[i] = kvp.Key[i] = false;
+                        }
+                        if (kvp.Value[i])
+                            kvp.Value[i] = false;
+                    }
+                }
             }
-
-            for (int i = 0; i < FElement.SliceCount; i++)
+            else
             {
-                if (PrevElements[i] == null)
+                foreach (var kvp in Outputs)
                 {
-                    Subscribe(FElement[i]);
-                }
-                else if (PrevElements[i] != FElement[i])
-                {
-                    UnSubscribe(PrevElements[i]);
-                    Subscribe(FElement[i]);
-                }
-
-                PrevElements[i] = FElement[i];
-
-                foreach (var output in Outputs)
-                {
-                    if (!output.IsChanged)
-                        output[i] = false;
+                    kvp.Key.SliceCount = kvp.Value.SliceCount = 0;
                 }
             }
         }
 
         public void TurnOn()
         {
+            int i = 0;
             foreach (var element in FElement)
-                Subscribe(element);
+            {
+                Subscribe(element, i);
+                i++;
+            }
         }
 
         public void TurnOff()
         {
+            int i = 0;
             foreach (var element in FElement)
-                UnSubscribe(element);
+            {
+                UnSubscribe(element, i);
+                i++;
+            }
         }
     }
 }

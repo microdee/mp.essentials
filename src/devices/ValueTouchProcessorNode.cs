@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Reflection;
+using md.stdl.Coding;
 using md.stdl.Interaction;
 using md.stdl.Mathematics;
 using VVVV.PluginInterfaces.V1;
@@ -157,50 +158,28 @@ namespace mp.essentials.Nodes.Devices
 	{
 	    public override Type TransformType(Type original, MemberInfo member)
 	    {
-	        if (original == typeof(Vector2))
+	        if (original == typeof(object))
 	        {
-	            return typeof(Vector2D);
+	            return typeof(string);
 	        }
-	        if (original == typeof(Vector3))
+	        if (original.Is(typeof(Stopwatch)))
 	        {
-	            return typeof(Vector3D);
+	            return typeof(double);
 	        }
-	        if (original == typeof(Vector4))
-	        {
-	            return typeof(Vector4D);
-	        }
-	        if (original == typeof(SMatrix))
-	        {
-	            return typeof(VMatrix);
-	        }
-            return original;
+            return MiscExtensions.MapRegularTypes(original);
 	    }
 
 	    public override object TransformOutput(object obj, MemberInfo member, int i)
 	    {
-	        switch (obj)
+	        if (member.Name == "CustomAttachedObject")
 	        {
-	            case Vector2 v:
-	            {
-	                return v.AsVVector();
-	            }
-	            case Vector3 v:
-	            {
-	                return v.AsVVector();
-	            }
-	            case Vector4 v:
-	            {
-	                return v.AsVVector();
-	            }
-	            case SMatrix v:
-	            {
-	                return v.AsVMatrix4X4();
-	            }
-	            default:
-	            {
-	                return obj;
-	            }
-            }
-        }
+	            return obj.ToString();
+	        }
+	        if (obj is Stopwatch s)
+	        {
+	            return s.Elapsed.TotalSeconds;
+	        }
+            return MiscExtensions.MapRegularValues(obj);
+	    }
 	}
 }

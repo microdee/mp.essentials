@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using md.stdl.Interaction;
 using md.stdl.Interaction.Notui;
 using md.stdl.Mathematics;
+using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 using VMatrix = VVVV.Utils.VMath.Matrix4x4;
@@ -21,15 +24,15 @@ namespace mp.essentials.notui
         Author = "microdee",
         AutoEvaluate = true
     )]
-    public class ContextNode : IPluginEvaluate
+    public class ContextNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import] public IPluginHost2 PluginHost;
         [Import] public IHDEHost Host;
 
         [Input("Element Prototypes")]
-        public Pin<IGuiElement> FElements;
-        [Input("Single Source of Elements")]
-        public ISpread<bool> FSingleSource;
+        public Pin<ElementPrototype> FElements;
+        //[Input("Single Source of Elements")]
+        //public ISpread<bool> FSingleSource;
         [Input("Touch Coordinates")]
         public IDiffSpread<Vector2D> FTouchCoords;
         [Input("Touch ID")]
@@ -42,24 +45,23 @@ namespace mp.essentials.notui
         public ISpread<int> FConsiderReleased;
 
         [Input("View")]
-        public IDiffSpread<VMatrix> FViewTr;
+        public Pin<VMatrix> FViewTr;
         [Input("Projection")]
-        public IDiffSpread<VMatrix> FProjTr;
+        public Pin<VMatrix> FProjTr;
         [Input("Aspect Ratio")]
-        public IDiffSpread<VMatrix> FAspTr;
+        public Pin<VMatrix> FAspTr;
 
         [Output("Context")]
         public ISpread<NotuiContext> FContext;
         [Output("Hierarchical Elements")]
-        public ISpread<IGuiElement> FElementsOut;
+        public ISpread<NotuiElement> FElementsOut;
         [Output("Flat Elements")]
-        public ISpread<IGuiElement> FFlatElements;
+        public ISpread<NotuiElement> FFlatElements;
         
         [Output("Touches")]
         public ISpread<TouchContainer> FTouches;
 
         public NotuiContext Context = new NotuiContext();
-        protected Dictionary<Guid, IGuiElement> ElementInstances = new Dictionary<Guid, IGuiElement>();
 
         private double _prevFrameTime = 0;
 
@@ -72,58 +74,29 @@ namespace mp.essentials.notui
             return def;
         }
 
-        public void InstantiateChildren(IGuiElement elementinstance, IGuiElement prototype)
+        private bool _onConnectedFrame;
+
+        public void OnImportsSatisfied()
         {
-            elementinstance.Id = prototype.Id;
-            if (!(prototype.Value.Auxiliary is ContextInstanceGetter contextgetter))
+            FElements.Connected += (sender, args) => _onConnectedFrame = true;
+            FElements.Disconnected += (sender, args) =>
             {
-                contextgetter = new ContextInstanceGetter();
-            }
-            if(!contextgetter.Instances.ContainsKey(Context))
-                contextgetter.Instances.Add(Context, elementinstance);
-            prototype.Value.Auxiliary = contextgetter;
-            for (int i = 0; i < prototype.Children.Count; i++)
-            {
-                InstantiateChildren(elementinstance.Children[i], prototype.Children[i]);
-            }
+                Context.AddOrUpdateElements(true, false); // this is basically asking all elements to request their deletion
+            };
         }
 
         public void Evaluate(int SpreadMax)
         {
             var dt = Host.FrameTime - _prevFrameTime;
             if (_prevFrameTime <= 0.00001) dt = 0;
-
-            Context.View = FViewTr[0].AsSystemMatrix4X4();
-            Context.Projection = FProjTr[0].AsSystemMatrix4X4();
-            Context.AspectRatio = FAspTr[0].AsSystemMatrix4X4();
-
-            if (FElements.IsConnected && FElements.IsChanged)
-            {
-                foreach (var element in FElements)
-                {
-                    if (!ElementInstances.ContainsKey(element.Id))
-                    {
-                        var elementinstance = element.Copy();
-                        InstantiateChildren(elementinstance, element);
-                        ElementInstances.Add(element.Id, elementinstance);
-                    }
-                    else
-                    {
-                        element.UpdateTo(ElementInstances[element.Id]);
-                    }
-                }
-
-                var removables = (from elementid in ElementInstances.Keys
-                    where FElements.All(el => el.Id != elementid)
-                    select elementid).ToArray();
-                
-                foreach (var elid in removables)
-                {
-                    ElementInstances.Remove(elid);
-                }
-
-                Context.AddOrUpdateElements(FSingleSource[0], ElementInstances.Values.ToArray());
-            }
+            if(FViewTr.IsConnected && FViewTr.SliceCount > 0)
+                Context.View = FViewTr[0].AsSystemMatrix4X4();
+            if (FProjTr.IsConnected && FProjTr.SliceCount > 0)
+                Context.Projection = FProjTr[0].AsSystemMatrix4X4();
+            if (FAspTr.IsConnected && FAspTr.SliceCount > 0)
+                Context.AspectRatio = FAspTr[0].AsSystemMatrix4X4();
+            if(FElements.IsChanged)
+                Context.AddOrUpdateElements(true, false, FElements.ToArray());
 
             var touchcount = Math.Min(FTouchId.SliceCount, FTouchCoords.SliceCount);
             var touchlist = new List<TouchPrototype>();
@@ -141,11 +114,31 @@ namespace mp.essentials.notui
             }
             Context.Mainloop(touchlist, (float)dt);
 
-            FFlatElements.AssignFrom(Context.FlatElementList);
-            FElementsOut.AssignFrom(Context.Elements);
+            FContext[0] = Context;
+            FFlatElements.AssignFrom(Context.FlatElementList.Values);
+            FElementsOut.AssignFrom(Context.Elements.Values);
             FTouches.AssignFrom(Context.Touches.Values);
 
             _prevFrameTime = Host.FrameTime;
+        }
+    }
+
+    [PluginInfo(
+        Name = "Context",
+        Category = "Notui",
+        Version = "Split",
+        Author = "microdee"
+    )]
+    public class ContextSplitNode : ObjectSplitNode<NotuiContext>
+    {
+        public override Type TransformType(Type original, MemberInfo member)
+        {
+            return MiscExtensions.MapRegularTypes(original);
+        }
+
+        public override object TransformOutput(object obj, MemberInfo member, int i)
+        {
+            return MiscExtensions.MapRegularValues(obj);
         }
     }
 }

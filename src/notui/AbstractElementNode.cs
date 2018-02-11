@@ -15,33 +15,25 @@ using SMatrix = System.Numerics.Matrix4x4;
 
 namespace mp.essentials.notui
 {
-    public class ContextInstanceGetter : ICloneable
-    {
-        public Dictionary<NotuiContext, IGuiElement> Instances = new Dictionary<NotuiContext, IGuiElement>();
-        public object Clone()
-        {
-            return new ContextInstanceGetter
-            {
-                Instances = Instances
-            };
-        }
-    }
-
-    public abstract class AbstractElementNode<TElement> : IPluginEvaluate where TElement : IGuiElement, new()
+    public abstract class AbstractElementNode<TPrototype> : IPluginEvaluate where TPrototype : ElementPrototype
     {
         [Import] public IPluginHost2 PluginHost;
         [Import] public IHDEHost Host;
+
+        protected abstract TPrototype ConstructPrototype(int i, string id);
         
         [Input("Children")]
-        public Pin<ISpread<IGuiElement>> FChildren;
+        public ISpread<ISpread<ElementPrototype>> FChildren;
         [Input("Name", DefaultString = "callmenames")]
         public IDiffSpread<string> FName;
+        [Input("Id", DefaultString = "")]
+        public IDiffSpread<string> FId;
         [Input("Fade In Time")]
         public IDiffSpread<float> FFadeIn;
         [Input("Fade Out Time")]
         public IDiffSpread<float> FFadeOut;
         [Input("Behaviors")]
-        public Pin<ISpread<IInteractionBehavior>> FBehaviors;
+        public Pin<ISpread<InteractionBehavior>> FBehaviors;
         [Input("Transparent")]
         public IDiffSpread<bool> FTransparent;
         [Input("Active", DefaultBoolean = true)]
@@ -55,16 +47,16 @@ namespace mp.essentials.notui
         public IDiffSpread<bool> FSeparateInter;
 
         [Output("Element Prototype")]
-        public ISpread<TElement> FElementProt;
+        public ISpread<TPrototype> FElementProt;
 
         [Output("Element Context")]
         public ISpread<ISpread<NotuiContext>> FElementContext;
         [Output("Element Instances")]
-        public ISpread<ISpread<IGuiElement>> FElementInst;
+        public ISpread<ISpread<NotuiElement>> FElementInst;
 
-        protected virtual void FillElementAuxData(TElement el, int i) { }
+        protected virtual void FillElementAuxData(TPrototype el, int i) { }
 
-        protected TElement FillElement(TElement el, int i)
+        protected TPrototype FillElement(TPrototype el, int i)
         {
             FDispTr[i].Decompose(out var scale, out Vector4D rotation, out var pos);
             el.Name = FName[i];
@@ -74,12 +66,7 @@ namespace mp.essentials.notui
             el.Transparent = FTransparent[i];
             if (FBehaviors.IsConnected)
             {
-                el.Behaviors = FBehaviors[i].Select(b =>
-                {
-                    var bc = b.Copy();
-                    bc.AttachedElement = el;
-                    return bc;
-                }).ToList();
+                el.Behaviors = FBehaviors[i].ToList();
             }
             el.DisplayTransformation.Position = pos.AsSystemVector();
             el.DisplayTransformation.Rotation = rotation.AsSystemQuaternion();
@@ -93,15 +80,23 @@ namespace mp.essentials.notui
             }
             else
             {
-                el.DisplayTransformation.CopyTo(el.InteractionTransformation);
+                el.InteractionTransformation.UpdateFrom(el.DisplayTransformation);
             }
-            if(FChildren.IsConnected) el.AddOrUpdateChildren(true, FChildren[i].ToArray());
+            if(FChildren[i].All(chel => chel != null))
+            {
+                el.Children.Clear();
+                foreach (var child in FChildren[i])
+                {
+                    child.Parent = el;
+                    el.Children.Add(child.Id, child);
+                }
+            }
             FillElementAuxData(el, i);
 
             return el;
         }
 
-        private bool init = true;
+        private int init = 0;
 
         public void Evaluate(int SpreadMax)
         {
@@ -113,32 +108,38 @@ namespace mp.essentials.notui
 
             FElementProt.Stream.IsChanged = false;
 
-            if (changed || init)
+            if (changed || init < 2)
             {
-                if (init) FElementProt.SliceCount = 0;
-                if (!init)
+                if (init < 1) FElementProt.SliceCount = 0;
+                else
                 {
                     for (int i = 0; i < FElementProt.SliceCount; i++)
                     {
+                        if (!string.IsNullOrWhiteSpace(FId[i]))
+                        {
+                            if (FElementProt[i].Id != FId[i])
+                                FElementProt[i] = ConstructPrototype(i, FId[i]);
+                        }
                         FillElement(FElementProt[i], i);
                     }
                 }
-                FElementProt.ResizeAndDismiss(sprmax, i => FillElement(new TElement(), i));
+                FElementProt.ResizeAndDismiss(sprmax, i => FillElement(ConstructPrototype(i, FId[i]), i));
                 FElementProt.Stream.IsChanged = true;
-                init = false;
             }
+            init++;
 
             FElementInst.SliceCount = FElementContext.SliceCount = sprmax;
             for (int i = 0; i < sprmax; i++)
             {
-                if (FElementProt[i].Value.Auxiliary is ContextInstanceGetter contextgetter)
+                if (FElementProt[i].EnvironmentObject is VEnvironmentData venvdat)
                 {
-                    FElementContext[i].SliceCount = FElementInst[i].SliceCount = contextgetter.Instances.Count;
+                    venvdat.RemoveDeletedInstances();
+                    FElementContext[i].SliceCount = FElementInst[i].SliceCount = venvdat.Instances.Count;
                     int ii = 0;
-                    foreach (var contextElementPair in contextgetter.Instances)
+                    foreach (var context in venvdat.Instances.Keys)
                     {
-                        FElementInst[i][ii] = contextElementPair.Value;
-                        FElementContext[i][ii] = contextElementPair.Key;
+                        FElementInst[i][ii] = context.FlatElementList[FElementProt[i].Id];
+                        FElementContext[i][ii] = context;
                         ii++;
                     }
                 }
