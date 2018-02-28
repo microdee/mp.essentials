@@ -166,7 +166,7 @@ namespace VVVV.Nodes
         {
             var res = new ElementPrototype(value.InstanceType, parent: value.Parent);
             var rid = res.Id;
-            res.UpdateCommon(value);
+            res.UpdateCommon(value, ApplyTransformMode.All);
             res.Id = rid;
             return res;
         }

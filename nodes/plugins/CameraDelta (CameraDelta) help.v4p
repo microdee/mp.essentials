@@ -1,0 +1,111 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\CameraDelta (CameraDelta) help.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="1845" top="4080" width="8700" height="6975">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|CameraDelta (CameraDelta)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5070" height="345">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Join node for patched camera controller|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="CameraDelta (CameraDelta)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1725" top="3795" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1725" top="3795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   <PIN pinname="Delta In" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="1710" top="4680" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1710" top="4680" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Camera Delta Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Camera Delta Out" dstnodeid="5" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="UpstreamData (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="UpstreamData (CameraDelta)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="1740" top="2625" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1740" top="2625" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   <PIN pinname="Delta In" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Camera Delta Out" dstnodeid="0" dstpinname="Delta In">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="1740" top="1590" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1740" top="1590" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Delta In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="6" dstpinname="Delta In">
+   </LINK>
+   <NODE systemname="CameraDelta (CameraDelta Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta Split)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="3975" top="2850" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3975" top="2850" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="ConnectedCamera" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Camera Delta Out" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Node" left="1860" top="2010" width="4605" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1860" top="2010" width="2490" height="525">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Use UpstreamData to get data from the connected camera node|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Camera (ModularCam Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Camera (ModularCam Split)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="3990" top="3390" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3990" top="3390" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="ConnectedCamera" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   </PATCH>

@@ -9,13 +9,13 @@ namespace mp.essentials.notui
 {
     public class VEnvironmentData : AuxiliaryObject
     {
-        public Dictionary<NotuiContext, NotuiElement> Instances { get; set; } = new Dictionary<NotuiContext, NotuiElement>();
+        public Dictionary<NotuiContext, IEnumerable<NotuiElement>> Instances { get; set; } = new Dictionary<NotuiContext, IEnumerable<NotuiElement>>();
         public Dictionary<string, object> NodeSpecific { get; set; } = new Dictionary<string, object>();
 
         public void RemoveDeletedInstances()
         {
             var removables = (from contextElementPair in Instances
-                where !contextElementPair.Key.FlatElementList.ContainsKey(contextElementPair.Value.Id)
+                where contextElementPair.Key.FlatElements.All(e => e.Id != contextElementPair.Value.First().Id)
                 select contextElementPair.Key).ToArray();
             foreach (var context in removables)
             {
@@ -23,15 +23,15 @@ namespace mp.essentials.notui
             }
         }
 
-        public void AddOrUpdateInstance(NotuiContext context, NotuiElement element)
+        public void AddOrUpdateInstance(NotuiContext context, ElementPrototype element)
         {
             if (Instances.ContainsKey(context))
             {
-                Instances[context] = element;
+                Instances[context] = context.FlatElements.Where(e => e.Id == element.Id);
             }
             else
             {
-                Instances.Add(context, element);
+                Instances.Add(context, context.FlatElements.Where(e => e.Id == element.Id));
             }
         }
 

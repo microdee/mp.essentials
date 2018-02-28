@@ -10,6 +10,7 @@ using md.stdl.Interaction;
 using md.stdl.Interaction.Notui;
 using md.stdl.Mathematics;
 using VVVV.Nodes.PDDN;
+using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 using VMatrix = VVVV.Utils.VMath.Matrix4x4;
@@ -24,7 +25,7 @@ namespace mp.essentials.notui
         Author = "microdee",
         AutoEvaluate = true
     )]
-    public class ContextNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    public class ContextNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IPluginFeedbackLoop
     {
         [Import] public IPluginHost2 PluginHost;
         [Import] public IHDEHost Host;
@@ -81,7 +82,7 @@ namespace mp.essentials.notui
             FElements.Connected += (sender, args) => _onConnectedFrame = true;
             FElements.Disconnected += (sender, args) =>
             {
-                Context.AddOrUpdateElements(true, false); // this is basically asking all elements to request their deletion
+                Context.AddOrUpdateElements(true); // this is basically asking all elements to request their deletion
             };
         }
 
@@ -96,7 +97,7 @@ namespace mp.essentials.notui
             if (FAspTr.IsConnected && FAspTr.SliceCount > 0)
                 Context.AspectRatio = FAspTr[0].AsSystemMatrix4X4();
             if(FElements.IsChanged)
-                Context.AddOrUpdateElements(true, false, FElements.ToArray());
+                Context.AddOrUpdateElements(true, FElements.ToArray());
 
             var touchcount = Math.Min(FTouchId.SliceCount, FTouchCoords.SliceCount);
             var touchlist = new List<TouchPrototype>();
@@ -115,11 +116,16 @@ namespace mp.essentials.notui
             Context.Mainloop(touchlist, (float)dt);
 
             FContext[0] = Context;
-            FFlatElements.AssignFrom(Context.FlatElementList.Values);
-            FElementsOut.AssignFrom(Context.Elements.Values);
+            FFlatElements.AssignFrom(Context.FlatElements);
+            FElementsOut.AssignFrom(Context.RootElements.Values);
             FTouches.AssignFrom(Context.Touches.Values);
 
             _prevFrameTime = Host.FrameTime;
+        }
+
+        public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)
+        {
+            return false;
         }
     }
 
@@ -133,12 +139,12 @@ namespace mp.essentials.notui
     {
         public override Type TransformType(Type original, MemberInfo member)
         {
-            return MiscExtensions.MapRegularTypes(original);
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
         }
 
         public override object TransformOutput(object obj, MemberInfo member, int i)
         {
-            return MiscExtensions.MapRegularValues(obj);
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace mp.essentials.notui
         [Input("Fade Out Time")]
         public IDiffSpread<float> FFadeOut;
         [Input("Behaviors")]
-        public Pin<ISpread<InteractionBehavior>> FBehaviors;
+        public ISpread<ISpread<InteractionBehavior>> FBehaviors;
         [Input("Transparent")]
         public IDiffSpread<bool> FTransparent;
         [Input("Active", DefaultBoolean = true)]
@@ -45,6 +45,8 @@ namespace mp.essentials.notui
         public IDiffSpread<VMatrix> FInterTr;
         [Input("Separate Interaction from Display")]
         public IDiffSpread<bool> FSeparateInter;
+        [Input("Transformation Update Mode", DefaultEnumEntry = "All")]
+        public ISpread<ISpread<ApplyTransformMode>> FTrUpdateMode;
 
         [Output("Element Prototype")]
         public ISpread<TPrototype> FElementProt;
@@ -64,7 +66,7 @@ namespace mp.essentials.notui
             el.FadeOutTime = FFadeOut[i];
             el.Active = FActive[i];
             el.Transparent = FTransparent[i];
-            if (FBehaviors.IsConnected)
+            if (FBehaviors[i].All(chel => chel != null))
             {
                 el.Behaviors = FBehaviors[i].ToList();
             }
@@ -82,12 +84,16 @@ namespace mp.essentials.notui
             {
                 el.InteractionTransformation.UpdateFrom(el.DisplayTransformation);
             }
+
+            var trupdmode = FTrUpdateMode[i].Aggregate(ApplyTransformMode.None, (current, mode) => current | mode);
+            el.TransformApplication = trupdmode;
+
             if(FChildren[i].All(chel => chel != null))
             {
                 el.Children.Clear();
                 foreach (var child in FChildren[i])
                 {
-                    child.Parent = el;
+                    var cc = child.Parent = el;
                     el.Children.Add(child.Id, child);
                 }
             }
@@ -102,7 +108,7 @@ namespace mp.essentials.notui
         {
             bool changed = FChildren.IsChanged || FName.IsChanged || FFadeIn.IsChanged || FFadeOut.IsChanged ||
                            FBehaviors.IsChanged || FDispTr.IsChanged || FInterTr.IsChanged || FSeparateInter.IsChanged ||
-                           FTransparent.IsChanged || FActive.IsChanged;
+                           FTransparent.IsChanged || FActive.IsChanged || FId.IsChanged;
 
             int sprmax = SpreadUtils.SpreadMax(FChildren, FName, FBehaviors, FDispTr, FInterTr);
 
@@ -117,13 +123,17 @@ namespace mp.essentials.notui
                     {
                         if (!string.IsNullOrWhiteSpace(FId[i]))
                         {
-                            if (FElementProt[i].Id != FId[i])
-                                FElementProt[i] = ConstructPrototype(i, FId[i]);
+                            FElementProt[i].Id = FId[i];
                         }
                         FillElement(FElementProt[i], i);
                     }
                 }
-                FElementProt.ResizeAndDismiss(sprmax, i => FillElement(ConstructPrototype(i, FId[i]), i));
+
+                FElementProt.ResizeAndDismiss(sprmax, i =>
+                {
+                    var res = ConstructPrototype(i, FId[i]);
+                    return FillElement(res, i);
+                });
                 FElementProt.Stream.IsChanged = true;
             }
             init++;
@@ -134,11 +144,12 @@ namespace mp.essentials.notui
                 if (FElementProt[i].EnvironmentObject is VEnvironmentData venvdat)
                 {
                     venvdat.RemoveDeletedInstances();
-                    FElementContext[i].SliceCount = FElementInst[i].SliceCount = venvdat.Instances.Count;
+                    FElementContext[i].SliceCount = venvdat.Instances.Count;
+                    FElementInst[i].SliceCount = 0;
                     int ii = 0;
                     foreach (var context in venvdat.Instances.Keys)
                     {
-                        FElementInst[i][ii] = context.FlatElementList[FElementProt[i].Id];
+                        FElementInst[i].AddRange(venvdat.Instances[context]);
                         FElementContext[i][ii] = context;
                         ii++;
                     }

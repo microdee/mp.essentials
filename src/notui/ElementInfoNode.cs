@@ -37,11 +37,11 @@ namespace mp.essentials.notui
     {
         public override Type TransformType(Type original, MemberInfo member)
         {
-            return MiscExtensions.MapRegularTypes(original);
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
         }
         public override object TransformOutput(object obj, MemberInfo member, int i)
         {
-            return MiscExtensions.MapRegularValues(obj);
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
         }
     }
 
@@ -55,11 +55,11 @@ namespace mp.essentials.notui
     {
         public override Type TransformType(Type original, MemberInfo member)
         {
-            return MiscExtensions.MapRegularTypes(original);
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
         }
         public override object TransformOutput(object obj, MemberInfo member, int i)
         {
-            return MiscExtensions.MapRegularValues(obj);
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
         }
     }
 
@@ -77,7 +77,7 @@ namespace mp.essentials.notui
             {
                 return typeof(double);
             }
-            return MiscExtensions.MapRegularTypes(original);
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
         }
         public override object TransformOutput(object obj, MemberInfo member, int i)
         {
@@ -85,7 +85,7 @@ namespace mp.essentials.notui
             {
                 return s.Elapsed.TotalSeconds;
             }
-            return MiscExtensions.MapRegularValues(obj);
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
         }
     }
 
@@ -107,7 +107,6 @@ namespace mp.essentials.notui
         [Output("Touched")] public ISpread<bool> FTouched;
         [Output("Active Out")] public ISpread<bool> FActiveOut;
         [Output("Transparent Out")] public ISpread<bool> FTransparentOut;
-        [Output("Depth")] public ISpread<float> FDepth;
         [Output("Fade Out Duration")] public ISpread<float> FFadeOutDur;
         [Output("Fade In Duration")] public ISpread<float> FFadeInDur;
         [Output("Fade Progress")] public ISpread<float> FElementFade;
@@ -139,7 +138,6 @@ namespace mp.essentials.notui
             FTouched[i] = element.Touched;
             FActiveOut[i] = element.Active;
             FTransparentOut[i] = element.Transparent;
-            FDepth[i] = element.Depth;
             FFadeOutDur[i] = element.FadeOutTime;
             FFadeInDur[i] = element.FadeInTime;
             FElementFade[i] = element.ElementFade;

@@ -138,7 +138,7 @@ namespace mp.essentials.notui
                     {
                         Subscribe(FElement[i], i);
                     }
-                    else if (PrevElements[i] != FElement[i])
+                    else if (PrevElements[i].Id != FElement[i].Id)
                     {
                         UnSubscribe(PrevElements[i], i);
                         Subscribe(FElement[i], i);
