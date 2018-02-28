@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
-   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="1200" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="975" scrolly="-360">
    <BOUNDS type="Window" left="6570" top="2325" width="10335" height="11895">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="addonpack" Version="35.9.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE systemname="CameraDelta (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="4845" top="9975" width="100" height="100">
@@ -174,22 +174,6 @@
    </NODE>
    <LINK srcnodeid="16" srcpinname="Camera Delta Out" dstnodeid="0" dstpinname="Delta In">
    </LINK>
-   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="5370" top="1845" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Reference Type" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Learn Type" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Type" slicecount="1" values="|mp.essentials.Camera.CameraDelta, mp.essentials, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="InteractUpstream" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="16" srcpinname="Camera Delta Out" dstnodeid="17" dstpinname="Input">
-   </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="18">
    <BOUNDS type="Node" left="8265" top="3525" width="100" height="100">
    </BOUNDS>
@@ -200,8 +184,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="17" srcpinname="InteractUpstream" dstnodeid="18" dstpinname="Input 1">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19">
    <BOUNDS type="Box" left="8670" top="2400" width="480" height="480">
    </BOUNDS>
@@ -455,5 +437,19 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="6" srcpinname="Buttons" dstnodeid="33" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="CameraDelta (CameraDelta Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta Split)" componentmode="Hidden" id="34">
+   <BOUNDS type="Node" left="5355" top="1380" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5355" top="1380" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="InteractUpstream" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Camera Delta Out" dstnodeid="34" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="InteractUpstream" dstnodeid="18" dstpinname="Input 1">
    </LINK>
    </PATCH>
