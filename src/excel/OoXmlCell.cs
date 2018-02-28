@@ -76,17 +76,21 @@ namespace mp.essentials.Nodes.Excel
                         {
                             for (int k = 0; k < currrange.Columns; k++)
                             {
-                                FFlatString[i][jj] = array[j,k].ToString();
-                                if (array[j,k].IsNumeric())
+                                try
                                 {
-                                    FFlatVals[i][jj] = (double)array[j,k];
-                                    FType[i][jj] = CellType.Number;
+                                    FFlatString[i][jj] = array[j, k].ToString();
+                                    if (array[j, k].IsNumeric())
+                                    {
+                                        FFlatVals[i][jj] = (double)array[j, k];
+                                        FType[i][jj] = CellType.Number;
+                                    }
+                                    else
+                                    {
+                                        FFlatVals[i][jj] = 0;
+                                        FType[i][jj] = array[j, k] is string ? CellType.Text : CellType.Other;
+                                    }
                                 }
-                                else
-                                {
-                                    FFlatVals[i][jj] = 0;
-                                    FType[i][jj] = array[j,k] is string ? CellType.Text : CellType.Other;
-                                }
+                                catch { }
 
                                 jj++;
                             }
