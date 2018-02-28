@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
-   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="75" scrolly="1605">
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" systemname="Touched (HitTest Quad)" filename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" scrollx="0" scrolly="825">
    <BOUNDS type="Window" left="15900" top="1125" width="9855" height="9195">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -19,7 +19,7 @@
    </PIN>
    </NODE>
    <NODE systemname="TouchProcessor (Split)" filename="..\..\plugins\devices\ValueTouchProcessor\ValueTouchProcessor.csproj" nodename="TouchProcessor (Split)" componentmode="Hidden" id="23">
-   <BOUNDS type="Node" left="3390" top="2220" width="100" height="100">
+   <BOUNDS type="Node" left="3375" top="2430" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Container" visible="1" slicecount="1" values="||">
    </PIN>
@@ -30,6 +30,14 @@
    <PIN pinname="Expiry" visible="1">
    </PIN>
    <PIN pinname="ID" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="PointXY" visible="1">
+   </PIN>
+   <PIN pinname="ExpireFrames" visible="1">
+   </PIN>
+   <PIN pinname="AgeFrames" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="22">
@@ -47,7 +55,7 @@
    </BOUNDS>
    <PIN pinname="Index" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -61,8 +69,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="22" srcpinname="Output" dstnodeid="20" dstpinname="Set">
-   </LINK>
-   <LINK srcnodeid="23" srcpinname="New" dstnodeid="21" dstpinname="Input">
    </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="19">
    <BOUNDS type="Node" left="4740" top="3810" width="100" height="100">
@@ -97,7 +103,7 @@
    <LINK srcnodeid="24" srcpinname="Output Node" dstnodeid="17" dstpinname="Input">
    </LINK>
    <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="3855" top="4020" width="100" height="100">
+   <BOUNDS type="Node" left="3780" top="3810" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Select" visible="1">
    </PIN>
@@ -127,13 +133,11 @@
    </BOUNDS>
    <PIN pinname="Index" visible="1" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="23" srcpinname="Expiry" dstnodeid="10" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="10" srcpinname="Output" dstnodeid="15" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="20" dstpinname="Reset">
@@ -251,7 +255,7 @@
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="PointsXY" visible="1">
+   <PIN pinname="PointsXY" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Object Hit" visible="1">
    </PIN>
@@ -263,8 +267,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="24" srcpinname="Output Node" dstnodeid="25" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="23" srcpinname="Point OutXY" dstnodeid="25" dstpinname="PointsXY">
    </LINK>
    <LINK srcnodeid="25" srcpinname="Object Hit" dstnodeid="22" dstpinname="Input 1">
    </LINK>
@@ -411,5 +413,25 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="25" srcpinname="Object Hit" dstnodeid="45" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="23" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="PointXY" dstnodeid="25" dstpinname="PointsXY">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="ExpireFrames" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="4725" top="2940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="AgeFrames" dstnodeid="46" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Output" dstnodeid="21" dstpinname="Input">
    </LINK>
    </PATCH>
