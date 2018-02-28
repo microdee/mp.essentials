@@ -134,7 +134,9 @@ namespace mp.essentials.Nodes.Devices
 				}
 			}
 
-            (from touch in Touches.Values where touch.ExpireFrames > FExpire[0] select touch.Id).ForEach(tid => Touches.Remove(tid));
+            (from touch in Touches.Values where touch.ExpireFrames > FExpire[0] select touch.Id)
+                .ToArray()
+                .ForEach(tid => Touches.Remove(tid));
 			
             this.SetSliceCountForAllOutput(Touches.Count);
 		    int ii = 0;
@@ -166,20 +168,20 @@ namespace mp.essentials.Nodes.Devices
 	        {
 	            return typeof(double);
 	        }
-            return MiscExtensions.MapRegularTypes(original);
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
 	    }
 
 	    public override object TransformOutput(object obj, MemberInfo member, int i)
 	    {
 	        if (member.Name == "CustomAttachedObject")
 	        {
-	            return obj.ToString();
+	            return obj?.ToString() ?? "";
 	        }
 	        if (obj is Stopwatch s)
 	        {
 	            return s.Elapsed.TotalSeconds;
 	        }
-            return MiscExtensions.MapRegularValues(obj);
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
 	    }
 	}
 }

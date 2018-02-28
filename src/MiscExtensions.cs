@@ -14,7 +14,7 @@ namespace mp.essentials
 {
     public static class MiscExtensions
     {
-        public static Type MapRegularTypes(Type original)
+        public static Type MapSystemNumericsTypeToVVVV(Type original)
         {
             if (original == typeof(Vector2))
             {
@@ -39,7 +39,7 @@ namespace mp.essentials
             return original;
         }
 
-        public static object MapRegularValues(object obj)
+        public static object MapSystemNumericsValueToVVVV(object obj)
         {
             switch (obj)
             {
@@ -66,6 +66,54 @@ namespace mp.essentials
                 case Stopwatch s:
                 {
                     return s.Elapsed.TotalSeconds;
+                }
+                default:
+                {
+                    return obj;
+                }
+            }
+        }
+
+        public static Type MapVVVVTypeToSystemNumerics(Type original)
+        {
+            if (original == typeof(Vector2D))
+            {
+                return typeof(Vector2);
+            }
+            if (original == typeof(Vector3D))
+            {
+                return typeof(Vector3);
+            }
+            if (original == typeof(Vector4D))
+            {
+                return typeof(Vector4);
+            }
+            if (original == typeof(VMatrix))
+            {
+                return typeof(SMatrix);
+            }
+            return original;
+        }
+
+        public static object MapVVVVValueToSystemNumerics(object obj)
+        {
+            switch (obj)
+            {
+                case Vector2D v:
+                {
+                    return v.AsSystemVector();
+                }
+                case Vector3D v:
+                {
+                    return v.AsSystemVector();
+                }
+                case Vector4D v:
+                {
+                    return v.AsSystemVector();
+                }
+                case VMatrix v:
+                {
+                    return v.AsSystemMatrix4X4();
                 }
                 default:
                 {
