@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Extensions.Data;
 using SlimDX;
 using VVVV.Utils.IO;
 using VVVV.Utils.SlimDX;
@@ -26,50 +28,56 @@ namespace mp.essentials.Camera
         public Matrix4x4 InputAspect { get; set; } = VMath.IdentityMatrix;
         public double RotationSpeed { get; set; } = 1;
 
-        public string ViewChecksum
+        private readonly XXHash.State32 _xxHashState = XXHash.CreateState32(51423);
+
+        public uint ViewChecksum
         {
             get
             {
-                var tempstream = new MemoryStream();
-                tempstream.Write(BitConverter.GetBytes(Translation.x), 0, 8);
-                tempstream.Write(BitConverter.GetBytes(Translation.y), 0, 8);
-                tempstream.Write(BitConverter.GetBytes(Translation.z), 0, 8);
-                tempstream.Write(BitConverter.GetBytes(Rotation.X), 0, 4);
-                tempstream.Write(BitConverter.GetBytes(Rotation.Y), 0, 4);
-                tempstream.Write(BitConverter.GetBytes(Rotation.Z), 0, 4);
-                tempstream.Write(BitConverter.GetBytes(Rotation.W), 0, 4);
-                tempstream.Write(BitConverter.GetBytes(PivotDistance), 0, 8);
-                foreach (var value in InputView.Values)
+                using (var tempstream = new MemoryStream())
                 {
-                    tempstream.Write(BitConverter.GetBytes(value), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Translation.x), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Translation.y), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Translation.z), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Rotation.X), 0, 4);
+                    tempstream.Write(BitConverter.GetBytes(Rotation.Y), 0, 4);
+                    tempstream.Write(BitConverter.GetBytes(Rotation.Z), 0, 4);
+                    tempstream.Write(BitConverter.GetBytes(Rotation.W), 0, 4);
+                    tempstream.Write(BitConverter.GetBytes(PivotDistance), 0, 8);
+                    foreach (var value in InputView.Values)
+                    {
+                        tempstream.Write(BitConverter.GetBytes(value), 0, 8);
+                    }
+                    tempstream.Position = 0;
+
+                    XXHash.ResetState32(_xxHashState, 51423);
+                    XXHash.UpdateState32(_xxHashState, tempstream);
+                    return XXHash.DigestState32(_xxHashState);
                 }
-                var tempbuf = new byte[tempstream.Length];
-                tempstream.Position = 0;
-                tempstream.Read(tempbuf, 0, (int) tempstream.Length);
-                tempstream.Dispose();
-                return BitConverter.ToString(tempbuf);
             }
         }
 
-        private string _prevViewChecksum = "";
+        private uint _prevViewChecksum;
 
-        public string ProjectionChecksum
+        public uint ProjectionChecksum
         {
             get
             {
-                var tempstream = new MemoryStream();
-                tempstream.Write(BitConverter.GetBytes(Fov), 0, 8);
-                tempstream.Write(BitConverter.GetBytes(Near), 0, 8);
-                tempstream.Write(BitConverter.GetBytes(Far), 0, 8);
-                var tempbuf = new byte[tempstream.Length];
-                tempstream.Position = 0;
-                tempstream.Read(tempbuf, 0, (int)tempstream.Length);
-                tempstream.Dispose();
-                return BitConverter.ToString(tempbuf);
+                using (var tempstream = new MemoryStream())
+                {
+                    tempstream.Write(BitConverter.GetBytes(Fov), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Near), 0, 8);
+                    tempstream.Write(BitConverter.GetBytes(Far), 0, 8);
+                    tempstream.Position = 0;
+
+                    XXHash.ResetState32(_xxHashState, 51423);
+                    XXHash.UpdateState32(_xxHashState, tempstream);
+                    return XXHash.DigestState32(_xxHashState);
+                }
             }
         }
 
-        private string _prevProjectionChecksum = "";
+        private uint _prevProjectionChecksum = 0;
 
         public Matrix4x4 View
         {
@@ -182,7 +190,7 @@ namespace mp.essentials.Camera
             get => _translation;
             set
             {
-                SetTranslation = true;
+                SetTranslation = value.Length > 0.000001;
                 _translation = value;
             }
         }
@@ -192,7 +200,7 @@ namespace mp.essentials.Camera
             get => _pitchYawRoll;
             set
             {
-                SetRotation = true;
+                SetRotation = value.Length > 0.000001;
                 _pitchYawRoll = value;
             }
         }
@@ -202,7 +210,7 @@ namespace mp.essentials.Camera
             get => _pivotDistance;
             set
             {
-                SetPivotDistance = true;
+                SetPivotDistance = Math.Abs(value) > 0.000001;
                 _pivotDistance = value;
             }
         }
@@ -212,7 +220,7 @@ namespace mp.essentials.Camera
             get => _fov;
             set
             {
-                SetFov = true;
+                SetFov = Math.Abs(value) > 0.000001;
                 _fov = value;
             }
         }
@@ -222,7 +230,7 @@ namespace mp.essentials.Camera
             get => _near;
             set
             {
-                SetNear = true;
+                SetNear = Math.Abs(value) > 0.000001;
                 _near = value;
             }
         }
@@ -232,7 +240,7 @@ namespace mp.essentials.Camera
             get => _far;
             set
             {
-                SetFar = true;
+                SetFar = Math.Abs(value) > 0.000001;
                 _far = value;
             }
         }

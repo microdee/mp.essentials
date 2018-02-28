@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using md.stdl.Interaction;
 using mp.essentials.Camera;
 using SlimDX;
+using VVVV.Nodes.PDDN;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
@@ -12,6 +13,22 @@ using WPoint = System.Drawing.Point;
 
 namespace mp.essentials.Nodes.Camera
 {
+    [PluginInfo(
+        Name = "CameraDelta",
+        Category = "CameraDelta",
+        Version = "Split",
+        Author = "microdee"
+    )]
+    public class CameraDeltaSplitNode : ObjectSplitNode<CameraDelta> { }
+
+    [PluginInfo(
+        Name = "Camera",
+        Category = "ModularCam",
+        Version = "Split",
+        Author = "microdee"
+    )]
+    public class ModularCamSplitNode : ObjectSplitNode<ModularCam> { }
+
     [PluginInfo(
         Name = "Camera",
         Category = "Transform",
@@ -37,9 +54,9 @@ namespace mp.essentials.Nodes.Camera
         public IDiffSpread<double> FDefPivotDist;
         [Input("Default FOV", DefaultValue = 0.25)]
         public IDiffSpread<double> FDefFov;
-        [Input("Default Near", DefaultValue = 0.01)]
+        [Input("Default Near", DefaultValue = 0.1)]
         public IDiffSpread<double> FDefNear;
-        [Input("Default Far", DefaultValue = 1000)]
+        [Input("Default Far", DefaultValue = 100)]
         public IDiffSpread<double> FDefFar;
 
         [Input("Mouse ID", DefaultValue = -1)]
