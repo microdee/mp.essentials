@@ -1,14 +1,17 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Windows.Forms;
 using md.stdl.Interaction;
+using md.stdl.Mathematics;
 using mp.essentials;
 using mp.essentials.Camera;
-using SlimDX;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.SlimDX;
 using VVVV.Utils.VMath;
+using Quaternion = SlimDX.Quaternion;
 
 namespace mp.essentials.Nodes.Camera
 {
@@ -21,6 +24,8 @@ namespace mp.essentials.Nodes.Camera
     )]
     public class TrackballCameraDeltaMouseKeyboardNode : IPluginEvaluate
     {
+        [Import] public IHDEHost FHDEHost;
+
         [Input("Delta In")]
         public Pin<CameraDelta> FDeltaIn;
 
@@ -40,6 +45,8 @@ namespace mp.essentials.Nodes.Camera
         public ISpread<double> FWASDSpeed;
         [Input("Invert Y")]
         public ISpread<bool> FInvY;
+        [Input("Smoothing Time", DefaultValue = 0.5)]
+        public ISpread<double> FSmooth;
 
         [Input("Rotation Key", Visibility = PinVisibility.Hidden, DefaultEnumEntry = "None")]
         public ISpread<Keys> FRotationKey;
@@ -93,6 +100,7 @@ namespace mp.essentials.Nodes.Camera
         private AccumulatingMouseObserver MouseObserver;
         private AccumulatingKeyboardObserver KeyboardObserver;
         private bool Init = true;
+        private double PrevFrameTime;
 
         public void Evaluate(int SpreadMax)
         {
@@ -117,7 +125,10 @@ namespace mp.essentials.Nodes.Camera
                     KeyboardObserver = new AccumulatingKeyboardObserver();
                     MouseObserver.SubscribeTo(Delta.InputMouse.MouseNotifications);
                     KeyboardObserver.SubscribeTo(Delta.InputKeyboard.KeyNotifications);
+                    PrevFrameTime = FHDEHost.FrameTime;
                 }
+                var dt = FHDEHost.FrameTime - PrevFrameTime;
+                var smoothness = FSmooth[0] > 0.00001 ? Math.Min(1.0f / (((float) FSmooth[0] / 6.0f) / (float)dt), 1.0f) : 1;
 
                 //var carea = MouseObserver?.LastNotification?.ClientArea ?? new Size(1, 1);
                 //var aspx = Math.Min(1, (double)carea.Height / (double)carea.Width);
@@ -139,19 +150,18 @@ namespace mp.essentials.Nodes.Camera
                     }
                 }
                 catch { }
-                MouseObserver.ResetAccumulation();
                 //FMousePos[0] = new Vector4D(mousepos, mousewheel);
                 //FMouseButtons[0] = (uint) Delta.InputMouse.PressedButtons;
 
                 var translxykey = FTranslationXYKey[0] == Keys.None;
                 var translzkey = FTranslationZKey[0] == Keys.None;
 
-                var forw = FForwardKey[0] == Keys.None;
-                var left = FStrafeLeftKey[0] == Keys.None;
-                var backw = FBackwardKey[0] == Keys.None;
-                var right = FStrafeRightKey[0] == Keys.None;
-                var up = FStrafeUpKey[0] == Keys.None;
-                var down = FStrafeDownKey[0] == Keys.None;
+                var forw = false;
+                var left = false;
+                var backw = false;
+                var right = false;
+                var up = false;
+                var down = false;
 
                 var rotkey = FRotationKey[0] == Keys.None;
                 var rollkey = FRollKey[0] == Keys.None;
@@ -160,19 +170,21 @@ namespace mp.essentials.Nodes.Camera
                 var zoomkey = FZoomKey[0] == Keys.None;
 
                 var keyboard = from kp in KeyboardObserver.Keypresses.Values select kp.KeyCode;
-                KeyboardObserver.ResetAccumulation();
 
                 foreach (var key in keyboard)
                 {
                     translxykey = translxykey || key == FTranslationXYKey[0];
                     translzkey = translzkey || key == FTranslationZKey[0];
 
-                    forw = forw || key == FForwardKey[0];
-                    left = left || key == FStrafeLeftKey[0];
-                    backw = backw || key == FBackwardKey[0];
-                    right = right || key == FStrafeRightKey[0];
-                    up = up || key == FStrafeUpKey[0];
-                    down = down || key == FStrafeDownKey[0];
+                    if (FWASDSpeed[0] > 0.0)
+                    {
+                        forw = forw || key == FForwardKey[0];
+                        left = left || key == FStrafeLeftKey[0];
+                        backw = backw || key == FBackwardKey[0];
+                        right = right || key == FStrafeRightKey[0];
+                        up = up || key == FStrafeUpKey[0];
+                        down = down || key == FStrafeDownKey[0];
+                    }
 
                     rotkey = rotkey || key == FRotationKey[0];
                     rollkey = rollkey || key == FRollKey[0];
@@ -188,7 +200,7 @@ namespace mp.essentials.Nodes.Camera
                     var transl = new Vector3D(0, 0, 0);
                     var crot = new Vector3D(0,0,0);
                     var translinf = VMath.Lerp(1.0, Math.Max(Delta.ConnectedCamera.PivotDistance * 0.25, 0.1), FTranslDistInf[0]);
-                    if ((FTranslationXYButton[0] & Delta.InputMouse.PressedButtons) > 0 && translxykey)
+                    if (MouseObserver.MouseClicks[FTranslationXYButton[0]].Pressed && translxykey)
                     {
                         if (!translzkey || FTranslationZKey[0] == Keys.None)
                         {
@@ -197,7 +209,7 @@ namespace mp.essentials.Nodes.Camera
                             Delta.LockCursor = true;
                         }
                     }
-                    if ((FTranslationZButton[0] & Delta.InputMouse.PressedButtons) > 0 && translzkey)
+                    if (MouseObserver.MouseClicks[FTranslationZButton[0]].Pressed && translzkey)
                     {
                         if (!translxykey || FTranslationXYKey[0] == Keys.None)
                         {
@@ -214,30 +226,29 @@ namespace mp.essentials.Nodes.Camera
                     if (right) transl.x -= FWASDSpeed[0];
                     if (up) transl.y -= FWASDSpeed[0];
                     if (down) transl.y += FWASDSpeed[0];
-
-                    if (transl.Length > 0.00001)
-                        Delta.Translation = new Vector3D(transl);
+                    
+                    Delta.Translation = Filters.Lowpass(Delta.Translation.AsSystemVector(), transl.AsSystemVector(), new Vector3(smoothness)).AsVVector();
 
                     //// Rotation
                     bool rotate = false;
                     var mouserot = new Vector2D(mousepos * FRotSpeed[0]);
                     if (FInvY[0]) mouserot.y *= -1;
                     if (Delta.ConnectedCamera.PivotDistance < 0.1) mouserot *= -1;
-                    if (((FRotationButton[0] & Delta.InputMouse.PressedButtons) > 0 && rotkey) || forw || backw || left || right || up || down)
+                    if (MouseObserver.MouseClicks[FRotationButton[0]].Pressed && rotkey || forw || backw || left || right || up || down)
                     {
                         if (!rollkey || FRollKey[0] == Keys.None)
                         {
                             Delta.LockCursor = true;
+
                             // Prepare
                             mouserot.x = Math.Min(Math.Abs(mouserot.x) * 0.1, 0.499) * Math.Sign(mouserot.x);
                             mouserot.y = Math.Min(Math.Abs(mouserot.y) * 0.1, 0.499) * Math.Sign(mouserot.y);
 
                             // Trackball
-                            
                             var trackbpos = new Vector2D(
                                 Math.Pow(Math.Abs(FTrackballScreenPos[0].x), 2) * Math.Sign(FTrackballScreenPos[0].x),
                                 Math.Pow(Math.Abs(FTrackballScreenPos[0].y), 2) * Math.Sign(FTrackballScreenPos[0].y));
-                            trackbpos *= 0.25;
+                            trackbpos *= -0.25;
                             var trackbtr = VMath.Rotate(trackbpos.y * Math.PI * 2, trackbpos.x * Math.PI * -2, 0);
                             var trackxv = trackbtr * new Vector3D(-1, 0, 0);
                             var trackyv = trackbtr * new Vector3D(0, -1, 0);
@@ -251,7 +262,7 @@ namespace mp.essentials.Nodes.Camera
                             rotate = true;
                         }
                     }
-                    if ((FRollButton[0] & Delta.InputMouse.PressedButtons) > 0 && rollkey)
+                    if (MouseObserver.MouseClicks[FRollButton[0]].Pressed && rollkey)
                     {
                         if (!rotkey || FRotationKey[0] == Keys.None)
                         {
@@ -260,17 +271,15 @@ namespace mp.essentials.Nodes.Camera
                             rotate = true;
                         }
                     }
-                    if (rotate)
-                    {
-                        Delta.LockCursor = true;
-                        Delta.PitchYawRoll = crot;
-                    }
+                    if(rotate) Delta.LockCursor = true;
+                    Delta.PitchYawRoll = Filters.Lowpass(Delta.PitchYawRoll.AsSystemVector(), crot.AsSystemVector(), new Vector3(smoothness)).AsVVector();
+
                     double pivotd = 0;
                     double zoom = mousewheel.y * FScrollMul[0] * FZoomSpeed[0];
                     if (zoomkey && (!pdkey || FPivotDistanceKey[0] == Keys.None))
                     {
                         zoom -= mousewheel.x * FScrollMul[0] * FZoomSpeed[0];
-                        if ((FPivotDistanceButton[0] & Delta.InputMouse.PressedButtons) > 0)
+                        if (MouseObserver.MouseClicks[FZoomButton[0]].Pressed && zoomkey)
                         {
                             Delta.LockCursor = true;
                             zoom -= mousepos.y * FZoomSpeed[0];
@@ -279,16 +288,18 @@ namespace mp.essentials.Nodes.Camera
                     if (pdkey && (!zoomkey || FZoomKey[0] == Keys.None))
                     {
                         pivotd -= mousewheel.x * FScrollMul[0] * FTranslSpeed[0];
-                        if ((FPivotDistanceButton[0] & Delta.InputMouse.PressedButtons) > 0)
+                        if (MouseObserver.MouseClicks[FPivotDistanceButton[0]].Pressed && pdkey)
                         {
                             Delta.LockCursor = true;
                             pivotd -= mousepos.y * FTranslSpeed[0];
                         }
                     }
-                    if (Math.Abs(pivotd) > 0.00001) Delta.PivotDistance = pivotd;
-                    if (Math.Abs(zoom) > 0.00001) Delta.Fov = zoom;
+                    Delta.PivotDistance = Filters.Lowpass((float)Delta.PivotDistance, (float)pivotd, smoothness);
+                    Delta.Fov = Filters.Lowpass((float)Delta.Fov, (float)zoom, smoothness);
 
                 }
+                MouseObserver.ResetAccumulation();
+                KeyboardObserver.ResetAccumulation();
             }
             else
             {
@@ -296,6 +307,7 @@ namespace mp.essentials.Nodes.Camera
                 KeyboardObserver?.Unsubscribe();
                 Init = true;
             }
+            PrevFrameTime = FHDEHost.FrameTime;
         }
     }
 }
