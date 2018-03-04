@@ -6,6 +6,7 @@ using md.stdl.Interaction;
 using mp.essentials.Camera;
 using SlimDX;
 using VVVV.Nodes.PDDN;
+using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.IO;
 using VVVV.Utils.VMath;
@@ -35,7 +36,7 @@ namespace mp.essentials.Nodes.Camera
         Version = "Modular",
         Author = "microdee"
     )]
-    public class ModularTransformCameraNode : IPluginEvaluate
+    public class ModularTransformCameraNode : IPluginEvaluate, IPluginFeedbackLoop
     {
         [Import] public IHDEHost FHDEHost;
 
@@ -206,6 +207,13 @@ namespace mp.essentials.Nodes.Camera
             FProjectionOut[0] = Camera.Projection;
             FProjectionWithAspectOut[0] = Camera.ProjectionWithAspect;
             PrevFrameTime = FHDEHost.FrameTime;
+        }
+
+        public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)
+        {
+            return !inputPin.Name.Contains("Default") &&
+                inputPin.Name != "Transform In" &&
+                inputPin.Name != "Camera Delta";
         }
     }
 }
