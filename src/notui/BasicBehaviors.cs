@@ -24,4 +24,12 @@ namespace mp.essentials.notui
         Author = "microdee"
     )]
     public class SlidingBehaviorInfoNode : BehaviorInstanceInfoNode<SlidingBehavior, SlidingBehavior.BehaviorState> { }
+
+    [PluginInfo(
+        Name = "ValueSlider2D",
+        Category = "Notui.Behavior",
+        Version = "Join",
+        Author = "microdee"
+    )]
+    public class ValueSliderBehaviorNode : AbstractBehaviorNode<ValueSlider2D> { }
 }
