@@ -4,36 +4,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using md.stdl.Interaction.Notui;
+using VVVV.PluginInterfaces.V2;
 
 namespace mp.essentials.notui
 {
+    public class ElementEventFlattener
+    {
+        public bool OnInteractionBegin { get; private set; }
+        public bool OnInteractionEnd { get; private set; }
+        public bool OnTouchBegin { get; private set; }
+        public bool OnTouchEnd { get; private set; }
+        public bool OnHitBegin { get; private set; }
+        public bool OnHitEnd { get; private set; }
+        public bool OnInteracting { get; private set; }
+        public bool OnChildrenUpdated { get; private set; }
+        public bool OnDeletionStarted { get; private set; }
+        public bool OnDeleting { get; private set; }
+        public bool OnFadedIn { get; private set; }
+
+        private void _OnInteractionBeginHandler(object sender, TouchInteractionEventArgs args) => OnInteractionBegin = true;
+        private void _OnInteractionEndHandler(object sender, TouchInteractionEventArgs args) => OnInteractionEnd = true;
+        private void _OnTouchBeginHandler(object sender, TouchInteractionEventArgs args) => OnTouchBegin = true;
+        private void _OnTouchEndHandler(object sender, TouchInteractionEventArgs args) => OnTouchEnd = true;
+        private void _OnHitBeginHandler(object sender, TouchInteractionEventArgs args) => OnHitBegin = true;
+        private void _OnHitEndHandler(object sender, TouchInteractionEventArgs args) => OnHitEnd = true;
+        private void _OnInteractingHandler(object sender, EventArgs args) => OnInteracting = true;
+        private void _OnChildrenUpdatedHandler(object sender, ChildrenUpdatedEventArgs args) => OnChildrenUpdated = true;
+        private void _OnDeletionStartedHandler(object sender, EventArgs args) => OnDeletionStarted = true;
+        private void _OnDeletingHandler(object sender, EventArgs args) => OnDeleting = true;
+        private void _OnFadedInHandler(object sender, EventArgs args) => OnFadedIn = true;
+
+        public void Subscribe(NotuiElement element)
+        {
+            try
+            {
+                element.OnInteractionBegin -= _OnInteractionBeginHandler;
+                element.OnInteractionEnd -= _OnInteractionEndHandler;
+                element.OnTouchBegin -= _OnTouchBeginHandler;
+                element.OnTouchEnd -= _OnTouchEndHandler;
+                element.OnHitBegin -= _OnHitBeginHandler;
+                element.OnHitEnd -= _OnHitEndHandler;
+                element.OnInteracting -= _OnInteractingHandler;
+                element.OnChildrenUpdated -= _OnChildrenUpdatedHandler;
+                element.OnDeletionStarted -= _OnDeletionStartedHandler;
+                element.OnDeleting -= _OnDeletingHandler;
+                element.OnFadedIn -= _OnFadedInHandler;
+            } catch { }
+
+            element.OnInteractionBegin += _OnInteractionBeginHandler;
+            element.OnInteractionEnd += _OnInteractionEndHandler;
+            element.OnTouchBegin += _OnTouchBeginHandler;
+            element.OnTouchEnd += _OnTouchEndHandler;
+            element.OnHitBegin += _OnHitBeginHandler;
+            element.OnHitEnd += _OnHitEndHandler;
+            element.OnInteracting += _OnInteractingHandler;
+            element.OnChildrenUpdated += _OnChildrenUpdatedHandler;
+            element.OnDeletionStarted += _OnDeletionStartedHandler;
+            element.OnDeleting += _OnDeletingHandler;
+            element.OnFadedIn += _OnFadedInHandler;
+        }
+
+        public void Reset()
+        {
+            OnInteractionBegin = false;
+            OnInteractionEnd = false;
+            OnTouchBegin = false;
+            OnTouchEnd = false;
+            OnHitBegin = false;
+            OnHitEnd = false;
+            OnInteracting = false;
+            OnChildrenUpdated = false;
+            OnDeletionStarted = false;
+            OnDeleting = false;
+            OnFadedIn = false;
+        }
+
+        private IHDEHost _hdeHost;
+
+        public ElementEventFlattener(IHDEHost host)
+        {
+            _hdeHost = host;
+            _hdeHost.MainLoop.OnResetCache += (sender, args) => Reset();
+        }
+    }
+
     public class VEnvironmentData : AuxiliaryObject
     {
-        public Dictionary<NotuiContext, IEnumerable<NotuiElement>> Instances { get; set; } = new Dictionary<NotuiContext, IEnumerable<NotuiElement>>();
         public Dictionary<string, object> NodeSpecific { get; set; } = new Dictionary<string, object>();
-
-        public void RemoveDeletedInstances()
-        {
-            var removables = (from contextElementPair in Instances
-                where contextElementPair.Key.FlatElements.All(e => e.Id != contextElementPair.Value.First().Id)
-                select contextElementPair.Key).ToArray();
-            foreach (var context in removables)
-            {
-                Instances.Remove(context);
-            }
-        }
-
-        public void AddOrUpdateInstance(NotuiContext context, ElementPrototype element)
-        {
-            if (Instances.ContainsKey(context))
-            {
-                Instances[context] = context.FlatElements.Where(e => e.Id == element.Id);
-            }
-            else
-            {
-                Instances.Add(context, context.FlatElements.Where(e => e.Id == element.Id));
-            }
-        }
+        public ElementEventFlattener FlattenedEvents;
 
         public override AuxiliaryObject Copy()
         {
@@ -44,7 +102,6 @@ namespace mp.essentials.notui
         {
             if (other is VEnvironmentData venvdat)
             {
-                Instances = venvdat.Instances;
                 NodeSpecific = venvdat.NodeSpecific;
             }
         }
