@@ -51,10 +51,8 @@ namespace mp.essentials.notui
         [Output("Element Prototype")]
         public ISpread<TPrototype> FElementProt;
 
-        [Output("Element Context")]
-        public ISpread<ISpread<NotuiContext>> FElementContext;
-        [Output("Element Instances")]
-        public ISpread<ISpread<NotuiElement>> FElementInst;
+        [Output("Element Id")]
+        public ISpread<string> FElementId;
 
         protected virtual void FillElementAuxData(TPrototype el, int i) { }
 
@@ -99,6 +97,8 @@ namespace mp.essentials.notui
             }
             FillElementAuxData(el, i);
 
+            FElementId[i] = el.Id;
+
             return el;
         }
 
@@ -119,6 +119,7 @@ namespace mp.essentials.notui
                 if (init < 1) FElementProt.SliceCount = 0;
                 else
                 {
+                    FElementId.SliceCount = FElementProt.SliceCount;
                     for (int i = 0; i < FElementProt.SliceCount; i++)
                     {
                         if (!string.IsNullOrWhiteSpace(FId[i]))
@@ -137,28 +138,6 @@ namespace mp.essentials.notui
                 FElementProt.Stream.IsChanged = true;
             }
             init++;
-
-            FElementInst.SliceCount = FElementContext.SliceCount = sprmax;
-            for (int i = 0; i < sprmax; i++)
-            {
-                if (FElementProt[i].EnvironmentObject is VEnvironmentData venvdat)
-                {
-                    venvdat.RemoveDeletedInstances();
-                    FElementContext[i].SliceCount = venvdat.Instances.Count;
-                    FElementInst[i].SliceCount = 0;
-                    int ii = 0;
-                    foreach (var context in venvdat.Instances.Keys)
-                    {
-                        FElementInst[i].AddRange(venvdat.Instances[context]);
-                        FElementContext[i][ii] = context;
-                        ii++;
-                    }
-                }
-                else
-                {
-                    FElementContext[i].SliceCount = FElementInst[i].SliceCount = 0;
-                }
-            }
         }
     }
 }
