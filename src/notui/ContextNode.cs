@@ -40,9 +40,11 @@ namespace mp.essentials.notui
         public IDiffSpread<int> FTouchId;
         [Input("Touch Force")]
         public IDiffSpread<float> FTouchForce;
-        [Input("Consider Touch New Before")]
+        [Input("Minimum Force for Interaction", DefaultValue = -1)]
+        public IDiffSpread<float> FMinForce;
+        [Input("Consider Touch New Before", DefaultValue = 1)]
         public ISpread<int> FConsiderNew;
-        [Input("Consider Touch Released After")]
+        [Input("Consider Touch Released After", DefaultValue = 1)]
         public ISpread<int> FConsiderReleased;
 
         [Input("View")]
@@ -65,6 +67,8 @@ namespace mp.essentials.notui
         public NotuiContext Context = new NotuiContext();
 
         private double _prevFrameTime = 0;
+        private bool _onConnectedFrame;
+        private readonly List<TouchPrototype> _touchlist = new List<TouchPrototype>(40);
 
         public bool IsTouchDefault()
         {
@@ -74,8 +78,6 @@ namespace mp.essentials.notui
             def = def && FTouchForce[0] < 0.00001;
             return def;
         }
-
-        private bool _onConnectedFrame;
 
         public void OnImportsSatisfied()
         {
@@ -88,24 +90,32 @@ namespace mp.essentials.notui
 
         public void Evaluate(int SpreadMax)
         {
+            Context.ConsiderNewBefore = FConsiderNew[0];
+            Context.ConsiderReleasedAfter = FConsiderReleased[0];
+            Context.MinimumForce = FMinForce[0];
+
             var dt = Host.FrameTime - _prevFrameTime;
             if (_prevFrameTime <= 0.00001) dt = 0;
+
             if(FViewTr.IsConnected && FViewTr.SliceCount > 0)
                 Context.View = FViewTr[0].AsSystemMatrix4X4();
+
             if (FProjTr.IsConnected && FProjTr.SliceCount > 0)
                 Context.Projection = FProjTr[0].AsSystemMatrix4X4();
+
             if (FAspTr.IsConnected && FAspTr.SliceCount > 0)
                 Context.AspectRatio = FAspTr[0].AsSystemMatrix4X4();
-            if(FElements.IsChanged)
+
+            if (FElements.IsChanged)
                 Context.AddOrUpdateElements(true, FElements.ToArray());
 
             var touchcount = Math.Min(FTouchId.SliceCount, FTouchCoords.SliceCount);
-            var touchlist = new List<TouchPrototype>();
             if (!IsTouchDefault())
             {
+                _touchlist.Clear();
                 for (int i = 0; i < touchcount; i++)
                 {
-                    touchlist.Add(new TouchPrototype
+                    _touchlist.Add(new TouchPrototype
                     {
                         Point = FTouchCoords[i].AsSystemVector(),
                         Id = FTouchId[i],
@@ -113,10 +123,29 @@ namespace mp.essentials.notui
                     });
                 }
             }
-            Context.Mainloop(touchlist, (float)dt);
+            Context.Mainloop(_touchlist, (float)dt);
 
             FContext[0] = Context;
-            FFlatElements.AssignFrom(Context.FlatElements);
+
+            FFlatElements.SliceCount = Context.FlatElements.Count;
+
+            for (int i = 0; i < Context.FlatElements.Count; i++)
+            {
+                var element = Context.FlatElements[i];
+                FFlatElements[i] = element;
+                switch (element.EnvironmentObject)
+                {
+                    case null:
+                        element.EnvironmentObject = new VEnvironmentData();
+                        break;
+                    case VEnvironmentData venvdat:
+                        if (venvdat.FlattenedEvents != null) continue;
+                        venvdat.FlattenedEvents = new ElementEventFlattener(Host);
+                        venvdat.FlattenedEvents.Subscribe(element);
+                        break;
+                }
+            }
+            
             FElementsOut.AssignFrom(Context.RootElements.Values);
             FTouches.AssignFrom(Context.Touches.Values);
 
