@@ -101,6 +101,8 @@ namespace mp.essentials.notui
 
         [Output("Element")] public ISpread<NotuiElement> FElementOut;
         [Output("Type")] public ISpread<string> FType;
+        public Spread<Type> ElementType = new Spread<Type>();
+
         [Output("Name Out")] public ISpread<string> FNameOut;
         [Output("ID")] public ISpread<string> FId;
         [Output("Hit")] public ISpread<bool> FHit;
@@ -113,7 +115,6 @@ namespace mp.essentials.notui
         [Output("Age")] public ISpread<double> FAge;
         [Output("Dethklok")] public ISpread<double> FDethklok;
         [Output("Dying")] public ISpread<bool> FDying;
-        [Output("Attached Values")] public ISpread<AttachedValues> FAttachedVals;
 
         [Output("Interacting Touches")] public ISpread<ISpread<TouchContainer>> FTouches;
         [Output("Are Interacting Touches Hitting")] public ISpread<ISpread<bool>> FTouchesHitting;
@@ -132,7 +133,12 @@ namespace mp.essentials.notui
         {
             FElementOut[i] = element;
             FNameOut[i] = element.Name;
-            FType[i] = element.GetType().GetCSharpName();
+            var eltype = element.GetType();
+
+            if(ElementType[i] != eltype)
+                FType[i] = eltype.GetCSharpName();
+
+            ElementType[i] = eltype;
             FId[i] = element.Id;
             FHit[i] = element.Hit;
             FTouched[i] = element.Touched;
@@ -144,7 +150,6 @@ namespace mp.essentials.notui
             FAge[i] = element.Age.Elapsed.TotalSeconds;
             FDying[i] = element.Dying;
             FDethklok[i] = element.Dethklok.Elapsed.TotalSeconds;
-            FAttachedVals[i] = element.Value;
 
             FTouches[i].AssignFrom(element.Touching.Keys);
             FTouchesHitting[i].AssignFrom(element.Touching.Values.Select(t => t != null));
@@ -180,8 +185,11 @@ namespace mp.essentials.notui
         {
             if (FElement.IsConnected && FElement.SliceCount > 0 && FElement[0] != null)
             {
-                if(_prevSliceCount != FElement.SliceCount)
+                if (_prevSliceCount != FElement.SliceCount)
+                {
                     this.SetSliceCountForAllOutput(FElement.SliceCount);
+                    ElementType.SliceCount = FElement.SliceCount;
+                }
                 _prevSliceCount = FElement.SliceCount;
 
                 for (int i = 0; i < FElement.SliceCount; i++)
@@ -192,6 +200,7 @@ namespace mp.essentials.notui
             else
             {
                 this.SetSliceCountForAllOutput(0);
+                ElementType.SliceCount = 0;
             }
         }
     }
