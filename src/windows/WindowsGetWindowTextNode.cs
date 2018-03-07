@@ -21,10 +21,10 @@ namespace mp.essentials.Nodes.Windows
 	{
 		#region fields & pins
 		[Input("Handle In", DefaultValue = 0)]
-		ISpread<int> FInput;
+		public ISpread<int> FInput;
 
 		[Output("Title")]
-		ISpread<string> FTitle;
+		public ISpread<string> FTitle;
 		#endregion fields & pins
 
 		[DllImport("C:\\Windows\\System32\\user32.dll")]

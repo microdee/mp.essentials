@@ -21,7 +21,7 @@ namespace mp.essentials.Nodes.Values
         [Input("Input 2")]
         public ISpread<Vector2D> FIn2;
 
-        [Output("Output", AllowFeedback = true)]
+        [Output("Output")]
         public ISpread<double> FOutput;
         
         public void Evaluate(int SpreadMax)

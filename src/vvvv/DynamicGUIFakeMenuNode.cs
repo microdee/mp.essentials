@@ -26,17 +26,17 @@ namespace mp.essentials.Nodes.vvvv
 	{
 		#region fields & pins
 		[Input("Button Names", DefaultString = "Bang")]
-		IDiffSpread<string> FButtonNames;
+		public IDiffSpread<string> FButtonNames;
 		[Input("Highlight")]
-		IDiffSpread<bool> FHighlight;
+		public IDiffSpread<bool> FHighlight;
 		[Input("Disable")]
-		IDiffSpread<bool> FDisable;
+		public IDiffSpread<bool> FDisable;
 
 		[Output("Buttons")]
-		ISpread<bool> FButtonOut;
+		public ISpread<bool> FButtonOut;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 
 		//layout panels
 		TableLayoutPanel FMainPanel = new TableLayoutPanel();

@@ -21,25 +21,25 @@ namespace mp.essentials.Nodes.Strings
         Author = "microdee",
         AutoEvaluate = true
         )]
-	public class ControlDragAndDropNode : IPluginEvaluate
+	public class ControlDragAndDropNode : IPluginEvaluate, IPluginFeedbackLoop
 	{
 		#region fields & pins
 		//[Input("PosSize", DefaultValue = 0.0)]
 		//ISpread<int> FPos;
 		[Input("Input")]
-		ISpread<System.Windows.Forms.Control> FInControl;
+		public ISpread<Control> FInControl;
 
-		[Output("Output", AllowFeedback=true)]
-		ISpread<string> FOut;
-		[Output("DragEnter", AllowFeedback=true, IsBang = true)]
-		ISpread<bool> FDragEnter;
-		[Output("DragInside", AllowFeedback=true)]
-		ISpread<bool> FDragInside;
-		[Output("DragLeave", AllowFeedback=true, IsBang = true)]
-		ISpread<bool> FDragLeave;
+		[Output("Output")]
+		public ISpread<string> FOut;
+		[Output("DragEnter", IsBang = true)]
+		public ISpread<bool> FDragEnter;
+		[Output("DragInside")]
+		public ISpread<bool> FDragInside;
+		[Output("DragLeave", IsBang = true)]
+		public ISpread<bool> FDragLeave;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 		
 		int fcr;
 
@@ -119,5 +119,10 @@ namespace mp.essentials.Nodes.Strings
 			//this.Location = new Point(FPos[0],FPos[1]);
 			fcr++;
 		}
+
+	    public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)
+	    {
+	        return true;
+	    }
 	}
 }

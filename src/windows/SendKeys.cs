@@ -21,10 +21,10 @@ namespace mp.essentials.Nodes.Windows
 	{
 		#region fields & pins
 		[Input("Input")]
-		ISpread<string> FInput;
+		public ISpread<string> FInput;
 
 	    [Input("Send", IsBang = true)]
-	    ISpread<bool> FSend;
+	    public ISpread<bool> FSend;
         #endregion fields & pins
 
 		//called when data for any output pin is requested

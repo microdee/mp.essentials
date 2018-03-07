@@ -19,19 +19,19 @@ namespace mp.essentials.Nodes.Values
 	{
 		#region fields & pins
 		[Input("Input", DefaultValue = 1.0)]
-		ISpread<double> FInput;
+		public ISpread<double> FInput;
 		[Input("Bin Size", DefaultValue = 0)]
-		ISpread<int> FBin;
+		public ISpread<int> FBin;
 		[Input("Offset", DefaultValue = 0)]
-		ISpread<int> FOffs;
+		public ISpread<int> FOffs;
 		[Input("Count", DefaultValue = 1)]
-		ISpread<int> FCount;
+		public ISpread<int> FCount;
 
 		[Output("Output")]
-		ISpread<double> FOutput;
+		public ISpread<double> FOutput;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 		#endregion fields & pins
 
 		//called when data for any output pin is requested

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SlimDX.Direct3D9;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.PluginInterfaces.V2;
 using VVVV.SkeletonInterfaces;
 using VVVV.Utils.VMath;

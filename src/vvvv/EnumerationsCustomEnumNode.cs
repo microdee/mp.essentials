@@ -9,7 +9,7 @@ using VVVV.Utils.VColor;
 using VVVV.Utils.VMath;
 
 using VVVV.Core.Logging;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 
 #endregion usings
 

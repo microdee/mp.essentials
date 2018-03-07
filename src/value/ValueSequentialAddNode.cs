@@ -21,19 +21,19 @@ namespace mp.essentials.Nodes.Values
 	{
 		#region fields & pins
 		[Input("Input", DefaultValue = 1.0)]
-		ISpread<ISpread<double>> FInput;
+		public ISpread<ISpread<double>> FInput;
 		
 		[Input("Start")]
-		ISpread<double> FStart;
+		public ISpread<double> FStart;
 		
 		[Input("Multiplier", DefaultValue = 1.0)]
-		ISpread<double> FMul;
+		public ISpread<double> FMul;
 
 		[Output("Output")]
-		ISpread<ISpread<double>> FOutput;
+		public ISpread<ISpread<double>> FOutput;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 		#endregion fields & pins
 
 		//called when data for any output pin is requested

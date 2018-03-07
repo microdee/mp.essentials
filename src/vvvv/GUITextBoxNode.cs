@@ -27,29 +27,29 @@ namespace mp.essentials.Nodes.vvvv
 	{
 		#region fields & pins
 		[Input("Input", IsSingle = true)]
-		ISpread<string> FIn;
+		public ISpread<string> FIn;
 		[Input("Set", IsSingle = true)]
-		ISpread<bool> FSet;
+		public ISpread<bool> FSet;
 		[Input("Select All", IsSingle = true, IsBang = true)]
-		ISpread<bool> FSelectAll;
+		public ISpread<bool> FSelectAll;
 	    [Input("Selection Start In")]
-	    ISpread<int> FSelStartIn;
+	    public ISpread<int> FSelStartIn;
 	    [Input("Selection Length In")]
-	    ISpread<int> FSelLengthIn;
+	    public ISpread<int> FSelLengthIn;
 	    [Input("Select", IsSingle = true, IsBang = true)]
-	    ISpread<bool> FSelect;
+	    public ISpread<bool> FSelect;
 
         [Output("Output")]
-		ISpread<string> FOut;
+        public ISpread<string> FOut;
 		[Output("Width")]
-		ISpread<float> FWidth;
+		public ISpread<float> FWidth;
 	    [Output("Selection Start")]
-	    ISpread<int> FSelStart;
+	    public ISpread<int> FSelStart;
 	    [Output("Selection Length")]
-	    ISpread<int> FSelLength;
+	    public ISpread<int> FSelLength;
 
         [Import()]
-		ILogger FLogger;
+        public ILogger FLogger;
 
 		//gui controls
 		TextBox FTextBox = new TextBox();

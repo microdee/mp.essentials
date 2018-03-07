@@ -9,7 +9,7 @@ using VVVV.Utils.VColor;
 using VVVV.Utils.VMath;
 
 using VVVV.Core.Logging;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.Utils.Reflection;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
 using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;

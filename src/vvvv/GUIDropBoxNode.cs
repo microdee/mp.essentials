@@ -30,16 +30,16 @@ namespace mp.essentials.Nodes.vvvv
 		//ISpread<int> FPos;
 		
 		[Output("Output")]
-		ISpread<string> FOut;
+		public ISpread<string> FOut;
 		[Output("DragEnter")]
-		ISpread<bool> FDragEnter;
+		public ISpread<bool> FDragEnter;
 		//[Output("DragLeave")]
 		//ISpread<bool> FDragLeave;
 		[Output("DragDrop")]
-		ISpread<bool> FDragDrop;
+		public ISpread<bool> FDragDrop;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 
 		//gui controls
 		//object FDragThreadLock = new object();

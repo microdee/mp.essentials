@@ -20,7 +20,7 @@ namespace mp.essentials.Nodes.vvvv
 	public class VVVVNodePathNode : IPluginEvaluate
 	{
 		[Import]
-		IPluginHost2 PluginHost;
+		public IPluginHost2 PluginHost;
 		
 		[Output("Node Path")]
 		public ISpread<string> FNode;

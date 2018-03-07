@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 using md.stdl.String;
 using PowerArgs;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
+using VVVV.PluginInterfaces.V1;
 using VVVV.Utils.Linq;
 
 namespace mp.essentials.Nodes.Shaders
@@ -286,7 +287,7 @@ namespace mp.essentials.Nodes.Shaders
         Help = "Creates dynamic pins for '#if defined(...)' preprocessors",
         AutoEvaluate = true
         )]
-    public class PreprocessorOptionsNode : ConfigurableDynamicPinNode<string>, IPluginEvaluate
+    public class PreprocessorOptionsNode : ConfigurableDynamicPinNode<string>, IPluginEvaluate, IPluginFeedbackLoop
     {
         [Import] protected IPluginHost2 FPluginHost;
         [Import] protected IIOFactory FIOFactory;
@@ -298,7 +299,7 @@ namespace mp.essentials.Nodes.Shaders
         [Input("Shader Path")]
         public Pin<string> FShaderPath;
 
-        [Output("Defines", AllowFeedback = true)]
+        [Output("Defines")]
         public ISpread<string> FDefineOut;
 
         [Output("Defines Extract")]
@@ -432,6 +433,11 @@ namespace mp.essentials.Nodes.Shaders
                     FDefineOut.Add(option.Name + "=" + val);
                 }
             }
+        }
+
+        public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)
+        {
+            return inputPin.Name == "Shader Path" && outputPin.Name == "Defines";
         }
     }
 }

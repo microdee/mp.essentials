@@ -66,7 +66,7 @@ namespace mp.essentials.Nodes.Transform
             var bestarea = 0.0;
             var area = 0.0;
             var step = 0.0;
-            int fit = 0, iii = 0;
+            int fit = 0;
             bool fail = false;
 
             for (int f = 0; f < funcs.Count; f++)

@@ -16,7 +16,7 @@ using VVVV.Utils.VMath;
 using VVVV.Utils.Animation;
 
 using VVVV.Core.Logging;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VMatrix = VVVV.Utils.VMath.Matrix4x4;
 using SMatrix = System.Numerics.Matrix4x4;
 
@@ -103,7 +103,7 @@ namespace mp.essentials.Nodes.Devices
 
 		    foreach (var touch in Touches.Values)
 		    {
-		        touch.Mainloop();
+		        touch.Mainloop((float)dt);
 		    }
 			
 			for(int i=0; i < SpreadMax; i++)
@@ -123,7 +123,7 @@ namespace mp.essentials.Nodes.Devices
 				else
 				{
 					TouchContainer tc = FUseFilter[i] ? new FilteredTouch(tid, FMinCutoff[i], FBeta[i]) : new TouchContainer(tid);
-                    tc.Mainloop();
+                    tc.Mainloop((float)dt);
 				    if (FUseFilter[i])
 				    {
 				        var ftc = (FilteredTouch) tc;

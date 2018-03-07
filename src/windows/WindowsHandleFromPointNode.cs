@@ -25,15 +25,15 @@ namespace mp.essentials.Nodes.Windows
 	public class WindowsHandleFromPointNode : IPluginEvaluate
 	{		
 		[Input("Update", DefaultBoolean = true)]
-		ISpread<bool> FUpdate;
+		public ISpread<bool> FUpdate;
 		
 		[Output("Handle Out")]
-		ISpread<int> FParent;
+		public ISpread<int> FParent;
 		[Output("Cursor Pos")]
-		ISpread<int> FCurPos;
+		public ISpread<int> FCurPos;
 		
 		[Output("Title")]
-		ISpread<string> FTitle;
+		public ISpread<string> FTitle;
 		
 		[DllImport("C:\\Windows\\System32\\user32.dll")]
 		public static extern bool GetCursorPos(out WPoint lpPoint);
@@ -78,9 +78,9 @@ namespace mp.essentials.Nodes.Windows
 	public class WindowsSetCursorPosNode : IPluginEvaluate
 	{		
 		[Input("Cursor Pos")]
-		ISpread<int> FCurPos;
+		public ISpread<int> FCurPos;
 		[Input("Set")]
-		ISpread<bool> FSet;
+		public ISpread<bool> FSet;
 		
 		[DllImport("C:\\Windows\\System32\\user32.dll")]
 		public static extern bool SetCursorPos(int X, int Y);

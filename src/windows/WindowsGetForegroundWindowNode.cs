@@ -21,12 +21,12 @@ namespace mp.essentials.Nodes.Windows
 	{
 		#region fields & pins
 		[Input("Update", DefaultValue = 0)]
-		ISpread<bool> FUpdate;
+		public ISpread<bool> FUpdate;
 
 		[Output("Handle Out")]
-		ISpread<int> FOutput;
+		public ISpread<int> FOutput;
 		[Output("Title")]
-		ISpread<string> FTitle;
+		public ISpread<string> FTitle;
 		#endregion fields & pins
 
 		[DllImport("C:\\Windows\\System32\\user32.dll")]

@@ -21,12 +21,12 @@ namespace mp.essentials.Nodes.Windows
 	{
 		#region fields & pins
 		[Input("Handle In", DefaultValue = 0)]
-		ISpread<int> FInput;
+		public ISpread<int> FInput;
 
 		[Output("ProcessID")]
-		ISpread<uint> FPID;
+		public ISpread<uint> FPID;
 		[Output("ThreadID")]
-		ISpread<int> FTID;
+		public ISpread<int> FTID;
 		#endregion fields & pins
 
 		[DllImport("C:\\Windows\\System32\\user32.dll")]

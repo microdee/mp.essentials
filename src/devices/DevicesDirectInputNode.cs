@@ -17,133 +17,6 @@ using VVVV.Core.Logging;
 
 namespace mp.essentials.Nodes.Devices
 {
-    /*
-	[PluginInfo(
-        Name = "DirectInput",
-        Category = "Devices",
-        Author = "microdee"
-        )]
-	public class DevicesDirectInputNode : IPluginEvaluate
-	{
-		#region fields & pins
-		[Input("Window Handle", DefaultValue = -1, IsSingle = true)]
-		ISpread<int> FHandle;
-		[Input("Foreground", DefaultValue = 0, IsSingle = true)]
-		ISpread<bool> FFrg;
-		[Input("Exclusive", DefaultValue = 0, IsSingle = true)]
-		ISpread<bool> FExclusive;
-		[Input("Reinitialize", DefaultValue = 0, IsBang = true, IsSingle = true)]
-		ISpread<bool> FInit;
-
-		[Output("Mouse Position XYW")]
-		ISpread<int> FPos;
-		[Output("Mouse Buttons")]
-		ISpread<bool> FButton;
-		[Output("Keyboard Output")]
-		ISpread<string> FKeysCon;
-		[Output("Keyboard Spread")]
-		ISpread<string> FKeys;
-		[Output("Key's HashCode")]
-		ISpread<int> FKeyCode;
-
-		[Import()]
-		ILogger FLogger;
-		#endregion fields & pins
-		
-		[DllImport("C:\\Windows\\System32\\user32.dll")]
-		public static extern IntPtr GetForegroundWindow();
-		
-		private DirectInput dinput;
-		private Mouse mouse;
-		private Keyboard keyb;
-		
-		private void InitDevice() {
-			dinput = new DirectInput();
-			mouse = new Mouse(dinput);
-			keyb = new Keyboard(dinput);
-			IntPtr handle = (FHandle[0]==-1) ? GetForegroundWindow() : new IntPtr(FHandle[0]);
-			if(FFrg[0] && (!FExclusive[0])) {
-				mouse.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Foreground | CooperativeLevel.Nonexclusive
-				);
-				keyb.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Foreground | CooperativeLevel.Nonexclusive
-				);
-			}
-			if(FFrg[0] && FExclusive[0]) {
-				mouse.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Foreground | CooperativeLevel.Exclusive
-				);
-				keyb.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Foreground | CooperativeLevel.Exclusive
-				);
-			}
-			if(!FFrg[0]) {
-				mouse.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Background | CooperativeLevel.Nonexclusive
-				);
-				keyb.SetCooperativeLevel(
-					handle,
-					CooperativeLevel.Background | CooperativeLevel.Nonexclusive
-				);
-			}
-			mouse.Acquire();
-			keyb.Acquire();
-		}
-		
-		[ImportingConstructor]
-		public DevicesDirectInputNode() {
-			dinput = new DirectInput();
-			mouse = new Mouse(dinput);
-			//mouse.Properties.AxisModeAbsolute = false;
-			mouse.Acquire();
-			keyb = new Keyboard(dinput);
-			keyb.Acquire();
-		}
-		//called when data for any output pin is requested
-		public void Evaluate(int SpreadMax)
-		{
-			if(FInit[0]) InitDevice();
-			if(mouse == null) FLogger.Log(LogType.Debug, "No mouse found.");
-			MouseState state = mouse.GetCurrentState();
-			KeyboardState kstate = keyb.GetCurrentState();
-			FPos.SliceCount = 3;
-			FPos[0] = state.X;
-			FPos[1] = state.Y;
-			FPos[2] = state.Z;
-			
-			bool[] buttons = state.GetButtons();
-			FButton.SliceCount = buttons.Length;
-			for(int i=0; i < buttons.Length; i++) {
-				FButton[i] = buttons[i];
-			}
-
-		    //Capture pressed keys.
-			string info = "";
-			int j = 0;
-		    foreach(Key k in kstate.PressedKeys) j++;
-			FKeys.SliceCount = j;
-			FKeyCode.SliceCount = j; j=0;
-		    foreach(Key k in kstate.PressedKeys)
-    		{
-    			FKeyCode[j] = k.GetHashCode();
-    			// formatting for better "compatibility" with Keyboard (System Global)
-    			// every key name will be placed in <> brackets except numbers and letters
-        		FKeys[j] = k.ToString();
-    			info += FKeys[j];
-    			j++;
-    		}
-			FKeysCon.SliceCount = 1;
-			FKeysCon[0] = info;
-		}
-	}
-	*/
-
 	[PluginInfo(
         Name = "GameController",
         Category = "Devices",
@@ -155,51 +28,51 @@ namespace mp.essentials.Nodes.Devices
 	{
 		#region fields & pins
 		[Input("Window Handle", DefaultValue = -1, IsSingle = true)]
-		ISpread<int> FHandle;
+		public ISpread<int> FHandle;
 		[Input("Foreground", DefaultValue = 0, IsSingle = true)]
-		ISpread<bool> FFrg;
+		public ISpread<bool> FFrg;
 		[Input("Exclusive", DefaultValue = 0, IsSingle = true)]
-		ISpread<bool> FExclusive;
+		public ISpread<bool> FExclusive;
 		[Input("Reinitialize", DefaultValue = 0, IsBang = true, IsSingle = true)]
-		ISpread<bool> FInit;
+		public ISpread<bool> FInit;
 		[Input("Device", EnumName = "DirectInputGameControllerDevices", IsSingle = true)]
-		IDiffSpread<EnumEntry> FDevice;
+		public IDiffSpread<EnumEntry> FDevice;
 
 		[Output("Name")]
-		ISpread<string> FName;
+		public ISpread<string> FName;
 		
 		[Output("XYZ ")]
-		ISpread<Vector3D> FXYZ;
+		public ISpread<Vector3D> FXYZ;
 		[Output("Velocity ")]
-		ISpread<Vector3D> Fv;
+		public ISpread<Vector3D> Fv;
 		[Output("Acceleration ")]
-		ISpread<Vector3D> Fa;
+		public ISpread<Vector3D> Fa;
 		
 		[Output("Rotation ")]
-		ISpread<Vector3D> FRot;
+		public ISpread<Vector3D> FRot;
 		[Output("Angular Velocity ")]
-		ISpread<Vector3D> FAv;
+		public ISpread<Vector3D> FAv;
 		[Output("Angular Acceleration ")]
-		ISpread<Vector3D> FAa;
+		public ISpread<Vector3D> FAa;
 		
 		[Output("Torque ")]
-		ISpread<Vector3D> Ft;
+		public ISpread<Vector3D> Ft;
 		[Output("Force ")]
-		ISpread<Vector3D> Ff;
+		public ISpread<Vector3D> Ff;
 		
 		[Output("Sliders")]
-		ISpread<ISpread<int>> FSliders;
+		public ISpread<ISpread<int>> FSliders;
 		[Output("Point of View")]
-		ISpread<ISpread<int>> FPoV;
+		public ISpread<ISpread<int>> FPoV;
 		
 		[Output("Buttons")]
-		ISpread<ISpread<bool>> FButtons;
+		public ISpread<ISpread<bool>> FButtons;
 		
 		[Output("Objects")]
-		ISpread<ISpread<DeviceObjectInstance>> FObjects;
+		public ISpread<ISpread<DeviceObjectInstance>> FObjects;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 		#endregion fields & pins
 		
 		[DllImport("C:\\Windows\\System32\\user32.dll")]
@@ -351,32 +224,32 @@ namespace mp.essentials.Nodes.Devices
 	public class DirectInputDevicesDeviceObjectNode : IPluginEvaluate
 	{
 		[Input("Device Object")]
-		ISpread<DeviceObjectInstance> FDOI;
+		public ISpread<DeviceObjectInstance> FDOI;
 		
 		[Output("Collection Number")]
-		ISpread<int> FCollectionNumber;
+		public ISpread<int> FCollectionNumber;
 		[Output("Designator Index")]
-		ISpread<int> FDesignatorIndex;
+		public ISpread<int> FDesignatorIndex;
 		[Output("Dimension")]
-		ISpread<int> FDimension;
+		public ISpread<int> FDimension;
 		[Output("Exponent")]
-		ISpread<int> FExponent;
+		public ISpread<int> FExponent;
 		[Output("Force Feedback Resolution")]
-		ISpread<int> FFFR;
+		public ISpread<int> FFFR;
 		[Output("Maximum Force Feedback")]
-		ISpread<int> FMFF;
+		public ISpread<int> FMFF;
 		[Output("Name")]
-		ISpread<string> FName;
+		public ISpread<string> FName;
 		[Output("Object Type")]
-		ISpread<string> FType;
+		public ISpread<string> FType;
 		[Output("Offset")]
-		ISpread<int> FOffset;
+		public ISpread<int> FOffset;
 		[Output("Report ID")]
-		ISpread<int> FReportID;
+		public ISpread<int> FReportID;
 		[Output("Usage")]
-		ISpread<int> FUsage;
+		public ISpread<int> FUsage;
 		[Output("Usage Page")]
-		ISpread<int> FUsagePage;
+		public ISpread<int> FUsagePage;
 		
 		public void Evaluate(int SpreadMax)
 		{

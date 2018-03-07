@@ -13,7 +13,7 @@ using GraphSharp.Algorithms.Layout.Compound.FDP;
 using GraphSharp.Algorithms.Layout.Simple.FDP;
 using QuickGraph;
 using QuickGraph.Algorithms;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 

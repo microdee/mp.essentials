@@ -4,7 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;

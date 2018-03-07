@@ -80,7 +80,7 @@ namespace mp.essentials.Nodes.Network
 		                    Success = true;
 		                };
                     }
-		            catch (Exception e)
+		            catch
 		            {
 		                Message = "Audio only is not available. Falling back to video";
 		                audio = false;

@@ -20,10 +20,10 @@ namespace mp.essentials.Nodes.Windows
 	{
 		#region fields & pins
 		[Input("Handle In", DefaultValue = 0)]
-		ISpread<int> FInput;
+		public ISpread<int> FInput;
 
 		[Output("Handle Out")]
-		ISpread<int> FOutput;
+		public ISpread<int> FOutput;
 		#endregion fields & pins
 		
 		[DllImport("C:\\Windows\\System32\\user32.dll")]

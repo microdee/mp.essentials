@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimMetrics.Net.API;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.PluginInterfaces.V2;
 
 namespace mp.essentials.Nodes.Strings

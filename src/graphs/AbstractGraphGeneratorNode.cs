@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using GraphSharp.Algorithms.Layout;
 using QuickGraph;
-using VVVV.Nodes.PDDN;
+using mp.pddn;
 using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;

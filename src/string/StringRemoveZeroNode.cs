@@ -21,13 +21,13 @@ namespace mp.essentials.Nodes.Strings
 	{
 		#region fields & pins
 		[Input("Input", DefaultString = "1.0000000")]
-		ISpread<string> FInput;
+		public ISpread<string> FInput;
 
 		[Output("Output")]
-		ISpread<string> FOutput;
+		public ISpread<string> FOutput;
 
 		[Import()]
-		ILogger FLogger;
+		public ILogger FLogger;
 		#endregion fields & pins
 
 		//called when data for any output pin is requested
