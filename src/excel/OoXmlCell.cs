@@ -102,8 +102,8 @@ namespace mp.essentials.Nodes.Excel
                         FFlatVals[i].SliceCount = 1;
                         FType[i].SliceCount = 1;
 
-                        FFlatString[i][0] = currrange.Value.ToString();
-                        FFlatVals[i][0] = (double)currrange.Value;
+                        FFlatString[i][0] = currrange.Value?.ToString() ?? "";
+                        FFlatVals[i][0] = (double)(currrange.Value ?? 0.0);
                         FType[i][0] = CellType.Number;
                     }
                     else
@@ -112,7 +112,7 @@ namespace mp.essentials.Nodes.Excel
                         FFlatVals[i].SliceCount = 1;
                         FType[i].SliceCount = 1;
 
-                        FFlatString[i][0] = currrange.Value.ToString();
+                        FFlatString[i][0] = currrange.Value?.ToString() ?? "";
                         FFlatVals[i][0] = 0;
                         FType[i][0] = currrange.Value is string ? CellType.Text : CellType.Other;
                     }
