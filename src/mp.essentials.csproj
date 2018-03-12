@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mp.essentials</RootNamespace>
     <AssemblyName>mp.essentials</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,11 +56,11 @@
     <Reference Include="LzmaSharp">
       <HintPath>Dependencies\LzmaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="md.stdl, Version=0.1.41.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\md-stdl.0.1.41-beta\lib\net461\md.stdl.dll</HintPath>
+    <Reference Include="md.stdl, Version=0.1.44.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\md-stdl.0.1.44-beta\lib\net47\md.stdl.dll</HintPath>
     </Reference>
-    <Reference Include="mp.pddn, Version=1.1.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\mp.pddn.1.1.14\lib\net461\mp.pddn.dll</HintPath>
+    <Reference Include="mp.pddn, Version=1.1.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\mp.pddn.1.1.19\lib\net47\mp.pddn.dll</HintPath>
     </Reference>
     <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
       <HintPath>packages\MsgPack.Cli.0.8.0\lib\net46\MsgPack.dll</HintPath>
