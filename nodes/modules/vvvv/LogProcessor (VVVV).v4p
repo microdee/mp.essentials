@@ -1,0 +1,93 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\vvvv\LogProcessor (VVVV).v4p" systemname="LogProcessor (VVVV)" filename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\vvvv\LogProcessor (VVVV).v4p">
+   <BOUNDS type="Window" left="26400" top="17730" width="16155" height="9795">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="35.9.0">
+   </PACK>
+   <NODE componentmode="Hidden" id="1" nodename="Renderer (TTY)" systemname="Renderer (TTY)" border="1">
+   <BOUNDS height="100" left="855" top="1440" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="1800" left="855" top="1440" type="Box" width="2400">
+   </BOUNDS>
+   <BOUNDS height="2190" left="0" top="0" type="Window" width="18840">
+   </BOUNDS>
+   <PIN pinname="String Output" visible="1">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Log">
+   </PIN>
+   <PIN pinname="Show TimeStamp" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Layers" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Log Messages" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1830" top="735" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1830" top="735" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Log Messages">
+   </LINK>
+   <NODE systemname="ComponentMode (VVVV alias)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\ComponentMode (VVVV alias).v4p" nodename="ComponentMode (VVVV alias)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="2115" top="2805" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   <PIN pinname="id" visible="1">
+   </PIN>
+   <PIN pinname="InAWindow?" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="border" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="PatchAlias (VVVV)" nodename="PatchAlias (VVVV)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="2025" top="2190" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Patch" dstnodeid="5" dstpinname="Patch">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="ID" dstnodeid="5" dstpinname="id">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="3405" top="1050" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3405" top="1050" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Show Log|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="5" dstpinname="InAWindow?">
+   </LINK>
+   </PATCH>

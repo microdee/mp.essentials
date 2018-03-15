@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" systemname="R (Value InPatch)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" scrollx="0" scrolly="75">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.11.dtd" >
+   <PATCH nodename="D:\local\DI-DVAG-MultitouchWand\v2\DVAG-MultitouchWand-2\vvvv\vvvv_50alpha35.11_x64\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" systemname="R (Value InPatch)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="2160" top="1965" width="11610" height="8640">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.9.9">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.3">
    </PACK>
@@ -236,116 +236,70 @@
    </LINK>
    <LINK srcnodeid="37" srcpinname="Output" dstnodeid="33" dstpinname="XML Input">
    </LINK>
-   <NODE systemname="String2Enum (Enumerations)" nodename="String2Enum (Enumerations)" componentmode="Hidden" id="61">
-   <BOUNDS type="Node" left="6735" top="2025" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="String Value" visible="1">
-   </PIN>
-   <PIN pinname="Enum" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="60">
-   <BOUNDS type="Box" left="6735" top="1560" width="1635" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6735" top="1560" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="Multiline">
-   </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="1" values="ValueSendChannels">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="60" srcpinname="Output String" dstnodeid="61" dstpinname="String Value">
-   </LINK>
    <NODE systemname="Entry2String (Enumerations)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Entry2String (Enumerations)" componentmode="Hidden" id="59">
-   <BOUNDS type="Node" left="6720" top="2520" width="100" height="100">
+   <BOUNDS type="Node" left="1230" top="4080" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="6720" top="2520" width="3000" height="3000">
+   <BOUNDS type="Box" left="1230" top="4080" width="3000" height="3000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="AllEnums">
+   <PIN pinname="Input" visible="1" slicecount="1" values="ValueSendChannels">
    </PIN>
    <PIN pinname="Enum Name" visible="1">
    </PIN>
    <PIN pinname="Entries" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="61" srcpinname="Enum" dstnodeid="59" dstpinname="Input">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="72">
+   <BOUNDS type="Box" left="1260" top="3660" width="1770" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1260" top="3660" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="ValueSendChannels">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="AllEnums">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="72" srcpinname="Output Enum" dstnodeid="59" dstpinname="Input">
    </LINK>
-   <NODE systemname="Change (String)" nodename="Change (String)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="7170" top="3645" width="100" height="100">
+   <NODE id="54" componentmode="Hidden" systemname="InPatchReceiveEnumUpdater (RS Internal)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\InPatchReceiveEnumUpdater (RS Internal).v4p" nodename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\InPatchReceiveEnumUpdater (RS Internal).v4p">
+   <PIN pinname="InPatchEnumName" slicecount="1" visible="1" values="ValueSendChannels">
+   </PIN>
+   <PIN pinname="Evaluate" slicecount="1" visible="-1" pintype="Input" values="1">
+   </PIN>
+   <BOUNDS type="Window" left="10575" top="0" width="16350" height="10890">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="OnChange" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="56">
-   <BOUNDS type="Node" left="7170" top="4110" width="100" height="100">
+   <BOUNDS type="Node" left="585" top="4620" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Input Count" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Input 3" visible="1" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="InPatchReceiveEnumUpdater (RS Internal)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\InPatchReceiveEnumUpdater (RS Internal).v4p" componentmode="Hidden" id="54" nodename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\InPatchReceiveEnumUpdater (RS Internal).v4p">
-   <BOUNDS type="Node" left="5070" top="4890" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="5070" top="4890" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="10575" top="-9510" width="9000" height="6000">
+   <BOUNDS type="Box" left="585" top="4620" width="4800" height="3600">
    </BOUNDS>
    <PIN pinname="NodePath" visible="1" slicecount="1" values="text">
    </PIN>
    <PIN pinname="SendChannels" visible="1">
    </PIN>
-   <PIN pinname="InPatchEnumName" visible="1">
-   </PIN>
    <PIN pinname="UpdateEnum" visible="1">
    </PIN>
    <PIN pinname="Receive" visible="1" slicecount="1" values="(nil)">
    </PIN>
-   <PIN pinname="Evaluate" visible="1" pintype="Input" slicecount="1" values="1">
+   <PIN pinname="Enum Sample" visible="1" slicecount="1" values="Eval">
+   </PIN>
+   <PIN pinname="Selected Text" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Entries" dstnodeid="54" dstpinname="SendChannels">
    </LINK>
-   <LINK srcnodeid="60" srcpinname="Output String" dstnodeid="54" dstpinname="InPatchEnumName">
-   </LINK>
-   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="54" dstpinname="UpdateEnum">
-   </LINK>
-   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="54" dstpinname="Evaluate">
-   </LINK>
    <LINK srcnodeid="25" srcpinname="Output" dstnodeid="54" dstpinname="NodePath">
    </LINK>
-   <NODE systemname="Enum2String (Enumerations)" nodename="Enum2String (Enumerations)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="1455" top="4680" width="100" height="100">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="73">
+   <BOUNDS type="Box" left="2280" top="4110" width="1590" height="270">
    </BOUNDS>
-   <PIN pinname="Enum" visible="1" slicecount="1" values="(nil)">
-   </PIN>
-   <PIN pinname="String Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63">
-   <BOUNDS type="Box" left="1440" top="4035" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="1440" top="4035" width="0" height="0">
+   <BOUNDS type="Node" left="2280" top="4110" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Eval">
    </PIN>
-   <PIN pinname="Default" slicecount="1" values="(nil)">
+   <PIN pinname="Default" slicecount="1" values="Eval">
    </PIN>
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
@@ -353,39 +307,11 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Receive String|">
    </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
    </NODE>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="62" dstpinname="Enum">
+   <LINK srcnodeid="73" srcpinname="Output Enum" dstnodeid="54" dstpinname="Enum Sample">
    </LINK>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="54" dstpinname="Receive">
+   <LINK srcnodeid="54" srcpinname="Selected Text" dstnodeid="3" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="62" srcpinname="String Value" dstnodeid="3" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="String Value" dstnodeid="37" dstpinname="Argument 2">
-   </LINK>
-   <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="7170" top="3090" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="59" srcpinname="Entries" dstnodeid="64" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="64" srcpinname="Output" dstnodeid="58" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="58" srcpinname="OnChange" dstnodeid="56" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="Output" dstnodeid="56" dstpinname="Input 2">
-   </LINK>
-   <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="66">
-   <BOUNDS type="Node" left="7935" top="3750" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="66" srcpinname="Output" dstnodeid="56" dstpinname="Input 3">
+   <LINK srcnodeid="54" srcpinname="Selected Text" dstnodeid="37" dstpinname="Argument 2">
    </LINK>
    </PATCH>
