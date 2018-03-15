@@ -392,7 +392,7 @@ namespace mp.essentials.Nodes.Shaders
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-                Pd.AddInput(pintype, pinattr, option);
+                Pd.AddInput(pintype, pinattr, obj: option);
                 Invalidate = true;
             }
             Pd.EndInputExchange();

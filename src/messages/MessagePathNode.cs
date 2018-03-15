@@ -65,7 +65,7 @@ namespace mp.essentials.Nodes.Messages
             if(pd.OutputPins.ContainsKey("Output"))
                 if(pd.OutputPins["Output"].Type == expectedtype) return;
             pd.RemoveAllOutput();
-            pd.AddOutputBinSized(expectedtype, new OutputAttribute("Output"));
+            pd.AddOutput(expectedtype, new OutputAttribute("Output"), binSized: true);
             GetData();
         }
 

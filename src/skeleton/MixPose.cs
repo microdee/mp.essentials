@@ -48,12 +48,12 @@ namespace mp.essentials.Nodes.SkeletonV2
                     Pins.AddInput(typeof(ISkeleton), new InputAttribute($"Pose {i}")
                     {
                         Order = i * 2
-                    }, i);
+                    }, obj: i);
                     Pins.AddInput(typeof(double), new InputAttribute($"Amount {i}")
                     {
                         Order = i * 2 + 1,
                         DefaultValue = 1
-                    }, i);
+                    }, obj: i);
                 }
             }
             if (currposecount > FPoseCount[0])

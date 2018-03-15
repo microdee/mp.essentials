@@ -56,11 +56,11 @@
     <Reference Include="LzmaSharp">
       <HintPath>Dependencies\LzmaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="md.stdl, Version=0.1.44.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\md-stdl.0.1.44-beta\lib\net47\md.stdl.dll</HintPath>
+    <Reference Include="md.stdl, Version=0.1.45.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\md-stdl.0.1.45-beta\lib\net47\md.stdl.dll</HintPath>
     </Reference>
-    <Reference Include="mp.pddn, Version=1.1.19.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\mp.pddn.1.1.19\lib\net47\mp.pddn.dll</HintPath>
+    <Reference Include="mp.pddn, Version=1.1.23.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\mp.pddn.1.1.23\lib\net47\mp.pddn.dll</HintPath>
     </Reference>
     <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
       <HintPath>packages\MsgPack.Cli.0.8.0\lib\net46\MsgPack.dll</HintPath>
@@ -198,6 +198,7 @@
     <Compile Include="generic\CastToAll.cs" />
     <Compile Include="generic\DictionaryNodes.cs" />
     <Compile Include="generic\GenericAsObjectNode.cs" />
+    <Compile Include="generic\GenericDictionaryNode.cs" />
     <Compile Include="generic\GenericKeepLastNode.cs" />
     <Compile Include="generic\GenericZip.cs" />
     <Compile Include="generic\NodeEvaluateNode.cs" />

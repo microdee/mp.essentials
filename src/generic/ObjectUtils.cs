@@ -9,11 +9,10 @@ using md.stdl.Mathematics;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using mp.pddn;
+using VVVV.PluginInterfaces.V2.NonGeneric;
 using VVVV.Utils.Reflection;
 using VVVV.Utils.VMath;
 using Matrix4x4 = System.Numerics.Matrix4x4;
-using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
-using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
 namespace mp.essentials.Nodes.Generic
 {
@@ -30,6 +29,7 @@ namespace mp.essentials.Nodes.Generic
         protected GenericInput FInput;
 
         [Output("Object Type")] public ISpread<string> FType;
+        [Output("Is Null")] public ISpread<bool> FNull;
 
         public void OnImportsSatisfied()
         {
@@ -40,15 +40,24 @@ namespace mp.essentials.Nodes.Generic
         {
             if (FInput.Connected)
             {
-                FType.SliceCount = FInput.Pin.SliceCount;
+                FType.SliceCount = FNull.SliceCount = FInput.Pin.SliceCount;
                 for (int i = 0; i < FInput.Pin.SliceCount; i++)
                 {
-                    FType[i] = FInput[i].GetType().AssemblyQualifiedName;
+                    if (FInput[i] == null)
+                    {
+                        FType[i] = "null";
+                        FNull[i] = true;
+                    }
+                    else
+                    {
+                        FType[i] = FInput[i].GetType().AssemblyQualifiedName;
+                        FNull[i] = false;
+                    }
                 }
             }
             else
             {
-                FType.SliceCount = 0;
+                FType.SliceCount = FNull.SliceCount = 0;
             }
         }
     }
@@ -81,6 +90,11 @@ namespace mp.essentials.Nodes.Generic
                 FType.SliceCount = FInput.Pin.SliceCount;
                 for (int i = 0; i < FInput.Pin.SliceCount; i++)
                 {
+                    if (FInput[i] == null)
+                    {
+                        FType[i].SliceCount = 0;
+                        continue;
+                    }
                     var types = FInput[i].GetType().GetTypes().ToArray();
                     if (FInhLevel[i] < 0)
                     {
@@ -117,8 +131,8 @@ namespace mp.essentials.Nodes.Generic
         [Input("Input")]
         public Pin<object> FInput;
 
-        [Output("Object Type")]
-        public ISpread<string> FType;
+        [Output("Object Type")] public ISpread<string> FType;
+        [Output("Is Null")] public ISpread<bool> FNull;
 
         public void Evaluate(int SpreadMax)
         {
@@ -127,7 +141,16 @@ namespace mp.essentials.Nodes.Generic
                 FType.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    FType[i] = FInput[i].GetType().AssemblyQualifiedName;
+                    if (FInput[i] == null)
+                    {
+                        FType[i] = "null";
+                        FNull[i] = true;
+                    }
+                    else
+                    {
+                        FType[i] = FInput[i].GetType().AssemblyQualifiedName;
+                        FNull[i] = false;
+                    }
                 }
             }
             else
@@ -137,6 +160,7 @@ namespace mp.essentials.Nodes.Generic
         }
     }
 
+    /*
     [PluginInfo(
          Name = "FilterType",
          Category = "Object",
@@ -163,7 +187,7 @@ namespace mp.essentials.Nodes.Generic
             ConfigPinCopy = FType;
         }
 
-        private Type CType;
+        private Type _pg.GroupType;
 
         protected override bool IsConfigDefault()
         {
@@ -174,25 +198,25 @@ namespace mp.essentials.Nodes.Generic
         {
             if (FType[0] != "")
             {
-                CType = Type.GetType(FType[0], true);
+                _pg.GroupType = Type.GetType(FType[0], true);
 
                 if (FTypeRef.Pin.SliceCount != 0)
                 {
                     if (FTypeRef[0] != null)
                     {
                         Type T = FTypeRef[0].GetType();
-                        if (T != CType)
+                        if (T != _pg.GroupType)
                         {
                             pd.RemoveAllOutput();
                             pd.AddOutputBinSized(T, new OutputAttribute("Output"));
-                            CType = T;
+                            _pg.GroupType = T;
                             FType[0] = T.AssemblyQualifiedName;
                         }
                     }
                 }
 
                 //RemoveAllOutput();
-                pd.AddOutputBinSized(CType, new OutputAttribute("Output"));
+                pd.AddOutputBinSized(_pg.GroupType, new OutputAttribute("Output"));
             }
         }
 
@@ -204,15 +228,15 @@ namespace mp.essentials.Nodes.Generic
                 {
                     Type T = FTypeRef[0].GetType();
                     bool valid = false;
-                    if (CType == null)
+                    if (_pg.GroupType == null)
                         valid = true;
                     else
-                        valid = T != CType;
+                        valid = T != _pg.GroupType;
                     if (valid)
                     {
                         pd.RemoveAllOutput();
                         pd.AddOutputBinSized(T, new OutputAttribute("Output"));
-                        CType = T;
+                        _pg.GroupType = T;
                         FType[0] = T.AssemblyQualifiedName;
                     }
                 }
@@ -221,8 +245,8 @@ namespace mp.essentials.Nodes.Generic
                     pd.OutputPins["Output"].Spread.SliceCount = FInput.Pin.SliceCount;
                     for (int i = 0; i < FInput.Pin.SliceCount; i++)
                     {
-                        var cspread = (NGISpread) pd.OutputPins["Output"].Spread[i];
-                        if (CType == FInput[i].GetType())
+                        var cspread = (ISpread) pd.OutputPins["Output"].Spread[i];
+                        if (_pg.GroupType == FInput[i].GetType())
                         {
                             cspread.SliceCount = 1;
                             cspread[0] = FInput[i];
@@ -269,13 +293,13 @@ namespace mp.essentials.Nodes.Generic
             ConfigPinCopy = FType;
         }
 
-        private Type CType;
+        private Type _pg.GroupType;
 
         protected override void OnConfigPinChanged()
         {
-            CType = Type.GetType(FType[0], true);
+            _pg.GroupType = Type.GetType(FType[0], true);
             pd.RemoveAllOutput();
-            pd.AddOutputBinSized(CType, new OutputAttribute("Output"));
+            pd.AddOutputBinSized(_pg.GroupType, new OutputAttribute("Output"));
         }
 
         protected override bool IsConfigDefault()
@@ -287,9 +311,9 @@ namespace mp.essentials.Nodes.Generic
         {
             if (FType[0] != "")
             {
-                CType = Type.GetType(FType[0], true);
+                _pg.GroupType = Type.GetType(FType[0], true);
                 //RemoveAllOutput();
-                pd.AddOutputBinSized(CType, new OutputAttribute("Output"));
+                pd.AddOutputBinSized(_pg.GroupType, new OutputAttribute("Output"));
             }
         }
 
@@ -302,8 +326,8 @@ namespace mp.essentials.Nodes.Generic
                     pd.OutputPins["Output"].Spread.SliceCount = FInput.Pin.SliceCount;
                     for (int i = 0; i < FInput.Pin.SliceCount; i++)
                     {
-                        var cspread = (NGISpread) pd.OutputPins["Output"].Spread[i];
-                        if (CType == FInput[i].GetType())
+                        var cspread = (ISpread) pd.OutputPins["Output"].Spread[i];
+                        if (_pg.GroupType == FInput[i].GetType())
                         {
                             cspread.SliceCount = 1;
                             cspread[0] = FInput[i];
@@ -324,6 +348,7 @@ namespace mp.essentials.Nodes.Generic
             }
         }
     }
+    */
 
     [PluginInfo(
          Name = "Expand",
@@ -331,74 +356,32 @@ namespace mp.essentials.Nodes.Generic
          Tags = "Split",
          Author = "microdee",
          AutoEvaluate = true)]
-    public class ObjectExpandNode : ConfigurableDynamicPinNode<string>, IPluginEvaluate
+    public class ObjectExpandNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
-        [Import] protected IPluginHost2 FPluginHost; 
+        [Import] protected IPluginHost2 FPluginHost;
         [Import] protected IIOFactory FIOFactory;
+        [Import] protected IHDEHost Hde;
 
-        [Config("Type", DefaultString = "")] public IDiffSpread<string> FType;
+        private ConfigurableTypePinGroup _pg;
+        private bool _typeChanged;
+        private bool _pgready;
+        private DiffSpreadPin _input;
+
         [Input("Force Update", Order = 100)] public ISpread<bool> FForceUpdate;
-        public GenericInput FRefType;
         [Input("Expose private", Order = 101)] public ISpread<bool> FExposePrivate;
-        [Input("Learnt Type Inheritence Level", Order = 102, Visibility = PinVisibility.Hidden, DefaultValue = 0)]
-        public ISpread<int> FTypeInheritence;
-        [Input("Learn Type", Order = 103, IsBang = true)] public ISpread<bool> FLearnType;
 
         public Type TransformType(Type original, MemberInfo member)
         {
-            if (original == typeof(Vector2))
-            {
-                return typeof(Vector2D);
-            }
-            if (original == typeof(Vector3))
-            {
-                return typeof(Vector3D);
-            }
-            if (original == typeof(Vector4))
-            {
-                return typeof(Vector4D);
-            }
-            if (original == typeof(Matrix4x4))
-            {
-                return typeof(VVVV.Utils.VMath.Matrix4x4);
-            }
-            return original;
+            return MiscExtensions.MapSystemNumericsTypeToVVVV(original);
         }
 
         public object TransformOutput(object obj, MemberInfo member, int i)
         {
-            switch (obj)
-            {
-                case Vector2 v:
-                {
-                    return v.AsVVector();
-                }
-                case Vector3 v:
-                {
-                    return v.AsVVector();
-                }
-                case Vector4 v:
-                {
-                    return v.AsVVector();
-                }
-                case Matrix4x4 v:
-                {
-                    return v.AsVMatrix4X4();
-                }
-                default:
-                {
-                    return obj;
-                }
-            }
+            return MiscExtensions.MapSystemNumericsValueToVVVV(obj);
         }
 
-        protected override void PreInitialize()
+        public void OnImportsSatisfied()
         {
-            ConfigPinCopy = FType;
-            FRefType = new GenericInput(FPluginHost, new InputAttribute("Reference Type")
-            {
-                Order = 101
-            });
             Pd = new PinDictionary(FIOFactory);
             foreach (var pin in FPluginHost.GetPins())
             {
@@ -406,11 +389,37 @@ namespace mp.essentials.Nodes.Generic
                 pin.SetSlice(0, "");
                 break;
             }
-        }
 
-        protected override bool IsConfigDefault()
-        {
-            return FType[0] == "";
+            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Input", 100);
+            _pg.OnTypeChangeEnd += (sender, args) =>
+            {
+                _typeChanged = true;
+
+                foreach (var pin in FPluginHost.GetPins())
+                {
+                    if (pin.Name != "Descriptive Name") continue;
+                    pin.SetSlice(0, "");
+                    break;
+                }
+                Pd.RemoveAllInput();
+                IsMemberEnumerable.Clear();
+
+                foreach (var pin in FPluginHost.GetPins())
+                {
+                    if (pin.Name != "Descriptive Name") continue;
+                    pin.SetSlice(0, _pg.GroupType.GetCSharpName());
+                    break;
+                }
+                
+                foreach (var field in _pg.GroupType.GetFields())
+                    AddMemberPin(field);
+                foreach (var prop in _pg.GroupType.GetProperties())
+                    AddMemberPin(prop);
+
+                if (_pgready) return;
+                _pgready = true;
+                _input = _pg.AddInput(new InputAttribute("Input"));
+            };
         }
 
         protected Dictionary<MemberInfo, bool> IsMemberEnumerable = new Dictionary<MemberInfo, bool>();
@@ -457,7 +466,7 @@ namespace mp.essentials.Nodes.Generic
                             }
                         })
                         .First().GenericTypeArguments[0];
-                    Pd.AddOutputBinSized(TransformType(stype, member), new OutputAttribute(member.Name));
+                    Pd.AddOutput(TransformType(stype, member), new OutputAttribute(member.Name), binSized: true);
                     enumerable = true;
                 }
                 catch (Exception)
@@ -489,7 +498,7 @@ namespace mp.essentials.Nodes.Generic
             if (IsMemberEnumerable[member])
             {
                 var enumerable = (IEnumerable)memberValue;
-                var spread = (NGISpread)Pd.OutputPins[member.Name].Spread[i];
+                var spread = (ISpread)Pd.OutputPins[member.Name].Spread[i];
                 spread.SliceCount = 0;
                 foreach (var o in enumerable)
                 {
@@ -502,67 +511,30 @@ namespace mp.essentials.Nodes.Generic
                 Pd.OutputPins[member.Name].Spread[i] = TransformOutput(memberValue, member, i);
             }
         }
-
-        protected override void OnConfigPinChanged()
-        {
-            FType.Stream.IsChanged = false;
-            foreach (var pin in FPluginHost.GetPins())
-            {
-                if (pin.Name != "Descriptive Name") continue;
-                pin.SetSlice(0, "");
-                break;
-            }
-            if (IsConfigDefault()) return;
-            Pd.RemoveAllInput();
-            Pd.RemoveAllOutput();
-            IsMemberEnumerable.Clear();
-            CType = Type.GetType(FType[0]);
-            if(CType == null) return;
-
-            foreach (var pin in FPluginHost.GetPins())
-            {
-                if (pin.Name != "Descriptive Name") continue;
-                pin.SetSlice(0, CType.GetCSharpName());
-                break;
-            }
-
-            Pd.AddInput(CType, new InputAttribute("Input"));
-            foreach (var field in CType.GetFields())
-                AddMemberPin(field);
-            foreach (var prop in CType.GetProperties())
-                AddMemberPin(prop);
-        }
-
-        protected Type CType;
+        
         protected int InitDescSet = 0;
         protected PinDictionary Pd;
 
-        public void Evaluate(int SpreadMax)                                                               
+        public void Evaluate(int SpreadMax)
         {
-            if (FLearnType[0])
+            var typechanged = false;
+            if (_typeChanged)
             {
-                try
-                {
-                    var types = FRefType[0].GetType().GetTypes().ToArray();
-                    FType[0] = types[Math.Min(FTypeInheritence[0], types.Length - 1)].AssemblyQualifiedName;
-                    FType.Stream.IsChanged = true;
-                }
-                catch (Exception e)
-                { }
+                typechanged = true;
+                _typeChanged = false;
             }
             if (InitDescSet < 5)
             {
                 foreach (var pin in FPluginHost.GetPins())
                 {
                     if (pin.Name != "Descriptive Name") continue;
-                    pin.SetSlice(0, CType?.GetCSharpName());
+                    pin.SetSlice(0, _pg.GroupType?.GetCSharpName() ?? "");
                     InitDescSet++;
                     break;
                 }
             }
-            if (IsConfigDefault()) return;
-            if (!Pd.InputPins.ContainsKey("Input")) return;
-            if (Pd.InputPins["Input"].Spread.SliceCount == 0)
+            if (!_pgready) return;
+            if (_input.Spread.SliceCount == 0)
             {
                 foreach (var outpin in Pd.OutputPins.Values)
                 {
@@ -570,10 +542,10 @@ namespace mp.essentials.Nodes.Generic
                 }
                 return;
             }
-            if (Pd.InputPins["Input"].Spread[0] == null) return;
-            bool changed = Pd.InputPins["Input"].Spread.IsChanged;
-            var sprmax = Pd.InputPins["Input"].Spread.SliceCount;
-            if (changed || FType.IsChanged || FForceUpdate[0])
+            if (_input[0] == null) return;
+            bool changed = _input.Spread.IsChanged;
+            var sprmax = _input.Spread.SliceCount;
+            if (changed || typechanged || FForceUpdate[0])
             {
                 foreach (var pin in Pd.OutputPins.Values)
                 {
@@ -581,7 +553,7 @@ namespace mp.essentials.Nodes.Generic
                 }
                 for (int i = 0; i < sprmax; i++)
                 {
-                    var obj = Pd.InputPins["Input"].Spread[i];
+                    var obj = _input.Spread[i];
                     if(obj == null) continue;
                     foreach (var field in IsMemberEnumerable.Keys)
                         AssignMemberValue(field, obj, i);
