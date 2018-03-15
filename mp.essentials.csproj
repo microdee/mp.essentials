@@ -57,8 +57,8 @@
     <Reference Include="md.stdl, Version=0.1.45.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\md-stdl.0.1.45-beta\lib\net47\md.stdl.dll</HintPath>
     </Reference>
-    <Reference Include="mp.pddn, Version=1.1.23.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\mp.pddn.1.1.23\lib\net47\mp.pddn.dll</HintPath>
+    <Reference Include="mp.pddn, Version=1.1.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\mp.pddn.1.1.24\lib\net47\mp.pddn.dll</HintPath>
     </Reference>
     <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
       <HintPath>packages\MsgPack.Cli.0.8.0\lib\net46\MsgPack.dll</HintPath>
@@ -90,11 +90,13 @@
     <Reference Include="SimMetrics.Net, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\SimMetrics.Net.1.0.4\lib\net45\SimMetrics.Net.dll</HintPath>
     </Reference>
-    <Reference Include="SlimDX">
+    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\SlimDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition.CodePlex">
+    <Reference Include="System.ComponentModel.Composition.CodePlex, Version=4.1.2.0, Culture=neutral, PublicKeyToken=13e5ffd4e05db186, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\System.ComponentModel.Composition.CodePlex.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
@@ -145,7 +147,8 @@
     <Reference Include="vJoyInterfaceWrap">
       <HintPath>dlls\vJoyInterfaceWrap.dll</HintPath>
     </Reference>
-    <Reference Include="VVVV.Core">
+    <Reference Include="VVVV.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\VVVV.Core.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Hosting, Version=35.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -160,14 +163,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="VVVV.Utils">
+    <Reference Include="VVVV.Utils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\VVVV.Utils.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty, Version=35.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\VVVV.Utils3rdParty.dll</HintPath>
     </Reference>
-    <Reference Include="VVVV.UtilsIL">
+    <Reference Include="VVVV.UtilsIL, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\VVVV.UtilsIL.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -291,19 +296,6 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\VVVV.Hosting.35.12.0-develop-3251\build\net46\VVVV.Hosting.targets" Condition="Exists('packages\VVVV.Hosting.35.12.0-develop-3251\build\net46\VVVV.Hosting.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\VVVV.Hosting.35.12.0-develop-3251\build\net46\VVVV.Hosting.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\VVVV.Hosting.35.12.0-develop-3251\build\net46\VVVV.Hosting.targets'))" />
-    <Error Condition="!Exists('packages\VVVV.Nodes.Generic.35.12.0-develop-3251\build\net46\VVVV.Nodes.Generic.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\VVVV.Nodes.Generic.35.12.0-develop-3251\build\net46\VVVV.Nodes.Generic.targets'))" />
-    <Error Condition="!Exists('packages\VVVV.PluginInterfaces.35.12.0-develop-3251\build\net46\VVVV.PluginInterfaces.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\VVVV.PluginInterfaces.35.12.0-develop-3251\build\net46\VVVV.PluginInterfaces.targets'))" />
-    <Error Condition="!Exists('packages\VVVV.Utils3rdParty.35.12.0-develop-3251\build\net46\VVVV.Utils3rdParty.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\VVVV.Utils3rdParty.35.12.0-develop-3251\build\net46\VVVV.Utils3rdParty.targets'))" />
-  </Target>
-  <Import Project="packages\VVVV.Nodes.Generic.35.12.0-develop-3251\build\net46\VVVV.Nodes.Generic.targets" Condition="Exists('packages\VVVV.Nodes.Generic.35.12.0-develop-3251\build\net46\VVVV.Nodes.Generic.targets')" />
-  <Import Project="packages\VVVV.PluginInterfaces.35.12.0-develop-3251\build\net46\VVVV.PluginInterfaces.targets" Condition="Exists('packages\VVVV.PluginInterfaces.35.12.0-develop-3251\build\net46\VVVV.PluginInterfaces.targets')" />
-  <Import Project="packages\VVVV.Utils3rdParty.35.12.0-develop-3251\build\net46\VVVV.Utils3rdParty.targets" Condition="Exists('packages\VVVV.Utils3rdParty.35.12.0-develop-3251\build\net46\VVVV.Utils3rdParty.targets')" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
