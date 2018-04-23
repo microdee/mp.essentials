@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using md.stdl.Coding;
 using mp.pddn;
 using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V2;
@@ -26,10 +28,13 @@ namespace mp.essentials.Nodes.Generic
 
         private ConfigurableTypePinGroup _keys;
         private ConfigurableTypePinGroup _vals;
+        private PinDictionary _pd;
+        private Type _dictType;
 
         private bool _typeChanged;
         private bool _keysready = false;
         private bool _valsready = false;
+        private bool _dictinUsed = false;
         private DiffSpreadPin _defKeys;
         private DiffSpreadPin _defVals;
         private DiffSpreadPin _modKeys;
@@ -39,6 +44,8 @@ namespace mp.essentials.Nodes.Generic
         private SpreadPin _outKeys;
         private SpreadPin _outVals;
         private SpreadPin _queryVals;
+        private DiffSpreadPin _dictin;
+        private SpreadPin _dictout;
 
         [Input("Reset to Default", IsBang = true, Order = 12)]
         public ISpread<bool> FResetDefault;
@@ -67,12 +74,18 @@ namespace mp.essentials.Nodes.Generic
             _outKeys = _keys.AddOutput(new OutputAttribute("Keys Out") { Order = 0 });
             _outVals = _vals.AddOutput(new OutputAttribute("Values Out") { Order = 1 });
             _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Queried Values") { Order = 2, BinOrder = 3 });
+            _dictType = typeof(Dictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
+            _pd.RemoveInput("Dictionary In");
+            _pd.RemoveOutput("Dictionary Out");
+            _dictin = _pd.AddInput(_dictType, new InputAttribute("Dictionary In"));
+            _dictout = _pd.AddOutput(_dictType, new OutputAttribute("Dictionary Out"));
         }
 
         public void OnImportsSatisfied()
         {
             _keys = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Keys");
             _vals = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Values");
+            _pd = new PinDictionary(FIOFactory);
             _keys.OnTypeChangeEnd += (sender, args) =>
             {
                 _typeChanged = true;
@@ -93,16 +106,37 @@ namespace mp.essentials.Nodes.Generic
         //called when data for any output pin is requested
         public void Evaluate(int SpreadMax)
         {
-            if (FClear[0]) dict.Clear();
             if (_keysready && _valsready && _typeChanged)
             {
-                var dictT = typeof(Dictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
-                dict = (IDictionary)Activator.CreateInstance(dictT);
+                var dictinValid = _dictin.Spread.SliceCount > 0 && (_dictin[0]?.GetType().Is(_dictType) ?? false);
+                if (dictinValid)
+                {
+                    dict = (IDictionary) _dictin[0];
+                    _dictinUsed = true;
+                }
+                else
+                {
+                    dict = (IDictionary)Activator.CreateInstance(_dictType);
+                    _dictinUsed = false;
+                }
                 _typeChanged = false;
             }
 
             if (_keysready && _valsready && dict != null)
             {
+                var dictinValid = _dictin.Spread.SliceCount > 0 && (_dictin[0]?.GetType().Is(_dictType) ?? false);
+                if (dictinValid && !_dictinUsed)
+                {
+                    dict = (IDictionary)_dictin[0];
+                    _dictinUsed = true;
+                }
+
+                if (!dictinValid && _dictinUsed)
+                {
+                    dict = (IDictionary)Activator.CreateInstance(_dictType);
+                    _dictinUsed = false;
+                }
+                if (FClear[0]) dict.Clear();
                 if (FResetDefault[0])
                 {
                     dict.Clear();
@@ -183,6 +217,7 @@ namespace mp.essentials.Nodes.Generic
                     outspread.SliceCount = 1;
                     outspread[0] = dict[_getKeys[i]];
                 }
+                _dictout[0] = dict;
             }
         }
     }
