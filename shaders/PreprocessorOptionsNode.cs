@@ -437,7 +437,7 @@ namespace mp.essentials.Nodes.Shaders
 
         public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)
         {
-            return inputPin.Name == "Shader Path" && outputPin.Name == "Defines";
+            return !(inputPin.Name == "Shader Path" && outputPin.Name == "Defines");
         }
     }
 }

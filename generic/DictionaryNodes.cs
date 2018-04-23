@@ -8,7 +8,7 @@ using VVVV.Packs.Messaging;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
-namespace mp.essentials.generic
+namespace mp.essentials.Nodes.Generic
 {
     [PluginInfo(
         Name = "Dictionary",

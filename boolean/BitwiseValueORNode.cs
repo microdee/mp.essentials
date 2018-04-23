@@ -41,7 +41,11 @@ namespace mp.essentials.Nodes.Boolean
 
 			for (int i = 0; i < FOutput.SliceCount; i++)
 			{
-			    uint flag = BitUtils.Or(FInput[i].ToArray());
+                uint flag = 0x0;
+			    for (int j = 0; j < FInput[i].SliceCount; j++)
+			    {
+			        flag = flag | FInput[i][j];
+			    }
 				FOutput[i] = flag;
 			}
 
@@ -75,10 +79,14 @@ namespace mp.essentials.Nodes.Boolean
         {
             FOutput.SliceCount = SpreadMax;
 
-            for (int j = 0; j < SpreadMax; j++)
+            for (int i = 0; i < SpreadMax; i++)
             {
-                uint flag = BitUtils.Or(FInput[j].ToArray());
-                FOutput[j] = flag;
+                uint flag = 0x0;
+                for (int j = 0; j < FInput.SliceCount; j++)
+                {
+                    flag = flag | FInput[j][i];
+                }
+                FOutput[i] = flag;
             }
 
             //FLogger.Log(LogType.Debug, "hi tty!");

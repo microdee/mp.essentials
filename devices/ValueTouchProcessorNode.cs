@@ -148,7 +148,7 @@ namespace mp.essentials.Nodes.Devices
 		        FIDOut[ii] = touch.Id;
 		        FAge[ii] = touch.Age.Elapsed.TotalSeconds;
 		        FExpiry[ii] = touch.ExpireFrames;
-		        FNew[ii] = touch.AgeFrames < 1;
+		        FNew[ii] = touch.AgeFrames < 2;
 		        ii++;
 		    }
 		}
