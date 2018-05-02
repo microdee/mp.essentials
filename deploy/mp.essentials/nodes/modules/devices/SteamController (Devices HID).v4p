@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.9.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="18870" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="7620" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
    <BOUNDS type="Window" left="35850" top="2070" width="16290" height="12165">
    </BOUNDS>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1" systemname="IOBox (Enumerations)">
@@ -7,7 +7,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8100" top="7500" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller 2|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Undefined">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="Undefined">
    </PIN>
@@ -98,9 +98,9 @@
    </NODE>
    <LINK srcnodeid="22" srcpinname="Output" dstnodeid="23" dstpinname="Input">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.9">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="addonpack" Version="35.9.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="37">
    <BOUNDS type="Node" left="18870" top="15855" width="100" height="100">
@@ -506,30 +506,6 @@
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="110">
-   <BOUNDS type="Node" left="7740" top="14025" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="63">
-   </PIN>
-   <PIN pinname="Inverse Output" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="S+H (Animation)" nodename="S+H (Animation)" componentmode="Hidden" id="111">
-   <BOUNDS type="Node" left="7500" top="14550" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Set" visible="1">
-   </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="110" srcpinname="Inverse Output" dstnodeid="111" dstpinname="Set">
-   </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="113">
    <BOUNDS type="Node" left="7920" top="19110" width="100" height="100">
    </BOUNDS>
@@ -924,8 +900,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="130" srcpinname="Output" dstnodeid="111" dstpinname="Input">
-   </LINK>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="131">
    <BOUNDS type="Node" left="6630" top="16365" width="100" height="100">
    </BOUNDS>
@@ -1330,88 +1304,6 @@
    </NODE>
    <LINK srcnodeid="143" srcpinname="Output 7" dstnodeid="153" dstpinname="Y Input Value">
    </LINK>
-   <NODE systemname="S (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\S (Value InPatch).v4p" nodename="S (Value InPatch)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="7815" top="11775" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Send String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="154" dstpinname="Input Value">
-   </LINK>
-   <NODE systemname="S (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\S (Value InPatch).v4p" nodename="S (Value InPatch)" componentmode="Hidden" id="155">
-   <BOUNDS type="Node" left="4905" top="15900" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="active">
-   </PIN>
-   <PIN pinname="Send String" slicecount="1" values="active">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="61" srcpinname="Output" dstnodeid="155" dstpinname="Input Value">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="156">
-   <BOUNDS type="Node" left="8145" top="10725" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="active">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="active">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="156" srcpinname="Input Value" dstnodeid="96" dstpinname="Set">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="157">
-   <BOUNDS type="Node" left="6555" top="13005" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="157" srcpinname="Input Value" dstnodeid="130" dstpinname="Input">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="158">
-   <BOUNDS type="Node" left="11160" top="11325" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="158" srcpinname="Input Value" dstnodeid="142" dstpinname="Input">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="159">
-   <BOUNDS type="Node" left="15570" top="12000" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="159" srcpinname="Input Value" dstnodeid="133" dstpinname="Input">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="163">
-   <BOUNDS type="Node" left="18855" top="13710" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="164">
    <BOUNDS type="Node" left="18840" top="14205" width="100" height="100">
    </BOUNDS>
@@ -1426,8 +1318,6 @@
    <PIN pinname="Count" slicecount="1" values="8">
    </PIN>
    </NODE>
-   <LINK srcnodeid="163" srcpinname="Input Value" dstnodeid="164" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="164" srcpinname="Output" dstnodeid="22" dstpinname="Input">
    </LINK>
    <NODE systemname="Switch (Value Output)" nodename="Switch (Value Output)" componentmode="Hidden" id="165">
@@ -1530,16 +1420,6 @@
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="173">
-   <BOUNDS type="Node" left="12645" top="18345" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="172">
    <BOUNDS type="Node" left="12630" top="18840" width="100" height="100">
    </BOUNDS>
@@ -1554,8 +1434,6 @@
    <PIN pinname="Count" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <LINK srcnodeid="173" srcpinname="Input Value" dstnodeid="172" dstpinname="Input">
-   </LINK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="174">
    <BOUNDS type="Node" left="12630" top="19710" width="100" height="100">
    </BOUNDS>
@@ -1620,18 +1498,6 @@
    <PIN pinname="String Type" slicecount="1" values="Url">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="214">
-   <BOUNDS type="Node" left="11895" top="15405" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="11895" top="15405" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output 1" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="147" srcpinname="Output" dstnodeid="214" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="229">
    <BOUNDS type="Node" left="18930" top="17265" width="100" height="100">
    </BOUNDS>
@@ -1964,16 +1830,6 @@
    </LINK>
    <LINK srcnodeid="295" srcpinname="Output" dstnodeid="294" dstpinname="Input">
    </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="292">
-   <BOUNDS type="Node" left="21990" top="13710" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="data">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="291">
    <BOUNDS type="Node" left="21975" top="14205" width="100" height="100">
    </BOUNDS>
@@ -1988,8 +1844,6 @@
    <PIN pinname="Count" slicecount="1" values="20">
    </PIN>
    </NODE>
-   <LINK srcnodeid="292" srcpinname="Input Value" dstnodeid="291" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="291" srcpinname="Output" dstnodeid="296" dstpinname="Input">
    </LINK>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="302">
@@ -2400,18 +2254,6 @@
    </NODE>
    <LINK srcnodeid="344" srcpinname="Y Output Value" dstnodeid="342" dstpinname="1 3">
    </LINK>
-   <NODE systemname="SpreadToFrames (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SpreadToFrames (String)" componentmode="Hidden" id="345">
-   <BOUNDS type="Node" left="3585" top="7620" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3585" top="7620" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Add" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="346">
    <BOUNDS type="Node" left="2280" top="4695" width="100" height="100">
    </BOUNDS>
@@ -2479,17 +2321,13 @@
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="text">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    <PIN pinname="Is NIL" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="345" srcpinname="Output" dstnodeid="350" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="348" srcpinname="Output" dstnodeid="345" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="350" srcpinname="Output" dstnodeid="17" dstpinname="Input">
    </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="351">
@@ -2506,8 +2344,6 @@
    <PIN pinname="Input 3" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="351" srcpinname="Output" dstnodeid="345" dstpinname="Add">
-   </LINK>
    <NODE systemname="NOT (Boolean)" nodename="NOT (Boolean)" componentmode="Hidden" id="352">
    <BOUNDS type="Node" left="5280" top="7815" width="100" height="100">
    </BOUNDS>
@@ -2524,28 +2360,6 @@
    </LINK>
    <LINK srcnodeid="350" srcpinname="Output" dstnodeid="17" dstpinname="Input Feature">
    </LINK>
-   <NODE systemname="S (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\S (Value InPatch).v4p" nodename="S (Value InPatch)" componentmode="Hidden" id="356">
-   <BOUNDS type="Node" left="3690" top="13860" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="idle">
-   </PIN>
-   <PIN pinname="Send String" slicecount="1" values="idle">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="59" srcpinname="Output" dstnodeid="356" dstpinname="Input Value">
-   </LINK>
-   <NODE systemname="R (Value InPatch)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\R (Value InPatch).v4p" nodename="R (Value InPatch)" componentmode="Hidden" id="357">
-   <BOUNDS type="Node" left="4335" top="25290" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="idle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="idle">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="S+H (Animation)" nodename="S+H (Animation)" componentmode="Hidden" id="358">
    <BOUNDS type="Node" left="3975" top="25950" width="100" height="100">
    </BOUNDS>
@@ -2556,8 +2370,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="357" srcpinname="Input Value" dstnodeid="358" dstpinname="Set">
-   </LINK>
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="360">
    <BOUNDS type="Node" left="3975" top="24645" width="100" height="100">
    </BOUNDS>
@@ -2901,5 +2713,49 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="293" srcpinname="Output" dstnodeid="411" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="142" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="133" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="164" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="291" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="130" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Output" dstnodeid="358" dstpinname="Set">
+   </LINK>
+   <NODE nodename="Queue (Generic Manual)" componentmode="Hidden" id="412">
+   <BOUNDS type="Node" left="3630" top="7305" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3630" top="7305" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Type" slicecount="1" values="string">
+   </PIN>
+   <PIN pinname="Enqueued" visible="1">
+   </PIN>
+   <PIN pinname="Dequeued" visible="1">
+   </PIN>
+   <PIN pinname="Enqueue" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Dequeue" visible="1" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="351" srcpinname="Output" dstnodeid="412" dstpinname="Enqueue">
+   </LINK>
+   <LINK srcnodeid="348" srcpinname="Output" dstnodeid="412" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="412" srcpinname="Output" dstnodeid="350" dstpinname="Input">
+   </LINK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <LINK srcnodeid="61" srcpinname="Output" dstnodeid="96" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output" dstnodeid="172" dstpinname="Input">
    </LINK>
    </PATCH>

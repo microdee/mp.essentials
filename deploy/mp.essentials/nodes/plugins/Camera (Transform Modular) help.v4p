@@ -41,7 +41,7 @@
    </PIN>
    <PIN pinname="Reset All" visible="1">
    </PIN>
-   <PIN pinname="Default FOV" slicecount="1" values="0.16" visible="1">
+   <PIN pinname="Default FOV" slicecount="1" visible="1" values="0.16">
    </PIN>
    <PIN pinname="Default Pivot Distance" slicecount="1" values="0">
    </PIN>
@@ -243,7 +243,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="6465" top="3375" width="4320" height="1425">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|Mouse and keyboard are served by the Camera node. Those are managed internally so you don&apos;t have to connect them explicitly. You can select the desired device by ID but that is not guiaranteed to be consistent when you connect or disconnect devices. When set to -1 the merged device is used (or in other words all mice or keyboards)|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Mouse and keyboard are served by the Camera node. Those are managed internally so you don&apos;t have to connect them explicitly. You can select the desired device by ID but that is not guaranteed to be consistent when you connect or disconnect devices. When set to -1 the merged device is used (or in other words all mice or keyboards)|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>

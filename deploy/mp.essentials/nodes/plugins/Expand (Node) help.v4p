@@ -1,0 +1,549 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\Expand (Node) help.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="360" top="810" width="15510" height="17760">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Expand (Node)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5070" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Get the properties and members of any .NET object.|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6">
+   <BOUNDS type="Node" left="285" top="1095" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="285" top="1095" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|About generic nodes|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="5">
+   <BOUNDS type="Node" left="300" top="1545" width="1770" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="300" top="1545" width="5130" height="7050">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|In md.ecosystem packs there are several generic-like nodes which has only a single entry in the NodeBrowser, can operate with any type but it keeps it strongly typed. Like the node of this help patch. This is achieved via one or more Type configuration pins. You should enter the Assembly Qualified Name of the type which you want to work with into the config pin. Worry not though because there are several shortcuts to do that.&cr;&lf;First there are some predifined shortcuts for common primitive types. The default set is (unless noted otherwise):&cr;&lf;&cr;&lf;- &quot;value&quot; is System.Double&cr;&lf;- &quot;double&quot; is System.Double&cr;&lf;- &quot;float&quot; is System.Float&cr;&lf;- &quot;int&quot; is System.Int32&cr;&lf;- &quot;string&quot; is System.string&cr;&lf;- &quot;vector2d&quot; is VVVV.Utils.VMath.Vector2D&cr;&lf;- &quot;vector3d&quot; is VVVV.Utils.VMath.Vector3D&cr;&lf;- &quot;vector4d&quot; is VVVV.Utils.VMath.Vector4D&cr;&lf;- &quot;vector2&quot; is VVVV.Utils.VMath.Vector2D&cr;&lf;- &quot;vector3&quot; is VVVV.Utils.VMath.Vector3D&cr;&lf;- &quot;vector4&quot; is VVVV.Utils.VMath.Vector4D&cr;&lf;- &quot;matrix4x4&quot; is VVVV.Utils.VMath.Matrix4x4&cr;&lf;- &quot;transform&quot; is VVVV.Utils.VMath.Matrix4x4&cr;&lf;- &quot;color&quot; is VVVV.Utils.VColor.RGBAColor&cr;&lf;&cr;&lf;Second: if you have an instance of your data already output from a node somewhere in vvvv you can connect that to the &quot;Learn * Type Reference&quot; pin and hit &quot;Learn * Type&quot;. You can select the exact inheriting type you need via the &quot;Learn * Type Inheritance Level&quot;. &quot;TopLevel&quot; is always the actual type of the reference object.&cr;&lf;Note: this is only have to be done once. Once you learnt the type and you&apos;re happy with it you can disconnect the reference pin and you can ignore it from that point.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="Dictionary (Generic)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2610" top="3210" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2610" top="3210" width="0" height="0">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="6885" top="2850" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6885" top="2850" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Type" slicecount="1" values="|VVVV.SkeletonInterfaces.IJoint, VVVV.Utils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Learn Input Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input Type" slicecount="1" values="|VVVV.SkeletonInterfaces.IJoint, VVVV.Utils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Learn Input Type Inheritence Level" slicecount="1" visible="1" values="TopLevel">
+   </PIN>
+   </NODE>
+   <NODE systemname="Joint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Joint (Skeleton V2)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="6885" top="1800" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6885" top="1800" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Joint Name" visible="1">
+   </PIN>
+   <PIN pinname="Joint" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="6900" top="1170" width="975" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6900" top="1170" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="asdasdasd">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="9" dstpinname="Joint Name">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Joint" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <NODE id="11" systemname="BlendFactor (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="BlendFactor (DX11.RenderState)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="10410" top="6255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10410" top="6255" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Render State" visible="1" pintype="Output" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Tag" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mode" pintype="Input" visible="1" slicecount="1" values="Add">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Blend Factor" slicecount="1" visible="1" values="|0.44465,0.44465,0.44465,0.00000|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="11265" top="5475" width="2250" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11265" top="5475" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.44465,0.44465,0.44465,0.00000|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Color Output" dstnodeid="11" dstpinname="Blend Factor">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="10425" top="6915" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10425" top="6915" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Learn Input Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input Type" slicecount="1" values="|FeralTic.DX11.DX11RenderState, FeralTic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Rasterizer" visible="1">
+   </PIN>
+   <PIN pinname="Blend" visible="1">
+   </PIN>
+   <PIN pinname="BlendFactor" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="12">
+   <BOUNDS type="Box" left="10935" top="7920" width="2250" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10935" top="7920" width="0" height="0">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="BlendFactor" dstnodeid="12" dstpinname="Color Input">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Render State" dstnodeid="13" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="6705" top="6900" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="6900" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Learn Input Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input Type" slicecount="1" values="|VVVV.DX11.IDX11RenderSemantic, VVVV.DX11.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type Inheritence Level" slicecount="1" values="TopLevel">
+   </PIN>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="TypeNames" visible="1">
+   </PIN>
+   <PIN pinname="TypeNames Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Joint" dstnodeid="7" dstpinname="Learn Input Type Reference">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="18">
+   <BOUNDS type="Box" left="8415" top="1950" width="2400" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8415" top="1950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="VVVV.SkeletonInterfaces.IJoint">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="TopLevel">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Output Enum" dstnodeid="7" dstpinname="Learn Input Type Inheritence Level">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="19">
+   <BOUNDS type="Node" left="8445" top="1170" width="9675" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8445" top="1170" width="3600" height="720">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Choose proper inheritence when auto learning. TopLevel might not be always connectable because a lower level type is exposed to vvvv.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetType (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetType (Object)" componentmode="Hidden" id="20" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="11130" top="2010" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11130" top="2010" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Object Type" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Joint" dstnodeid="20" dstpinname="Input" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="21">
+   <BOUNDS type="Box" left="11145" top="2535" width="3435" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11145" top="2535" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Object Type" dstnodeid="21" dstpinname="Input String" hiddenwhenlocked="1">
+   </LINK>
+   <NODE id="14" systemname="RenderSemantic (DX11.Layer Int)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Int)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <PIN pinname="Output" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Input" visible="1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Semantic" visible="1" pintype="Input" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <BOUNDS type="Node" left="6705" top="6330" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6705" top="6330" width="3000" height="3000">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Tag" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mandatory" pintype="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <NODE id="16" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0" managers="">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" pintype="Input" values="16">
+   </PIN>
+   <BOUNDS type="Box" left="6705" top="5205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="5205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" pintype="Configuration" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" pintype="Configuration" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" pintype="Configuration" values="Integer">
+   </PIN>
+   <BOUNDS type="Window" left="0" top="0" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Tag" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" pintype="Configuration" slicecount="1" values="True">
+   </PIN>
+   <PIN pinname="SliceCount Mode" pintype="Configuration" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Columns" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Rows" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pages" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show SliceIndex" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Font" pintype="Configuration" slicecount="1" values="|Lucida Sans Unicode|">
+   </PIN>
+   <PIN pinname="Size" pintype="Configuration" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="Show Grid" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Behavior" pintype="Configuration" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Vector Size" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" pintype="Configuration" slicecount="1" values="-99999999">
+   </PIN>
+   <PIN pinname="Maximum" pintype="Configuration" slicecount="1" values="99999999">
+   </PIN>
+   <PIN pinname="Default" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show Slider" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Slider Behavior" pintype="Configuration" slicecount="1" values="Endless">
+   </PIN>
+   <PIN pinname="Show Connections" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Background" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Sticky Slider" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Allow MouseOffset" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Constraints" pintype="Configuration" slicecount="1" values="scX">
+   </PIN>
+   <PIN pinname="Slider Alignment" pintype="Configuration" slicecount="1" values="Grid">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" visible="-1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" visible="-1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Y Output Value" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Changed" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <NODE id="15" nodename="IOBox (String)" componentmode="InABox" systemname="IOBox (String)" hiddenwhenlocked="0" managers="">
+   <PIN pinname="Input String" slicecount="1" visible="1" pintype="Input" values="YOLO">
+   </PIN>
+   <BOUNDS type="Box" left="7275" top="5775" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7275" top="5775" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" pintype="Configuration" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" pintype="Configuration" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" pintype="Configuration" values="-1">
+   </PIN>
+   <BOUNDS type="Window" left="0" top="0" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Tag" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" pintype="Configuration" slicecount="1" values="True">
+   </PIN>
+   <PIN pinname="SliceCount Mode" pintype="Configuration" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Columns" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Rows" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pages" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show SliceIndex" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Font" pintype="Configuration" slicecount="1" values="|Lucida Sans Unicode|">
+   </PIN>
+   <PIN pinname="Size" pintype="Configuration" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="Show Grid" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" pintype="Configuration" slicecount="1" values="String">
+   </PIN>
+   <PIN pinname="Show Characters [#0..#32,#127]" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" visible="-1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output String" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Changed" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="14" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output" dstnodeid="17" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="22">
+   <BOUNDS type="Box" left="6705" top="7620" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="7620" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Data">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Data" dstnodeid="22" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="23">
+   <BOUNDS type="Box" left="7215" top="8145" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7215" top="8145" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="TypeNames">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="TypeNames" dstnodeid="23" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24">
+   <BOUNDS type="Box" left="7740" top="7560" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7740" top="7560" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|TypeNames Bin Size|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="TypeNames Bin Size" dstnodeid="24" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="25">
+   <BOUNDS type="Box" left="8505" top="8205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8505" top="8205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Semantic">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Semantic" dstnodeid="25" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="26">
+   <BOUNDS type="Node" left="6885" top="3540" width="17505" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6885" top="3540" width="5160" height="990">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|IEnumerable&apos;s (aka lists, arrays or any other .NET collections) will be put into a binsized pin. IDictionary&apos;s (aka the Dictionary type or anything else inheriting from it) will be exposed via 2 pins, one binsized * Values pin and one binsized * Keys pin.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="27">
+   <BOUNDS type="Node" left="735" top="9420" width="5205" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="735" top="9420" width="9315" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|This also leverages the burden of writing splitting nodes for your types but it&apos;s obviously not as fast as a dedicated splitting node. Fear not though because there&apos;s a C# generic version which is just as good as manual handywork but only a single line of code.:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="28">
+   <BOUNDS type="Node" left="735" top="9975" width="6345" height="1530">
+   </BOUNDS>
+   <BOUNDS type="Box" left="735" top="9975" width="7200" height="1200">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|    [PluginInfo(&cr;&lf;        Name = &quot;MyObjectSplitter&quot;,&cr;&lf;        Category = &quot;MyCategory&quot;&cr;&lf;    )]&cr;&lf;    public class MyObjectSplitNode : ObjectSplitNode&lt;MyObject&gt; { }|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Consolas">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="9">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="29">
+   <BOUNDS type="Node" left="735" top="11205" width="8025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="735" top="11205" width="8025" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Reference mp.pddn.dll to use this in your code or get the mp.pddn Nuget package for VS or VL or whatever else|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <PACK Name="dx11" Version="1.2">
+   </PACK>
+   </PATCH>

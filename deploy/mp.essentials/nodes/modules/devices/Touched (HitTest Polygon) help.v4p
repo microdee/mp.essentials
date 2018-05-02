@@ -1,0 +1,131 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Polygon) help.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="13545" top="14505" width="9000" height="6270">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Touched (HitTest Polygon)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5100" height="870">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|A simple wrapper around HitTest nodes but also accounting for generic touch behavior like keeping sliding touches started from the object until released and so on|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="Touched (HitTest Polygon)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1740" top="2970" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1740" top="2970" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Vertices Count" visible="1">
+   </PIN>
+   <PIN pinname="VerticesXY" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="2340" top="2550" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2340" top="2550" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Vertices Count|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Vertices Count">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="2070" top="1800" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2070" top="1800" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="VerticesXY">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="VerticesXY">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="6">
+   <BOUNDS type="Node" left="3795" top="1665" width="3630" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="1665" width="2130" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Check out the rest and connect the dots yourself:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Touched (HitTest Quad)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" nodename="Touched (HitTest Quad)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="3795" top="2370" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="2370">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Touched (HitTest Circle)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Circle).v4p" nodename="Touched (HitTest Circle)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="3795" top="2760" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="2760">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Touched (HitTest Segment)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Segment).v4p" nodename="Touched (HitTest Segment)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="3795" top="3195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="3195">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="10">
+   <BOUNDS type="Node" left="3795" top="3645" width="6525" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="3645" width="3420" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Or check out Notui because these ain&apos;t gonna kick it with massive overlapping UI&apos;s and shit|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Context (Notui)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Context (Notui)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="3795" top="4320" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3795" top="4320" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   </PATCH>

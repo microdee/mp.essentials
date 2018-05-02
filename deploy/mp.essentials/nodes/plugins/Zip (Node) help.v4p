@@ -1,0 +1,191 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\Zip (Node) help.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="31365" top="17325" width="11145" height="10650">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Zip (Node)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Same as Zip (Bin Sized) just with any type.|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="Zip (Node)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="6885" top="3990" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6885" top="3990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Learn Input Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type Inheritence Level" slicecount="1" values="TopLevel">
+   </PIN>
+   <PIN pinname="Learn Input Type" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input Type" slicecount="1" values="|VVVV.DX11.IDX11RenderSemantic, VVVV.DX11.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5">
+   <BOUNDS type="Node" left="255" top="1230" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="255" top="1230" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|About generic nodes|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="4">
+   <BOUNDS type="Node" left="270" top="1680" width="1770" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="270" top="1680" width="5130" height="7050">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|In md.ecosystem packs there are several generic-like nodes which has only a single entry in the NodeBrowser, can operate with any type but it keeps it strongly typed. Like the node of this help patch. This is achieved via one or more Type configuration pins. You should enter the Assembly Qualified Name of the type which you want to work with into the config pin. Worry not though because there are several shortcuts to do that.&cr;&lf;First there are some predifined shortcuts for common primitive types. The default set is (unless noted otherwise):&cr;&lf;&cr;&lf;- &quot;value&quot; is System.Double&cr;&lf;- &quot;double&quot; is System.Double&cr;&lf;- &quot;float&quot; is System.Float&cr;&lf;- &quot;int&quot; is System.Int32&cr;&lf;- &quot;string&quot; is System.string&cr;&lf;- &quot;vector2d&quot; is VVVV.Utils.VMath.Vector2D&cr;&lf;- &quot;vector3d&quot; is VVVV.Utils.VMath.Vector3D&cr;&lf;- &quot;vector4d&quot; is VVVV.Utils.VMath.Vector4D&cr;&lf;- &quot;vector2&quot; is VVVV.Utils.VMath.Vector2D&cr;&lf;- &quot;vector3&quot; is VVVV.Utils.VMath.Vector3D&cr;&lf;- &quot;vector4&quot; is VVVV.Utils.VMath.Vector4D&cr;&lf;- &quot;matrix4x4&quot; is VVVV.Utils.VMath.Matrix4x4&cr;&lf;- &quot;transform&quot; is VVVV.Utils.VMath.Matrix4x4&cr;&lf;- &quot;color&quot; is VVVV.Utils.VColor.RGBAColor&cr;&lf;&cr;&lf;Second: if you have an instance of your data already output from a node somewhere in vvvv you can connect that to the &quot;Learn * Type Reference&quot; pin and hit &quot;Learn * Type&quot;. You can select the exact inheriting type you need via the &quot;Learn * Type Inheritance Level&quot;. &quot;TopLevel&quot; is always the actual type of the reference object.&cr;&lf;Note: this is only have to be done once. Once you learnt the type and you&apos;re happy with it you can disconnect the reference pin and you can ignore it from that point.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="RenderSemantic (DX11.Layer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Color)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="6495" top="2820" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6495" top="2820" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Semantic" slicecount="1" visible="1" values="YOLO">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="RenderSemantic (DX11.Layer Int)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Int)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="7425" top="3285" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7425" top="3285" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="7035" top="2355" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7035" top="2355" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="YOLO">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="6" dstpinname="Semantic">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Box" left="7995" top="2835" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7995" top="2835" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="SWAG">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="7" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="0" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output" dstnodeid="0" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="6870" top="4695" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6870" top="4695" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Learn Input Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Learn Input Type Inheritence Level" slicecount="1" values="TopLevel">
+   </PIN>
+   <PIN pinname="Learn Input Type" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input Type" slicecount="1" values="|VVVV.DX11.IDX11RenderSemantic, VVVV.DX11.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="TypeNames" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="12">
+   <BOUNDS type="Box" left="6690" top="5295" width="690" height="525">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6690" top="5295" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="TypeNames" dstnodeid="12" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="13">
+   <BOUNDS type="Box" left="8310" top="5310" width="690" height="525">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8310" top="5310" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Semantic" dstnodeid="13" dstpinname="Input String">
+   </LINK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   </PATCH>

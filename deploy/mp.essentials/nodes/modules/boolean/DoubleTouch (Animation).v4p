@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
-   <PATCH nodename="F:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\boolean\DoubleTouch (Animation).v4p" systemname="DoubleTouch (Animation)" filename="C:\vvvv\libs\mcropack\nodes\Modules\DoubleTouch (Animation).v4p" scrollx="0" scrolly="360">
-   <BOUNDS type="Window" left="19185" top="4275" width="9000" height="6000">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\boolean\DoubleTouch (Animation).v4p" systemname="DoubleTouch (Animation)" filename="C:\vvvv\libs\mcropack\nodes\Modules\DoubleTouch (Animation).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="19185" top="4275" width="9000" height="13860">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="3">
    <BOUNDS type="Node" left="3675" top="1605" width="100" height="100">
@@ -187,9 +187,9 @@
    <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Default">
    </LINK>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="3120" top="1545" width="100" height="100">
+   <BOUNDS type="Node" left="3150" top="1620" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -489,15 +489,25 @@
    </PIN>
    <PIN pinname="New" visible="1">
    </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ExpireFrames" visible="1">
+   </PIN>
+   <PIN pinname="PointXY" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="45" srcpinname="Output Node" dstnodeid="47" dstpinname="Container">
    </LINK>
-   <LINK srcnodeid="47" srcpinname="Point OutXY" dstnodeid="31" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="47" srcpinname="Point OutXY" dstnodeid="20" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="47" srcpinname="ID" dstnodeid="3" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="47" srcpinname="New" dstnodeid="24" dstpinname="Input">
+   <LINK srcnodeid="45" srcpinname="Output Node" dstnodeid="47" dstpinname="Input">
    </LINK>
+   <LINK srcnodeid="47" srcpinname="ExpireFrames" dstnodeid="24" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="PointXY" dstnodeid="31" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="PointXY" dstnodeid="20" dstpinname="Input">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
    </PATCH>

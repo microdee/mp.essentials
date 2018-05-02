@@ -1,0 +1,181 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\transform\Fill (Transform) help.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="1770" top="4485" width="12915" height="8640">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Fill (Transform)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5925" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Fills the renderer with the given content while keeping the content&apos;s aspect ratio|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="13">
+   <BOUNDS type="Node" left="2445" top="5340" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2445" top="5340" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="1815" top="480" width="15450" height="3705">
+   </BOUNDS>
+   <PIN pinname="Show Cursor" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Actual BackBuffer SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="12">
+   <BOUNDS type="Node" left="345" top="6045" width="795" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="345" top="6045" width="795" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Checkout">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="S (Value)" nodename="S (Value)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="3525" top="6030" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="RendererRez">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Actual BackBuffer SizeXY" dstnodeid="10" dstpinname="Input Value">
+   </LINK>
+   <NODE systemname="FileTexture (DX11 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="FileTexture (DX11 2d)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="3045" top="2025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3045" top="2025" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="SizeXY" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="3030" top="1380" width="5025" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3030" top="1380" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="C:\Windows\web\4K\Wallpaper\Windows\img0_2160x3840.jpg">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="9" dstpinname="Filename">
+   </LINK>
+   <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2640" top="4590" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2640" top="4590" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Texture Out" dstnodeid="7" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Layer" dstnodeid="13" dstpinname="Layers">
+   </LINK>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="2520" top="3075" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="Fill (Transform)" componentmode="Hidden" id="14" systemname="Fill (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Fill (Transform).v4p">
+   <BOUNDS type="Node" left="2805" top="3990" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2805" top="3990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Content AR" visible="1">
+   </PIN>
+   <PIN pinname="Renderer AR" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Renderer Alignment" slicecount="1" visible="1" values="FitOut">
+   </PIN>
+   <PIN pinname="Content Alignment" slicecount="1" visible="1" values="FitIn">
+   </PIN>
+   <PIN pinname="Renderer Scale" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Renderer Size" visible="1">
+   </PIN>
+   <PIN pinname="Content Size" visible="1">
+   </PIN>
+   <PIN pinname="Vertical" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="SizeXY" dstnodeid="14" dstpinname="Content AR">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Input Value" dstnodeid="14" dstpinname="Renderer AR">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Transform Out" dstnodeid="7" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Input Value" dstnodeid="14" dstpinname="Renderer Size">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="SizeXY" dstnodeid="14" dstpinname="Content Size">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15">
+   <BOUNDS type="Box" left="4110" top="3555" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4110" top="3555" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Vertical">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Vertical">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE systemname="AspectRatio (Transform Contextual)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\AspectRatio (Transform Contextual).v4p" nodename="AspectRatio (Transform Contextual)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="1215" top="6045" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   </PATCH>

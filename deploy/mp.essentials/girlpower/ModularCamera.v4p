@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\girlpower\ModularCamera.v4p" scrollx="2115" scrolly="0" systemname="ModularCam" filename="C:\vvvv\libs\mcropack\girlpower\ModularCam.v4p">
-   <BOUNDS type="Window" left="15885" top="4650" width="11910" height="11580">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\ModularCamera.v4p" scrollx="0" scrolly="0" systemname="ModularCam" filename="C:\vvvv\libs\mcropack\girlpower\ModularCam.v4p">
+   <BOUNDS type="Window" left="59160" top="19035" width="11910" height="11580">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE systemname="Transform (Transform 3d Vector)" nodename="Transform (Transform 3d Vector)" componentmode="Hidden" id="45">
    <BOUNDS type="Node" left="2580" top="15675" width="810" height="270">
@@ -271,7 +271,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="50">
-   <BOUNDS type="Node" left="4290" top="7845" width="100" height="100">
+   <BOUNDS type="Node" left="3900" top="7470" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1" slicecount="1" values="0">
    </PIN>
@@ -318,20 +318,6 @@
    </LINK>
    <LINK srcnodeid="54" srcpinname="Y Output Value" dstnodeid="35" dstpinname="Input 2">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="56" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4500" top="8760" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4500" top="8760" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="57">
    <BOUNDS type="Node" left="2310" top="8265" width="100" height="100">
    </BOUNDS>
@@ -564,7 +550,7 @@
    <PIN pinname="Time Mode" slicecount="1" values="Raw">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-Message" Version="2.9.6">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
@@ -618,32 +604,6 @@
    </NODE>
    <LINK srcnodeid="132" srcpinname="Y Output Value" dstnodeid="131" dstpinname="Default RotationXYZ">
    </LINK>
-   <NODE systemname="Mickies (Devices Mouse)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Mickies (Devices Mouse).v4p" nodename="Mickies (Devices Mouse)" componentmode="Hidden" id="135">
-   <BOUNDS type="Node" left="5925" top="3270" width="1050" height="270">
-   </BOUNDS>
-   <PIN pinname="Device" visible="1">
-   </PIN>
-   <PIN pinname="Mickies" visible="1">
-   </PIN>
-   <PIN pinname="Mouse Device" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Wheel" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="2145" top="3090" width="13545" height="9735">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="135" srcpinname="Device" dstnodeid="131" dstpinname="Mouse">
-   </LINK>
-   <NODE systemname="Keyboard (Devices Desktop)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Keyboard (Devices Desktop)" componentmode="Hidden" id="136">
-   <BOUNDS type="Node" left="6135" top="3900" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Device" visible="1">
-   </PIN>
-   <PIN pinname="Key Name" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="136" srcpinname="Device" dstnodeid="131" dstpinname="Keyboard">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="137">
    <BOUNDS type="Box" left="7305" top="3780" width="480" height="480">
    </BOUNDS>
@@ -664,28 +624,6 @@
    </NODE>
    <LINK srcnodeid="137" srcpinname="Y Output Value" dstnodeid="131" dstpinname="Reset All">
    </LINK>
-   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="138">
-   <BOUNDS type="Node" left="3690" top="5610" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Reference Type" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Learn Type" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Type" slicecount="1" values="|mp.essentials.Camera.ModularCam, mp.essentials, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="TranslationXYZ" visible="1">
-   </PIN>
-   <PIN pinname="RotationXYZW" visible="1">
-   </PIN>
-   <PIN pinname="PivotDistance" visible="1">
-   </PIN>
-   <PIN pinname="ViewInverse" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="131" srcpinname="Camera" dstnodeid="138" dstpinname="Input">
-   </LINK>
    <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="139">
    <BOUNDS type="Node" left="1800" top="20550" width="100" height="100">
    </BOUNDS>
@@ -696,32 +634,14 @@
    </NODE>
    <LINK srcnodeid="139" srcpinname="Output 1" dstnodeid="131" dstpinname="Target Window Handle">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="149">
-   <BOUNDS type="Box" left="5895" top="2895" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5895" top="2895" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="149" srcpinname="Y Output Value" dstnodeid="135" dstpinname="Mouse Device">
-   </LINK>
    <NODE systemname="Decompose (Transform Vector)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Decompose (Transform Vector)" componentmode="Hidden" id="169">
-   <BOUNDS type="Node" left="3705" top="6360" width="100" height="100">
+   <BOUNDS type="Node" left="6210" top="6105" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Transform In" visible="1">
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="TranslateXYZ" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="138" srcpinname="ViewInverse" dstnodeid="169" dstpinname="Transform In">
-   </LINK>
    <LINK srcnodeid="169" srcpinname="TranslateXYZ" dstnodeid="50" dstpinname="Input 1">
    </LINK>
    <NODE id="4" systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow">
@@ -731,7 +651,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1830" top="20025" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="3825" top="5805" width="12420" height="9795">
+   <BOUNDS type="Window" left="71895" top="19470" width="12420" height="9795">
    </BOUNDS>
    <PIN pinname="Layers" visible="1" slicecount="1" values="||">
    </PIN>
@@ -758,32 +678,88 @@
    </LINK>
    <LINK srcnodeid="4" srcpinname="Window Handle" dstnodeid="139" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="Mouse (Devices Window)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Window)" componentmode="Hidden" id="171">
-   <BOUNDS type="Node" left="4845" top="960" width="100" height="100">
+   <NODE systemname="MOUSE (DEVICES WINDOW)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Window)" componentmode="Hidden" id="171">
+   <BOUNDS type="Node" left="4785" top="2130" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="PositionXY" visible="1">
+   <PIN pinname="Position (Projection) XY" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="SpaceMouse (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" componentmode="Hidden" id="174" nodename="SpaceMouse (CameraDelta)" debug="0">
-   <BOUNDS type="Node" left="4725" top="1635" width="100" height="100">
+   <NODE systemname="MouseStates (Mouse Split)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="MouseStates (Mouse Split)" componentmode="Hidden" id="177">
+   <BOUNDS type="Node" left="11385" top="5760" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4725" top="1635" width="4800" height="3600">
+   <BOUNDS type="Box" left="11385" top="5760" width="3000" height="3000">
    </BOUNDS>
-   <BOUNDS type="Window" left="6570" top="2325" width="10335" height="11895">
+   <PIN pinname="Mouse" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Position (Projection) XY" visible="1">
+   </PIN>
+   <PIN pinname="Position (Pixel) XY" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Left Button" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="178">
+   <BOUNDS type="Box" left="10470" top="7170" width="630" height="495">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10470" top="7170" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="177" srcpinname="Position (Projection) XY" dstnodeid="178" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="179">
+   <BOUNDS type="Box" left="12150" top="6675" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12150" top="6675" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="177" srcpinname="Left Button" dstnodeid="179" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="SpaceMouse (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" nodename="SpaceMouse (CameraDelta)" componentmode="Hidden" id="203">
+   <BOUNDS type="Node" left="4665" top="1650" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Camera Delta Out" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="175">
-   <BOUNDS type="Node" left="4740" top="2385" width="100" height="100">
+   <NODE systemname="Camera (ModularCam Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Camera (ModularCam Split)" componentmode="Hidden" id="206">
+   <BOUNDS type="Node" left="6045" top="5400" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6045" top="5400" width="3000" height="3000">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="171" srcpinname="PositionXY" dstnodeid="175" dstpinname="Trackball Screen PositionXY">
+   <LINK srcnodeid="131" srcpinname="Camera" dstnodeid="206" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="175" srcpinname="Camera Delta Out" dstnodeid="131" dstpinname="Camera Delta">
+   <LINK srcnodeid="206" srcpinname="ViewInverse" dstnodeid="169" dstpinname="Transform In">
    </LINK>
-   <LINK srcnodeid="174" srcpinname="Camera Delta Out" dstnodeid="175" dstpinname="Delta In">
+   <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="208">
+   <BOUNDS type="Node" left="4650" top="2565" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="WASD Speed" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Delta In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="171" srcpinname="Position (Projection) XY" dstnodeid="208" dstpinname="Trackball Screen PositionXY">
    </LINK>
-   <LINK srcnodeid="171" srcpinname="PositionXY" dstnodeid="175" dstpinname="Trackball Grab PositionXY">
+   <LINK srcnodeid="171" srcpinname="Position (Projection) XY" dstnodeid="208" dstpinname="Trackball Grab PositionXY">
+   </LINK>
+   <LINK srcnodeid="208" srcpinname="Camera Delta Out" dstnodeid="131" dstpinname="Camera Delta">
+   </LINK>
+   <LINK srcnodeid="203" srcpinname="Camera Delta Out" dstnodeid="208" dstpinname="Delta In">
    </LINK>
    </PATCH>
