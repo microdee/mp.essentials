@@ -502,18 +502,44 @@
    </NODE>
    <LINK srcnodeid="111" srcpinname="Output" dstnodeid="113" dstpinname="Y Input Value">
    </LINK>
-   <NODE systemname="HID (Devices)" nodename="HID (Devices)" componentmode="Hidden" id="114">
-   <BOUNDS type="Node" left="1305" top="2130" width="100" height="100">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="115">
+   <BOUNDS type="Box" left="5145" top="3540" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5145" top="3540" width="0" height="0">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Output Enum" dstnodeid="114" dstpinname="Device Type">
+   <LINK srcnodeid="98" srcpinname="Output" dstnodeid="115" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="114" dstpinname="Enable">
+   <NODE systemname="HID (Devices)" nodename="HID (Devices)" componentmode="Hidden" id="117">
+   <BOUNDS type="Node" left="1305" top="2130" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output Enum" dstnodeid="117" dstpinname="Device Type">
    </LINK>
-   <LINK srcnodeid="114" srcpinname="Output" dstnodeid="77" dstpinname="Input">
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="117" dstpinname="Enable">
    </LINK>
-   <LINK srcnodeid="114" srcpinname="Output" dstnodeid="78" dstpinname="Input">
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="77" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="114" srcpinname="Output" dstnodeid="98" dstpinname="Input">
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="78" dstpinname="Input">
    </LINK>
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="98" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="118">
+   <BOUNDS type="Box" left="4500" top="4230" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4500" top="4230" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="118" dstpinname="Input String">
+   </LINK>
+   <PACK Name="dx11" Version="1.2">
+   </PACK>
    </PATCH>

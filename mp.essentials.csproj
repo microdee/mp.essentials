@@ -54,11 +54,11 @@
     <Reference Include="LzmaSharp">
       <HintPath>dlls\LzmaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="md.stdl, Version=0.1.50.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\md-stdl.0.1.50-beta\lib\net47\md.stdl.dll</HintPath>
+    <Reference Include="md.stdl, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\md-stdl.0.2.1-beta\lib\Net47\md.stdl.dll</HintPath>
     </Reference>
-    <Reference Include="mp.pddn, Version=1.1.27.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\mp.pddn.1.1.27\lib\net47\mp.pddn.dll</HintPath>
+    <Reference Include="mp.pddn, Version=1.1.28.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\mp.pddn.1.1.28\lib\net47\mp.pddn.dll</HintPath>
     </Reference>
     <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
       <HintPath>packages\MsgPack.Cli.0.8.0\lib\net46\MsgPack.dll</HintPath>
