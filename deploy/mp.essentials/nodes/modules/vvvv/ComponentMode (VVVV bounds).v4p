@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\nodes\modules\componentmode (VVVV bounds).v4p" systemname="componentmode (md.vis bounds)" filename="D:\vvvv\md.vis\md.vis 1.1.beta.2\common\nodes\modules\componentmode (md.vis bounds).v4p" scrollx="0" scrolly="1080">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\vvvv\ComponentMode (VVVV bounds).v4p" systemname="componentmode (md.vis bounds)" filename="D:\vvvv\md.vis\md.vis 1.1.beta.2\common\nodes\modules\componentmode (md.vis bounds).v4p" scrollx="0" scrolly="1080">
    <BOUNDS type="Window" left="39315" top="3465" width="15825" height="10290">
    </BOUNDS>
    <NODE componentmode="Hidden" id="5" nodename="FormatValue (String)" systemname="FormatValue (String)">
@@ -284,7 +284,7 @@
    </LINK>
    <LINK srcnodeid="19" srcpinname="Output" dstnodeid="21" dstpinname="Argument 3">
    </LINK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="28" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="6225" top="5685" width="480" height="480">
@@ -303,7 +303,17 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Force Update|">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Force Update">
    </LINK>
+   <PACK Name="dx11" Version="1.2">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
    </PATCH>
