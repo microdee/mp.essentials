@@ -1,0 +1,2015 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="3330" top="2175" width="25275" height="22845">
+   </BOUNDS>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="0">
+   <BOUNDS type="Node" left="6525" top="1065" width="1110" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6525" top="1065" width="2790" height="585">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="mp.essentials">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   <NODE systemname="About (Mp.Essentials)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="About (Mp.Essentials)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="9660" top="765" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9660" top="765" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="mp.essentials Version" visible="1">
+   </PIN>
+   <PIN pinname="mp.pddn Version" visible="1">
+   </PIN>
+   <PIN pinname="md.stdl Version" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="9660" top="2250" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9660" top="2250" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|mp.essentials Version|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="mp.essentials Version" dstnodeid="2" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Box" left="10005" top="1185" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10005" top="1185" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|mp.pddn Version|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="mp.pddn Version" dstnodeid="3" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="9825" top="1725" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9825" top="1725" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|md.stdl Version|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="md.stdl Version" dstnodeid="4" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="OR (Value Bitwise)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OR (Value Bitwise)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="3630" top="4320" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3630" top="4320" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="OR (Spectral Bitwise)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OR (Spectral Bitwise)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="4185" top="4320" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4185" top="4320" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Between (Boolean)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\Between (Boolean).v4p" nodename="Between (Boolean)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="3630" top="4845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3630" top="4845">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Between (Boolean Spectral)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\Between (Boolean Spectral).v4p" nodename="Between (Boolean Spectral)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="4680" top="4845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4680" top="4845">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="9">
+   <BOUNDS type="Node" left="3570" top="3720" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3570" top="3720" width="1245" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="boolean">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="10">
+   <BOUNDS type="Node" left="840" top="3540" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="3540" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="animation">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="DoubleClick (Animation)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\DoubleClick (Animation).v4p" nodename="DoubleClick (Animation)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="840" top="4110" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="4110">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DoubleTouch (Animation)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\DoubleTouch (Animation).v4p" nodename="DoubleTouch (Animation)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="840" top="4530" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="4530">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Dragging (Animation)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\Dragging (Animation).v4p" nodename="Dragging (Animation)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="840" top="5010" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="5010">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="14">
+   <BOUNDS type="Node" left="10575" top="3705" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10575" top="3705" width="1245" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="devices">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="GameController (Devices DirectInput)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GameController (Devices DirectInput)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="10680" top="4305" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="4305" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Objects" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DeviceObject (Devices DirectInput)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DeviceObject (Devices DirectInput)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="13020" top="4830" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13020" top="4830" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Device Object" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Objects" dstnodeid="16" dstpinname="Device Object">
+   </LINK>
+   <NODE systemname="TouchProcessor (Join)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TouchProcessor (Join)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="10680" top="4890" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="4890" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Container" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="TouchProcessor (Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TouchProcessor (Split)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="10680" top="5460" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="5460" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Container" dstnodeid="18" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="19">
+   <BOUNDS type="Node" left="5775" top="3690" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5775" top="3690" width="1245" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="camera">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Camera (Transform Modular)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Camera (Transform Modular)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="5670" top="7050" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5670" top="7050" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Camera Delta" visible="1">
+   </PIN>
+   <PIN pinname="Camera" visible="1">
+   </PIN>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="5835" top="4350" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5835" top="4350" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CameraDelta (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta)" componentmode="Hidden" id="23">
+   <BOUNDS type="Node" left="5835" top="4935" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5835" top="4935" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   <PIN pinname="Delta In" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CameraDelta (CameraDelta Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta Split)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="6300" top="5460" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="5460" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Camera Delta Out" dstnodeid="24" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Camera Delta Out" dstnodeid="23" dstpinname="Delta In">
+   </LINK>
+   <NODE systemname="SpaceMouse (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" nodename="SpaceMouse (CameraDelta)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="5835" top="5925" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Delta In" visible="1">
+   </PIN>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="5835" top="5925">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Camera Delta Out" dstnodeid="25" dstpinname="Delta In">
+   </LINK>
+   <NODE systemname="Sequencer (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\Sequencer (CameraDelta).v4p" nodename="Sequencer (CameraDelta)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="5835" top="6465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Delta In" visible="1">
+   </PIN>
+   <PIN pinname="Camera Delta Out" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="5835" top="6465">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Camera Delta Out" dstnodeid="26" dstpinname="Delta In">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Camera Delta Out" dstnodeid="20" dstpinname="Camera Delta">
+   </LINK>
+   <NODE systemname="Camera (ModularCam Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Camera (ModularCam Split)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="7200" top="7560" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7200" top="7560" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Camera" dstnodeid="27" dstpinname="Input">
+   </LINK>
+   <NODE systemname="AsRaw (HID)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\AsRaw (HID).v4p" nodename="AsRaw (HID)" componentmode="Hidden" id="29">
+   <BOUNDS type="Node" left="10680" top="6390" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="6390">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Mickies (Devices Mouse)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Mickies (Devices Mouse).v4p" nodename="Mickies (Devices Mouse)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="10680" top="6900" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="6900">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SpaceMouse (Devices HID)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" nodename="SpaceMouse (Devices HID)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="10680" top="7410" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="7410">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SteamController (Devices HID)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" nodename="SteamController (Devices HID)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="10680" top="7920" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="7920">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="34">
+   <BOUNDS type="Node" left="3570" top="5430" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3570" top="5430" width="1245" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="hittest">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Touched (HitTest Circle)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Circle).v4p" nodename="Touched (HitTest Circle)" componentmode="Hidden" id="35">
+   <BOUNDS type="Node" left="3615" top="5970" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3615" top="5970">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Touched (HitTest Polygon)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Polygon).v4p" nodename="Touched (HitTest Polygon)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="3615" top="6330" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3615" top="6330">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Touched (HitTest Quad)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Quad).v4p" nodename="Touched (HitTest Quad)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="3615" top="6750" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3615" top="6750">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Touched (HitTest Segment)" filename="%VVVV%\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Segment).v4p" nodename="Touched (HitTest Segment)" componentmode="Hidden" id="38">
+   <BOUNDS type="Node" left="3615" top="7140" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3615" top="7140">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="VJoyFeeder (Devices)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="VJoyFeeder (Devices)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="10680" top="5940" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="5940" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="40">
+   <BOUNDS type="Node" left="15960" top="3780" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="3780" width="1800" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="excel/ooxml">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Excel (OoXml File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Excel (OoXml File)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="15960" top="4545" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="4545" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Excel (OoXml Raw)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Excel (OoXml Raw)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="17400" top="4545" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="17400" top="4545" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Split (OoXml ExcelRange)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Split (OoXml ExcelRange)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="15960" top="5070" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="5070" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (OoXml ExcelAddressBase)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (OoXml ExcelAddressBase)" componentmode="Hidden" id="44">
+   <BOUNDS type="Node" left="15960" top="5580" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="5580" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (OoXml ExcelPackage)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (OoXml ExcelPackage)" componentmode="Hidden" id="45">
+   <BOUNDS type="Node" left="15960" top="6105" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="6105" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (OoXml ExcelRangeBase)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (OoXml ExcelRangeBase)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="15960" top="6555" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="6555" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (OoXml ExcelWorkbook)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (OoXml ExcelWorkbook)" componentmode="Hidden" id="47">
+   <BOUNDS type="Node" left="15960" top="7035" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="7035" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (OoXml ExcelWorksheet)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (OoXml ExcelWorksheet)" componentmode="Hidden" id="48">
+   <BOUNDS type="Node" left="15960" top="7485" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="7485" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Cell (OoXml Query)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (OoXml Query)" componentmode="Hidden" id="49">
+   <BOUNDS type="Node" left="15960" top="7965" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="7965" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Cell (OoXml Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (OoXml Range)" componentmode="Hidden" id="50">
+   <BOUNDS type="Node" left="15960" top="8445" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="8445" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Cell (OoXml Single)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (OoXml Single)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="15960" top="8985" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15960" top="8985" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="54">
+   <BOUNDS type="Node" left="840" top="8505" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="8505" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="generic">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Dictionary (String String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Dictionary (String String)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="840" top="9090" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="9090" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Dictionary (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Dictionary (Generic)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="840" top="9495" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="9495" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Expand (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Expand (Node)" componentmode="Hidden" id="68">
+   <BOUNDS type="Node" left="840" top="9915" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="9915" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AsStrongObject (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="AsStrongObject (Value)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="840" top="10380" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="10380" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="KeepLast (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepLast (Value)" componentmode="Hidden" id="70">
+   <BOUNDS type="Node" left="840" top="10785" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="10785" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="KeepLast (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepLast (Generic)" componentmode="Hidden" id="71">
+   <BOUNDS type="Node" left="840" top="11190" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="11190" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Zip (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Zip (Node)" componentmode="Hidden" id="72">
+   <BOUNDS type="Node" left="840" top="11655" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="11655" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Queue (Generic Manual)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Queue (Generic Manual)" componentmode="Hidden" id="73">
+   <BOUNDS type="Node" left="840" top="12105" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="12105" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Evaluate (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Evaluate (Node)" componentmode="Hidden" id="74">
+   <BOUNDS type="Node" left="840" top="12525" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="12525" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetType (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetType (Object)" componentmode="Hidden" id="75">
+   <BOUNDS type="Node" left="840" top="12945" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="12945" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetType (Object PluginInterfaces.V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetType (Object PluginInterfaces.V2)" componentmode="Hidden" id="76">
+   <BOUNDS type="Node" left="1620" top="12945" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1620" top="12945" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetAllTypes (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetAllTypes (Object)" componentmode="Hidden" id="77">
+   <BOUNDS type="Node" left="2475" top="12945" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2475" top="12945" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="80">
+   <BOUNDS type="Node" left="4320" top="8490" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4320" top="8490" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="graph">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="81">
+   <BOUNDS type="Node" left="4320" top="8925" width="3375" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4320" top="8925" width="2025" height="495">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|not maintained in its current form, good luck|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Tuple (Node Join)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Tuple (Node Join)" componentmode="Hidden" id="82">
+   <BOUNDS type="Node" left="840" top="14520" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="14520" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Tuple (Node Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Tuple (Node Split)" componentmode="Hidden" id="83">
+   <BOUNDS type="Node" left="1470" top="14520" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1470" top="14520" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="84">
+   <BOUNDS type="Node" left="840" top="14835" width="4740" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="14835" width="2805" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|tuples will be converted into new generic pattern sooner or later|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="FR (GraphLayout)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="FR (GraphLayout)" componentmode="Hidden" id="85">
+   <BOUNDS type="Node" left="4380" top="9570" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="9570" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ISOM (GraphLayout)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ISOM (GraphLayout)" componentmode="Hidden" id="86">
+   <BOUNDS type="Node" left="4380" top="10095" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="10095" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Neighbours (Graph)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Neighbours (Graph)" componentmode="Hidden" id="89">
+   <BOUNDS type="Node" left="4380" top="10590" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="10590" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Neighbours (Graph OutEdge)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Neighbours (Graph OutEdge)" componentmode="Hidden" id="90">
+   <BOUNDS type="Node" left="4380" top="11070" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="11070" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CompoundFDP (GraphLayout)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CompoundFDP (GraphLayout)" componentmode="Hidden" id="91">
+   <BOUNDS type="Node" left="4380" top="11610" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="11610" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DistanceFromReference (Graph)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DistanceFromReference (Graph)" componentmode="Hidden" id="92">
+   <BOUNDS type="Node" left="4380" top="12075" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4380" top="12075" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="93">
+   <BOUNDS type="Node" left="13155" top="8625" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13155" top="8625" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="messages">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="MessagePath (Message)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MessagePath (Message)" componentmode="Hidden" id="94">
+   <BOUNDS type="Node" left="13185" top="9120" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13185" top="9120" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="95">
+   <BOUNDS type="Node" left="8070" top="8490" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8070" top="8490" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="network">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Client (Http)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Client (Http)" componentmode="Hidden" id="97">
+   <BOUNDS type="Node" left="8100" top="9015" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="9015" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Output Object" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Send (Http)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Send (Http)" componentmode="Hidden" id="99">
+   <BOUNDS type="Node" left="9540" top="9480" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9540" top="9480" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="HTTP Client" visible="1">
+   </PIN>
+   <PIN pinname="Headers" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="97" srcpinname="Output Object" dstnodeid="99" dstpinname="HTTP Client">
+   </LINK>
+   <NODE systemname="Headers (Http Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Headers (Http Split)" componentmode="Hidden" id="100">
+   <BOUNDS type="Node" left="9855" top="9945" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9855" top="9945" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input Headers" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="99" srcpinname="Headers" dstnodeid="100" dstpinname="Input Headers">
+   </LINK>
+   <NODE systemname="Download (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Download (File)" componentmode="Hidden" id="101">
+   <BOUNDS type="Node" left="8100" top="10200" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8100" top="10200" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="UDPClient (Network Async)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="UDPClient (Network Async)" componentmode="Hidden" id="102">
+   <BOUNDS type="Node" left="8085" top="10665" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8085" top="10665" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="103">
+   <BOUNDS type="Node" left="8985" top="10650" width="3090" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8985" top="10650" width="3090" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|not recommended, only if everything fails|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="YoutubeDownloader (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="YoutubeDownloader (File)" componentmode="Hidden" id="104">
+   <BOUNDS type="Node" left="8085" top="11160" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8085" top="11160" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="105">
+   <BOUNDS type="Node" left="9540" top="11160" width="3180" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9540" top="11160" width="3180" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|do not use in legally sensitive environment|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="IPFromAdapter (Network)" filename="%VVVV%\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p" nodename="IPFromAdapter (Network)" componentmode="Hidden" id="106">
+   <BOUNDS type="Node" left="8070" top="12000" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Adapter" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="107">
+   <BOUNDS type="Box" left="8085" top="11640" width="3180" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8085" top="11640" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Intel(R) Ethernet Connection (2) I219-LM|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|Intel(R) Ethernet Connection (2) I219-LM|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="107" srcpinname="Output Enum" dstnodeid="106" dstpinname="Adapter">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="108">
+   <BOUNDS type="Node" left="4335" top="13875" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4335" top="13875" width="1650" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="quaternions">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Quaternion Spectral)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Multiply (Quaternion Spectral)" componentmode="Hidden" id="109">
+   <BOUNDS type="Node" left="4410" top="14385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4410" top="14385" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="110">
+   <BOUNDS type="Node" left="13140" top="9615" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13140" top="9615" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="raw">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="LZMA (Raw Compress)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="LZMA (Raw Compress)" componentmode="Hidden" id="111">
+   <BOUNDS type="Node" left="13185" top="10185" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13185" top="10185" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="LZMA (Raw Decompress)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="LZMA (Raw Decompress)" componentmode="Hidden" id="112">
+   <BOUNDS type="Node" left="13920" top="10185" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13920" top="10185" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="114">
+   <BOUNDS type="Node" left="13110" top="11805" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13110" top="11805" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="shaders">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="PreprocessorOptions (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="PreprocessorOptions (File)" componentmode="Hidden" id="115">
+   <BOUNDS type="Node" left="13140" top="12285" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13140" top="12285" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Defines Extract Config" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="116">
+   <BOUNDS type="Node" left="15630" top="9600" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15630" top="9600" width="1275" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="skeletons">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="V2ToV1 (Skeleton)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="V2ToV1 (Skeleton)" componentmode="Hidden" id="117">
+   <BOUNDS type="Node" left="15675" top="10155" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="10155" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="V1ToV2 (Skeleton)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="V1ToV2 (Skeleton)" componentmode="Hidden" id="118">
+   <BOUNDS type="Node" left="16590" top="10155" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16590" top="10155" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Make (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Make (Skeleton V2)" componentmode="Hidden" id="119">
+   <BOUNDS type="Node" left="15675" top="10650" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="10650" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Joint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Joint (Skeleton V2)" componentmode="Hidden" id="120">
+   <BOUNDS type="Node" left="15675" top="11100" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="11100" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="MixPose (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MixPose (Skeleton V2)" componentmode="Hidden" id="121">
+   <BOUNDS type="Node" left="15675" top="11565" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="11565" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SetJoint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetJoint (Skeleton V2)" componentmode="Hidden" id="122">
+   <BOUNDS type="Node" left="15675" top="12060" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="12060" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateJoint (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CreateJoint (Skeleton V2)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="15675" top="12525" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="12525" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetJointTransform (Skeleton V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetJointTransform (Skeleton V2)" componentmode="Hidden" id="124">
+   <BOUNDS type="Node" left="15675" top="12990" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15675" top="12990" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="126">
+   <BOUNDS type="Node" left="15630" top="13365" width="1815" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15630" top="13365" width="3840" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|+ generic spread nodes for both ISkeleton and IJoint|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="127">
+   <BOUNDS type="Node" left="840" top="15765" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="15765" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="string">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="QGramsDistance (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="QGramsDistance (String Distance)" componentmode="Hidden" id="128">
+   <BOUNDS type="Node" left="840" top="21465" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21465" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Jaro (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Jaro (String Distance)" componentmode="Hidden" id="129">
+   <BOUNDS type="Node" left="2355" top="21465" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2355" top="21465" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Block (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Block (String Distance)" componentmode="Hidden" id="130">
+   <BOUNDS type="Node" left="2355" top="21810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2355" top="21810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Euclidean (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Euclidean (String Distance)" componentmode="Hidden" id="131">
+   <BOUNDS type="Node" left="3390" top="21810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3390" top="21810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Levenstein (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Levenstein (String Distance)" componentmode="Hidden" id="132">
+   <BOUNDS type="Node" left="2250" top="22200" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2250" top="22200" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="MongeElkan (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MongeElkan (String Distance)" componentmode="Hidden" id="133">
+   <BOUNDS type="Node" left="2865" top="23025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2865" top="23025" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="JaroWinkler (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaroWinkler (String Distance)" componentmode="Hidden" id="134">
+   <BOUNDS type="Node" left="3885" top="23025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3885" top="23025" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SmithWaterman (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SmithWaterman (String Distance)" componentmode="Hidden" id="135">
+   <BOUNDS type="Node" left="840" top="23400" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="23400" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DiceSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DiceSimilarity (String Distance)" componentmode="Hidden" id="136">
+   <BOUNDS type="Node" left="3345" top="21465" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3345" top="21465" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="NeedlemanWunch (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="NeedlemanWunch (String Distance)" componentmode="Hidden" id="137">
+   <BOUNDS type="Node" left="840" top="21810" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21810" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CosineSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CosineSimilarity (String Distance)" componentmode="Hidden" id="138">
+   <BOUNDS type="Node" left="840" top="22200" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="22200" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ChapmanMeanLength (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanMeanLength (String Distance)" componentmode="Hidden" id="139">
+   <BOUNDS type="Node" left="3285" top="22200" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3285" top="22200" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="JaccardSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaccardSimilarity (String Distance)" componentmode="Hidden" id="140">
+   <BOUNDS type="Node" left="840" top="22605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="22605" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="OverlapCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OverlapCoefficient (String Distance)" componentmode="Hidden" id="141">
+   <BOUNDS type="Node" left="2280" top="22605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2280" top="22605" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="MatchingCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MatchingCoefficient (String Distance)" componentmode="Hidden" id="142">
+   <BOUNDS type="Node" left="3690" top="22605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3690" top="22605" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ChapmanLengthDeviation (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanLengthDeviation (String Distance)" componentmode="Hidden" id="143">
+   <BOUNDS type="Node" left="840" top="23025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="23025" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="144">
+   <BOUNDS type="Node" left="840" top="21120" width="1545" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21120" width="1545" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|and distance nodes:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Sift (String Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Sift (String Advanced)" componentmode="Hidden" id="145">
+   <BOUNDS type="Node" left="840" top="16260" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="16260" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Find (String Bin)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Find (String Bin)" componentmode="Hidden" id="146">
+   <BOUNDS type="Node" left="840" top="16680" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="16680" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DragAndDrop (Control)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DragAndDrop (Control)" componentmode="Hidden" id="147">
+   <BOUNDS type="Node" left="840" top="17115" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="17115" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Clipboard (String Fix)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Clipboard (String Fix)" componentmode="Hidden" id="148">
+   <BOUNDS type="Node" left="840" top="17535" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="17535" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Edit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Edit (String)" componentmode="Hidden" id="149">
+   <BOUNDS type="Node" left="840" top="17985" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="17985" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Regex (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Regex (String)" componentmode="Hidden" id="150">
+   <BOUNDS type="Node" left="840" top="18480" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="18480" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="RemoveZero (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RemoveZero (String)" componentmode="Hidden" id="151">
+   <BOUNDS type="Node" left="840" top="18960" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="18960" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Router (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Router (String)" componentmode="Hidden" id="152">
+   <BOUNDS type="Node" left="840" top="19365" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="19365" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="RegexSplit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RegexSplit (String)" componentmode="Hidden" id="154">
+   <BOUNDS type="Node" left="840" top="19800" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="19800" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SHA-256 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SHA-256 (String)" componentmode="Hidden" id="155">
+   <BOUNDS type="Node" left="840" top="20235" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="20235" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="XxHash32 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="XxHash32 (String)" componentmode="Hidden" id="156">
+   <BOUNDS type="Node" left="840" top="20655" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="20655" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ParseFormat (String DX11)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\ParseFormat (String DX11).v4p" nodename="ParseFormat (String DX11)" componentmode="Hidden" id="157">
+   <BOUNDS type="Node" left="840" top="24075" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="24075">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TrimPathEnd (String)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\TrimPathEnd (String).v4p" nodename="TrimPathEnd (String)" componentmode="Hidden" id="158">
+   <BOUNDS type="Node" left="840" top="24555" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="24555">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="159">
+   <BOUNDS type="Node" left="4320" top="12750" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4320" top="12750" width="1650" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="system">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="SpoutReceive (System)" filename="%VVVV%\packs\mp.essentials\nodes\modules\system\SpoutReceive (System).v4p" nodename="SpoutReceive (System)" componentmode="Hidden" id="160">
+   <BOUNDS type="Node" left="4380" top="13245" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="161">
+   <BOUNDS type="Node" left="5580" top="17550" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5580" top="17550" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="transform">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="RectPack (2d ChevyRay)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RectPack (2d ChevyRay)" componentmode="Hidden" id="162">
+   <BOUNDS type="Node" left="5625" top="18060" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="18060" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="RectPack (2d Czachurski)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RectPack (2d Czachurski)" componentmode="Hidden" id="163">
+   <BOUNDS type="Node" left="5625" top="18525" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="18525" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="164">
+   <BOUNDS type="Node" left="6870" top="18510" width="1665" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6870" top="18510" width="1665" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|this one is way better|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="AspectRatio (Transform Contextual)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\AspectRatio (Transform Contextual).v4p" nodename="AspectRatio (Transform Contextual)" componentmode="Hidden" id="165">
+   <BOUNDS type="Node" left="5625" top="18975" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="18975">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AsRaw (Transform Bin)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\AsRaw (Transform Bin).v4p" nodename="AsRaw (Transform Bin)" componentmode="Hidden" id="166">
+   <BOUNDS type="Node" left="5625" top="19425" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="19425">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AvoidNIL (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\AvoidNIL (Transform).v4p" nodename="AvoidNIL (Transform)" componentmode="Hidden" id="167">
+   <BOUNDS type="Node" left="5625" top="19875" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="19875">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="BezierPath (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\BezierPath (Transform).v4p" nodename="BezierPath (Transform)" componentmode="Hidden" id="168">
+   <BOUNDS type="Node" left="5625" top="20385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="20385">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Border (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Border (Transform).v4p" nodename="Border (Transform)" componentmode="Hidden" id="169">
+   <BOUNDS type="Node" left="5625" top="20880" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="20880">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Camera (Transform Pan)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Camera (Transform Pan).v4p" nodename="Camera (Transform Pan)" componentmode="Hidden" id="170">
+   <BOUNDS type="Node" left="5625" top="21330" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="21330">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Connect (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Connect (Transform).v4p" nodename="Connect (Transform)" componentmode="Hidden" id="171">
+   <BOUNDS type="Node" left="5625" top="21780" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="21780">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Connect (Transform Vector)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Connect (Transform Vector).v4p" nodename="Connect (Transform Vector)" componentmode="Hidden" id="172">
+   <BOUNDS type="Node" left="6675" top="21780" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6675" top="21780">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Damper (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Damper (Transform).v4p" nodename="Damper (Transform)" componentmode="Hidden" id="173">
+   <BOUNDS type="Node" left="5625" top="22215" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="22215">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Damper (Transform FrameBased)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Damper (Transform FrameBased).v4p" nodename="Damper (Transform FrameBased)" componentmode="Hidden" id="174">
+   <BOUNDS type="Node" left="6600" top="22215" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Delay (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Delay (Transform).v4p" nodename="Delay (Transform)" componentmode="Hidden" id="175">
+   <BOUNDS type="Node" left="5625" top="22725" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="22725">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Fill (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Fill (Transform).v4p" nodename="Fill (Transform)" componentmode="Hidden" id="176">
+   <BOUNDS type="Node" left="5625" top="23190" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="23190">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="FindPlaneTransform (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\FindPlaneTransform (Transform).v4p" nodename="FindPlaneTransform (Transform)" componentmode="Hidden" id="177">
+   <BOUNDS type="Node" left="5625" top="23655" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="23655">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Flick (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Flick (Transform).v4p" nodename="Flick (Transform)" componentmode="Hidden" id="178">
+   <BOUNDS type="Node" left="5625" top="24120" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="24120">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Flick (Transform Limited)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Flick (Transform Limited).v4p" nodename="Flick (Transform Limited)" componentmode="Hidden" id="179">
+   <BOUNDS type="Node" left="7095" top="24120" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GridSplit (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\GridSplit (Transform).v4p" nodename="GridSplit (Transform)" componentmode="Hidden" id="180">
+   <BOUNDS type="Node" left="5625" top="24615" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="24615">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GUIPixelBillboard (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\GUIPixelBillboard (Transform).v4p" nodename="GUIPixelBillboard (Transform)" componentmode="Hidden" id="181">
+   <BOUNDS type="Node" left="5625" top="25080" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="25080">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="InputMorph (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\InputMorph (Transform).v4p" nodename="InputMorph (Transform)" componentmode="Hidden" id="182">
+   <BOUNDS type="Node" left="5625" top="25545" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="25545">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="InputMorph (Transform Spectral)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\InputMorph (Transform Spectral).v4p" nodename="InputMorph (Transform Spectral)" componentmode="Hidden" id="183">
+   <BOUNDS type="Node" left="6780" top="25560" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="InsideBox (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\InsideBox (Transform).v4p" nodename="InsideBox (Transform)" componentmode="Hidden" id="184">
+   <BOUNDS type="Node" left="5625" top="26115" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="26115">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="LookatSimple (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\LookatSimple (Transform).v4p" nodename="LookatSimple (Transform)" componentmode="Hidden" id="186">
+   <BOUNDS type="Node" left="5625" top="26580" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="26580">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="PackCamera (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\PackCamera (Transform).v4p" nodename="PackCamera (Transform)" componentmode="Hidden" id="187">
+   <BOUNDS type="Node" left="5625" top="27090" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="5625" top="27090">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="188">
+   <BOUNDS type="Node" left="7020" top="27300" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7020" top="27300" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Output Count" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="187" srcpinname="Output" dstnodeid="188" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Subtract (Transform)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\Subtract (Transform).v4p" nodename="Subtract (Transform)" componentmode="Hidden" id="189">
+   <BOUNDS type="Node" left="5625" top="27720" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5625" top="27720">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="190">
+   <BOUNDS type="Node" left="9360" top="17550" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="17550" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="value">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="LFO (Value Beat)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="LFO (Value Beat)" componentmode="Hidden" id="191">
+   <BOUNDS type="Node" left="840" top="5895" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="5895" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Distance (2d LongLat)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Distance (2d LongLat)" componentmode="Hidden" id="192">
+   <BOUNDS type="Node" left="9360" top="18165" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="18165" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Pulse (Animation)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Pulse (Animation)" componentmode="Hidden" id="193">
+   <BOUNDS type="Node" left="840" top="5445" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="5445" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Construct (Stopwatch)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Construct (Stopwatch)" componentmode="Hidden" id="194">
+   <BOUNDS type="Node" left="840" top="6315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="6315" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Output Object" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Stopwatch (Stopwatch)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Stopwatch (Stopwatch)" componentmode="Hidden" id="195">
+   <BOUNDS type="Node" left="840" top="6795" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="6795" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input Stopwatch" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="194" srcpinname="Output Object" dstnodeid="195" dstpinname="Input Stopwatch">
+   </LINK>
+   <NODE systemname="CountSpreads (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CountSpreads (Value)" componentmode="Hidden" id="196">
+   <BOUNDS type="Node" left="9360" top="18615" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="18615" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="MaxCount (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MaxCount (Value)" componentmode="Hidden" id="197">
+   <BOUNDS type="Node" left="840" top="13440" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="13440" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SequentialAdd (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SequentialAdd (Value)" componentmode="Hidden" id="198">
+   <BOUNDS type="Node" left="9360" top="19065" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="19065" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="201">
+   <BOUNDS type="Node" left="10500" top="19065" width="1305" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10500" top="19065" width="1305" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|same as Integral|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="SiftSequential (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SiftSequential (Value)" componentmode="Hidden" id="202">
+   <BOUNDS type="Node" left="9360" top="19530" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="19530" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SiftSet (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SiftSet (Value)" componentmode="Hidden" id="204">
+   <BOUNDS type="Node" left="9360" top="20010" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="20010" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Counter (Animation Simple)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\Counter (Animation Simple).v4p" nodename="Counter (Animation Simple)" componentmode="Hidden" id="206">
+   <BOUNDS type="Node" left="9360" top="20535" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="20535">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Fillup (Spreads)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\Fillup (Spreads).v4p" nodename="Fillup (Spreads)" componentmode="Hidden" id="207">
+   <BOUNDS type="Node" left="9360" top="20985" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="20985">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="208">
+   <BOUNDS type="Node" left="10080" top="20985" width="1500" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10080" top="20985" width="1500" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Similar to Disperse|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetFactorMultiplier (Value)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\GetFactorMultiplier (Value).v4p" nodename="GetFactorMultiplier (Value)" componentmode="Hidden" id="209">
+   <BOUNDS type="Node" left="9360" top="21435" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="21435">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="210">
+   <BOUNDS type="Node" left="10965" top="21420" width="1245" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10965" top="21420" width="1245" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|For tessellation|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="InvertIndices (Value)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\InvertIndices (Value).v4p" nodename="InvertIndices (Value)" componentmode="Hidden" id="211">
+   <BOUNDS type="Node" left="9360" top="21900" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="21900">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ResampleGamma (Value)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\ResampleGamma (Value).v4p" nodename="ResampleGamma (Value)" componentmode="Hidden" id="212">
+   <BOUNDS type="Node" left="9360" top="22380" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="22380">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SmoothRandom (Value)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\SmoothRandom (Value).v4p" nodename="SmoothRandom (Value)" componentmode="Hidden" id="213">
+   <BOUNDS type="Node" left="9360" top="22845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="22845">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TimeClip (Timeliner)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\TimeClip (Timeliner).v4p" nodename="TimeClip (Timeliner)" componentmode="Hidden" id="214">
+   <BOUNDS type="Node" left="840" top="7245" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|00:00.00 - 00:02.00 [220]|">
+   </PIN>
+   <BOUNDS type="Box" left="840" top="7245">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="UnixTimeStamp (Gregorian)" filename="%VVVV%\packs\mp.essentials\nodes\modules\value\UnixTimeStamp (Gregorian).v4p" nodename="UnixTimeStamp (Gregorian)" componentmode="Hidden" id="215">
+   <BOUNDS type="Node" left="9360" top="23280" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9360" top="23280">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="FakeMenu (GUI Dynamic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="FakeMenu (GUI Dynamic)" componentmode="Hidden" id="217">
+   <BOUNDS type="Node" left="13005" top="18135" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13005" top="18135" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="219">
+   <BOUNDS type="Node" left="12960" top="17535" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12960" top="17535" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="vvvv">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="CustomEnum (Enumerations)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CustomEnum (Enumerations)" componentmode="Hidden" id="220">
+   <BOUNDS type="Node" left="13005" top="18660" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13005" top="18660" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DropBox (GUI)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DropBox (GUI)" componentmode="Hidden" id="221">
+   <BOUNDS type="Node" left="13005" top="19140" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13005" top="19140" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TextBox (GUI)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TextBox (GUI)" componentmode="Hidden" id="222">
+   <BOUNDS type="Node" left="13005" top="19650" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13005" top="19650" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="NodePath (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="NodePath (VVVV)" componentmode="Hidden" id="223">
+   <BOUNDS type="Node" left="13005" top="20130" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13005" top="20130" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ComponentMode (VVVV bounds)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\ComponentMode (VVVV bounds).v4p" nodename="ComponentMode (VVVV bounds)" componentmode="Hidden" id="224">
+   <BOUNDS type="Node" left="13005" top="20595" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DescriptiveName (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\DescriptiveName (VVVV).v4p" nodename="DescriptiveName (VVVV)" componentmode="Hidden" id="225">
+   <BOUNDS type="Node" left="13050" top="21105" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="FakeFullscreen (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="226">
+   <BOUNDS type="Node" left="13035" top="21675" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetSpread (Node)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\GetSpread (Node).v4p" nodename="GetSpread (Node)" componentmode="Hidden" id="227">
+   <BOUNDS type="Node" left="13005" top="22215" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetSpread (Node Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\GetSpread (Node Advanced).v4p" nodename="GetSpread (Node Advanced)" componentmode="Hidden" id="228">
+   <BOUNDS type="Node" left="14250" top="22230" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="229">
+   <BOUNDS type="Node" left="12990" top="22710" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="PutWindowOnMyScreen (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" nodename="PutWindowOnMyScreen (VVVV)" componentmode="Hidden" id="230">
+   <BOUNDS type="Node" left="16110" top="22845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="22845">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TextBox (GUI controller)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\TextBox (GUI controller).v4p" nodename="TextBox (GUI controller)" componentmode="Hidden" id="231">
+   <BOUNDS type="Node" left="14145" top="19650" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="232">
+   <BOUNDS type="Node" left="16110" top="17400" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="17400" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="windows">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Decompress (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Decompress (File)" componentmode="Hidden" id="233">
+   <BOUNDS type="Node" left="16110" top="18015" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="18015" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Archive" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DecompressionProgressInfo (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DecompressionProgressInfo (File)" componentmode="Hidden" id="234">
+   <BOUNDS type="Node" left="16110" top="18450" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="18450" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="233" srcpinname="Archive" dstnodeid="234" dstpinname="Input">
+   </LINK>
+   <NODE systemname="PID (Windows Handle)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="PID (Windows Handle)" componentmode="Hidden" id="235">
+   <BOUNDS type="Node" left="16110" top="18945" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="18945" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Handle (Windows PID)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Handle (Windows PID)" componentmode="Hidden" id="236">
+   <BOUNDS type="Node" left="16740" top="18960" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16740" top="18960" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SendKey (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SendKey (Windows)" componentmode="Hidden" id="237">
+   <BOUNDS type="Node" left="16110" top="19455" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="19455" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetForegroundWindow (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetForegroundWindow (Windows)" componentmode="Hidden" id="238">
+   <BOUNDS type="Node" left="16110" top="19890" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="19890" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetParent (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetParent (Windows)" componentmode="Hidden" id="239">
+   <BOUNDS type="Node" left="16110" top="20400" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="20400" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetWindowText (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetWindowText (Windows)" componentmode="Hidden" id="240">
+   <BOUNDS type="Node" left="16110" top="20865" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="20865" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="HandleFromCursor (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="HandleFromCursor (Windows)" componentmode="Hidden" id="241">
+   <BOUNDS type="Node" left="16110" top="21360" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="21360" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="LaunchOSK (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="LaunchOSK (Windows)" componentmode="Hidden" id="242">
+   <BOUNDS type="Node" left="16110" top="21885" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="21885" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="WindowPos (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WindowPos (Windows)" componentmode="Hidden" id="243">
+   <BOUNDS type="Node" left="16110" top="22380" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="22380" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="FakeFullscreen (Window)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (Window).v4p" nodename="FakeFullscreen (Window)" componentmode="Hidden" id="244">
+   <BOUNDS type="Node" left="16110" top="23355" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="23355">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="246">
+   <BOUNDS type="Node" left="11850" top="1365" width="1365" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11850" top="1365" width="1365" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|scroll for more ;)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <NODE systemname="KeepTemporary (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepTemporary (Generic)" componentmode="Hidden" id="247">
+   <BOUNDS type="Node" left="840" top="13950" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="13950" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="248">
+   <BOUNDS type="Node" left="6945" top="12960" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6945" top="12960" width="1155" height="360">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Reogrid">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Spreadsheet (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Spreadsheet (ReoGrid)" componentmode="InAWindow" id="249">
+   <BOUNDS type="Node" left="6990" top="15150" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="15150" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Behaviors" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Workbook Data" slicecount="1" values="Sheet1:PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8Z3JpZCB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIj4NCiAgPGhlYWQ+DQogICAgPG1ldGE+DQogICAgICA8Y3VsdHVyZT5lbi1ERTwvY3VsdHVyZT4NCiAgICAgIDxlZGl0b3I+UmVvR3JpZCBDb3JlPC9lZGl0b3I+DQogICAgICA8Y29yZS12ZXI+Mi4xLjAuMDwvY29yZS12ZXI+DQogICAgPC9tZXRhPg0KICAgIDxyb3dzPjIwMDwvcm93cz4NCiAgICA8Y29scz4xMDA8L2NvbHM+DQogICAgPGRlZmF1bHQtcm93LWhlaWdodD4yMDwvZGVmYXVsdC1yb3ctaGVpZ2h0Pg0KICAgIDxkZWZhdWx0LWNvbC13aWR0aD43MDwvZGVmYXVsdC1jb2wtd2lkdGg+DQogICAgPHNldHRpbmdzIG1ldGE9IjMwNDc1MDI2Mzk4IiAvPg0KICAgIDxzY3JpcHQgLz4NCiAgPC9oZWFkPg0KICA8c3R5bGUgZm9udD0iQ2FsaWJyaSIgZm9udC1zaXplPSIxMCwyNSIgYWxpZ249ImdlbmVyYWwiIHZhbGlnbj0ibWlkZGxlIiAvPg0KICA8cm93cyAvPg0KICA8Y29scyAvPg0KICA8di1ib3JkZXJzIC8+DQogIDxoLWJvcmRlcnMgLz4NCiAgPGNlbGxzIC8+DQo8L2dyaWQ+">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cell (ReoGrid Query)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Query)" componentmode="Hidden" id="250">
+   <BOUNDS type="Node" left="6990" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cell (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Range)" componentmode="Hidden" id="251">
+   <BOUNDS type="Node" left="8205" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8205" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cell (ReoGrid Selection)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Selection)" componentmode="Hidden" id="252">
+   <BOUNDS type="Node" left="9450" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9450" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   <PIN pinname="Cell Range" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cell (ReoGrid Single)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid Single)" componentmode="Hidden" id="253">
+   <BOUNDS type="Node" left="10665" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10665" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cell (ReoGrid VectorRange)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cell (ReoGrid VectorRange)" componentmode="Hidden" id="254">
+   <BOUNDS type="Node" left="11925" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11925" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Split (ReoGrid ReferenceRange)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Split (ReoGrid ReferenceRange)" componentmode="Hidden" id="255">
+   <BOUNDS type="Node" left="6990" top="16230" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="16230" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Range" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="SetData (ReoGrid.Behavior Query)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetData (ReoGrid.Behavior Query)" componentmode="Hidden" id="256">
+   <BOUNDS type="Node" left="6990" top="14610" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="14610" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Behavior In" visible="1">
+   </PIN>
+   <PIN pinname="Behavior Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="SetData (ReoGrid.Behavior Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetData (ReoGrid.Behavior Range)" componentmode="Hidden" id="257">
+   <BOUNDS type="Node" left="6990" top="13605" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="13605" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Behavior Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="SetData (ReoGrid.Behavior Single)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetData (ReoGrid.Behavior Single)" componentmode="Hidden" id="258">
+   <BOUNDS type="Node" left="6990" top="14100" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6990" top="14100" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Behavior In" visible="1">
+   </PIN>
+   <PIN pinname="Behavior Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Rotation (ReoGrid.FormulaProvider Quaternion)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Rotation (ReoGrid.FormulaProvider Quaternion)" componentmode="Hidden" id="259">
+   <BOUNDS type="Node" left="8340" top="15150" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8340" top="15150" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="WorksheetMetrics (ReoGrid)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WorksheetMetrics (ReoGrid)" componentmode="Hidden" id="260">
+   <BOUNDS type="Node" left="6600" top="16785" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6600" top="16785" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="250" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7020" y="15578">
+   </LINKPOINT>
+   <LINKPOINT x="7020" y="15578">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="251" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7050" y="15563">
+   </LINKPOINT>
+   <LINKPOINT x="8205" y="15563">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="252" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7050" y="15563">
+   </LINKPOINT>
+   <LINKPOINT x="9450" y="15563">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="253" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7050" y="15563">
+   </LINKPOINT>
+   <LINKPOINT x="10665" y="15563">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="250" srcpinname="Cell Range" dstnodeid="255" dstpinname="Range">
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="254" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7050" y="15563">
+   </LINKPOINT>
+   <LINKPOINT x="11925" y="15563">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="260" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="7020" y="15570">
+   </LINKPOINT>
+   <LINKPOINT x="6630" y="15570">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="257" srcpinname="Behavior Out" dstnodeid="258" dstpinname="Behavior In">
+   </LINK>
+   <LINK srcnodeid="258" srcpinname="Behavior Out" dstnodeid="256" dstpinname="Behavior In">
+   </LINK>
+   <LINK srcnodeid="256" srcpinname="Behavior Out" dstnodeid="249" dstpinname="Behaviors">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <NODE systemname="GetButton (ReoGrid Query)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Query)" componentmode="Hidden" id="261">
+   <BOUNDS type="Node" left="13350" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13350" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="261" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="8730" y="15675">
+   </LINKPOINT>
+   <LINKPOINT x="11655" y="15525">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Range)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Range)" componentmode="Hidden" id="262">
+   <BOUNDS type="Node" left="14385" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="14385" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="262" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="8730" y="15675">
+   </LINKPOINT>
+   <LINKPOINT x="12705" y="15525">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Selection)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Selection)" componentmode="Hidden" id="263">
+   <BOUNDS type="Node" left="15420" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="15420" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="263" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="8730" y="15675">
+   </LINKPOINT>
+   <LINKPOINT x="13740" y="15525">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid Single)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid Single)" componentmode="Hidden" id="264">
+   <BOUNDS type="Node" left="16455" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16455" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="264" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="8730" y="15675">
+   </LINKPOINT>
+   <LINKPOINT x="14775" y="15525">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="GetButton (ReoGrid VectorRange)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetButton (ReoGrid VectorRange)" componentmode="Hidden" id="265">
+   <BOUNDS type="Node" left="17490" top="15735" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="17490" top="15735" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Worksheet" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="249" srcpinname="Worksheet" dstnodeid="265" dstpinname="Worksheet" linkstyle="VHV">
+   <LINKPOINT x="8730" y="15675">
+   </LINKPOINT>
+   <LINKPOINT x="15810" y="15525">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="PostMessage (Windows)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="PostMessage (Windows)" componentmode="Hidden" id="266">
+   <BOUNDS type="Node" left="16110" top="23865" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16110" top="23865" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Reader (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Reader (Raw SharedMemory.Advanced)" componentmode="Hidden" id="267">
+   <BOUNDS type="Node" left="13170" top="10650" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13170" top="10650" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TakeUntilNull (Raw)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="TakeUntilNull (Raw)" componentmode="Hidden" id="268">
+   <BOUNDS type="Node" left="13155" top="11145" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13155" top="11145" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="BezierSpline (Value Tangent)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="BezierSpline (Value Tangent)" componentmode="Hidden" id="269">
+   <BOUNDS type="Node" left="9345" top="23715" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   </PATCH>

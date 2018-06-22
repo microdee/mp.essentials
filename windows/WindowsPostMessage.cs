@@ -11,12 +11,12 @@ namespace mp.essentials.windows
     [PluginInfo(
         Name = "PostMessage",
         Category = "Windows",
-        Tags = "spreadable",
+        Tags = "spreadable, SendMessage",
         Help = "Same as SendMessage but spreadable and async",
         Author = "microdee",
         AutoEvaluate = true
     )]
-    public class WindowsGetParentNode : IPluginEvaluate
+    public class WindowsPostMessageNode : IPluginEvaluate
     {
         #region fields & pins
         [Input("Handle", DefaultValue = 0)]
