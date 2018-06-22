@@ -102,6 +102,7 @@ namespace mp.essentials.Nodes.Generic
                     break;
                 case PropertyInfo prop:
                     if (!prop.CanRead) return;
+                    if (prop.PropertyType.IsPointer) return;
                     if (prop.GetIndexParameters().Length > 0) return;
 
                     memberType = prop.PropertyType;
