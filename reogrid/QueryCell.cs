@@ -126,23 +126,23 @@ namespace mp.essentials.reogrid
         [Input("Left Column", DefaultValue = 1, Order = 101)]
         public IDiffSpread<int> FLeftCol;
         [Input("Row Count", DefaultValue = 1, Order = 102)]
-        public IDiffSpread<int> FBottomRow;
+        public IDiffSpread<int> FRowCount;
         [Input("Column Count", DefaultValue = 1, Order = 103)]
-        public IDiffSpread<int> FRightCol;
+        public IDiffSpread<int> FColCount;
 
         protected override ReferenceRange CreateRange(int i)
         {
-            return FInput[i].Ranges[FTopRow[i], FLeftCol[i], FBottomRow[i], FRightCol[i]];
+            return FInput[i].Ranges[FTopRow[i], FLeftCol[i], FRowCount[i], FColCount[i]];
         }
 
         protected override bool InputIsChanged()
         {
-            return FInput.IsChanged || FTopRow.IsChanged || FLeftCol.IsChanged || FBottomRow.IsChanged || FRightCol.IsChanged;
+            return FInput.IsChanged || FTopRow.IsChanged || FLeftCol.IsChanged || FRowCount.IsChanged || FColCount.IsChanged;
         }
 
         protected override int Spreadmax()
         {
-            return SpreadUtils.SpreadMax(FInput, FTopRow, FLeftCol, FBottomRow, FRightCol);
+            return SpreadUtils.SpreadMax(FInput, FTopRow, FLeftCol, FRowCount, FColCount);
         }
     }
     [PluginInfo(
