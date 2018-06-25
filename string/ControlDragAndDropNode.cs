@@ -1,4 +1,3 @@
-#region usings
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
@@ -11,7 +10,6 @@ using VVVV.Utils.VColor;
 using VVVV.Utils.VMath;
 
 using VVVV.Core.Logging;
-#endregion usings
 
 namespace mp.essentials.Nodes.Strings
 {
@@ -21,13 +19,12 @@ namespace mp.essentials.Nodes.Strings
         Author = "microdee",
         AutoEvaluate = true
         )]
-	public class ControlDragAndDropNode : IPluginEvaluate, IPluginFeedbackLoop
+	public class ControlDragAndDropNode : IPluginEvaluate, IPluginFeedbackLoop, IPartImportsSatisfiedNotification
 	{
-		#region fields & pins
 		//[Input("PosSize", DefaultValue = 0.0)]
 		//ISpread<int> FPos;
 		[Input("Input")]
-		public ISpread<Control> FInControl;
+		public Pin<Control> FInControl;
 
 		[Output("Output")]
 		public ISpread<string> FOut;
@@ -40,8 +37,6 @@ namespace mp.essentials.Nodes.Strings
 
 		[Import()]
 		public ILogger FLogger;
-		
-		int fcr;
 
 		//gui controls
 		//object FDragThreadLock = new object();
@@ -51,33 +46,21 @@ namespace mp.essentials.Nodes.Strings
 		bool pDragDrop = false;
 		string[] pDragData;
 		//= new string[] {""};
-		#endregion fields & pins
 
-		#region constructor and init
+	    public void OnImportsSatisfied()
+	    {
+	        FInControl.Connected += (sender, args) =>
+	        {
+	            FInControl[0].AllowDrop = true;
 
-		[ImportingConstructor]
-		public ControlDragAndDropNode()
+	            FInControl[0].DragEnter += _dragenter;
+	            FInControl[0].DragLeave += _dragleave;
+	            FInControl[0].DragDrop += _dragdrop;
+	        };
+        }
+
+		void _dragenter(object sender, DragEventArgs e)
 		{
-			fcr = 0;
-		}
-
-		void InitializeComponent()
-		{
-			FInControl[0].AllowDrop = true;
-
-			//add a textbox
-			FInControl[0].DragEnter += new System.Windows.Forms.DragEventHandler(_dragenter);
-			FInControl[0].DragLeave += new EventHandler(_dragleave);
-
-			//add to controls
-		}
-
-		void _dragenter(object sender, System.Windows.Forms.DragEventArgs e)
-		{
-			/*if (e.Data.GetDataPresent(DataFormats.FileDrop))
-				e.Effect = DragDropEffects.Copy;
-			else
-				e.Effect = DragDropEffects.Link;*/
 			pDragData = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 			pDragEnter = true;
 			pDragInside = true;
@@ -87,19 +70,15 @@ namespace mp.essentials.Nodes.Strings
 			pDragLeave = true;
 			pDragInside = false;
 		}
-		void _dragdrop(object sender, System.Windows.Forms.DragEventArgs e)
+		void _dragdrop(object sender, DragEventArgs e)
 		{
-			//lock(FDragThreadLock)
 			pDragDrop = true;
 			pDragInside = false;
 		}
 
-		#endregion constructor and init
-
 		//called when data for any output pin is requested
 		public void Evaluate(int SpreadMax)
 		{
-			if(fcr==0) InitializeComponent();
 			//set outputs
 			FDragEnter[0] = pDragEnter;
 			FDragLeave[0] = pDragEnter;
@@ -117,7 +96,6 @@ namespace mp.essentials.Nodes.Strings
 			pDragLeave = false;
 			pDragDrop = false;
 			//this.Location = new Point(FPos[0],FPos[1]);
-			fcr++;
 		}
 
 	    public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)

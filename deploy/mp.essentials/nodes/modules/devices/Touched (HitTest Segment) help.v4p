@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
    <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\Touched (HitTest Segment) help.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="13485" top="8370" width="10185" height="11700">
    </BOUNDS>
@@ -112,6 +112,8 @@
    <BOUNDS type="Node" left="5055" top="2655" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Receive String" slicecount="1" values="Touches">
    </PIN>
    </NODE>
    <NODE systemname="HSV (Color Join)" nodename="HSV (Color Join)" componentmode="Hidden" id="16">
@@ -376,4 +378,10 @@
    </LINK>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Cycles">
    </LINK>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
    </PATCH>
