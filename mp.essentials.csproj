@@ -297,6 +297,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="vvvv\NodeGrapher.cs" />
+    <Compile Include="vvvv\SetCursor.cs" />
     <Compile Include="vvvv\vvvvNodePathNode.cs" />
     <Compile Include="windows\FileCompressorNodes.cs" />
     <Compile Include="windows\HandleWindowsPIDNode.cs" />
@@ -316,6 +317,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="blank.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="vJoyInterface.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

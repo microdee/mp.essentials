@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="15" scrolly="600">
    <BOUNDS type="Window" left="3330" top="2175" width="25275" height="22845">
    </BOUNDS>
    <PACK Name="KeyboardUI" Version="1.1.1">
@@ -973,105 +973,105 @@
    </PIN>
    </NODE>
    <NODE systemname="QGramsDistance (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="QGramsDistance (String Distance)" componentmode="Hidden" id="128">
-   <BOUNDS type="Node" left="840" top="21465" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="21060" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21465" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="21060" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Jaro (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Jaro (String Distance)" componentmode="Hidden" id="129">
-   <BOUNDS type="Node" left="2355" top="21465" width="100" height="100">
+   <BOUNDS type="Node" left="2355" top="21060" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2355" top="21465" width="3000" height="3000">
+   <BOUNDS type="Box" left="2355" top="21060" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Block (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Block (String Distance)" componentmode="Hidden" id="130">
-   <BOUNDS type="Node" left="2355" top="21810" width="100" height="100">
+   <BOUNDS type="Node" left="2355" top="21405" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2355" top="21810" width="3000" height="3000">
+   <BOUNDS type="Box" left="2355" top="21405" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Euclidean (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Euclidean (String Distance)" componentmode="Hidden" id="131">
-   <BOUNDS type="Node" left="3390" top="21810" width="100" height="100">
+   <BOUNDS type="Node" left="3390" top="21405" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3390" top="21810" width="3000" height="3000">
+   <BOUNDS type="Box" left="3390" top="21405" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Levenstein (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Levenstein (String Distance)" componentmode="Hidden" id="132">
-   <BOUNDS type="Node" left="2250" top="22200" width="100" height="100">
+   <BOUNDS type="Node" left="2250" top="21795" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2250" top="22200" width="3000" height="3000">
+   <BOUNDS type="Box" left="2250" top="21795" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="MongeElkan (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MongeElkan (String Distance)" componentmode="Hidden" id="133">
-   <BOUNDS type="Node" left="2865" top="23025" width="100" height="100">
+   <BOUNDS type="Node" left="2865" top="22620" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2865" top="23025" width="3000" height="3000">
+   <BOUNDS type="Box" left="2865" top="22620" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="JaroWinkler (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaroWinkler (String Distance)" componentmode="Hidden" id="134">
-   <BOUNDS type="Node" left="3885" top="23025" width="100" height="100">
+   <BOUNDS type="Node" left="3885" top="22620" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3885" top="23025" width="3000" height="3000">
+   <BOUNDS type="Box" left="3885" top="22620" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="SmithWaterman (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SmithWaterman (String Distance)" componentmode="Hidden" id="135">
-   <BOUNDS type="Node" left="840" top="23400" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="22995" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="23400" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="22995" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="DiceSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DiceSimilarity (String Distance)" componentmode="Hidden" id="136">
-   <BOUNDS type="Node" left="3345" top="21465" width="100" height="100">
+   <BOUNDS type="Node" left="3345" top="21060" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3345" top="21465" width="3000" height="3000">
+   <BOUNDS type="Box" left="3345" top="21060" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="NeedlemanWunch (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="NeedlemanWunch (String Distance)" componentmode="Hidden" id="137">
-   <BOUNDS type="Node" left="840" top="21810" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="21405" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21810" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="21405" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="CosineSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CosineSimilarity (String Distance)" componentmode="Hidden" id="138">
+   <BOUNDS type="Node" left="840" top="21795" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21795" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ChapmanMeanLength (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanMeanLength (String Distance)" componentmode="Hidden" id="139">
+   <BOUNDS type="Node" left="3285" top="21795" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3285" top="21795" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="JaccardSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaccardSimilarity (String Distance)" componentmode="Hidden" id="140">
    <BOUNDS type="Node" left="840" top="22200" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="840" top="22200" width="3000" height="3000">
    </BOUNDS>
    </NODE>
-   <NODE systemname="ChapmanMeanLength (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanMeanLength (String Distance)" componentmode="Hidden" id="139">
-   <BOUNDS type="Node" left="3285" top="22200" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3285" top="22200" width="3000" height="3000">
-   </BOUNDS>
-   </NODE>
-   <NODE systemname="JaccardSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaccardSimilarity (String Distance)" componentmode="Hidden" id="140">
-   <BOUNDS type="Node" left="840" top="22605" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="22605" width="3000" height="3000">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="OverlapCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OverlapCoefficient (String Distance)" componentmode="Hidden" id="141">
-   <BOUNDS type="Node" left="2280" top="22605" width="100" height="100">
+   <BOUNDS type="Node" left="2280" top="22200" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2280" top="22605" width="3000" height="3000">
+   <BOUNDS type="Box" left="2280" top="22200" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="MatchingCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MatchingCoefficient (String Distance)" componentmode="Hidden" id="142">
-   <BOUNDS type="Node" left="3690" top="22605" width="100" height="100">
+   <BOUNDS type="Node" left="3690" top="22200" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3690" top="22605" width="3000" height="3000">
+   <BOUNDS type="Box" left="3690" top="22200" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="ChapmanLengthDeviation (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanLengthDeviation (String Distance)" componentmode="Hidden" id="143">
-   <BOUNDS type="Node" left="840" top="23025" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="22620" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="23025" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="22620" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="144">
-   <BOUNDS type="Node" left="840" top="21120" width="1545" height="270">
+   <BOUNDS type="Node" left="840" top="20715" width="1545" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21120" width="1545" height="270">
+   <BOUNDS type="Box" left="840" top="20715" width="1545" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|and distance nodes:|">
    </PIN>
@@ -1095,69 +1095,69 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="DragAndDrop (Control)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DragAndDrop (Control)" componentmode="Hidden" id="147">
-   <BOUNDS type="Node" left="840" top="17115" width="100" height="100">
+   <BOUNDS type="Node" left="10650" top="12675" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="17115" width="3000" height="3000">
+   <BOUNDS type="Box" left="10650" top="12675" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Clipboard (String Fix)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Clipboard (String Fix)" componentmode="Hidden" id="148">
-   <BOUNDS type="Node" left="840" top="17535" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="17130" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="17535" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="17130" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Edit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Edit (String)" componentmode="Hidden" id="149">
-   <BOUNDS type="Node" left="840" top="17985" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="17580" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="17985" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="17580" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="Regex (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Regex (String)" componentmode="Hidden" id="150">
-   <BOUNDS type="Node" left="840" top="18480" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="18075" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="18480" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="18075" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="RemoveZero (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RemoveZero (String)" componentmode="Hidden" id="151">
+   <BOUNDS type="Node" left="840" top="18555" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="18555" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Router (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Router (String)" componentmode="Hidden" id="152">
    <BOUNDS type="Node" left="840" top="18960" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="840" top="18960" width="3000" height="3000">
    </BOUNDS>
    </NODE>
-   <NODE systemname="Router (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Router (String)" componentmode="Hidden" id="152">
-   <BOUNDS type="Node" left="840" top="19365" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="19365" width="3000" height="3000">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="RegexSplit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RegexSplit (String)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="840" top="19800" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="19395" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="19800" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="19395" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="SHA-256 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SHA-256 (String)" componentmode="Hidden" id="155">
-   <BOUNDS type="Node" left="840" top="20235" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="19830" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="20235" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="19830" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="XxHash32 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="XxHash32 (String)" componentmode="Hidden" id="156">
-   <BOUNDS type="Node" left="840" top="20655" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="20250" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="20655" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="20250" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    <NODE systemname="ParseFormat (String DX11)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\ParseFormat (String DX11).v4p" nodename="ParseFormat (String DX11)" componentmode="Hidden" id="157">
-   <BOUNDS type="Node" left="840" top="24075" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="23670" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="24075">
+   <BOUNDS type="Box" left="840" top="23670">
    </BOUNDS>
    </NODE>
    <NODE systemname="TrimPathEnd (String)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\TrimPathEnd (String).v4p" nodename="TrimPathEnd (String)" componentmode="Hidden" id="158">
-   <BOUNDS type="Node" left="840" top="24555" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="24150" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="24555">
+   <BOUNDS type="Box" left="840" top="24150">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="159">
@@ -2010,6 +2010,30 @@
    </NODE>
    <NODE systemname="BezierSpline (Value Tangent)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="BezierSpline (Value Tangent)" componentmode="Hidden" id="269">
    <BOUNDS type="Node" left="9345" top="23715" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="270">
+   <BOUNDS type="Node" left="10635" top="12210" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10635" top="12210" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Control">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="SetCursor (Control)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetCursor (Control)" componentmode="Hidden" id="271">
+   <BOUNDS type="Node" left="10650" top="13155" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10650" top="13155" width="3000" height="3000">
    </BOUNDS>
    </NODE>
    </PATCH>

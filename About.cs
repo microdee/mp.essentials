@@ -17,6 +17,7 @@ namespace mp.essentials
     {
         public static string VersionPath { get; private set; }
         public static string VvvvDir { get; private set; }
+        public static string PackDir => Path.GetDirectoryName(typeof(VersionWriter).Assembly.Location);
 
         public void Start()
         {
