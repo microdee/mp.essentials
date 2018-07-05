@@ -35,6 +35,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cyotek.Windows.Forms.ColorPicker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
+      <HintPath>packages\Cyotek.Windows.Forms.ColorPicker.1.7.2\lib\net35\Cyotek.Windows.Forms.ColorPicker.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
@@ -232,7 +235,9 @@
     <Compile Include="raw\RawLZMANode.cs" />
     <Compile Include="raw\RawMemoryMappedFile.cs" />
     <Compile Include="raw\RawTakeUntilNull.cs" />
+    <Compile Include="reogrid\ColorPickerWrap.cs" />
     <Compile Include="reogrid\GetButtonBangs.cs" />
+    <Compile Include="reogrid\GetColor.cs" />
     <Compile Include="reogrid\NumberGrid.cs" />
     <Compile Include="reogrid\NumberGrid.Designer.cs">
       <DependentUpon>NumberGrid.cs</DependentUpon>

@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grid = new unvell.ReoGrid.ReoGridControl();
+            this.Grid = new unvell.ReoGrid.ReoGridControl();
             this.CellValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // grid
+            // Grid
             // 
-            this.grid.BackColor = System.Drawing.Color.White;
-            this.grid.ColumnHeaderContextMenuStrip = null;
-            this.grid.LeadHeaderContextMenuStrip = null;
-            this.grid.Location = new System.Drawing.Point(0, 16);
-            this.grid.Margin = new System.Windows.Forms.Padding(0);
-            this.grid.Name = "grid";
-            this.grid.RowHeaderContextMenuStrip = null;
-            this.grid.Script = null;
-            this.grid.SheetTabContextMenuStrip = null;
-            this.grid.SheetTabNewButtonVisible = true;
-            this.grid.SheetTabVisible = true;
-            this.grid.SheetTabWidth = 60;
-            this.grid.ShowScrollEndSpacing = true;
-            this.grid.Size = new System.Drawing.Size(400, 284);
-            this.grid.TabIndex = 0;
-            this.grid.Text = "reoGridControl1";
+            this.Grid.BackColor = System.Drawing.Color.White;
+            this.Grid.ColumnHeaderContextMenuStrip = null;
+            this.Grid.LeadHeaderContextMenuStrip = null;
+            this.Grid.Location = new System.Drawing.Point(0, 16);
+            this.Grid.Margin = new System.Windows.Forms.Padding(0);
+            this.Grid.Name = "Grid";
+            this.Grid.RowHeaderContextMenuStrip = null;
+            this.Grid.Script = null;
+            this.Grid.SheetTabContextMenuStrip = null;
+            this.Grid.SheetTabNewButtonVisible = true;
+            this.Grid.SheetTabVisible = true;
+            this.Grid.SheetTabWidth = 60;
+            this.Grid.ShowScrollEndSpacing = true;
+            this.Grid.Size = new System.Drawing.Size(400, 284);
+            this.Grid.TabIndex = 0;
+            this.Grid.Text = "reoGridControl1";
             // 
             // CellValue
             // 
@@ -67,7 +67,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CellValue);
-            this.Controls.Add(this.grid);
+            this.Controls.Add(this.Grid);
             this.Name = "SpreadsheetEditorNode";
             this.Size = new System.Drawing.Size(400, 300);
             this.Resize += new System.EventHandler(this.OnResize);
@@ -78,7 +78,7 @@
 
         #endregion
 
-        private unvell.ReoGrid.ReoGridControl grid;
+        public unvell.ReoGrid.ReoGridControl Grid;
         private System.Windows.Forms.TextBox CellValue;
     }
 }

@@ -22,6 +22,7 @@ using unvell.ReoGrid.Interaction;
 using unvell.ReoGrid.IO;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
+using VVVV.PluginInterfaces.V2.Graph;
 using WPoint = System.Drawing.Point;
 
 namespace mp.essentials.reogrid
@@ -44,14 +45,29 @@ namespace mp.essentials.reogrid
 
     public class WorksheetExtraData
     {
+        public readonly SpreadsheetEditorNode Host;
         public readonly Worksheet Worksheet;
         public XElement Xml;
+        public readonly Dictionary<RangePosition, ColorPickerWrap> ColorPickers = new Dictionary<RangePosition, ColorPickerWrap>();
         public readonly Dictionary<RangePosition, RadioButtonGroup> RadioGroups = new Dictionary<RangePosition, RadioButtonGroup>();
         public readonly Dictionary<(int r, int c), string> EnumCells = new Dictionary<(int r, int c), string>();
 
-        public WorksheetExtraData(Worksheet ws)
+        public WorksheetExtraData(Worksheet ws, SpreadsheetEditorNode host)
         {
+            Host = host;
             Worksheet = ws;
+        }
+
+        public void AddColorPicker((ReferenceRange cells, RangePosition range) selected)
+        {
+            if(ColorPickers.ContainsKey(selected.range)) return;
+            var colpick = new ColorPickerWrap(selected, Host);
+            colpick.Closed += wrap =>
+            {
+                if (!ColorPickers.ContainsKey(wrap.Range)) return;
+                ColorPickers.Remove(wrap.Range);
+            };
+            ColorPickers.Add(selected.range, colpick);
         }
     }
 
@@ -62,13 +78,15 @@ namespace mp.essentials.reogrid
         AutoEvaluate = true,
         InitialBoxWidth = 400,
         InitialBoxHeight = 300,
+        InitialWindowWidth = 400,
+        InitialWindowHeight = 300,
         InitialComponentMode = TComponentMode.InAWindow
     )]
     public partial class SpreadsheetEditorNode : UserControl, IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import]
         public IHDEHost Hde;
-        
+
         [DllImport("C:\\Windows\\System32\\user32.dll")]
         public static extern bool SetCursorPos(int X, int Y);
 
@@ -104,7 +122,7 @@ namespace mp.essentials.reogrid
         private bool _dragSlow = false;
         private bool _dragFast = false;
         private bool _dragChangedVal = false;
-        private bool _isChanged = false;
+        public bool IsChanged = false;
         private bool _isEnteringNumber = false;
         private bool _isEnteringText = false;
         private float _prevMouseY = -1;
@@ -127,7 +145,7 @@ namespace mp.essentials.reogrid
             }
             else
             {
-                var wsxd = new WorksheetExtraData(ws);
+                var wsxd = new WorksheetExtraData(ws, this);
                 _wsxdata.Add(ws, wsxd);
                 addingAction(wsxd);
             }
@@ -142,40 +160,50 @@ namespace mp.essentials.reogrid
                 {
                     case "Merge":
                     {
-                        grid.DoAction(new MergeRangeAction(selected.range));
+                        Grid.DoAction(new MergeRangeAction(selected.range));
                         break;
                     }
                     case "Unmerge":
                     {
-                        grid.DoAction(new UnmergeRangeAction(selected.range));
+                        Grid.DoAction(new UnmergeRangeAction(selected.range));
                         break;
                     }
                     case "Freeze Top":
                     {
-                        grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Top);
+                        Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Top);
                         SaveChanges();
                         break;
                     }
                     case "Freeze Left":
                     {
-                        grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Left);
+                        Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Left);
                         SaveChanges();
                         break;
                     }
                     case "Freeze Top-left":
                     {
-                        grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.LeftTop);
+                        Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.LeftTop);
                         SaveChanges();
                          break;
                     }
                     case "Unfreeze":
                     {
-                        grid.CurrentWorksheet.Unfreeze();
+                        Grid.CurrentWorksheet.Unfreeze();
                         SaveChanges();
                         break;
                     }
+                    case "Change Color":
+                    {
+                        _wsxdata[Grid.CurrentWorksheet].AddColorPicker(selected);
+                        break;
+                    }
+                    case "Reset Color":
+                    {
+                        Grid.DoAction(new RemoveRangeStyleAction(selected.range, PlainStyleFlag.BackColor));
+                        break;
+                    }
                 }
-                _isChanged = true;
+                IsChanged = true;
             }
         }
 
@@ -205,7 +233,7 @@ namespace mp.essentials.reogrid
                     {
                         var radiogroup = new RadioButtonGroup();
 
-                        AddWorksheetData(grid.CurrentWorksheet, data =>
+                        AddWorksheetData(Grid.CurrentWorksheet, data =>
                         {
                             if (data.RadioGroups.ContainsKey(selected.range))
                                 data.RadioGroups[selected.range] = radiogroup;
@@ -236,7 +264,7 @@ namespace mp.essentials.reogrid
                         break;
                     }
                 }
-                _isChanged = true;
+                IsChanged = true;
                 SaveChanges();
             }
         }
@@ -250,7 +278,7 @@ namespace mp.essentials.reogrid
                 selected.cells.Cells.ForEach((cell, i) =>
                 {
                     var addrtuple = (cell.Row, cell.Column);
-                    AddWorksheetData(grid.CurrentWorksheet, data =>
+                    AddWorksheetData(Grid.CurrentWorksheet, data =>
                     {
                         if (data.EnumCells.ContainsKey(addrtuple)) data.EnumCells[addrtuple] = mi.Text;
                         else data.EnumCells.Add(addrtuple, mi.Text);
@@ -261,7 +289,7 @@ namespace mp.essentials.reogrid
                     cell.Body = dropdown;
                 });
 
-                _isChanged = true;
+                IsChanged = true;
                 SaveChanges();
             }
         }
@@ -270,12 +298,12 @@ namespace mp.essentials.reogrid
         public SpreadsheetEditorNode()
         {
             InitializeComponent();
-            grid.ControlStyle = Styles.VvvvStyle();
+            Grid.ControlStyle = Styles.VvvvStyle();
 
-            grid.CellsSelectionCursor = Cursors.Cross;
-            grid.EntireSheetSelectionCursor = Cursors.Cross;
-            grid.FullColumnSelectionCursor = Cursors.UpArrow;
-            grid.FullRowSelectionCursor = Cursors.UpArrow;
+            Grid.CellsSelectionCursor = Cursors.Cross;
+            Grid.EntireSheetSelectionCursor = Cursors.Cross;
+            Grid.FullColumnSelectionCursor = Cursors.UpArrow;
+            Grid.FullRowSelectionCursor = Cursors.UpArrow;
 
             CellCtxMenu = new ContextMenuStrip();
             var enumTypeFilter = new ToolStripTextBox("Filter");
@@ -297,9 +325,8 @@ namespace mp.essentials.reogrid
                     }
                 }
             };
-
-
-            CellCtxMenu.Items.AddRange(new []
+            
+            CellCtxMenu.Items.AddRange(new ToolStripItem[]
             {
                 new ToolStripMenuItem("Cell Type", null,
                     new ToolStripMenuItem("Plain", null, OnCellTypeMenuClick),
@@ -315,23 +342,25 @@ namespace mp.essentials.reogrid
                 new ToolStripMenuItem("Freeze Top", null, OnCellFunctionMenuClick),
                 new ToolStripMenuItem("Freeze Left", null, OnCellFunctionMenuClick),
                 new ToolStripMenuItem("Freeze Top-left", null, OnCellFunctionMenuClick),
-                new ToolStripMenuItem("Unfreeze", null, OnCellFunctionMenuClick)
+                new ToolStripMenuItem("Unfreeze", null, OnCellFunctionMenuClick),
+                new ToolStripMenuItem("Change Color", null, OnCellFunctionMenuClick),
+                new ToolStripMenuItem("Reset Color", null, OnCellFunctionMenuClick)
             });
-            grid.ContextMenuStrip = CellCtxMenu;
+            Grid.ContextMenuStrip = CellCtxMenu;
             ManageCurrentWorksheetEvents();
         }
 
         private void FakeDocking()
         {
-            grid.Width = Width;
-            grid.Top = CellValue.Height;
-            grid.Height = Height - grid.Top;
+            Grid.Width = Width;
+            Grid.Top = CellValue.Height;
+            Grid.Height = Height - Grid.Top;
         }
 
         private (ReferenceRange cells, RangePosition range) GetSelectedCells()
         {
-            var currsel = grid.CurrentWorksheet.SelectionRange;
-            var activecells = grid.CurrentWorksheet.Ranges[currsel];
+            var currsel = Grid.CurrentWorksheet.SelectionRange;
+            var activecells = Grid.CurrentWorksheet.Ranges[currsel];
             return (activecells, currsel);
         }
 
@@ -342,7 +371,7 @@ namespace mp.essentials.reogrid
             {
                 var selected = GetSelectedCells();
 
-                //var partialgrid = grid.CurrentWorksheet.GetPartialGrid(currsel);
+                //var partialGrid = Grid.CurrentWorksheet.GetPartialGrid(currsel);
                 var acc = Math.Round((double)_accMouseY / FDotsPerStep[0]);
 
                 if (_dragSlow) acc *= FSlowDragSpeed[0];
@@ -368,23 +397,23 @@ namespace mp.essentials.reogrid
 
             if (FWorkbookBehaviors.IsChanged)
             {
-                _isChanged = true;
+                IsChanged = true;
                 foreach (var behavior in FWorkbookBehaviors)
                 {
-                    behavior?.ExternalAction(grid, this);
+                    behavior?.ExternalAction(Grid, this);
                 }
             }
 
-            if (_isChanged || dodrag || FWorksheet[0] == null)
+            if (IsChanged || dodrag || FWorksheet[0] == null)
             {
-                FWorksheet.SliceCount = FNames.SliceCount = grid.Worksheets.Count;
-                for (int i = 0; i < grid.Worksheets.Count; i++)
+                FWorksheet.SliceCount = FNames.SliceCount = Grid.Worksheets.Count;
+                for (int i = 0; i < Grid.Worksheets.Count; i++)
                 {
-                    FWorksheet[i] = grid.Worksheets[i];
-                    FNames[i] = grid.Worksheets[i].Name;
+                    FWorksheet[i] = Grid.Worksheets[i];
+                    FNames[i] = Grid.Worksheets[i].Name;
                 }
                 FWorksheet.Stream.IsChanged = true;
-                _isChanged = false;
+                IsChanged = false;
             }
         }
 
@@ -397,14 +426,14 @@ namespace mp.essentials.reogrid
                 _loading = true;
                 try
                 {
-                    grid.RemoveWorksheet(0);
+                    Grid.RemoveWorksheet(0);
                     Base64Load(FWorkbookData[0]);
 
-                    FWorksheet.SliceCount = grid.Worksheets.Count;
-                    FXml.SliceCount = grid.Worksheets.Count;
-                    for (int i = 0; i < grid.Worksheets.Count; i++)
+                    FWorksheet.SliceCount = Grid.Worksheets.Count;
+                    FXml.SliceCount = Grid.Worksheets.Count;
+                    for (int i = 0; i < Grid.Worksheets.Count; i++)
                     {
-                        if(FWorksheet[i] == null) FWorksheet[i] = grid.Worksheets[i];
+                        if(FWorksheet[i] == null) FWorksheet[i] = Grid.Worksheets[i];
                         if(!_wsxdata.ContainsKey(FWorksheet[i])) continue;
                         FXml[i] = _wsxdata[FWorksheet[i]].Xml;
                     }
@@ -416,15 +445,19 @@ namespace mp.essentials.reogrid
                     _initLoaded = true;
                 }
                 _loading = false;
-                _isChanged = true;
+                IsChanged = true;
                 ManageCurrentWorksheetEvents();
             };
-            grid.ActionPerformed += (sender, args) => SaveChanges();
-            grid.WorksheetCreated += (sender, args) => SaveChanges();
-            grid.WorksheetInserted += (sender, args) => SaveChanges();
-            grid.WorksheetNameChanged += (sender, args) => SaveChanges();
-            grid.WorksheetRemoved += (sender, args) => SaveChanges();
-            grid.CurrentWorksheetChanged += (sender, args) => ManageCurrentWorksheetEvents();
+            Grid.ActionPerformed += (sender, args) =>
+            {
+                //if(args.Action is SetRangeStyleAction) return;
+                SaveChanges();
+            };
+            Grid.WorksheetCreated += (sender, args) => SaveChanges();
+            Grid.WorksheetInserted += (sender, args) => SaveChanges();
+            Grid.WorksheetNameChanged += (sender, args) => SaveChanges();
+            Grid.WorksheetRemoved += (sender, args) => SaveChanges();
+            Grid.CurrentWorksheetChanged += (sender, args) => ManageCurrentWorksheetEvents();
 
             PopulateEnumList();
             Hde.EnumChanged += (sender, args) => PopulateEnumList();
@@ -440,7 +473,7 @@ namespace mp.essentials.reogrid
                 _enums.Add(enumentry);
             }
 
-            foreach (var ws in grid.Worksheets)
+            foreach (var ws in Grid.Worksheets)
             {
                 AddWorksheetData(ws, data =>
                 {
@@ -479,7 +512,7 @@ namespace mp.essentials.reogrid
                 _prevWorksheet.SelectionRangeChanged -= OnSelectionRangeChanged;
             }
 
-            _prevWorksheet = grid.CurrentWorksheet;
+            _prevWorksheet = Grid.CurrentWorksheet;
             
             _prevWorksheet.CellMouseDown += OnMouseDown;
             _prevWorksheet.CellMouseUp += OnMouseUp;
@@ -535,7 +568,7 @@ namespace mp.essentials.reogrid
                 FXml[i] = _wsxdata[FWorksheet[i]].Xml;
             }
 
-            _isChanged = true;
+            IsChanged = true;
         }
 
         private void OnMouseDown(object sender, CellMouseEventArgs e)
@@ -579,7 +612,7 @@ namespace mp.essentials.reogrid
             if ((e.KeyCode & KeyCode.ShiftKey) == KeyCode.ShiftKey) _dragFast = true;
             if ((e.KeyCode & KeyCode.ControlKey) == KeyCode.ControlKey) _dragSlow = true;
 
-            if (grid.CurrentWorksheet.IsEditing)
+            if (Grid.CurrentWorksheet.IsEditing)
             {
                 if (!_isEnteringText &&
                     (e.KeyCode == KeyCode.D0 ||
@@ -610,56 +643,60 @@ namespace mp.essentials.reogrid
                 return;
             }
 
-            var currsel = grid.CurrentWorksheet.SelectionRange;
+            var selected = GetSelectedCells();
             if (e.KeyCode == KeyCode.M)
             {
-                grid.DoAction(new MergeRangeAction(currsel));
+                Grid.DoAction(new MergeRangeAction(selected.range));
             }
             if (e.KeyCode == KeyCode.U)
             {
-                grid.DoAction(new UnmergeRangeAction(currsel));
+                Grid.DoAction(new UnmergeRangeAction(selected.range));
             }
 
             if (e.KeyCode == KeyCode.F5)
             {
-                grid.Undo();
+                Grid.Undo();
             }
             if (e.KeyCode == KeyCode.F6)
             {
-                grid.Redo();
+                Grid.Redo();
+            }
+            if (e.KeyCode == KeyCode.F7)
+            {
+                _wsxdata[Grid.CurrentWorksheet].AddColorPicker(selected);
             }
             if (e.KeyCode == KeyCode.F9)
             {
-                grid.CurrentWorksheet.FreezeToCell(currsel.EndRow + 1, currsel.EndCol + 1, FreezeArea.Top);
+                Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Top);
             }
             if (e.KeyCode == KeyCode.F10)
             {
-                grid.CurrentWorksheet.FreezeToCell(currsel.EndRow + 1, currsel.EndCol + 1, FreezeArea.Left);
+                Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.Left);
             }
             if (e.KeyCode == KeyCode.F11)
             {
-                grid.CurrentWorksheet.FreezeToCell(currsel.EndRow + 1, currsel.EndCol + 1, FreezeArea.LeftTop);
+                Grid.CurrentWorksheet.FreezeToCell(selected.range.EndRow + 1, selected.range.EndCol + 1, FreezeArea.LeftTop);
             }
             if (e.KeyCode == KeyCode.F12)
             {
-                grid.CurrentWorksheet.Unfreeze();
+                Grid.CurrentWorksheet.Unfreeze();
             }
 
             if (e.KeyCode == KeyCode.Add)
             {
-                grid.DoAction(new InsertRowsAction(currsel.Row, currsel.Rows));
+                Grid.DoAction(new InsertRowsAction(selected.range.Row, selected.range.Rows));
             }
             if (e.KeyCode == KeyCode.Subtract)
             {
-                grid.DoAction(new RemoveRowsAction(currsel.Row, currsel.Rows));
+                Grid.DoAction(new RemoveRowsAction(selected.range.Row, selected.range.Rows));
             }
             if (e.KeyCode == KeyCode.Multiply)
             {
-                grid.DoAction(new InsertColumnsAction(currsel.Col, currsel.Cols));
+                Grid.DoAction(new InsertColumnsAction(selected.range.Col, selected.range.Cols));
             }
             if (e.KeyCode == KeyCode.Divide)
             {
-                grid.DoAction(new RemoveColumnsAction(currsel.Col, currsel.Cols));
+                Grid.DoAction(new RemoveColumnsAction(selected.range.Col, selected.range.Cols));
             }
         }
 
@@ -692,8 +729,8 @@ namespace mp.essentials.reogrid
             {
                 var selected = GetSelectedCells();
                 var isnumber = double.TryParse(CellValue.Text, out var cellnum);
-                if(isnumber) grid.DoAction(new SetCellDataAction(selected.range.StartPos, cellnum));
-                else grid.DoAction(new SetCellDataAction(selected.range.StartPos, CellValue.Text));
+                if(isnumber) Grid.DoAction(new SetCellDataAction(selected.range.StartPos, cellnum));
+                else Grid.DoAction(new SetCellDataAction(selected.range.StartPos, CellValue.Text));
             }
 
             if (e.KeyCode == Keys.Escape)

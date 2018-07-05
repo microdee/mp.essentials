@@ -24,7 +24,7 @@ namespace mp.essentials.reogrid
         {
             var res = "";
 
-            foreach (var sheet in grid.Worksheets)
+            foreach (var sheet in Grid.Worksheets)
             {
                 if (res != "") res += ";";
                 res += $"{sheet.Name}:";
@@ -85,7 +85,7 @@ namespace mp.essentials.reogrid
                 var nameAndSheet = sheetdata.Split(':');
                 var name = nameAndSheet[0];
                 var sheetbase64 = nameAndSheet[1];
-                var sheet = grid.CreateWorksheet(name);
+                var sheet = Grid.CreateWorksheet(name);
                 var databytes = Convert.FromBase64String(sheetbase64);
 
                 var xmltext = Encoding.UTF8.GetString(databytes);
@@ -95,7 +95,7 @@ namespace mp.essentials.reogrid
 
                 var xml = new XmlDocument();
                 xml.LoadXml(xmltext);
-                var origcultureid = xml["grid"]?["head"]?["meta"]?["culture"]?.InnerText ?? "en-US";
+                var origcultureid = xml["Grid"]?["head"]?["meta"]?["culture"]?.InnerText ?? "en-US";
                 var origculture = new CultureInfo(origcultureid);
 
                 ConvertCulture(xml, origculture, CultureInfo.CurrentCulture);
@@ -104,7 +104,7 @@ namespace mp.essentials.reogrid
 
                 var datastream = new MemoryStream(databytes);
                 sheet.LoadRGF(datastream);
-                grid.AddWorksheet(sheet);
+                Grid.AddWorksheet(sheet);
 
                 var wsxd = _wsxdata[sheet];
                 
@@ -124,7 +124,15 @@ namespace mp.essentials.reogrid
 
                     if (btxattr.Value.Equals("RadioButtonCell"))
                     {
-                        var button = new RadioButtonCell();
+                        var rc = ParseRowCol(element);
+                        var celldata = sheet.Cells[rc.r, rc.c].Data?
+                            .ToString()
+                            .Equals("True", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+                        var button = new RadioButtonCell
+                        {
+                            IsChecked = celldata
+                        };
 
                         var groupattr = element.Attribute(XName.Get("radio-group-range"));
                         if (groupattr != null && RangePosition.IsValidAddress(groupattr.Value))
@@ -146,7 +154,15 @@ namespace mp.essentials.reogrid
                     }
                     if (btxattr.Value.Equals("CheckBoxCell"))
                     {
-                        var button = new CheckBoxCell();
+                        var rc = ParseRowCol(element);
+                        var celldata = sheet.Cells[rc.r, rc.c].Data?
+                            .ToString()
+                            .Equals("True", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+                        var button = new CheckBoxCell
+                        {
+                            IsChecked = celldata
+                        };
                         button.Click += (sender, eventArgs) => SaveChanges();
                         SetCellBodyFromXml(sheet, element, button);
                     }
