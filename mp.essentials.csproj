@@ -245,6 +245,7 @@
     <Compile Include="reogrid\ProgressBars.cs" />
     <Compile Include="reogrid\QueryCell.cs" />
     <Compile Include="reogrid\RotationFormulaProviderNode.cs" />
+    <Compile Include="reogrid\Serialisation.cs" />
     <Compile Include="reogrid\SetValueNodes.cs" />
     <Compile Include="reogrid\SpreadsheetSerialization.cs">
       <SubType>UserControl</SubType>

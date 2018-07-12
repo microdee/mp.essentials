@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Drawing;
 using System.Data;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using unvell.ReoGrid;
 using unvell.ReoGrid.Actions;
 using unvell.ReoGrid.CellTypes;
-using unvell.ReoGrid.DataFormat;
 using unvell.ReoGrid.Events;
-using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Interaction;
-using unvell.ReoGrid.IO;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.PluginInterfaces.V2.Graph;
 using WPoint = System.Drawing.Point;
 
 namespace mp.essentials.reogrid
@@ -113,6 +104,10 @@ namespace mp.essentials.reogrid
         public ISpread<string> FNames;
         [Output("Worksheet Xml")]
         public ISpread<XElement> FXml;
+
+        [Output("Workbook", Visibility = PinVisibility.OnlyInspector)]
+        public ISpread<IWorkbook> FWorkbook;
+
         //[Output("Keycode")]
         //public ISpread<uint> FKc;
 
@@ -414,6 +409,8 @@ namespace mp.essentials.reogrid
                 }
                 FWorksheet.Stream.IsChanged = true;
                 IsChanged = false;
+
+                FWorkbook[0] = Grid;
             }
         }
 
