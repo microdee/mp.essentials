@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
 
 using unvell.ReoGrid;
@@ -21,14 +22,10 @@ namespace mp.essentials.reogrid
     public class WriterNode : IPluginEvaluate
     {
         [Input("Workbook")]
-        public ISpread<IWorkbook> FWorksheet;
+        public ISpread<IWorkbook> FWorkbook;
 
         [Input("Filename", IsSingle = true, StringType = StringType.Filename, DefaultString = "reogrid.xlsx")]
         public ISpread<string> FFilename;
-
-//        [Input("Format", IsSingle = true, DefaultEnumEntry = "Excel2007")]
-//        public ISpread<FileFormat> FFormat;
-
 
         [Input("Write", IsSingle = true, IsBang = true)]
         public ISpread<bool> FWrite;
@@ -49,9 +46,9 @@ namespace mp.essentials.reogrid
 
             try
             {
-                var workbook = FWorksheet[0];
+                var workbook = FWorkbook[0];
 
-//                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(Path.GetDirectoryName(FFilename[0]));
                 workbook.Save(FFilename[0], FileFormat.Excel2007);
 
                 FSuccess[0] = true;
@@ -73,7 +70,7 @@ namespace mp.essentials.reogrid
     public class ReaderNode : IPluginEvaluate
     {
         [Input("Workbook")]
-        public ISpread<IWorkbook> FWorksheet;
+        public ISpread<IWorkbook> FWorkbook;
 
         [Input("Filename", IsSingle = true, StringType = StringType.Filename, DefaultString = "reogrid.xlsx")]
         public ISpread<string> FFilename;
@@ -96,7 +93,7 @@ namespace mp.essentials.reogrid
 
             try
             {
-                var workbook = FWorksheet[0];
+                var workbook = FWorkbook[0];
                 workbook.Load(FFilename[0], FileFormat.Excel2007);
 
                 FSuccess[0] = true;
