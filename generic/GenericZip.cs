@@ -79,6 +79,12 @@ namespace mp.essentials.Nodes.Generic
             int ii = 0;
             if (_pg.Pd.InputPins.Count == 0 && FPinCount[0] > 0)
                 ChangePinCount();
+
+            if (_pg.Pd.InputSpreadMin == 0)
+            {
+                _output.Spread.SliceCount = 0;
+                return;
+            }
             for (int i = 0; i < _pg.Pd.InputSpreadMax; i++)
             {
                 for (int j = 0; j < _pg.Pd.InputPins.Count; j++)

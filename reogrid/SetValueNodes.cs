@@ -84,7 +84,7 @@ namespace mp.essentials.reogrid
 
                 for (int i = 0; i < slc; i++)
                 {
-                    if(FOutput[i] == null) FOutput[i] = new SetCellDataBehavior();
+                    if(FOutput[i] == null || FOutput[i] == FOutput[i-1]) FOutput[i] = new SetCellDataBehavior();
                     FOutput[i].Range = CreateRange(i);
                     FOutput[i].FlatText = FFlatString[i];
                     FOutput[i].FlatValue = FFlatVals[i];

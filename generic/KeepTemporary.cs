@@ -12,6 +12,7 @@ using VVVV.PluginInterfaces.V2.NonGeneric;
 
 namespace mp.essentials.Nodes.generic
 {
+    //TODO: version with manual key supply
     [PluginInfo(
         Name = "KeepTemporary",
         Category = "Generic",

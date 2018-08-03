@@ -83,17 +83,15 @@ namespace mp.essentials.reogrid
                 var buttondict = _buttonbangs[FInput[i]];
                 var currrange = FOutput[i];
 
-                FFlatOut[i].SliceCount = buttondict.Count;
+                FFlatOut[i].SliceCount = 0;
 
                 if(currrange == null) continue;
-
-                int ii = 0;
+                
                 foreach (var cell in currrange.Cells)
                 {
                     if(!buttondict.ContainsKey(cell)) continue;
-                    FFlatOut[i][ii] = buttondict[cell] > 0;
+                    FFlatOut[i].Add(buttondict[cell] > 0);
                     buttondict[cell] = 0;
-                    ii++;
                 }
             }
         }
