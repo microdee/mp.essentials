@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using mp.pddn;
 using SlimDX;
 using VVVV.PluginInterfaces.V2;
+using VVVV.PluginInterfaces.V2.NonGeneric;
 using VVVV.Utils.VMath;
 
 namespace mp.essentials.Nodes.Transform
@@ -35,10 +38,10 @@ namespace mp.essentials.Nodes.Transform
         }
         public static int RectFits(this Vector2D vin, RectClass bigger)
         {
-            return RectFits(vin, new Vector2D(bigger.Width(), bigger.Height()));
+            return RectFits(vin, new Vector2D(bigger.Width, bigger.Height));
         }
 
-        public static Vector2D PackBin(RectXywhFlipped[] vlist, double maxside, double discardbelow, List<RectXywhFlipped> succ, List<RectXywhFlipped> unsucc)
+        public static Vector2D PackBin(RectXywhFlipped[] vlist, double w, double h, double discardbelow, List<RectXywhFlipped> succ, List<RectXywhFlipped> unsucc, bool allowflip)
         {
             RectNode root = new RectNode();
             var funcs = CompFuncs();
@@ -57,8 +60,8 @@ namespace mp.essentials.Nodes.Transform
             {
                 Left = 0,
                 Top = 0,
-                FWidth = maxside,
-                FHeight = maxside
+                FWidth = w,
+                FHeight = h
             };
 
             var minfunc = -1;
@@ -72,18 +75,18 @@ namespace mp.essentials.Nodes.Transform
             for (int f = 0; f < funcs.Count; f++)
             {
                 var v = ordered[f];
-                step = minbin.Width() / 2;
+                step = minbin.Width / 2;
                 root.Reset(minbin);
                 while (true)
                 {
-                    if (root.Rectangle.Width() > minbin.Width())
+                    if (root.Rectangle.Width > minbin.Width)
                     {
                         if (minfunc > -1) break;
                         area = 0;
                         root.Reset(minbin);
                         for (int i = 0; i < vlist.Length; i++)
                         {
-                            if (root.Insert(v[i]) != null)
+                            if (root.Insert(v[i], allowflip) != null)
                             {
                                 area += v[i].Area();
                             }
@@ -94,7 +97,7 @@ namespace mp.essentials.Nodes.Transform
                     fit = -1;
                     for (int i = 0; i < vlist.Length; i++)
                     {
-                        if (root.Insert(v[i]) == null)
+                        if (root.Insert(v[i], allowflip) == null)
                         {
                             fit = 1;
                             break;
@@ -104,8 +107,8 @@ namespace mp.essentials.Nodes.Transform
 
                     root.Reset(new RectXywh
                     {
-                        FWidth = root.Rectangle.Width() + fit*step,
-                        FHeight = root.Rectangle.Height() + fit*step,
+                        FWidth = root.Rectangle.Width + fit*step,
+                        FHeight = root.Rectangle.Height + fit*step,
                         Top = 0,
                         Left = 0
                     });
@@ -116,8 +119,8 @@ namespace mp.essentials.Nodes.Transform
                 {
                     minbin = new RectXywh
                     {
-                        FWidth = root.Rectangle.Width(),
-                        FHeight = root.Rectangle.Height(),
+                        FWidth = root.Rectangle.Width,
+                        FHeight = root.Rectangle.Height,
                         Top = 0, Left = 0
                     };
                     minfunc = f;
@@ -139,7 +142,7 @@ namespace mp.essentials.Nodes.Transform
 
             for (int i = 0; i < vlist.Length; i++)
             {
-                ret = root.Insert(sv[i]);
+                ret = root.Insert(sv[i], allowflip);
                 if (ret != null)
                 {
                     sv[i].Left = ret.Rectangle.Left;
@@ -151,8 +154,8 @@ namespace mp.essentials.Nodes.Transform
                         sv[i].Flip();
                     }
 
-                    clipx = Math.Max(clipx, ret.Rectangle.Right());
-                    clipy = Math.Max(clipy, ret.Rectangle.Bottom());
+                    clipx = Math.Max(clipx, ret.Rectangle.Right);
+                    clipy = Math.Max(clipy, ret.Rectangle.Bottom);
                     succ.Add(sv[i]);
                 }
                 else
@@ -164,17 +167,17 @@ namespace mp.essentials.Nodes.Transform
             return new Vector2D(clipx, clipy);
         }
 
-        public static bool Pack(RectXywhFlipped[] vlist, double sidemax, double discardbelow, List<RectBin> bins, int maxbins)
+        public static bool Pack(RectXywhFlipped[] vlist, double w, double h, double discardbelow, List<RectBin> bins, int maxbins, bool allowflip)
         {
             var rect = new RectXywh
             {
-                FWidth = sidemax,
-                FHeight = sidemax,
+                FWidth = w,
+                FHeight = h,
                 Top = 0, Left = 0
             };
             foreach (RectXywhFlipped r in vlist)
             {
-                if (r.Fits(rect) == 0) return false;
+                if (r.Fits(rect, allowflip) == 0) return false;
             }
             List<RectXywhFlipped> unsucc = vlist.ToList();
             int ii = 0;
@@ -185,7 +188,7 @@ namespace mp.essentials.Nodes.Transform
                     var newbin = new RectBin();
                     var listin = unsucc.ToArray();
                     unsucc.Clear();
-                    newbin.Size = PackBin(listin, sidemax, discardbelow, newbin.Rects, unsucc);
+                    newbin.Size = PackBin(listin, w, h, discardbelow, newbin.Rects, unsucc, allowflip);
                     bins.Add(newbin);
                 }
                 else break;
@@ -206,15 +209,15 @@ namespace mp.essentials.Nodes.Transform
 
         public static int CompMaxSide(RectClass a, RectClass b)
         {
-            return Math.Max(a.Width(), a.Height()).CompareTo(Math.Max(b.Width(), b.Height()));
+            return Math.Max(a.Width, a.Height).CompareTo(Math.Max(b.Width, b.Height));
         }
         public static int CompMaxWidth(RectClass a, RectClass b)
         {
-            return a.Width().CompareTo(b.Width());
+            return a.Width.CompareTo(b.Width);
         }
         public static int CompMaxHeight(RectClass a, RectClass b)
         {
-            return a.Height().CompareTo(b.Height());
+            return a.Height.CompareTo(b.Height);
         }
 
         public static List<Func<RectClass, RectClass, int>> CompFuncs()
@@ -231,24 +234,25 @@ namespace mp.essentials.Nodes.Transform
     }
     public abstract class RectClass
     {
+        public object Attachment;
         public double Left;
         public double Top;
         public int ID;
 
-        public abstract double Width();
-        public abstract double Height();
-        public abstract double Right();
-        public abstract double Bottom();
+        public abstract double Width { get; }
+        public abstract double Height { get; }
+        public abstract double Right { get; }
+        public abstract double Bottom { get; }
 
-        public double Area() { return Width() * Height(); }
-        public double Perimeter() { return Width() * 2 + Height() * 2; }
+        public double Area() { return Width * Height; }
+        public double Perimeter() { return Width * 2 + Height * 2; }
 
-        public int Fits(RectClass bigger)
+        public int Fits(RectClass bigger, bool allowflip)
         {
-            if (RectPackHelper.EqE(Width(), bigger.Width(), 0.00001) && RectPackHelper.EqE(Height(), bigger.Height(), 0.00001)) return 3;
-            if (RectPackHelper.EqE(Width(), bigger.Height(), 0.00001) && RectPackHelper.EqE(Height(), bigger.Width(), 0.00001)) return 4;
-            if (Width() <= bigger.Width() && Height() <= bigger.Height()) return 1;
-            if (Width() <= bigger.Height() && Height() <= bigger.Width()) return 2;
+            if (RectPackHelper.EqE(Width, bigger.Width, 0.00001) && RectPackHelper.EqE(Height, bigger.Height, 0.00001)) return 3;
+            if (allowflip && RectPackHelper.EqE(Width, bigger.Height, 0.00001) && RectPackHelper.EqE(Height, bigger.Width, 0.00001)) return 4;
+            if (Width <= bigger.Width && Height <= bigger.Height) return 1;
+            if (allowflip && Width <= bigger.Height && Height <= bigger.Width) return 2;
             return 0;
         }
     }
@@ -258,10 +262,10 @@ namespace mp.essentials.Nodes.Transform
         public double FWidth;
         public double FHeight;
 
-        public override double Width() { return FWidth; }
-        public override double Height() { return FHeight; }
-        public override double Right() { return Left + FWidth; }
-        public override double Bottom() { return Top + FHeight; }
+        public override double Width => FWidth;
+        public override double Height => FHeight;
+        public override double Right => Left + FWidth;
+        public override double Bottom => Top + FHeight;
     }
 
     public class RectXywhFlipped : RectXywh
@@ -282,10 +286,10 @@ namespace mp.essentials.Nodes.Transform
         public double FRight;
         public double FBottom;
 
-        public override double Width() { return FRight - Left; }
-        public override double Height() { return FBottom - Top; }
-        public override double Right() { return FRight; }
-        public override double Bottom() { return FBottom; }
+        public override double Width => FRight - Left;
+        public override double Height => FBottom - Top;
+        public override double Right => FRight;
+        public override double Bottom => FBottom;
     }
     public class RectBin
     {
@@ -306,23 +310,23 @@ namespace mp.essentials.Nodes.Transform
             {
                 Top = 0,
                 Left = 0,
-                FRight = rin.Width(),
-                FBottom = rin.Height()
+                FRight = rin.Width,
+                FBottom = rin.Height
             };
             DelCheck();
         }
 
-        public RectNode Insert(RectXywhFlipped rin)
+        public RectNode Insert(RectXywhFlipped rin, bool allowflip)
         {
             if (C[0] == null) C[0] = new RectPNode();
             if (C[1] == null) C[1] = new RectPNode();
             if ((C[0].PNode != null) && C[0].Fill)
             {
-                var newn = C[0].PNode.Insert(rin);
-                return newn ?? C[1].PNode.Insert(rin);
+                var newn = C[0].PNode.Insert(rin, allowflip);
+                return newn ?? C[1].PNode.Insert(rin, allowflip);
             }
             if (Id) return null;
-            var fit = rin.Fits(Rectangle);
+            var fit = rin.Fits(Rectangle, allowflip);
             switch (fit)
             {
                 case 0:
@@ -343,21 +347,21 @@ namespace mp.essentials.Nodes.Transform
                     return this;
             }
 
-            var iw = rin.Flipped ? rin.Height() : rin.Width();
-            var ih = rin.Flipped ? rin.Width() : rin.Height();
+            var iw = rin.Flipped ? rin.Height : rin.Width;
+            var ih = rin.Flipped ? rin.Width : rin.Height;
 
-            if (Rectangle.Width() - iw > Rectangle.Height() - ih)
+            if (Rectangle.Width - iw > Rectangle.Height - ih)
             {
-                C[0].Set(Rectangle.Left, Rectangle.Top, Rectangle.Left + iw, Rectangle.Bottom());
-                C[1].Set(Rectangle.Left + iw, Rectangle.Top, Rectangle.Right(), Rectangle.Bottom());
+                C[0].Set(Rectangle.Left, Rectangle.Top, Rectangle.Left + iw, Rectangle.Bottom);
+                C[1].Set(Rectangle.Left + iw, Rectangle.Top, Rectangle.Right, Rectangle.Bottom);
             }
             else
             {
-                C[0].Set(Rectangle.Left, Rectangle.Top, Rectangle.Right(), Rectangle.Top + ih);
-                C[1].Set(Rectangle.Left, Rectangle.Top + ih, Rectangle.Right(), Rectangle.Bottom());
+                C[0].Set(Rectangle.Left, Rectangle.Top, Rectangle.Right, Rectangle.Top + ih);
+                C[1].Set(Rectangle.Left, Rectangle.Top + ih, Rectangle.Right, Rectangle.Bottom);
             }
 
-            return C[0].PNode.Insert(rin);
+            return C[0].PNode.Insert(rin, allowflip);
         }
 
         private void DelCheck()
@@ -406,66 +410,166 @@ namespace mp.essentials.Nodes.Transform
         Version = "Czachurski",
         Author = "microdee"
         )]
-    public class JimScottRectanglePackerNode : IPluginEvaluate
+    public class CzachurskiRectanglePackerNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
+
+        [Import] protected IPluginHost2 FPluginHost;
+        [Import] protected IIOFactory FIOFactory;
+        [Import] protected IHDEHost Hde;
+
+        private ConfigurableTypePinGroup _pg;
+        private bool _typeChanged;
+        private bool _pgready;
+        private DiffSpreadPin _attachment;
+
         [Input("Rectangle ", DimensionNames = new[] { "W", "H" }, DefaultValues = new[] { 100.0, 100.0 })]
-        public IDiffSpread<Vector2D> FRectangle;
-        [Input("Square Box", DefaultValue = 16383.0)]
-        public IDiffSpread<double> FBox;
+        public IDiffSpread<ISpread<Vector2D>> FRectangle;
+        [Input("Bounds", DefaultValues = new [] { 16383.0, 16383.0})]
+        public IDiffSpread<Vector2D> FBox;
         [Input("Max Bin Count", DefaultValue = 64)]
         public IDiffSpread<int> FMaxBins;
         [Input("Discard Below", DefaultValue = 128)]
         public IDiffSpread<int> FDiscardBelow;
+        [Input("Allow Rotation", DefaultBoolean = true)]
+        public IDiffSpread<bool> FAllowRot;
 
-        [Output("Packed Rectangles ", DimensionNames = new[] { "X", "Y", "W", "H" })]
-        public ISpread<ISpread<Vector4D>> FPacked;
-        [Output("Former Index")]
-        public ISpread<ISpread<int>> FID;
-        [Output("Rotated")]
-        public ISpread<ISpread<bool>> FFlipped;
+        [Output("Output")]
+        public ISpread<ISpread<RectBin>> FOut;
         [Output("Dimensions ", DimensionNames = new[] { "W", "H" })]
-        public ISpread<Vector2D> FDim;
+        public ISpread<ISpread<Vector2D>> FDim;
         [Output("Success")]
         public ISpread<bool> FSuccess;
 
+        public void OnImportsSatisfied()
+        {
+            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Attachment", 10, true);
+            _pg.OnTypeChangeEnd += (sender, args) =>
+            {
+                _typeChanged = true;
+                if (_pgready) return;
+                _pgready = true;
+
+                _attachment = _pg.AddInputBinSized(new InputAttribute("Attachment") { Order = 20, BinOrder = 21 });
+            };
+        }
+
         public void Evaluate(int SpreadMax)
         {
-            if (FRectangle.IsChanged || FMaxBins.IsChanged || FDiscardBelow.IsChanged || FBox.IsChanged)
+            FOut.Stream.IsChanged = false;
+            if (
+                SpreadUtils.AnyChanged(FRectangle, FMaxBins, FDiscardBelow, FBox, FAllowRot) ||
+                _pgready && _typeChanged
+            )
             {
-                var binlist = new List<RectBin>();
-                var rectlistin = new RectXywhFlipped[FRectangle.SliceCount];
-                for (int i = 0; i < FRectangle.SliceCount; i++)
+                FOut.Stream.IsChanged = true;
+
+                int sprmax = Math.Max(FRectangle.SliceCount, FBox.SliceCount);
+
+                if (FRectangle.SliceCount == 0 || FBox.SliceCount == 0) sprmax = 0;
+
+                FOut.SliceCount = FDim.SliceCount = FSuccess.SliceCount = sprmax;
+                if (sprmax == 0) return;
+
+                for (int bi = 0; bi < sprmax; bi++)
                 {
-                    rectlistin[i] = new RectXywhFlipped
+                    var binlist = new List<RectBin>();
+                    var rectlistin = new RectXywhFlipped[FRectangle[bi].SliceCount];
+
+                    for (int i = 0; i < FRectangle[bi].SliceCount; i++)
                     {
-                        FWidth = FRectangle[i].x,
-                        FHeight = FRectangle[i].y,
-                        ID = i,
-                        Left = 0, Top = 0, Flipped = false
-                    };
-                }
-                FSuccess[0] = RectPackHelper.Pack(rectlistin, FBox[0], FDiscardBelow[0], binlist, FMaxBins[0]);
+                        object attachment = null;
 
-                FPacked.SliceCount = binlist.Count;
-                FID.SliceCount = binlist.Count;
-                FDim.SliceCount = binlist.Count;
-                FFlipped.SliceCount = binlist.Count;
+                        if (_pgready)
+                        {
+                            attachment = _attachment.GetSlice<ISpread>(bi, null)?[i];
+                        }
 
-                for (int i = 0; i < binlist.Count; i++)
-                {
-                    FPacked[i].SliceCount = binlist[i].Rects.Count;
-                    FID[i].SliceCount = binlist[i].Rects.Count;
-                    FFlipped[i].SliceCount = binlist[i].Rects.Count;
-                    FDim[i] = binlist[i].Size;
+                        rectlistin[i] = new RectXywhFlipped
+                        {
+                            Attachment = attachment,
+                            FWidth = FRectangle[bi][i].x,
+                            FHeight = FRectangle[bi][i].y,
+                            ID = i,
+                            Left = 0,
+                            Top = 0,
+                            Flipped = false
+                        };
+                    }
+                    FSuccess[bi] = RectPackHelper.Pack(rectlistin, FBox[bi].x, FBox[bi].y, FDiscardBelow[0], binlist, FMaxBins[0], FAllowRot[0]);
 
-                    for (int j = 0; j < FPacked[i].SliceCount; j++)
+                    FOut[bi].SliceCount = FDim[bi].SliceCount = binlist.Count;
+
+                    for (int i = 0; i < binlist.Count; i++)
                     {
-                        var rect = binlist[i].Rects[j];
-                        FPacked[i][j] = new Vector4D(rect.Left, rect.Top, rect.Width(), rect.Height());
-                        FFlipped[i][j] = rect.Flipped;
-                        FID[i][j] = rect.ID;
+                        FOut[bi][i] = binlist[i];
+                        FDim[bi][i] = binlist[i].Size;
                     }
                 }
+            }
+            if (_typeChanged) _typeChanged = false;
+        }
+    }
+
+    [PluginInfo(Name = "RectBinSplit",
+        Category = "2d",
+        Version = "Czachurski",
+        Author = "microdee",
+        Tags = "RectPack"
+    )]
+    public class RectBinSplitNode : ObjectSplitNode<RectBin> { }
+
+    [PluginInfo(Name = "RectSplit",
+        Category = "2d",
+        Version = "Czachurski",
+        Author = "microdee",
+        Tags = "RectPack"
+    )]
+    public class RectSplitNode : ObjectSplitNode<RectXywhFlipped>
+    {
+        private ConfigurableTypePinGroup _pg;
+        private bool _typeChanged;
+        private bool _pgready;
+
+        private SpreadPin _output;
+
+        public override void OnImportsSatisfiedEnd()
+        {
+            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, HdeHost.MainLoop, "Generic Attachment", 100);
+            _pg.OnTypeChangeEnd += (sender, args) =>
+            {
+                _typeChanged = true;
+                if (_pgready) return;
+                _pgready = true;
+                
+                _output = _pg.AddOutput(new OutputAttribute("Generic Attachment"));
+            };
+        }
+
+        private void AssignAttached()
+        {
+            _output.Spread.SliceCount = FInput.SliceCount;
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                var att = FInput[i]?.Attachment;
+                if (_pg.GroupType.IsInstanceOfType(att))
+                    _output[i] = att;
+            }
+        }
+
+        public override void OnChangedEnd()
+        {
+            AssignAttached();
+        }
+
+        public override void OnEvaluateEnd()
+        {
+            base.OnEvaluateEnd();
+            if(!_pgready) return;
+            if (_typeChanged)
+            {
+                AssignAttached();
+                _typeChanged = false;
+                return;
             }
         }
     }
