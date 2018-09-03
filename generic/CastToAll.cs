@@ -43,7 +43,7 @@ namespace mp.essentials.Nodes.Generic
         Author = "microdee",
         AutoEvaluate = true
         )]
-    public class CastToAllInheritedNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    public class NodeCastNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import]
         protected IIOFactory FIOFactory;
@@ -51,121 +51,45 @@ namespace mp.essentials.Nodes.Generic
         [Import]
         public IPluginHost2 FPluginHost;
         [Import]
-        public IHDEHost FHDEHost;
+        public IHDEHost Hde;
 
-        [Config("Type", DefaultString = "")]
-        public IDiffSpread<string> FType;
+        [Output("Success", Order = 10)]
+        public ISpread<bool> FSuccess;
 
-        public GenericInput FInput;
-        public PinDictionary PinDictionary;
-        
-        private Type CType;
-        private string CTypeS;
+        private GenericInput _input;
+        private ConfigurableTypePinGroup _pg;
+        private SpreadPin _output;
+        private bool _pgready;
 
-        private bool Initialized = false;
-
-        private Type FindHighestType()
-        {
-            Type type = FInput[0].GetType();
-            if (FInput.Pin.SliceCount > 1)
-            {
-                object po = FInput[0];
-                for (int i = 1; i < FInput.Pin.SliceCount; i++)
-                {
-                    if (!type.IsInstanceOfType(FInput[i]))
-                    {
-                        foreach (var T in FInput[i].GetType().GetTypes())
-                        {
-                            if (T.IsInstanceOfType(po))
-                            {
-                                type = T;
-                                break;
-                            }
-                        }
-                    }
-                    po = FInput[i];
-                }
-            }
-            return type;
-        }
-
-        protected void Init()
-        {
-            if (!Initialized)
-            {
-                CType = Type.GetType(FType[0], true);
-
-                if (FInput.Pin.SliceCount != 0)
-                {
-                    if (FInput[0] != null)
-                    {
-                        Type T = FindHighestType();
-                        if (T != CType)
-                        {
-                            PinDictionary.RemoveAllOutput();
-                            PinDictionary.AddOutput(T, new OutputAttribute("Output"));
-                            CType = T;
-                            CTypeS = T.AssemblyQualifiedName;
-                            FType[0] = CTypeS;
-                        }
-                    }
-                }
-
-                //RemoveAllOutput();
-                PinDictionary.AddOutput(CType, new OutputAttribute("Output"));
-                if(CType != null)
-                    CTypeS = CType.AssemblyQualifiedName;
-                Initialized = true;
-            }
-        }
-
-        protected void Write()
-        {
-            int sc = FInput.Pin.SliceCount;
-            PinDictionary.OutputPins["Output"].Spread.SliceCount = sc;
-
-            for (int i = 0; i < sc; i++)
-            {
-                PinDictionary.OutputPins["Output"].Spread[i] = FInput[i];
-            }
-        }
         public void OnImportsSatisfied()
         {
-            PinDictionary = new PinDictionary(FIOFactory);
-            FInput = new GenericInput(FPluginHost, new InputAttribute("Input"));
-            FInput.Pin.Order = 0;
-            FType.Changed += OnSavedTypeChanged;
-        }
+            _input = new GenericInput(FPluginHost, new InputAttribute("Input"), Hde.MainLoop);
 
-        private void OnSavedTypeChanged(IDiffSpread<string> spread)
-        {
-            if(FType[0] != "")
-                Init();
+            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Output", 100);
+            _pg.OnTypeChangeEnd += (sender, args) =>
+            {
+                if (_pgready) return;
+                _pgready = true;
+                _output = _pg.AddOutput(new OutputAttribute("Output"));
+            };
         }
 
         public void Evaluate(int SpreadMax)
         {
-            if (FInput.Pin.SliceCount != 0)
+            if (!_pgready) return;
+            _output.Spread.SliceCount = FSuccess.SliceCount = _input.Pin.SliceCount;
+            for (int i = 0; i < _input.Pin.SliceCount; i++)
             {
-                if (FInput[0] != null)
+                if (_pg.GroupType.IsInstanceOfType(_input[i]))
                 {
-                    Type T = FindHighestType();
-                    if(T != CType)
-                    {
-                        PinDictionary.RemoveAllOutput();
-                        PinDictionary.AddOutput(T, new OutputAttribute("Output"));
-                        CType = T;
-                        CTypeS = T.AssemblyQualifiedName;
-                        FType[0] = CTypeS;
-                    }
-                    if (PinDictionary.OutputPins.ContainsKey("Output"))
-                        Write();
+                    _output[i] = _input[i];
+                    FSuccess[i] = true;
                 }
-            }
-            else
-            {
-                if(PinDictionary.OutputPins.ContainsKey("Output"))
-                    PinDictionary.OutputPins["Output"].Spread.SliceCount = 0;
+                else
+                {
+                    _output[i] = null;
+                    FSuccess[i] = false;
+                }
             }
         }
     }
