@@ -87,7 +87,7 @@ namespace mp.essentials.generic
 
         public void OnImportsSatisfied()
         {
-            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Input", 100);
+            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Output", 100);
             _pg.OnTypeChangeEnd += (sender, args) =>
             {
                 if (_pgready) return;
