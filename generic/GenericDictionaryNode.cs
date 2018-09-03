@@ -72,13 +72,13 @@ namespace mp.essentials.Nodes.Generic
             _defVals = _vals.AddInput(new InputAttribute("Default Values") {Order = 11});
             _modVals = _vals.AddInput(new InputAttribute("Update Values") {Order = 14});
 
-            _outKeys = _keys.AddOutput(new OutputAttribute("Keys Out") { Order = 0 });
-            _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Queried Values") { Order = 1, BinOrder = 2 });
+            _outKeys = _keys.AddOutput(new OutputAttribute("Keys") { Order = 2 });
+            _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Values") { Order = 3, BinOrder = 4 });
             _dictType = typeof(Dictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
             _pd.RemoveInput("Dictionary In");
             _pd.RemoveOutput("Dictionary Out");
             _dictin = _pd.AddInput(_dictType, new InputAttribute("Dictionary In"));
-            _dictout = _pd.AddOutput(_dictType, new OutputAttribute("Dictionary Out"));
+            _dictout = _pd.AddOutput(_dictType, new OutputAttribute("Dictionary Out") { Order = 1 });
         }
 
         public void OnImportsSatisfied()

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="0" scrolly="5040">
    <BOUNDS type="Window" left="3330" top="2175" width="25275" height="22845">
    </BOUNDS>
    <PACK Name="KeyboardUI" Version="1.1.1">
@@ -587,38 +587,30 @@
    </PIN>
    </NODE>
    <NODE systemname="AsStrongObject (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="AsStrongObject (Value)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="840" top="10380" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="10830" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="10380" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="10830" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="KeepLast (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepLast (Value)" componentmode="Hidden" id="70">
-   <BOUNDS type="Node" left="840" top="10785" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="11235" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="10785" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="11235" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="KeepLast (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepLast (Generic)" componentmode="Hidden" id="71">
-   <BOUNDS type="Node" left="840" top="11190" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="11640" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="11190" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="11640" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Zip (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Zip (Node)" componentmode="Hidden" id="72">
-   <BOUNDS type="Node" left="840" top="11655" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="11655" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="Queue (Generic Manual)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Queue (Generic Manual)" componentmode="Hidden" id="73">
    <BOUNDS type="Node" left="840" top="12105" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="840" top="12105" width="3000" height="3000">
@@ -626,34 +618,42 @@
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="Evaluate (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Evaluate (Node)" componentmode="Hidden" id="74">
-   <BOUNDS type="Node" left="840" top="12525" width="100" height="100">
+   <NODE systemname="Queue (Generic Manual)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Queue (Generic Manual)" componentmode="Hidden" id="73">
+   <BOUNDS type="Node" left="840" top="12555" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="12525" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="12555" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Evaluate (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Evaluate (Node)" componentmode="Hidden" id="74">
+   <BOUNDS type="Node" left="840" top="12975" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="12975" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="GetType (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetType (Object)" componentmode="Hidden" id="75">
-   <BOUNDS type="Node" left="840" top="12945" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="13395" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="12945" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="13395" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="GetType (Object PluginInterfaces.V2)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetType (Object PluginInterfaces.V2)" componentmode="Hidden" id="76">
-   <BOUNDS type="Node" left="1620" top="12945" width="100" height="100">
+   <BOUNDS type="Node" left="1620" top="13395" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1620" top="12945" width="3000" height="3000">
+   <BOUNDS type="Box" left="1620" top="13395" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="GetAllTypes (Object)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetAllTypes (Object)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="2475" top="12945" width="100" height="100">
+   <BOUNDS type="Node" left="2475" top="13395" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2475" top="12945" width="3000" height="3000">
+   <BOUNDS type="Box" left="2475" top="13395" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
@@ -691,25 +691,25 @@
    </PIN>
    </NODE>
    <NODE systemname="Tuple (Node Join)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Tuple (Node Join)" componentmode="Hidden" id="82">
-   <BOUNDS type="Node" left="840" top="14520" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="14970" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="14520" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="14970" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Tuple (Node Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Tuple (Node Split)" componentmode="Hidden" id="83">
-   <BOUNDS type="Node" left="1470" top="14520" width="100" height="100">
+   <BOUNDS type="Node" left="1470" top="14970" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1470" top="14520" width="3000" height="3000">
+   <BOUNDS type="Box" left="1470" top="14970" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="84">
-   <BOUNDS type="Node" left="840" top="14835" width="4740" height="270">
+   <BOUNDS type="Node" left="840" top="15285" width="4740" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="14835" width="2805" height="555">
+   <BOUNDS type="Box" left="840" top="15285" width="2805" height="555">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|tuples will be converted into new generic pattern sooner or later|">
    </PIN>
@@ -795,9 +795,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="95">
-   <BOUNDS type="Node" left="8070" top="8490" width="705" height="270">
+   <BOUNDS type="Node" left="8220" top="8340" width="705" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8070" top="8490" width="1485" height="375">
+   <BOUNDS type="Box" left="8220" top="8340" width="1485" height="375">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="network">
    </PIN>
@@ -813,9 +813,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Client (Http)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Client (Http)" componentmode="Hidden" id="97">
-   <BOUNDS type="Node" left="8100" top="9015" width="100" height="100">
+   <BOUNDS type="Node" left="8250" top="8865" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8100" top="9015" width="3000" height="3000">
+   <BOUNDS type="Box" left="8250" top="8865" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Output Object" visible="1">
    </PIN>
@@ -823,9 +823,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Send (Http)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Send (Http)" componentmode="Hidden" id="99">
-   <BOUNDS type="Node" left="9540" top="9480" width="100" height="100">
+   <BOUNDS type="Node" left="9690" top="9330" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="9540" top="9480" width="3000" height="3000">
+   <BOUNDS type="Box" left="9690" top="9330" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="HTTP Client" visible="1">
    </PIN>
@@ -837,9 +837,9 @@
    <LINK srcnodeid="97" srcpinname="Output Object" dstnodeid="99" dstpinname="HTTP Client">
    </LINK>
    <NODE systemname="Headers (Http Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Headers (Http Split)" componentmode="Hidden" id="100">
-   <BOUNDS type="Node" left="9855" top="9945" width="100" height="100">
+   <BOUNDS type="Node" left="10005" top="9795" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="9855" top="9945" width="3000" height="3000">
+   <BOUNDS type="Box" left="10005" top="9795" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Input Headers" visible="1">
    </PIN>
@@ -849,25 +849,25 @@
    <LINK srcnodeid="99" srcpinname="Headers" dstnodeid="100" dstpinname="Input Headers">
    </LINK>
    <NODE systemname="Download (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Download (File)" componentmode="Hidden" id="101">
-   <BOUNDS type="Node" left="8100" top="10200" width="100" height="100">
+   <BOUNDS type="Node" left="8250" top="10050" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8100" top="10200" width="3000" height="3000">
+   <BOUNDS type="Box" left="8250" top="10050" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="UDPClient (Network Async)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="UDPClient (Network Async)" componentmode="Hidden" id="102">
-   <BOUNDS type="Node" left="8085" top="10665" width="100" height="100">
+   <BOUNDS type="Node" left="8235" top="10515" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8085" top="10665" width="3000" height="3000">
+   <BOUNDS type="Box" left="8235" top="10515" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="103">
-   <BOUNDS type="Node" left="8985" top="10650" width="3090" height="270">
+   <BOUNDS type="Node" left="9135" top="10500" width="3090" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8985" top="10650" width="3090" height="270">
+   <BOUNDS type="Box" left="9135" top="10500" width="3090" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|not recommended, only if everything fails|">
    </PIN>
@@ -879,17 +879,17 @@
    </PIN>
    </NODE>
    <NODE systemname="YoutubeDownloader (File)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="YoutubeDownloader (File)" componentmode="Hidden" id="104">
-   <BOUNDS type="Node" left="8085" top="11160" width="100" height="100">
+   <BOUNDS type="Node" left="8235" top="11010" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8085" top="11160" width="3000" height="3000">
+   <BOUNDS type="Box" left="8235" top="11010" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="105">
-   <BOUNDS type="Node" left="9540" top="11160" width="3180" height="270">
+   <BOUNDS type="Node" left="9690" top="11010" width="3180" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="9540" top="11160" width="3180" height="270">
+   <BOUNDS type="Box" left="9690" top="11010" width="3180" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|do not use in legally sensitive environment|">
    </PIN>
@@ -901,7 +901,7 @@
    </PIN>
    </NODE>
    <NODE systemname="IPFromAdapter (Network)" filename="%VVVV%\packs\mp.essentials\nodes\modules\network\IPFromAdapter (Network).v4p" nodename="IPFromAdapter (Network)" componentmode="Hidden" id="106">
-   <BOUNDS type="Node" left="8070" top="12000" width="100" height="100">
+   <BOUNDS type="Node" left="8220" top="11850" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Adapter" visible="1">
    </PIN>
@@ -909,9 +909,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="107">
-   <BOUNDS type="Box" left="8085" top="11640" width="3180" height="240">
+   <BOUNDS type="Box" left="8235" top="11490" width="3180" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8085" top="11640" width="0" height="0">
+   <BOUNDS type="Node" left="8235" top="11490" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Intel(R) Ethernet Connection (2) I219-LM|">
    </PIN>
@@ -985,9 +985,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="114">
-   <BOUNDS type="Node" left="13110" top="11805" width="705" height="270">
+   <BOUNDS type="Node" left="13140" top="11805" width="705" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="13110" top="11805" width="1485" height="375">
+   <BOUNDS type="Box" left="13140" top="11805" width="1485" height="375">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="shaders">
    </PIN>
@@ -1109,9 +1109,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="127">
-   <BOUNDS type="Node" left="840" top="15765" width="705" height="270">
+   <BOUNDS type="Node" left="840" top="16515" width="705" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="15765" width="1485" height="375">
+   <BOUNDS type="Box" left="840" top="16515" width="1485" height="375">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="string">
    </PIN>
@@ -1127,126 +1127,78 @@
    </PIN>
    </NODE>
    <NODE systemname="QGramsDistance (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="QGramsDistance (String Distance)" componentmode="Hidden" id="128">
-   <BOUNDS type="Node" left="840" top="21060" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="22275" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21060" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="22275" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Jaro (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Jaro (String Distance)" componentmode="Hidden" id="129">
-   <BOUNDS type="Node" left="2355" top="21060" width="100" height="100">
+   <BOUNDS type="Node" left="2355" top="22275" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2355" top="21060" width="3000" height="3000">
+   <BOUNDS type="Box" left="2355" top="22275" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Block (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Block (String Distance)" componentmode="Hidden" id="130">
-   <BOUNDS type="Node" left="2355" top="21405" width="100" height="100">
+   <BOUNDS type="Node" left="2355" top="22620" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2355" top="21405" width="3000" height="3000">
+   <BOUNDS type="Box" left="2355" top="22620" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Euclidean (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Euclidean (String Distance)" componentmode="Hidden" id="131">
-   <BOUNDS type="Node" left="3390" top="21405" width="100" height="100">
+   <BOUNDS type="Node" left="3390" top="22620" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3390" top="21405" width="3000" height="3000">
+   <BOUNDS type="Box" left="3390" top="22620" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Levenstein (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Levenstein (String Distance)" componentmode="Hidden" id="132">
-   <BOUNDS type="Node" left="2250" top="21795" width="100" height="100">
+   <BOUNDS type="Node" left="2250" top="23010" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2250" top="21795" width="3000" height="3000">
+   <BOUNDS type="Box" left="2250" top="23010" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="MongeElkan (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MongeElkan (String Distance)" componentmode="Hidden" id="133">
-   <BOUNDS type="Node" left="2865" top="22620" width="100" height="100">
+   <BOUNDS type="Node" left="2865" top="23835" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2865" top="22620" width="3000" height="3000">
+   <BOUNDS type="Box" left="2865" top="23835" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="JaroWinkler (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaroWinkler (String Distance)" componentmode="Hidden" id="134">
-   <BOUNDS type="Node" left="3885" top="22620" width="100" height="100">
+   <BOUNDS type="Node" left="3885" top="23835" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3885" top="22620" width="3000" height="3000">
+   <BOUNDS type="Box" left="3885" top="23835" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="SmithWaterman (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SmithWaterman (String Distance)" componentmode="Hidden" id="135">
-   <BOUNDS type="Node" left="840" top="22995" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="24210" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="22995" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="24210" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="DiceSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DiceSimilarity (String Distance)" componentmode="Hidden" id="136">
-   <BOUNDS type="Node" left="3345" top="21060" width="100" height="100">
+   <BOUNDS type="Node" left="3345" top="22275" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3345" top="21060" width="3000" height="3000">
+   <BOUNDS type="Box" left="3345" top="22275" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="NeedlemanWunch (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="NeedlemanWunch (String Distance)" componentmode="Hidden" id="137">
-   <BOUNDS type="Node" left="840" top="21405" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21405" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="CosineSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CosineSimilarity (String Distance)" componentmode="Hidden" id="138">
-   <BOUNDS type="Node" left="840" top="21795" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="21795" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="ChapmanMeanLength (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanMeanLength (String Distance)" componentmode="Hidden" id="139">
-   <BOUNDS type="Node" left="3285" top="21795" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3285" top="21795" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="JaccardSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaccardSimilarity (String Distance)" componentmode="Hidden" id="140">
-   <BOUNDS type="Node" left="840" top="22200" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="22200" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="OverlapCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OverlapCoefficient (String Distance)" componentmode="Hidden" id="141">
-   <BOUNDS type="Node" left="2280" top="22200" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="2280" top="22200" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="MatchingCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MatchingCoefficient (String Distance)" componentmode="Hidden" id="142">
-   <BOUNDS type="Node" left="3690" top="22200" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3690" top="22200" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Evaluate" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE systemname="ChapmanLengthDeviation (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanLengthDeviation (String Distance)" componentmode="Hidden" id="143">
    <BOUNDS type="Node" left="840" top="22620" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="840" top="22620" width="3000" height="3000">
@@ -1254,10 +1206,58 @@
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="144">
-   <BOUNDS type="Node" left="840" top="20715" width="1545" height="270">
+   <NODE systemname="CosineSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CosineSimilarity (String Distance)" componentmode="Hidden" id="138">
+   <BOUNDS type="Node" left="840" top="23010" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="20715" width="1545" height="270">
+   <BOUNDS type="Box" left="840" top="23010" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="ChapmanMeanLength (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanMeanLength (String Distance)" componentmode="Hidden" id="139">
+   <BOUNDS type="Node" left="3285" top="23010" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3285" top="23010" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="JaccardSimilarity (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="JaccardSimilarity (String Distance)" componentmode="Hidden" id="140">
+   <BOUNDS type="Node" left="840" top="23415" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="23415" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="OverlapCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="OverlapCoefficient (String Distance)" componentmode="Hidden" id="141">
+   <BOUNDS type="Node" left="2280" top="23415" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2280" top="23415" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="MatchingCoefficient (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MatchingCoefficient (String Distance)" componentmode="Hidden" id="142">
+   <BOUNDS type="Node" left="3690" top="23415" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3690" top="23415" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="ChapmanLengthDeviation (String Distance)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ChapmanLengthDeviation (String Distance)" componentmode="Hidden" id="143">
+   <BOUNDS type="Node" left="840" top="23835" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="23835" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="144">
+   <BOUNDS type="Node" left="840" top="21930" width="1545" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21930" width="1545" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|and distance nodes:|">
    </PIN>
@@ -1269,103 +1269,105 @@
    </PIN>
    </NODE>
    <NODE systemname="Sift (String Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Sift (String Advanced)" componentmode="Hidden" id="145">
-   <BOUNDS type="Node" left="840" top="16260" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="17010" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="16260" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="17010" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Find (String Bin)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Find (String Bin)" componentmode="Hidden" id="146">
-   <BOUNDS type="Node" left="840" top="16680" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="17430" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="16680" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="17430" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="DragAndDrop (Control)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="DragAndDrop (Control)" componentmode="Hidden" id="147">
-   <BOUNDS type="Node" left="10650" top="12675" width="100" height="100">
+   <BOUNDS type="Node" left="10800" top="13575" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="10650" top="12675" width="3000" height="3000">
+   <BOUNDS type="Box" left="10800" top="13575" width="3000" height="3000">
    </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE systemname="Clipboard (String Fix)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Clipboard (String Fix)" componentmode="Hidden" id="148">
-   <BOUNDS type="Node" left="840" top="17130" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="17880" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="17130" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="17880" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Edit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Edit (String)" componentmode="Hidden" id="149">
-   <BOUNDS type="Node" left="840" top="17580" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="18330" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="17580" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="18330" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Regex (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Regex (String)" componentmode="Hidden" id="150">
-   <BOUNDS type="Node" left="840" top="18075" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="18825" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="18075" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="18825" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="RemoveZero (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RemoveZero (String)" componentmode="Hidden" id="151">
-   <BOUNDS type="Node" left="840" top="18555" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="19305" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="18555" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="19305" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Router (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Router (String)" componentmode="Hidden" id="152">
-   <BOUNDS type="Node" left="840" top="18960" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="19710" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="18960" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="19710" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="RegexSplit (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="RegexSplit (String)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="840" top="19395" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="20145" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="19395" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="20145" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="SHA-256 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SHA-256 (String)" componentmode="Hidden" id="155">
-   <BOUNDS type="Node" left="840" top="19830" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="20580" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="19830" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="20580" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="XxHash32 (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="XxHash32 (String)" componentmode="Hidden" id="156">
-   <BOUNDS type="Node" left="840" top="20250" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="21000" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="20250" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="21000" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="ParseFormat (String DX11)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\ParseFormat (String DX11).v4p" nodename="ParseFormat (String DX11)" componentmode="Hidden" id="157">
-   <BOUNDS type="Node" left="840" top="23670" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="24885" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="23670">
+   <BOUNDS type="Box" left="840" top="24885">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="TrimPathEnd (String)" filename="%VVVV%\packs\mp.essentials\nodes\modules\string\TrimPathEnd (String).v4p" nodename="TrimPathEnd (String)" componentmode="Hidden" id="158">
-   <BOUNDS type="Node" left="840" top="24150" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="25365" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="24150">
+   <BOUNDS type="Box" left="840" top="25365">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
@@ -1709,9 +1711,9 @@
    </PIN>
    </NODE>
    <NODE systemname="MaxCount (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MaxCount (Value)" componentmode="Hidden" id="197">
-   <BOUNDS type="Node" left="840" top="13440" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="13890" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="13440" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="13890" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
@@ -1911,24 +1913,32 @@
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Box" left="13005" top="20595">
+   </BOUNDS>
    </NODE>
    <NODE systemname="DescriptiveName (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\DescriptiveName (VVVV).v4p" nodename="DescriptiveName (VVVV)" componentmode="Hidden" id="225">
-   <BOUNDS type="Node" left="13050" top="21105" width="100" height="100">
+   <BOUNDS type="Node" left="13005" top="21105" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Box" left="13005" top="21105">
+   </BOUNDS>
    </NODE>
    <NODE systemname="FakeFullscreen (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="226">
-   <BOUNDS type="Node" left="13035" top="21675" width="100" height="100">
+   <BOUNDS type="Node" left="13005" top="21675" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Box" left="13005" top="21675">
+   </BOUNDS>
    </NODE>
    <NODE systemname="GetSpread (Node)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\GetSpread (Node).v4p" nodename="GetSpread (Node)" componentmode="Hidden" id="227">
    <BOUNDS type="Node" left="13005" top="22215" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Box" left="13005" top="22215">
+   </BOUNDS>
    </NODE>
    <NODE systemname="GetSpread (Node Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\GetSpread (Node Advanced).v4p" nodename="GetSpread (Node Advanced)" componentmode="Hidden" id="228">
    <BOUNDS type="Node" left="14250" top="22230" width="100" height="100">
@@ -1937,10 +1947,12 @@
    </PIN>
    </NODE>
    <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="229">
-   <BOUNDS type="Node" left="12990" top="22710" width="100" height="100">
+   <BOUNDS type="Node" left="13005" top="22710" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Box" left="13005" top="22710">
+   </BOUNDS>
    </NODE>
    <NODE systemname="PutWindowOnMyScreen (VVVV)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\PutWindowOnMyScreen (VVVV).v4p" nodename="PutWindowOnMyScreen (VVVV)" componentmode="Hidden" id="230">
    <BOUNDS type="Node" left="16110" top="22845" width="100" height="100">
@@ -2090,12 +2102,12 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <PACK Name="dx11" Version="1.3.0.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <NODE systemname="KeepTemporary (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepTemporary (Generic)" componentmode="Hidden" id="247">
-   <BOUNDS type="Node" left="840" top="13950" width="100" height="100">
+   <BOUNDS type="Node" left="840" top="14400" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="13950" width="3000" height="3000">
+   <BOUNDS type="Box" left="840" top="14400" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>
@@ -2407,9 +2419,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="270">
-   <BOUNDS type="Node" left="10635" top="12210" width="705" height="270">
+   <BOUNDS type="Node" left="10785" top="13110" width="705" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10635" top="12210" width="1485" height="375">
+   <BOUNDS type="Box" left="10785" top="13110" width="1485" height="375">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="Control">
    </PIN>
@@ -2425,15 +2437,93 @@
    </PIN>
    </NODE>
    <NODE systemname="SetCursor (Control)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SetCursor (Control)" componentmode="Hidden" id="271">
-   <BOUNDS type="Node" left="10650" top="13155" width="100" height="100">
+   <BOUNDS type="Node" left="10800" top="14055" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="10650" top="13155" width="3000" height="3000">
+   <BOUNDS type="Box" left="10800" top="14055" width="3000" height="3000">
    </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE systemname="GetColor (ReoGrid Query)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="GetColor (ReoGrid Query)" componentmode="Hidden" id="272">
    <BOUNDS type="Node" left="8235" top="16230" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="8235" top="16230" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="273">
+   <BOUNDS type="Node" left="13140" top="12900" width="705" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13140" top="12900" width="1485" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="XAML">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Serialize (XAML)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Serialize (XAML)" componentmode="Hidden" id="274">
+   <BOUNDS type="Node" left="13140" top="13425" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13140" top="13425" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Deserialize (XAML)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Deserialize (XAML)" componentmode="Hidden" id="275">
+   <BOUNDS type="Node" left="13140" top="13845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13140" top="13845" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Zip (Node Non-generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Zip (Node Non-generic)" componentmode="Hidden" id="276" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="1545" top="12105" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1545" top="12105" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="277">
+   <BOUNDS type="Node" left="2220" top="12060" width="3330" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2220" top="12060" width="1800" height="525">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|use this only when type safety doesn&apos;t matter|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cast (Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Cast (Node)" componentmode="Hidden" id="278">
+   <BOUNDS type="Node" left="840" top="10365" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="10365" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="HttpDirServer (Network)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="HttpDirServer (Network)" componentmode="Hidden" id="279">
+   <BOUNDS type="Node" left="8220" top="12345" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8220" top="12345" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Format (String Node)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Format (String Node)" componentmode="Hidden" id="280">
+   <BOUNDS type="Node" left="840" top="21480" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="21480" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Evaluate" slicecount="1" values="0">
    </PIN>

@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
    <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\Camera (Transform Modular) help.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="285" top="1275" width="13545" height="13755">
    </BOUNDS>
@@ -99,7 +99,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2865" top="11490" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="13110" top="2355" width="12420" height="9795">
+   <BOUNDS type="Window" left="13470" top="2355" width="12060" height="9795">
    </BOUNDS>
    <PIN pinname="Layers" visible="1" slicecount="1" values="||">
    </PIN>
@@ -164,6 +164,8 @@
    <BOUNDS type="Node" left="6930" top="5805" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Receive String" slicecount="1" values="res">
    </PIN>
    </NODE>
    <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="55">
@@ -478,4 +480,10 @@
    </NODE>
    <LINK srcnodeid="79" srcpinname="Camera Delta Out" dstnodeid="68" dstpinname="Delta In">
    </LINK>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
    </PATCH>

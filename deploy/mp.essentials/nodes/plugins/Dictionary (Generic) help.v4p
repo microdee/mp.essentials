@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\Dictionary (Generic) help.v4p" scrollx="120" scrolly="2520">
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\plugins\Dictionary (Generic) help.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="5280" top="4050" width="13485" height="16770">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
@@ -79,9 +79,9 @@
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12">
-   <BOUNDS type="Box" left="9480" top="2205" width="480" height="480">
+   <BOUNDS type="Box" left="8295" top="1245" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="9480" top="2205" width="0" height="0">
+   <BOUNDS type="Node" left="8295" top="1245" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -99,9 +99,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="13">
-   <BOUNDS type="Box" left="7980" top="1620" width="795" height="240">
+   <BOUNDS type="Box" left="7380" top="1620" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7980" top="1620" width="0" height="0">
+   <BOUNDS type="Node" left="7380" top="1620" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="yolo">
    </PIN>
@@ -273,9 +273,9 @@
    <LINK srcnodeid="43" srcpinname="Output" dstnodeid="37" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="35">
-   <BOUNDS type="Box" left="3705" top="20835" width="780" height="2340">
+   <BOUNDS type="Box" left="4305" top="20835" width="780" height="2340">
    </BOUNDS>
-   <BOUNDS type="Node" left="3705" top="20835" width="0" height="0">
+   <BOUNDS type="Node" left="4305" top="20835" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -287,7 +287,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1">
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="34">
@@ -337,9 +337,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="25">
-   <BOUNDS type="Box" left="3435" top="15840" width="420" height="2340">
+   <BOUNDS type="Box" left="4035" top="15825" width="420" height="2340">
    </BOUNDS>
-   <BOUNDS type="Node" left="3435" top="15840" width="0" height="0">
+   <BOUNDS type="Node" left="4035" top="15825" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -369,9 +369,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Element (XElement Join)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Element (XElement Join)" componentmode="Hidden" id="50">
-   <BOUNDS type="Node" left="8145" top="2565" width="100" height="100">
+   <BOUNDS type="Node" left="7545" top="2565" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8145" top="2565" width="3000" height="3000">
+   <BOUNDS type="Box" left="7545" top="2565" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Name" visible="1">
    </PIN>
@@ -381,9 +381,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="51">
-   <BOUNDS type="Box" left="8130" top="2085" width="795" height="240">
+   <BOUNDS type="Box" left="7530" top="2085" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8130" top="2085" width="0" height="0">
+   <BOUNDS type="Node" left="7530" top="2085" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="swag">
    </PIN>
@@ -399,9 +399,9 @@
    <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="50" dstpinname="Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="52">
-   <BOUNDS type="Box" left="7155" top="1350" width="480" height="480">
+   <BOUNDS type="Box" left="6555" top="1350" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="7155" top="1350" width="0" height="0">
+   <BOUNDS type="Node" left="6555" top="1350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -419,9 +419,9 @@
    </PIN>
    </NODE>
    <NODE nodename="Dictionary (Generic)" componentmode="Hidden" id="53">
-   <BOUNDS type="Node" left="6885" top="3570" width="0" height="0">
+   <BOUNDS type="Node" left="6285" top="3570" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="6885" top="3570" width="0" height="0">
+   <BOUNDS type="Box" left="6285" top="3570" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Values Type" slicecount="1" values="|System.Xml.Linq.XElement, System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|">
    </PIN>
@@ -437,6 +437,20 @@
    </PIN>
    <PIN pinname="Values Out" visible="1">
    </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
+   <PIN pinname="Keys" visible="1">
+   </PIN>
+   <PIN pinname="Get All Values" visible="1">
+   </PIN>
+   <PIN pinname="Get Keys" visible="1">
+   </PIN>
+   <PIN pinname="Dictionary Out" visible="1">
+   </PIN>
+   <PIN pinname="Learn Keys Type Reference" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Dictionary In" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="53" dstpinname="Reset to Default">
    </LINK>
@@ -447,21 +461,19 @@
    <LINK srcnodeid="50" srcpinname="Element" dstnodeid="53" dstpinname="Default Values">
    </LINK>
    <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="56">
-   <BOUNDS type="Node" left="8190" top="4050" width="100" height="100">
+   <BOUNDS type="Node" left="8160" top="4110" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8190" top="4050" width="3000" height="3000">
+   <BOUNDS type="Box" left="8160" top="4110" width="3000" height="3000">
    </BOUNDS>
-   <PIN pinname="Object" visible="1">
+   <PIN pinname="Object" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="53" srcpinname="Values Out" dstnodeid="56" dstpinname="Object">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="57">
-   <BOUNDS type="Box" left="8205" top="4455" width="1890" height="300">
+   <BOUNDS type="Box" left="8175" top="4515" width="1890" height="300">
    </BOUNDS>
-   <BOUNDS type="Node" left="8205" top="4455" width="0" height="0">
+   <BOUNDS type="Node" left="8175" top="4515" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -521,14 +533,16 @@
    </PIN>
    <PIN pinname="Reset to Default" visible="1">
    </PIN>
+   <PIN pinname="Keys" visible="1">
+   </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="37" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Default Keys">
    </LINK>
    <LINK srcnodeid="41" srcpinname="Output String" dstnodeid="59" dstpinname="Value">
    </LINK>
    <LINK srcnodeid="59" srcpinname="Element" dstnodeid="60" dstpinname="Default Values">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Keys Out" dstnodeid="25" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="62">
    <BOUNDS type="Node" left="9765" top="15825" width="100" height="100">
@@ -541,8 +555,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="62" srcpinname="String" dstnodeid="26" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Values Out" dstnodeid="62" dstpinname="Object">
    </LINK>
    <NODE systemname="Dictionary (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Dictionary (Generic)" componentmode="Hidden" id="63">
    <BOUNDS type="Node" left="3450" top="20280" width="100" height="100">
@@ -569,6 +581,10 @@
    </PIN>
    <PIN pinname="Update Values" visible="1">
    </PIN>
+   <PIN pinname="Keys" visible="1">
+   </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="60" srcpinname="Dictionary Out" dstnodeid="63" dstpinname="Dictionary In">
    </LINK>
@@ -576,12 +592,10 @@
    </LINK>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Remove or Add">
    </LINK>
-   <LINK srcnodeid="63" srcpinname="Keys Out" dstnodeid="35" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="65">
-   <BOUNDS type="Box" left="4755" top="21330" width="2100" height="2370">
+   <BOUNDS type="Box" left="5355" top="21330" width="2100" height="2370">
    </BOUNDS>
-   <BOUNDS type="Node" left="4755" top="21330" width="0" height="0">
+   <BOUNDS type="Node" left="5355" top="21330" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -597,9 +611,9 @@
    </PIN>
    </NODE>
    <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="4755" top="20850" width="100" height="100">
+   <BOUNDS type="Node" left="5355" top="20850" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4755" top="20850" width="3000" height="3000">
+   <BOUNDS type="Box" left="5355" top="20850" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Object" visible="1" slicecount="1" values="||">
    </PIN>
@@ -607,8 +621,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="64" srcpinname="String" dstnodeid="65" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="63" srcpinname="Values Out" dstnodeid="64" dstpinname="Object">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="70">
    <BOUNDS type="Box" left="9030" top="16605" width="525" height="2325">
@@ -635,9 +647,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="69">
-   <BOUNDS type="Box" left="7275" top="20940" width="780" height="2340">
+   <BOUNDS type="Box" left="7875" top="20940" width="780" height="2340">
    </BOUNDS>
-   <BOUNDS type="Node" left="7275" top="20940" width="0" height="0">
+   <BOUNDS type="Node" left="7875" top="20940" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -649,7 +661,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1">
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Dictionary (Generic)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Dictionary (Generic)" componentmode="Hidden" id="68">
@@ -677,6 +689,10 @@
    </PIN>
    <PIN pinname="Update Values" visible="1">
    </PIN>
+   <PIN pinname="Keys" visible="1">
+   </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="60" srcpinname="Dictionary Out" dstnodeid="68" dstpinname="Dictionary In">
    </LINK>
@@ -684,12 +700,10 @@
    </LINK>
    <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="68" dstpinname="Remove or Add">
    </LINK>
-   <LINK srcnodeid="68" srcpinname="Keys Out" dstnodeid="69" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="67">
-   <BOUNDS type="Box" left="8310" top="21405" width="2100" height="2370">
+   <BOUNDS type="Box" left="8910" top="21405" width="2100" height="2370">
    </BOUNDS>
-   <BOUNDS type="Node" left="8310" top="21405" width="0" height="0">
+   <BOUNDS type="Node" left="8910" top="21405" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -705,9 +719,9 @@
    </PIN>
    </NODE>
    <NODE systemname="AsString (Object)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AsString (Object)" componentmode="Hidden" id="66">
-   <BOUNDS type="Node" left="8310" top="20925" width="100" height="100">
+   <BOUNDS type="Node" left="8910" top="20925" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8310" top="20925" width="3000" height="3000">
+   <BOUNDS type="Box" left="8910" top="20925" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Object" visible="1" slicecount="1" values="||">
    </PIN>
@@ -715,8 +729,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="66" srcpinname="String" dstnodeid="67" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="68" srcpinname="Values Out" dstnodeid="66" dstpinname="Object">
    </LINK>
    <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="71">
    <BOUNDS type="Node" left="7530" top="15120" width="100" height="100">
@@ -852,8 +864,110 @@
    </LINK>
    <LINK srcnodeid="77" srcpinname="Element" dstnodeid="68" dstpinname="Update Values">
    </LINK>
-   <PACK Name="dx11" Version="1.3.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
+   <LINK srcnodeid="53" srcpinname="Values" dstnodeid="56" dstpinname="Object">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="80">
+   <BOUNDS type="Box" left="7185" top="4140" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7185" top="4140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Keys" dstnodeid="80" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Keys" dstnodeid="25" dstpinname="Y Input Value" linkstyle="PolyLine">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Keys" dstnodeid="35" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Values" dstnodeid="64" dstpinname="Object">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Keys" dstnodeid="69" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Values" dstnodeid="66" dstpinname="Object">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Values" dstnodeid="62" dstpinname="Object">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="83">
+   <BOUNDS type="Box" left="9060" top="2775" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9060" top="2775" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Get All Values|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="83" srcpinname="Y Output Value" dstnodeid="53" dstpinname="Get All Values">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="84">
+   <BOUNDS type="Box" left="8910" top="2205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8910" top="2205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="yolo">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Get Keys|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="84" srcpinname="Output String" dstnodeid="53" dstpinname="Get Keys">
+   </LINK>
+   <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="85">
+   <BOUNDS type="Node" left="9600" top="2835" width="4500" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9600" top="2835" width="2910" height="555">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|use this to get the value of specific keys (faster than getting all the values)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="86">
+   <BOUNDS type="Box" left="6300" top="4620" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6300" top="4620" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Dictionary Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Dictionary Out" dstnodeid="86" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="88">
+   <BOUNDS type="Box" left="6240" top="3060" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6240" top="3060" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Dictionary In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="53" dstpinname="Dictionary In">
+   </LINK>
    </PATCH>
