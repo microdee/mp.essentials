@@ -42,7 +42,6 @@ namespace mp.essentials.Nodes.Generic
         private DiffSpreadPin _remKeys;
         private DiffSpreadPin _getKeys;
         private SpreadPin _outKeys;
-        private SpreadPin _outVals;
         private SpreadPin _queryVals;
         private DiffSpreadPin _dictin;
         private SpreadPin _dictout;
@@ -57,6 +56,8 @@ namespace mp.essentials.Nodes.Generic
         public ISpread<bool> FRemove;
         [Input("Clear", IsBang = true, Order = 19)]
         public ISpread<bool> FClear;
+        [Input("Get All Values", Order = 21)]
+        public ISpread<bool> FGetAll;
 
         private IDictionary dict;
 
@@ -72,8 +73,7 @@ namespace mp.essentials.Nodes.Generic
             _modVals = _vals.AddInput(new InputAttribute("Update Values") {Order = 14});
 
             _outKeys = _keys.AddOutput(new OutputAttribute("Keys Out") { Order = 0 });
-            _outVals = _vals.AddOutput(new OutputAttribute("Values Out") { Order = 1 });
-            _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Queried Values") { Order = 2, BinOrder = 3 });
+            _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Queried Values") { Order = 1, BinOrder = 2 });
             _dictType = typeof(Dictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
             _pd.RemoveInput("Dictionary In");
             _pd.RemoveOutput("Dictionary Out");
@@ -189,34 +189,44 @@ namespace mp.essentials.Nodes.Generic
                         }
                     }
                 }
-                _outVals.Spread.SliceCount = dict.Count;
-                _outKeys.Spread.SliceCount = dict.Count;
-                int ii = 0;
-                foreach (var key in dict.Keys)
+
+                if (FGetAll[0])
                 {
-                    _outKeys[ii] = key;
-                    _outVals[ii] = dict[key];
-                    ii++;
+                    _queryVals.Spread.SliceCount = _outKeys.Spread.SliceCount = _getKeys.Spread.SliceCount;
+                    for (int i = 0; i < _getKeys.Spread.SliceCount; i++)
+                    {
+                        var outspread = (ISpread)_queryVals[i];
+                        if (_getKeys[i] == null)
+                        {
+                            outspread.SliceCount = 0;
+                            continue;
+                        }
+                        if (!dict.Contains(_getKeys[i]))
+                        {
+                            outspread.SliceCount = 0;
+                            continue;
+                        }
+
+                        outspread.SliceCount = 1;
+                        _outKeys[i] = _getKeys[i];
+                        outspread[0] = dict[_getKeys[i]];
+                    }
+                }
+                else
+                {
+                    _queryVals.Spread.SliceCount = dict.Count;
+                    _outKeys.Spread.SliceCount = dict.Count;
+                    int ii = 0;
+                    foreach (var key in dict.Keys)
+                    {
+                        var outspread = (ISpread)_queryVals[ii];
+                        outspread.SliceCount = 1;
+                        _outKeys[ii] = key;
+                        outspread[0] = dict[key];
+                        ii++;
+                    }
                 }
 
-                _queryVals.Spread.SliceCount = _getKeys.Spread.SliceCount;
-                for (int i = 0; i < _getKeys.Spread.SliceCount; i++)
-                {
-                    var outspread = (ISpread) _queryVals[i];
-                    if (_getKeys[i] == null)
-                    {
-                        outspread.SliceCount = 0;
-                        continue;
-                    }
-                    if (!dict.Contains(_getKeys[i]))
-                    {
-                        outspread.SliceCount = 0;
-                        continue;
-                    }
-
-                    outspread.SliceCount = 1;
-                    outspread[0] = dict[_getKeys[i]];
-                }
                 _dictout[0] = dict;
             }
         }
