@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,14 +16,13 @@ namespace mp.essentials
     [Startable]
     public class VersionWriter : IStartable
     {
+        public static string VvvvDir => Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
         public static string VersionPath { get; private set; }
-        public static string VvvvDir { get; private set; }
         public static string PackDir => Path.GetDirectoryName(typeof(VersionWriter).Assembly.Location);
 
-        public void Start()
+        private void WriteVersion()
         {
             var ver = typeof(VersionWriter).Assembly.GetName().Version.ToString();
-            VvvvDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             if (VvvvDir != null)
             {
                 VersionPath = Path.Combine(VvvvDir, "packs", "mp.essentials", "version.info");
@@ -34,7 +34,12 @@ namespace mp.essentials
             }
         }
 
-        public void Shutdown() { Start(); }
+        public void Start()
+        {
+            WriteVersion();
+        }
+
+        public void Shutdown() { WriteVersion(); }
     }
 
     [PluginInfo(
