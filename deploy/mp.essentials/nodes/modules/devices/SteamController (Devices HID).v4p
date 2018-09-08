@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="7620" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p" scrollx="0" scrolly="-360" systemname="SteamController (Devices HID)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID).v4p">
    <BOUNDS type="Window" left="35850" top="2070" width="16290" height="12165">
    </BOUNDS>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1" systemname="IOBox (Enumerations)">
@@ -2758,4 +2758,8 @@
    </LINK>
    <LINK srcnodeid="96" srcpinname="Output" dstnodeid="172" dstpinname="Input">
    </LINK>
+   <PACK Name="dx11" Version="1.3.0.1">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
    </PATCH>

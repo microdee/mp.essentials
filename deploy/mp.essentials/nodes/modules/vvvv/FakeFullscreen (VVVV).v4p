@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" systemname="FakeFullscreen (VVVV)" filename="C:\vvvv\libs\mcropack\nodes\Modules\FakeFullscreen (VVVV).v4p" scrollx="0" scrolly="3210">
-   <BOUNDS type="Window" left="4755" top="7605" width="16890" height="6000">
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" systemname="FakeFullscreen (VVVV)" filename="C:\vvvv\libs\mcropack\nodes\Modules\FakeFullscreen (VVVV).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="4755" top="7605" width="16890" height="10665">
    </BOUNDS>
    <PACK Name="addonpack" Version="36.0.0">
    </PACK>
@@ -269,7 +269,7 @@
    <LINK srcnodeid="37" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Windowed">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="54">
-   <BOUNDS type="Node" left="3600" top="5790" width="100" height="100">
+   <BOUNDS type="Node" left="2895" top="6240" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -286,7 +286,7 @@
    </LINK>
    <LINK srcnodeid="31" srcpinname="Output" dstnodeid="9" dstpinname="Force Update">
    </LINK>
-   <PACK Name="dx11" Version="1.3.0.1">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
