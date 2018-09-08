@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -37,8 +38,11 @@ namespace mp.essentials.reogrid
                 var xmltext = Encoding.UTF8.GetString(databytes);
                 var xel = XElement.Parse(xmltext);
 
-                AddWorksheetData(sheet, data => data.Xml = xel);
+                var metael = xel.XPathSelectElement("//head/meta");
+                metael?.SetElementValue(XName.Get("decimalchar"), CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
 
+                AddWorksheetData(sheet, data => data.Xml = xel);
+                
                 var wsxd = _wsxdata[sheet];
                 xel.XPathSelectElements("//cell[@body-type]").ForEach((element, i) =>
                 {
@@ -95,10 +99,16 @@ namespace mp.essentials.reogrid
 
                 var xml = new XmlDocument();
                 xml.LoadXml(xmltext);
-                var origcultureid = xml["Grid"]?["head"]?["meta"]?["culture"]?.InnerText ?? "en-US";
-                var origculture = new CultureInfo(origcultureid);
 
-                ConvertCulture(xml, origculture, CultureInfo.CurrentCulture);
+                var origdecsep = xml["grid"]?["head"]?["meta"]?["decimalchar"]?.InnerText;
+                if (origdecsep == null)
+                {
+                    var origcultureid = xml["grid"]?["head"]?["meta"]?["culture"]?.InnerText ?? "en-US";
+                    var origculture = new CultureInfo(origcultureid);
+                    origdecsep = origculture.NumberFormat.NumberDecimalSeparator;
+                }
+
+                ConvertCulture(xml, origdecsep);
 
                 databytes = Encoding.UTF8.GetBytes(xml.InnerXml);
 
@@ -213,16 +223,15 @@ namespace mp.essentials.reogrid
             sheet.Cells[rc.r, rc.c].Body = body;
         }
 
-        public void ConvertCulture(XmlNode node, CultureInfo oc, CultureInfo cc)
+        public void ConvertCulture(XmlNode node, string decsep)
         {
-            var ocds = oc.NumberFormat.NumberDecimalSeparator;
-            var ccds = cc.NumberFormat.NumberDecimalSeparator;
+            var ccds = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
             if (node is XmlText textnode)
             {
-                if(textnode.Value?.Count(c => c == ocds[0]) == 1)
+                if(Regex.IsMatch(textnode.Value, $"^\\d*?\\{decsep}\\d*?$"))
                 {
-                    textnode.Value = textnode.Value.Replace(ocds, ccds);
+                    textnode.Value = textnode.Value.Replace(decsep, ccds);
                 }
             }
 
@@ -231,17 +240,18 @@ namespace mp.essentials.reogrid
                 for (int i = 0; i < node.Attributes.Count; i++)
                 {
                     var attr = node.Attributes[i];
-                    if (attr.Value.Count(c => c == ocds[0]) == 1)
+                    if (attr.Name == "font-size") continue;
+
+                    if (Regex.IsMatch(attr.Value, $"^\\d*?\\{decsep}\\d*?$"))
                     {
-                        if(attr.Name != "font-size")
-                            attr.Value = attr.Value.Replace(ocds, ccds);
+                        attr.Value = attr.Value.Replace(decsep, ccds);
                     }
                 }
             }
 
             for (int i = 0; i < node.ChildNodes.Count; i++)
             {
-                ConvertCulture(node.ChildNodes[i], oc, cc);
+                ConvertCulture(node.ChildNodes[i], decsep);
             }
         }
     }
