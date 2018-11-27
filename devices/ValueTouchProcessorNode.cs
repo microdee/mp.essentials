@@ -134,9 +134,13 @@ namespace mp.essentials.Nodes.Devices
 				}
 			}
 
-            (from touch in Touches.Values where touch.ExpireFrames > FExpire[0] select touch.Id)
-                .ToArray()
-                .ForEach(tid => Touches.Remove(tid));
+		    var removables = (from touch in Touches.Values where touch.ExpireFrames > FExpire[0] select touch.Id)
+		        .ToArray();
+
+		    foreach (var tid in removables)
+		    {
+		        Touches.Remove(tid);
+		    }
 			
             this.SetSliceCountForAllOutput(Touches.Count);
 		    int ii = 0;

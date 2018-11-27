@@ -216,17 +216,20 @@ namespace mp.essentials.reogrid
                 {
                     case "Plain":
                     {
-                        selected.cells.Cells.ForEach((cell, i) => cell.Body = null);
+                        foreach (var cell in selected.cells.Cells)
+                        {
+                            cell.Body = null;
+                        }
                         break;
                     }
                     case "Checkbox":
                     {
-                        selected.cells.Cells.ForEach((cell, i) =>
+                        foreach (var cell in selected.cells.Cells)
                         {
                             var button = new CheckBoxCell();
                             button.Click += (sender, eventArgs) => SaveChanges();
                             cell.Body = button;
-                        });
+                        }
                         break;
                     }
                     case "Radio Button":
@@ -239,28 +242,36 @@ namespace mp.essentials.reogrid
                                 data.RadioGroups[selected.range] = radiogroup;
                             else data.RadioGroups.Add(selected.range, radiogroup);
                         });
-
-                        selected.cells.Cells.ForEach((cell, i) =>
+                        foreach (var cell in selected.cells.Cells)
                         {
                             var button = new RadioButtonCell { RadioGroup = radiogroup };
                             button.Click += (sender, eventArgs) => SaveChanges();
                             cell.Body = button;
-                        });
+                        }
                         break;
                     }
                     case "Horizontal Bar":
                     {
-                        selected.cells.Cells.ForEach((cell, i) => cell.Body = new HorizontalProgressCell());
+                        foreach (var cell in selected.cells.Cells)
+                        {
+                            cell.Body = new HorizontalProgressCell();
+                        }
                         break;
                     }
                     case "Vertical Bar":
                     {
-                        selected.cells.Cells.ForEach((cell, i) => cell.Body = new VerticalProgressCell());
+                        foreach (var cell in selected.cells.Cells)
+                        {
+                            cell.Body = new VerticalProgressCell();
+                        }
                         break;
                     }
                     case "Button":
                     {
-                        selected.cells.Cells.ForEach((cell, i) => cell.Body = new ButtonCell());
+                        foreach (var cell in selected.cells.Cells)
+                        {
+                            cell.Body = new ButtonCell();
+                        }
                         break;
                     }
                 }
@@ -275,7 +286,7 @@ namespace mp.essentials.reogrid
             {
                 var selected = GetSelectedCells();
                 var entries = GetEnumEntries(mi.Text);
-                selected.cells.Cells.ForEach((cell, i) =>
+                foreach (var cell in selected.cells.Cells)
                 {
                     var addrtuple = (cell.Row, cell.Column);
                     AddWorksheetData(Grid.CurrentWorksheet, data =>
@@ -287,7 +298,7 @@ namespace mp.essentials.reogrid
                     var dropdown = new DropdownListCell(entries);
                     dropdown.SelectedItemChanged += (sender, eventArgs) => SaveChanges();
                     cell.Body = dropdown;
-                });
+                }
 
                 IsChanged = true;
                 SaveChanges();

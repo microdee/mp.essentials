@@ -44,13 +44,13 @@ namespace mp.essentials.reogrid
                 AddWorksheetData(sheet, data => data.Xml = xel);
                 
                 var wsxd = _wsxdata[sheet];
-                xel.XPathSelectElements("//cell[@body-type]").ForEach((element, i) =>
+                foreach (var element in xel.XPathSelectElements("//cell[@body-type]"))
                 {
                     var btxattr = element.Attribute(XName.Get("body-type"));
-                    if (btxattr == null) return;
+                    if (btxattr == null) continue;
 
                     var rc = ParseRowCol(element);
-                    if (rc.r < 0 || rc.c < 0) return;
+                    if (rc.r < 0 || rc.c < 0) continue;
 
                     var cell = sheet.Cells[rc.r, rc.c];
 
@@ -65,15 +65,15 @@ namespace mp.essentials.reogrid
                                 break;
                             }
                         }
-                        if(crange == RangePosition.Empty) return;
+                        if (crange == RangePosition.Empty) continue;
                         element.SetAttributeValue(XName.Get("radio-group-range"), crange.ToAddress());
                     }
                     if (btxattr.Value.Equals("DropdownListCell"))
                     {
-                        if(!wsxd.EnumCells.ContainsKey(rc)) return;
+                        if (!wsxd.EnumCells.ContainsKey(rc)) continue;
                         element.SetAttributeValue(XName.Get("enum-name"), wsxd.EnumCells[rc]);
                     }
-                });
+                }
 
                 res += Convert.ToBase64String(Encoding.UTF8.GetBytes(xel.ToString()));
             }
@@ -117,11 +117,11 @@ namespace mp.essentials.reogrid
                 Grid.AddWorksheet(sheet);
 
                 var wsxd = _wsxdata[sheet];
-                
-                xel.XPathSelectElements("//cell[@body-type]").ForEach((element, i) =>
+
+                foreach (var element in xel.XPathSelectElements("//cell[@body-type]"))
                 {
                     var btxattr = element.Attribute(XName.Get("body-type"));
-                    if(btxattr == null) return;
+                    if (btxattr == null) continue;
 
                     if (btxattr.Value.Equals("VerticalProgressCell"))
                     {
@@ -202,7 +202,7 @@ namespace mp.essentials.reogrid
                             sheet.SetCellFormula(rc.r, rc.c, formulael.Value);
                         }
                     }
-                });
+                }
             }
         }
 

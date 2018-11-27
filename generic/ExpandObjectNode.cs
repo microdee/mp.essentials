@@ -150,14 +150,21 @@ namespace mp.essentials.Nodes.Generic
         private void AssignMemberValue(MemberInfo member, object input, int i)
         {
             object memberValue = null;
-            switch (member)
+            try
             {
-                case FieldInfo field:
-                    memberValue = field.GetValue(input);
-                    break;
-                case PropertyInfo prop:
-                    memberValue = prop.GetValue(input);
-                    break;
+                switch (member)
+                {
+                    case FieldInfo field:
+                        memberValue = field.GetValue(input);
+                        break;
+                    case PropertyInfo prop:
+                        memberValue = prop.GetValue(input);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                return;
             }
             if (IsMemberEnumerable[member])
             {
