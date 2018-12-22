@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using md.stdl.Coding;
 using mp.pddn;
+using SlimDX.Direct3D9;
 using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V2.NonGeneric;
@@ -30,6 +31,13 @@ namespace mp.essentials.Nodes.Generic
         private ConfigurableTypePinGroup _vals;
         private PinDictionary _pd;
         private Type _dictType;
+        private Type _inoutDictType;
+
+        private MethodInfo _openCast;
+        private MethodInfo _keyCast;
+        private MethodInfo _valCast;
+
+        private static T Cast<T>(dynamic entity) => (T)entity;
 
         private bool _typeChanged;
         private bool _keysready = false;
@@ -57,9 +65,18 @@ namespace mp.essentials.Nodes.Generic
         [Input("Clear", IsBang = true, Order = 19)]
         public ISpread<bool> FClear;
         [Input("Get All Values", Order = 21)]
-        public ISpread<bool> FGetAll;
+        public IDiffSpread<bool> FGetAll;
 
-        private IDictionary dict;
+        [Output(
+            "Changed",
+            IsBang = true,
+            Visibility = PinVisibility.Hidden,
+            Order = 10000
+        )]
+        public ISpread<bool> FChanged;
+
+        private dynamic _dict;
+        private int _dictChangeCounter = -1;
 
         private void CreatePins()
         {
@@ -75,10 +92,11 @@ namespace mp.essentials.Nodes.Generic
             _outKeys = _keys.AddOutput(new OutputAttribute("Keys") { Order = 2 });
             _queryVals = _vals.AddOutputBinSized(new OutputAttribute("Values") { Order = 3, BinOrder = 4 });
             _dictType = typeof(Dictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
+            _inoutDictType = typeof(IDictionary<,>).MakeGenericType(_keys.GroupType, _vals.GroupType);
             _pd.RemoveInput("Dictionary In");
             _pd.RemoveOutput("Dictionary Out");
-            _dictin = _pd.AddInput(_dictType, new InputAttribute("Dictionary In"));
-            _dictout = _pd.AddOutput(_dictType, new OutputAttribute("Dictionary Out") { Order = 1 });
+            _dictin = _pd.AddInput(_inoutDictType, new InputAttribute("Dictionary In"));
+            _dictout = _pd.AddOutput(_inoutDictType, new OutputAttribute("Dictionary Out") { Order = 1 });
         }
 
         public void OnImportsSatisfied()
@@ -101,107 +119,176 @@ namespace mp.essentials.Nodes.Generic
                 _valsready = true;
                 if (!(_keysready && _valsready)) return;
                 CreatePins();
+
             };
         }
-        //called when data for any output pin is requested
-        public void Evaluate(int SpreadMax)
-        {
-            if (_keysready && _valsready && _typeChanged)
-            {
-                var dictinValid = _dictin.Spread.SliceCount > 0 && (_dictin[0]?.GetType().Is(_dictType) ?? false);
-                if (dictinValid)
-                {
-                    dict = (IDictionary) _dictin[0];
-                    _dictinUsed = true;
-                }
-                else
-                {
-                    dict = (IDictionary)Activator.CreateInstance(_dictType);
-                    _dictinUsed = false;
-                }
-                _typeChanged = false;
-            }
 
-            if (_keysready && _valsready && dict != null)
+        private void PrepareDict(bool perframe)
+        {
+            var dictinValid = _dictin.Spread.SliceCount > 0 && _inoutDictType.IsInstanceOfType(_dictin[0]);
+            if (perframe)
             {
-                var dictinValid = _dictin.Spread.SliceCount > 0 && (_dictin[0]?.GetType().Is(_dictType) ?? false);
+
                 if (dictinValid && !_dictinUsed)
                 {
-                    dict = (IDictionary)_dictin[0];
+                    _dict = _dictin[0];
                     _dictinUsed = true;
                 }
 
                 if (!dictinValid && _dictinUsed)
                 {
-                    dict = (IDictionary)Activator.CreateInstance(_dictType);
+                    _dict = Activator.CreateInstance(_dictType);
                     _dictinUsed = false;
                 }
-                if (FClear[0]) dict.Clear();
-                if (FResetDefault[0])
+            }
+            else
+            {
+                if (dictinValid)
                 {
-                    dict.Clear();
-                    if (_defVals.Spread.SliceCount != 0)
+                    _dict = _dictin[0];
+                    _dictinUsed = true;
+                }
+                else
+                {
+                    _dict = Activator.CreateInstance(_dictType);
+                    _dictinUsed = false;
+                }
+            }
+        }
+
+        private void Clear()
+        {
+            if(!FClear[0]) return;
+            _dict.Clear();
+            ((object) _dict).NotifyChange();
+        }
+
+        private void CreateKeyCastDelegate()
+        {
+            _openCast = this.GetType().GetMethod("Cast", BindingFlags.Static | BindingFlags.NonPublic);
+            _keyCast = _openCast.MakeGenericMethod(_keys.GroupType);
+        }
+        private void CreateValCastDelegate()
+        {
+            _openCast = this.GetType().GetMethod("Cast", BindingFlags.Static | BindingFlags.NonPublic);
+            _valCast = _openCast.MakeGenericMethod(_vals.GroupType);
+        }
+
+        private dynamic GetKey(int i, DiffSpreadPin keys)
+        {
+            if(_keyCast == null) CreateKeyCastDelegate();
+            return _keyCast.Invoke(this, new []{ keys[i] });
+        }
+
+        private dynamic GetValue(int i, DiffSpreadPin vals)
+        {
+            if (_valCast == null) CreateValCastDelegate();
+            return _valCast.Invoke(this, new[] { vals[i] });
+        }
+
+        private void ResetDefault()
+        {
+            if(!FResetDefault[0]) return;
+            _dict.Clear();
+            if (_defVals.Spread.SliceCount != 0)
+            {
+                for (int i = 0; i < _defKeys.Spread.SliceCount; i++)
+                {
+                    if (!_dict.ContainsKey(GetKey(i, _defKeys)))
+                        _dict.Add(GetKey(i, _defKeys), GetValue(i, _defVals));
+                }
+            }
+            ((object)_dict).NotifyChange();
+        }
+
+        private void Set()
+        {
+            if(!FSet.IsChanged) return;
+            if (_modVals.Spread.SliceCount != 0 && _modKeys.Spread.SliceCount != 0)
+            {
+                for (int i = 0; i < _modKeys.Spread.SliceCount; i++)
+                {
+                    if (!FSet[i]) continue;
+
+                    if (_dict.ContainsKey(GetKey(i, _modKeys)))
+                        _dict[GetKey(i, _modKeys)] = GetValue(i, _modVals);
+                    else _dict.Add(GetKey(i, _modKeys), GetValue(i, _modVals));
+                    ((object)_dict).NotifyChange();
+                }
+            }
+        }
+
+        private void RemoveAdd()
+        {
+            if (!FRemoveAdd.IsChanged) return;
+            if (_modVals.Spread.SliceCount != 0 && _modKeys.Spread.SliceCount != 0)
+            {
+                for (int i = 0; i < _modKeys.Spread.SliceCount; i++)
+                {
+                    if (!FRemoveAdd[i]) continue;
+
+                    if (_dict.ContainsKey(GetKey(i, _modKeys)))
+                        _dict.Remove(GetKey(i, _modKeys));
+                    else _dict.Add(GetKey(i, _modKeys), GetValue(i, _modVals));
+                    ((object)_dict).NotifyChange();
+                }
+            }
+        }
+
+        private void Remove()
+        {
+            if (!FRemove.IsChanged) return;
+            if (_remKeys.Spread.SliceCount != 0)
+            {
+                for (int i = 0; i < _remKeys.Spread.SliceCount; i++)
+                {
+                    if (!FRemove[i]) continue;
+                    if (_dict.ContainsKey(GetKey(i, _remKeys))) _dict.Remove(GetKey(i, _remKeys));
+                    ((object)_dict).NotifyChange();
+                }
+            }
+        }
+
+        private void Get()
+        {
+            if (_dictin.Spread.IsChanged && _dictin.Spread.SliceCount > 0)
+                ((object)_dict).NotifyChange();
+
+            var changed = ((object)_dict).CheckChanged(ref _dictChangeCounter);
+            FChanged[0] = changed;
+
+            if (FGetAll[0])
+            {
+                if(changed || FGetAll.IsChanged)
+                {
+                    _queryVals.Spread.SliceCount = _dict.Count;
+                    _outKeys.Spread.SliceCount = _dict.Count;
+                    int ii = 0;
+                    foreach (var key in _dict.Keys)
                     {
-                        for (int i = 0; i < _defKeys.Spread.SliceCount; i++)
-                        {
-                            if (!dict.Contains(_defKeys[i]))
-                                dict.Add(_defKeys[i], _defVals[i]);
-                        }
+                        var outspread = (ISpread) _queryVals[ii];
+                        outspread.SliceCount = 1;
+                        _outKeys[ii] = key;
+                        outspread[0] = _dict[key];
+                        ii++;
                     }
                 }
-                if (FSet.IsChanged)
-                {
-                    if (_modVals.Spread.SliceCount != 0 && _modKeys.Spread.SliceCount != 0)
-                    {
-                        for (int i = 0; i < _modKeys.Spread.SliceCount; i++)
-                        {
-                            if (!FSet[i]) continue;
-
-                            if (dict.Contains(_modKeys[i]))
-                                dict[_modKeys[i]] = _modVals[i];
-                            else dict.Add(_modKeys[i], _modVals[i]);
-                        }
-                    }
-                }
-                if (FRemoveAdd.IsChanged)
-                {
-                    if (_modVals.Spread.SliceCount != 0 && _modKeys.Spread.SliceCount != 0)
-                    {
-                        for (int i = 0; i < _modKeys.Spread.SliceCount; i++)
-                        {
-                            if (!FRemoveAdd[i]) continue;
-
-                            if (dict.Contains(_modKeys[i]))
-                                dict.Remove(_modKeys[i]);
-                            else dict.Add(_modKeys[i], _modVals[i]);
-                        }
-                    }
-                }
-
-                if (FRemove.IsChanged)
-                {
-                    if (_remKeys.Spread.SliceCount != 0)
-                    {
-                        for (int i = 0; i < _remKeys.Spread.SliceCount; i++)
-                        {
-                            if (!FRemove[i]) continue;
-                            if (dict.Contains(_remKeys[i])) dict.Remove(_remKeys[i]);
-                        }
-                    }
-                }
-
-                if (FGetAll[0])
+            }
+            else
+            {
+                if(changed || _getKeys.Spread.IsChanged || FGetAll.IsChanged)
                 {
                     _queryVals.Spread.SliceCount = _outKeys.Spread.SliceCount = _getKeys.Spread.SliceCount;
                     for (int i = 0; i < _getKeys.Spread.SliceCount; i++)
                     {
-                        var outspread = (ISpread)_queryVals[i];
+                        var outspread = (ISpread) _queryVals[i];
                         if (_getKeys[i] == null)
                         {
                             outspread.SliceCount = 0;
                             continue;
                         }
-                        if (!dict.Contains(_getKeys[i]))
+
+                        if (!_dict.ContainsKey(GetKey(i, _getKeys)))
                         {
                             outspread.SliceCount = 0;
                             continue;
@@ -209,26 +296,40 @@ namespace mp.essentials.Nodes.Generic
 
                         outspread.SliceCount = 1;
                         _outKeys[i] = _getKeys[i];
-                        outspread[0] = dict[_getKeys[i]];
+                        outspread[0] = _dict[GetKey(i, _getKeys)];
                     }
                 }
-                else
-                {
-                    _queryVals.Spread.SliceCount = dict.Count;
-                    _outKeys.Spread.SliceCount = dict.Count;
-                    int ii = 0;
-                    foreach (var key in dict.Keys)
-                    {
-                        var outspread = (ISpread)_queryVals[ii];
-                        outspread.SliceCount = 1;
-                        _outKeys[ii] = key;
-                        outspread[0] = dict[key];
-                        ii++;
-                    }
-                }
+            }
+        }
 
-                _dictout[0] = dict;
+        //called when data for any output pin is requested
+        public void Evaluate(int SpreadMax)
+        {
+            if (_keysready && _valsready && _typeChanged)
+            {
+                PrepareDict(false);
+                _typeChanged = false;
+                ((object)_dict).NotifyChange();
+            }
+
+            if (_keysready && _valsready && _dict != null)
+            {
+                PrepareDict(true);
+
+                Clear();
+                ResetDefault();
+                Set();
+                RemoveAdd();
+                Remove();
+                Get();
+                _dictout.SetReflectedChanged(false);
+                if (_dictout[0]?.GetHashCode() != _dict?.GetHashCode())
+                {
+                    _dictout.SetReflectedChanged(true);
+                    _dictout[0] = _dict;
+                }
             }
         }
     }
 }
+
