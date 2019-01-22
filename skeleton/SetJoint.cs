@@ -12,6 +12,7 @@ namespace mp.essentials.Nodes.SkeletonV2
 {
     public enum SetJointOperationMode
     {
+        Absolute,
         Override,
         FirstOperand,
         SecondOperand
@@ -35,7 +36,7 @@ namespace mp.essentials.Nodes.SkeletonV2
         public ISpread<ISpread<string>> FJointName;
         [Input("Regex Search", Visibility = PinVisibility.Hidden)]
         public IDiffSpread<bool> FRegexSearch;
-        [Input("Operation Mode", Visibility = PinVisibility.Hidden)]
+        [Input("Operation Mode", Visibility = PinVisibility.Hidden, DefaultEnumEntry = "Override")]
         public IDiffSpread<SetJointOperationMode> FOpMode;
 
         [Output("Skeleton Out")]
@@ -123,6 +124,15 @@ namespace mp.essentials.Nodes.SkeletonV2
                         int jj = FRegexSearch[i] ? FNameIndex[i][j] : j;
                         switch (FOpMode[i])
                         {
+                            case SetJointOperationMode.Absolute:
+                                if(joint.Parent != null)
+                                {
+                                    joint.BaseTransform = FBaseTrIn[i][jj] * VMath.Inverse(joint.Parent.CombinedTransform);
+                                }
+                                else joint.BaseTransform = FBaseTrIn[i][jj];
+
+                                joint.AnimationTransform = FAnimTrIn[i][jj];
+                                break;
                             case SetJointOperationMode.Override:
                                 joint.BaseTransform = FBaseTrIn[i][jj];
                                 joint.AnimationTransform = FAnimTrIn[i][jj];

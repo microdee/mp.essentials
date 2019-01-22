@@ -38,70 +38,47 @@ namespace mp.essentials.Nodes.SkeletonV2
 
     public class JointInfoV2 : IJoint
     {
-        private string FName;
-        private int FId;
-        private IJoint FParent;
-        private List<IJoint> FChildren;
-        private List<Vector2D> FConstraints;
+        private IJoint _parent;
 
-        private Matrix4x4 FBaseTransform;
-        private Matrix4x4 FAnimationTransform;
-        private Matrix4x4 FCachedCombinedTransform;
-        private Vector3D FCachedTranslation;
-        private Vector3D FCachedRotation;
-        private Vector3D FCachedScale;
+        private Matrix4x4 _baseTransform;
+        private Matrix4x4 _animationTransform;
+        private Matrix4x4 _cachedCombinedTransform;
+        private Vector3D _cachedTranslation;
+        private Vector3D _cachedRotation;
+        private Vector3D _cachedScale;
         private bool FDirty;
         public bool ChildrenChanged { get; set; }
 
         public JointInfoV2(int id, string name)
         {
-            FId = id;
-            FName = name;
-            FChildren = new List<IJoint>();
+            Id = id;
+            Name = name;
 
-            FBaseTransform = VMath.IdentityMatrix;
-            FAnimationTransform = VMath.IdentityMatrix;
-            FConstraints = new List<Vector2D>();
-            FConstraints.Add(new Vector2D(-1.0, 1.0));
-            FConstraints.Add(new Vector2D(-1.0, 1.0));
-            FConstraints.Add(new Vector2D(-1.0, 1.0));
+            _baseTransform = VMath.IdentityMatrix;
+            _animationTransform = VMath.IdentityMatrix;
+            Constraints = new List<Vector2D>
+            {
+                new Vector2D(-1.0, 1.0),
+                new Vector2D(-1.0, 1.0),
+                new Vector2D(-1.0, 1.0)
+            };
             SetDirty();
         }
 
-        public string Name
-        {
-            set
-            {
-                FName = value;
-            }
-            get
-            {
-                return FName;
-            }
-        }
+        public string Name { get; set; }
 
-        public int Id
-        {
-            set
-            {
-                FId = value;
-            }
-            get
-            {
-                return FId;
-            }
-        }
+        public int Id { get; set; }
 
         public Matrix4x4 BaseTransform
         {
             set
             {
-                FBaseTransform = value;
+                _baseTransform = value;
                 SetDirty();
             }
             get
             {
-                return FBaseTransform;
+                return _baseTransform;
             }
         }
 
@@ -109,12 +86,12 @@ namespace mp.essentials.Nodes.SkeletonV2
         {
             set
             {
-                FAnimationTransform = value;
+                _animationTransform = value;
                 SetDirty();
             }
             get
             {
-                return FAnimationTransform;
+                return _animationTransform;
             }
         }
 
@@ -122,32 +99,26 @@ namespace mp.essentials.Nodes.SkeletonV2
         {
             get
             {
-                return FParent;
+                return _parent;
             }
 
             set
             {
-                FParent = value;
+                _parent = value;
                 if(!value.Children.Exists(joint => joint.Name == Name))
                     Parent.Children.Add(this);
                 SetDirty();
             }
         }
 
-        public List<IJoint> Children
-        {
-            get
-            {
-                return FChildren;
-            }
-        }
+        public List<IJoint> Children { get; } = new List<IJoint>();
 
         public Vector3D Rotation
         {
             get
             {
                 UpdateCachedValues();
-                return FCachedRotation;
+                return _cachedRotation;
             }
         }
 
@@ -156,7 +127,7 @@ namespace mp.essentials.Nodes.SkeletonV2
             get
             {
                 UpdateCachedValues();
-                return FCachedTranslation;
+                return _cachedTranslation;
             }
         }
 
@@ -165,28 +136,18 @@ namespace mp.essentials.Nodes.SkeletonV2
             get
             {
                 UpdateCachedValues();
-                return FCachedScale;
+                return _cachedScale;
             }
         }
 
-        public List<Vector2D> Constraints
-        {
-            get
-            {
-                return FConstraints;
-            }
-            set
-            {
-                FConstraints = value;
-            }
-        }
+        public List<Vector2D> Constraints { get; set; }
 
         public Matrix4x4 CombinedTransform
         {
             get
             {
                 UpdateCachedValues();
-                return FCachedCombinedTransform;
+                return _cachedCombinedTransform;
             }
         }
 
@@ -243,12 +204,12 @@ namespace mp.essentials.Nodes.SkeletonV2
         {
             if (IsDirty())
             {
-                AnimationTransform.Decompose(out FCachedScale, out FCachedRotation, out FCachedTranslation);
-                FCachedRotation /= Math.PI*2;
+                AnimationTransform.Decompose(out _cachedScale, out _cachedRotation, out _cachedTranslation);
+                _cachedRotation /= Math.PI*2;
                 if (Parent != null)
-                    FCachedCombinedTransform = AnimationTransform * BaseTransform * Parent.CombinedTransform;
+                    _cachedCombinedTransform = AnimationTransform * BaseTransform * Parent.CombinedTransform;
                 else
-                    FCachedCombinedTransform = AnimationTransform * BaseTransform;
+                    _cachedCombinedTransform = AnimationTransform * BaseTransform;
                 FDirty = false;
             }
         }
