@@ -97,6 +97,7 @@
     </Reference>
     <Reference Include="LzmaSharp">
       <HintPath>dlls\LzmaSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="md.stdl, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\md-stdl.1.0.7\lib\net47\md.stdl.dll</HintPath>
@@ -149,6 +150,7 @@
     </Reference>
     <Reference Include="SimMetrics.Net, Version=1.0.5.0, Culture=neutral, PublicKeyToken=c58dc06d59f3391b, processorArchitecture=MSIL">
       <HintPath>packages\SimMetrics.Net.1.0.5\lib\net45\SimMetrics.Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -169,6 +171,7 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>packages\System.Reactive.4.0.0\lib\net46\System.Reactive.dll</HintPath>
