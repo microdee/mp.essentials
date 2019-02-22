@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha36.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" systemname="FakeFullscreen (VVVV)" filename="C:\vvvv\libs\mcropack\nodes\Modules\FakeFullscreen (VVVV).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
+   <PATCH nodename="D:\local\HERE\vvvv\vvvv_50beta37_x64\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" systemname="FakeFullscreen (VVVV)" filename="C:\vvvv\libs\mcropack\nodes\Modules\FakeFullscreen (VVVV).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="4755" top="7605" width="16890" height="10665">
    </BOUNDS>
    <PACK Name="addonpack" Version="36.0.0">
@@ -129,7 +129,7 @@
    </PIN>
    </NODE>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="31">
-   <BOUNDS type="Node" left="5790" top="6090" width="100" height="100">
+   <BOUNDS type="Node" left="7185" top="6090" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
    </PIN>
@@ -227,11 +227,11 @@
    </PIN>
    </NODE>
    <NODE systemname="FakeFullscreen (Window)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (Window).v4p" componentmode="Hidden" id="52" nodename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\FakeFullscreen (Window).v4p">
-   <BOUNDS type="Node" left="3870" top="4800" width="100" height="100">
+   <BOUNDS type="Node" left="3870" top="4800" width="1370" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="3870" top="4800" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="13875" top="1575" width="12630" height="9300">
+   <BOUNDS type="Window" left="9500" top="6090" width="12630" height="13330">
    </BOUNDS>
    <PIN pinname="Selected Monitor" visible="1">
    </PIN>
@@ -252,6 +252,12 @@
    <PIN pinname="Update" visible="1">
    </PIN>
    <PIN pinname="Screen Size" visible="1">
+   </PIN>
+   <PIN pinname="Order Right-to-Left" visible="1">
+   </PIN>
+   <PIN pinname="ScaleFactorXY" visible="1">
+   </PIN>
+   <PIN pinname="Divide by Primary DPI Scaling" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Selected Monitor">
@@ -286,7 +292,7 @@
    </LINK>
    <LINK srcnodeid="31" srcpinname="Output" dstnodeid="9" dstpinname="Force Update">
    </LINK>
-   <PACK Name="dx11" Version="1.3.1.1">
+   <PACK Name="dx11" Version="1.3.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
@@ -295,9 +301,9 @@
    <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57">
-   <BOUNDS type="Box" left="5805" top="7170" width="795" height="540">
+   <BOUNDS type="Box" left="5805" top="7870" width="795" height="540">
    </BOUNDS>
-   <BOUNDS type="Node" left="5805" top="7170" width="0" height="0">
+   <BOUNDS type="Node" left="5805" top="7870" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -311,7 +317,7 @@
    </PIN>
    <PIN pinname="Default" slicecount="1" values="|0, 0|">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Screen Size|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Screen Resolution|">
    </PIN>
    </NODE>
    <LINK srcnodeid="52" srcpinname="Screen Size" dstnodeid="57" dstpinname="Y Input Value">
@@ -339,9 +345,9 @@
    <LINK srcnodeid="52" srcpinname="Position Size" dstnodeid="59" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="60">
-   <BOUNDS type="Box" left="7185" top="7530" width="480" height="480">
+   <BOUNDS type="Box" left="8580" top="7305" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="7185" top="7530" width="0" height="0">
+   <BOUNDS type="Node" left="8580" top="7305" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -357,5 +363,67 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="31" srcpinname="Output" dstnodeid="60" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61">
+   <BOUNDS type="Box" left="1905" top="795" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1905" top="795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Order Right-to-Left|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Order Right-to-Left">
+   </LINK>
+   <PACK Name="dx11.particles" Version="1.0.5">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62">
+   <BOUNDS type="Box" left="7005" top="7635" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7005" top="7635" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Primary Relative Scale Factor XY|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Primary Relative Scale Factor XY" dstnodeid="62" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="63">
+   <BOUNDS type="Box" left="400" top="4350" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="400" top="4350" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Divide by Primary DPI Scaling|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Divide by Primary DPI Scaling">
    </LINK>
    </PATCH>

@@ -378,6 +378,7 @@
     <Compile Include="windows\WindowsLaunchOSKNode.cs" />
     <Compile Include="windows\WindowsRemoveBorderNode.cs" />
     <Compile Include="windows\WindowsPostMessage.cs" />
+    <Compile Include="windows\WindowsScreenInfoNode.cs" />
     <Compile Include="windows\WindowsWindowPosNode.cs" />
     <Compile Include="yaml\YamlProcessorNode.cs" />
   </ItemGroup>
