@@ -22,9 +22,12 @@ namespace mp.essentials.Nodes.Values
 		#region fields & pins
 		[Input("Input", DefaultValue = 1.0)]
 		public ISpread<ISpread<double>> FInput;
-		
-		[Input("Start")]
-		public ISpread<double> FStart;
+
+        [Input("Vector Size", MinValue = 1, DefaultValue = 1)]
+        public ISpread<int> FVectorSize;
+
+        [Input("Start")]
+		public ISpread<ISpread<double>> FStart;
 		
 		[Input("Multiplier", DefaultValue = 1.0)]
 		public ISpread<double> FMul;
@@ -47,10 +50,12 @@ namespace mp.essentials.Nodes.Values
 					FOutput[i].SliceCount = FInput[i].SliceCount;
 					if(FInput[i].SliceCount!=0)
 					{
-						FOutput[i][0] = FStart[i];
-						for (int j = 1; j < FInput[i].SliceCount; j++)
-						{
-							FOutput[i][j] = FOutput[i][j-1] + FInput[i][j-1]*FMul[i];
+                        for(int vi = 0; vi < FVectorSize[0]; vi++)
+                            FOutput[i][vi] = FStart[i][vi];
+
+						for (int j = FVectorSize[0]; j < FInput[i].SliceCount; j++)
+                        {
+                            FOutput[i][j] = FOutput[i][j-FVectorSize[0]] + FInput[i][j-FVectorSize[0]] *FMul[i];
 						}
 					}
 				}
