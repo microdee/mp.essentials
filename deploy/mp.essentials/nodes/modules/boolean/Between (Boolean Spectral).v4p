@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
-   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\boolean\Between (Boolean Spectral).v4p" systemname="Between (Boolean Spectral)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\boolean\Between (Boolean Spectral).v4p" scrollx="0" scrolly="555">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.1.dtd" >
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\boolean\Between (Boolean Spectral).v4p" systemname="Between (Boolean Spectral)" filename="C:\vvvv\libs\md.ecosystem\packs\mp.essentials\nodes\modules\boolean\Between (Boolean Spectral).v4p" scrollx="0" scrolly="555">
    <BOUNDS type="Window" left="2700" top="8280" width="9000" height="6000">
    </BOUNDS>
-   <PACK Name="vvvv-Message" Version="2.7">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="38.1.0">
    </PACK>
    <NODE systemname="Between (Boolean)" filename="%VVVV%\packs\mp.essentials\nodes\modules\boolean\Between (Boolean).v4p" nodename="Between (Boolean)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="2370" top="4050" width="100" height="100">
@@ -15,7 +15,7 @@
    </PIN>
    <PIN pinname="Less Than" visible="1">
    </PIN>
-   <PIN pinname="GT Equals" slicecount="1" visible="1" values="1">
+   <PIN pinname="GT Equals" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="LT Equals" slicecount="1" visible="1" values="1">
    </PIN>
@@ -94,50 +94,6 @@
    </NODE>
    <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
-   <BOUNDS type="Box" left="2760" top="3315" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2760" top="3315" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|GT Equals|">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="2" dstpinname="GT Equals">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
-   <BOUNDS type="Box" left="3555" top="3345" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3555" top="3345" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|LT Equals|">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="2" dstpinname="LT Equals">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7">
    <BOUNDS type="Box" left="1305" top="1395" width="795" height="240">
    </BOUNDS>
@@ -204,4 +160,54 @@
    </NODE>
    <LINK srcnodeid="2" srcpinname="Progress" dstnodeid="10" dstpinname="Y Input Value">
    </LINK>
+   <NODE id="6" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6405" top="2625" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6405" top="2625" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|LT Equals|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
+   </NODE>
+   <NODE id="5" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5610" top="2445" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5610" top="2445" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|GT Equals|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="2" dstpinname="GT Equals">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="2" dstpinname="LT Equals">
+   </LINK>
+   <PACK Name="dx11" Version="1.3.1.1">
+   </PACK>
+   <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
    </PATCH>
