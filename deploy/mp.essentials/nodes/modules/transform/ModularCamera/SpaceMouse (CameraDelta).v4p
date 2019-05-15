@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.18.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.1.dtd" >
    <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="975" scrolly="-360">
    <BOUNDS type="Window" left="6570" top="2325" width="10335" height="11895">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="addonpack" Version="36.0.0">
+   <PACK Name="addonpack" Version="38.1.0">
    </PACK>
    <NODE systemname="CameraDelta (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="CameraDelta (CameraDelta)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="4845" top="9975" width="100" height="100">
@@ -63,25 +63,9 @@
    </PIN>
    <PIN pinname="Buttons" visible="1">
    </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="7">
-   <BOUNDS type="Box" left="4560" top="3015" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4560" top="3015" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|SpaceMouse Pro|">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="Undefined">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Device Type|">
+   <PIN pinname="Reopen" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="7" srcpinname="Output Enum" dstnodeid="6" dstpinname="Device Type">
-   </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="9">
    <BOUNDS type="Node" left="4530" top="4770" width="100" height="100">
    </BOUNDS>
@@ -452,8 +436,18 @@
    </LINK>
    <LINK srcnodeid="34" srcpinname="InteractUpstream" dstnodeid="18" dstpinname="Input 1">
    </LINK>
-   <PACK Name="dx11" Version="1.2">
+   <PACK Name="dx11" Version="1.3.1.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
+   </PACK>
+   <NODE systemname="OnOpen (VVVV Safe)" filename="%VVVV%\packs\mp.essentials\nodes\modules\vvvv\OnOpen (VVVV Safe).v4p" nodename="OnOpen (VVVV Safe)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="3915" top="2850" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Down Edge" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="Down Edge" dstnodeid="6" dstpinname="Reopen">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    </PATCH>
