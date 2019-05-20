@@ -1,7 +1,10 @@
 ﻿using System;
 using VVVV.SkeletonInterfaces;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using mp.pddn;
+using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VMath;
 
 namespace mp.essentials.Nodes.SkeletonV2
@@ -212,6 +215,23 @@ namespace mp.essentials.Nodes.SkeletonV2
                     _cachedCombinedTransform = AnimationTransform * BaseTransform;
                 FDirty = false;
             }
+        }
+    }
+
+    [PluginInfo(
+        Name = "JointInfo",
+        Category = "Skeleton",
+        Version = "V2",
+        Author = "microdee"
+    )]
+    public class JointInfoNode : ObjectSplitNode<IJoint>
+    {
+        public JointInfoNode()
+        {
+            MemberBlackList = new StringCollection
+            {
+                "CombinedTransform"
+            };
         }
     }
 }

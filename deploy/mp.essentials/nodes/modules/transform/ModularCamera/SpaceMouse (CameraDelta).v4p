@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.1.dtd" >
    <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" systemname="SpaceMouse (CameraDelta)" filename="C:\vvvv_system\libs\md.ecosystem\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" scrollx="975" scrolly="-360">
-   <BOUNDS type="Window" left="6570" top="2325" width="10335" height="11895">
+   <BOUNDS type="Window" left="22080" top="9435" width="10335" height="11895">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
@@ -444,6 +444,10 @@
    <BOUNDS type="Node" left="3915" top="2850" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Down Edge" visible="1">
+   </PIN>
+   <PIN pinname="Simulate" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="First N Frames" slicecount="1" values="10">
    </PIN>
    </NODE>
    <LINK srcnodeid="36" srcpinname="Down Edge" dstnodeid="6" dstpinname="Reopen">
