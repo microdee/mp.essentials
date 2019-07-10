@@ -108,4 +108,49 @@ namespace mp.essentials.windows
             });
         }
     }
+
+    [PluginInfo(
+        Name = "DeleteFile",
+        Category = "File",
+        Author = "microdee",
+        Help = "Deletes a file"
+    )]
+    public class FileDeleteFileNode : IPluginEvaluate
+    {
+        [Input("File", StringType = StringType.Directory)]
+        public ISpread<string> FileIn;
+
+        [Input("Delete", IsBang = true)]
+        public ISpread<bool> DoDeleteIn;
+
+        [Output("Exists", IsBang = true)]
+        public ISpread<bool> ExistsOut;
+
+        [Output("Exception")]
+        public ISpread<Exception> ExceptionOut;
+
+        public void Evaluate(int SpreadMax)
+        {
+            ExceptionOut.SliceCount = FileIn.SliceCount;
+            ExistsOut.SliceCount = FileIn.SliceCount;
+
+            for (int i = 0; i < FileIn.SliceCount; i++)
+            {
+                if(FileIn.IsChanged || DoDeleteIn[i])
+                    ExistsOut[i] = File.Exists(FileIn[i]);
+
+                if (DoDeleteIn[i] && ExistsOut[i])
+                {
+                    try
+                    {
+                        File.Delete(FileIn[i]);
+                    }
+                    catch (Exception e)
+                    {
+                        ExceptionOut[i] = e;
+                    }
+                }
+            }
+        }
+    }
 }
