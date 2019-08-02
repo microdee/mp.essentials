@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -346,7 +347,7 @@ namespace mp.essentials.Nodes.Shaders
                 Type pintype;
                 InputAttribute pinattr;
                 var pinname = option.Name;
-                var validdefval = double.TryParse(option.Value, out double defval);
+                var validdefval = double.TryParse(option.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double defval);
                 if (option.Arguments.Pin != null)
                 {
                     if (!string.IsNullOrWhiteSpace(option.Arguments.Pin.Name)) pinname = option.Arguments.Pin.Name;
@@ -427,7 +428,15 @@ namespace mp.essentials.Nodes.Shaders
                         if((bool)pin.Spread[0]) FDefineOut.Add(option.Name + "=1");
                         continue;
                     }
-                    var val = pin.Spread[0].ToString();
+                    var obj = pin.Spread[0];
+                    var val = obj.ToString();
+                    switch (obj)
+                    {
+                        case double nval: val = nval.ToString(CultureInfo.InvariantCulture); break;
+                        case float nval: val = nval.ToString(CultureInfo.InvariantCulture); break;
+                        case int nval: val = nval.ToString(CultureInfo.InvariantCulture); break;
+                        case bool nval: val = nval ? "1" : "0"; break;
+                    }
                     if (option.Type == PreProcOptionType.String)
                         val = "\"" + val + "\"";
                     FDefineOut.Add(option.Name + "=" + val);

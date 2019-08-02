@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta37.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="0" scrolly="-360">
-   <BOUNDS type="Window" left="3330" top="2175" width="25275" height="22845">
+   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\_nodes.v4p" systemname="Nodes" filename="D:\local\vvvv-gp\packs\mp.essentials\girlpower\Nodes.v4p" scrollx="260" scrolly="5040">
+   <BOUNDS type="Window" left="1460" top="0" width="25270" height="22840">
    </BOUNDS>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>
@@ -2628,4 +2628,26 @@
    <PIN pinname="Size" slicecount="1" values="12">
    </PIN>
    </NODE>
+   <NODE systemname="ScreenInfo (Windows Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ScreenInfo (Windows Advanced)" componentmode="Hidden" id="292">
+   <BOUNDS type="Node" left="16100" top="20930" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16100" top="20930" width="2000" height="2000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Monitor" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Monitor (ScreenInfo)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Monitor (ScreenInfo)" componentmode="Hidden" id="293">
+   <BOUNDS type="Node" left="16100" top="21420" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="16100" top="21420" width="2000" height="2000">
+   </BOUNDS>
+   <PIN pinname="Evaluate" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="292" srcpinname="Monitor" dstnodeid="293" dstpinname="Input">
+   </LINK>
    </PATCH>

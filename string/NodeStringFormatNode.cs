@@ -57,7 +57,10 @@ namespace mp.essentials.Nodes
 
         public void Evaluate(int SpreadMax)
         {
-            var sprmax = FOut.SliceCount = Math.Max(FIn.SliceCount, _objs.Max(p => p.Pin.SliceCount));
+            var sprmax = Math.Max(FIn.SliceCount, _objs.Max(p => p.Pin.SliceCount));
+            if (_objs.Any(o => o.Pin.SliceCount == 0)) sprmax = 0;
+            FOut.SliceCount = sprmax;
+
             for (int i = 0; i < sprmax; i++)
             {
                 var culture = string.IsNullOrWhiteSpace(FCulture[i])
