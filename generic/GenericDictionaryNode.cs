@@ -15,6 +15,42 @@ using VVVV.PluginInterfaces.V2.NonGeneric;
 
 namespace mp.essentials.Nodes.Generic
 {
+
+    [PluginInfo(
+        Name = "Count",
+        Category = "Dictionary",
+        Author = "microdee",
+        AutoEvaluate = true
+    )]
+    public class DictionaryCountNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    {
+        [Import] protected IPluginHost2 FPluginHost;
+        [Import] protected IIOFactory FIOFactory;
+        [Import] protected IHDEHost Hde;
+
+        private GenericInput _input;
+
+        [Output("Count")]
+        public ISpread<int> CountOut;
+
+        private int _dictChangeCounter = -1;
+
+        public void OnImportsSatisfied()
+        {
+            _input = new GenericInput(FPluginHost, new InputAttribute("Dictionary Input"), Hde.MainLoop);
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            CountOut.SliceCount = _input.Pin.SliceCount;
+            for (int i = 0; i < _input.Pin.SliceCount; i++)
+            {
+                CountOut[i] = _input[i] is IDictionary dict ? dict.Count : 0;
+            }
+        }
+
+    }
+
     [PluginInfo(
         Name = "Dictionary",
         Category = "Generic",
@@ -322,11 +358,24 @@ namespace mp.essentials.Nodes.Generic
                 RemoveAdd();
                 Remove();
                 Get();
+
+                var changed = FChanged[0];
+
                 _dictout.SetReflectedChanged(false);
                 if (_dictout[0]?.GetHashCode() != _dict?.GetHashCode())
                 {
                     _dictout.SetReflectedChanged(true);
                     _dictout[0] = _dict;
+                    changed = true;
+                }
+
+                _outKeys.SetReflectedChanged(false);
+                _queryVals.SetReflectedChanged(false);
+
+                if (changed || _getKeys.Spread.IsChanged || FGetAll.IsChanged)
+                {
+                    _outKeys.SetReflectedChanged(true);
+                    _queryVals.SetReflectedChanged(true);
                 }
             }
         }
