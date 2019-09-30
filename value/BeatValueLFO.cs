@@ -25,6 +25,8 @@ namespace mp.essentials.Nodes.Values
         public ISpread<double> FBPM;
         [Input("Tap", IsBang = true)]
         public ISpread<bool> FTap;
+        [Input("Pause")]
+        public ISpread<bool> FPause;
         [Input("Reset", IsBang = true)]
         public ISpread<bool> FReset;
 
@@ -35,7 +37,7 @@ namespace mp.essentials.Nodes.Values
         public ILogger FLogger;
 		#endregion fields & pins
 
-	    private double currprog = 0;
+	    //private double currprog = 0;
 	    private double pft = 0;
 	    private bool init = true;
 
@@ -47,18 +49,23 @@ namespace mp.essentials.Nodes.Values
 		        pft = FHDEHost.FrameTime;
 		        init = false;
 		    }
+
+            FOutput.SliceCount = SpreadMax;
             double spf = FHDEHost.FrameTime - pft;
-		    pft = FHDEHost.FrameTime;
-		    double spb = 0;
-		    if (FBPM[0] <= 0.0001) spb = 1;
-		    else spb = FBPM[0]/60;
-		    currprog += spb * spf;
-		    if (FTap[0])
-		    {
-		        currprog = Math.Round(currprog, MidpointRounding.AwayFromZero);
-		    }
-		    if (FReset[0]) currprog = 0;
-		    FOutput[0] = currprog;
+            pft = FHDEHost.FrameTime;
+            for (int i = 0; i < SpreadMax; i++)
+            {
+                double spb = 0;
+                if (FBPM[i] <= 0.0001) spb = 1;
+                else spb = FBPM[i] / 60;
+                FOutput[i] += FPause[i] ? 0 : spb * spf;
+                if (FTap[i] && !FPause[i])
+                {
+                    FOutput[i] = Math.Round(FOutput[i], MidpointRounding.AwayFromZero);
+                }
+                if (FReset[i]) FOutput[i] = 0;
+                //FOutput[0] = currprog;
+            }
 		}
 	}
 }
