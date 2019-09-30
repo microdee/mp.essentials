@@ -69,8 +69,10 @@ namespace mp.essentials.Nodes.Network
 
 		                if (CurrentVideoInfo.RequiresDecryption) DownloadUrlResolver.DecryptDownloadUrl(CurrentVideoInfo);
 
-		                var filename = Regex.Replace(CurrentVideoInfo.Title, @"[^a-zA-Z0-9-\.]", "");
-		                Destination = Path.Combine(dst, filename + CurrentVideoInfo.AudioExtension);
+		                var filename = string.IsNullOrEmpty(CurrentVideoInfo.Title) ? src : CurrentVideoInfo.Title;
+                        filename = Regex.Replace(filename, @"[^a-zA-Z0-9-\.]", "");
+
+                        Destination = Path.Combine(dst, filename + CurrentVideoInfo.AudioExtension);
 		                AudioClient = new AudioDownloader(CurrentVideoInfo, Destination);
 		                AudioClient.DownloadProgressChanged += (sender, args) => Progress = args.ProgressPercentage / 100;
 		                AudioClient.AudioExtractionProgressChanged += (sender, args) => Progress = args.ProgressPercentage / 100 + 1;
@@ -99,7 +101,9 @@ namespace mp.essentials.Nodes.Network
 
                     if (CurrentVideoInfo.RequiresDecryption) DownloadUrlResolver.DecryptDownloadUrl(CurrentVideoInfo);
 
-		            var filename = Regex.Replace(CurrentVideoInfo.Title, @"[^a-zA-Z0-9-\.]", "");
+                    var filename = string.IsNullOrEmpty(CurrentVideoInfo.Title) ? src : CurrentVideoInfo.Title;
+                    filename = Regex.Replace(filename, @"[^a-zA-Z0-9-\.]", "");
+
                     Destination = Path.Combine(dst, filename + CurrentVideoInfo.VideoExtension);
                     VideoClient = new VideoDownloader(CurrentVideoInfo, Destination);
 		            VideoClient.DownloadProgressChanged += (sender, args) => Progress = args.ProgressPercentage / 100;
