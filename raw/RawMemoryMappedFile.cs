@@ -241,19 +241,23 @@ namespace mp.essentials.raw
         [Input("Write", IsBang = true)]
         public ISpread<bool> FWrite;
 
+        private Spread<byte[]> _buffers = new Spread<byte[]>();
+
         private void HandleStream(int i, MemoryMappedViewStream accessor)
         {
-            var bytes = new byte[accessor.Length];
+            if(_buffers[i] == null) _buffers[i] = new byte[accessor.Length];
+            if(_buffers[i].Length < accessor.Length) _buffers[i] = new byte[accessor.Length];
             FInput[i].Position = 0;
-            FInput[i].Read(bytes, 0, bytes.Length);
+            FInput[i].Read(_buffers[i], 0, _buffers[i].Length);
             FInput[i].Position = 0;
             accessor.Position = 0;
-            accessor.Write(bytes, 0, bytes.Length);
+            accessor.Write(_buffers[i], 0, _buffers[i].Length);
             accessor.Position = 0;
         }
 
         public void Evaluate(int SpreadMax)
         {
+            _buffers.SliceCount = FMmf.SliceCount;
             for (int i = 0; i < FMmf.SliceCount; i++)
             {
                 var mmf = FMmf[i];
