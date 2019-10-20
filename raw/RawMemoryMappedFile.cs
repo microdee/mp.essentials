@@ -4,7 +4,9 @@ using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using mp.pddn;
 using VVVV.Utils.IO;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.Streams;
@@ -151,6 +153,55 @@ namespace mp.essentials.raw
     }
 
     [PluginInfo(
+        Name = "CreateMutex",
+        Category = "Raw",
+        Version = "SharedMemory.Advanced",
+        Author = "microdee",
+        AutoEvaluate = true
+    )]
+    public class RawCreateMutex : IPluginEvaluate
+    {
+        [Input("Name")]
+        public ISpread<string> NameIn;
+
+        [Input("Create", IsBang = true)]
+        public IDiffSpread<bool> CreateIn;
+
+        [Output("Mutex")]
+        public ISpread<Mutex> MutexOut;
+
+        private readonly Dictionary<string, Mutex> _mutexes = new Dictionary<string, Mutex>();
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (!CreateIn.IsChanged) return;
+
+            MutexOut.SliceCount = NameIn.SliceCount;
+
+            for (int i = 0; i < NameIn.SliceCount; i++)
+            {
+                if (!CreateIn[i]) continue;
+                if (string.IsNullOrWhiteSpace(NameIn[i])) continue;
+
+                Mutex mutex = null;
+                bool createNew = false;
+                if (_mutexes.ContainsKey(NameIn[i]))
+                {
+                    mutex = _mutexes[NameIn[i]];
+                }
+                else
+                {
+                    if(!Mutex.TryOpenExisting(NameIn[i], out mutex))
+                        mutex = new Mutex(true, NameIn[i]);
+                    _mutexes.Add(NameIn[i], mutex);
+                }
+
+                MutexOut[i] = mutex;
+            }
+        }
+    }
+
+    [PluginInfo(
         Name = "ReadExisting",
         Category = "Raw",
         Version = "SharedMemory.Advanced",
@@ -171,6 +222,9 @@ namespace mp.essentials.raw
         [Input("Read", IsBang = true)]
         public ISpread<bool> FRead;
 
+        [Input("Mutex", Visibility = PinVisibility.Hidden)]
+        public ISpread<Mutex> MutexIn;
+
         [Output("Output")]
         public ISpread<Stream> FOutput;
 
@@ -181,11 +235,14 @@ namespace mp.essentials.raw
             {
                 if (FMmf[i] != null && FRead[i])
                 {
+                    var mutex = MutexIn.TryGetSlice(i);
+
                     var mmf = FMmf[i];
                     FMmf[i] = mmf;
                     if (FOutput[i] == null) FOutput[i] = new MemoryComStream();
                     if (FSize[i] == 0)
                     {
+                        mutex?.WaitOne();
                         using (var accessor = mmf.CreateViewStream())
                         {
                             FOutput[i].SetLength(accessor.Length);
@@ -194,9 +251,11 @@ namespace mp.essentials.raw
                             accessor.CopyTo(FOutput[i]);
                             FOutput[i].Position = 0;
                         }
+                        mutex?.ReleaseMutex();
                     }
                     else
                     {
+                        mutex?.WaitOne();
                         using (var accessor = mmf.CreateViewStream(FOffset[i], FSize[i]))
                         {
                             FOutput[i].SetLength(accessor.Length);
@@ -205,6 +264,7 @@ namespace mp.essentials.raw
                             accessor.CopyTo(FOutput[i]);
                             FOutput[i].Position = 0;
                         }
+                        mutex?.ReleaseMutex();
                     }
                 }
             }
@@ -241,6 +301,9 @@ namespace mp.essentials.raw
         [Input("Write", IsBang = true)]
         public ISpread<bool> FWrite;
 
+        [Input("Mutex", Visibility = PinVisibility.Hidden)]
+        public ISpread<Mutex> MutexIn;
+
         private Spread<byte[]> _buffers = new Spread<byte[]>();
 
         private void HandleStream(int i, MemoryMappedViewStream accessor)
@@ -264,19 +327,25 @@ namespace mp.essentials.raw
                 if(mmf == null) continue;
                 if(!FWrite[i]) continue;
 
+                var mutex = MutexIn.TryGetSlice(i);
+
                 if (FSize[i] == 0)
                 {
+                    mutex?.WaitOne();
                     using (var accessor = mmf.CreateViewStream())
                     {
                         HandleStream(i, accessor);
                     }
+                    mutex?.ReleaseMutex();
                 }
                 else
                 {
+                    mutex?.WaitOne();
                     using (var accessor = mmf.CreateViewStream(FOffset[i], FSize[i]))
                     {
                         HandleStream(i, accessor);
                     }
+                    mutex?.ReleaseMutex();
                 }
             }
         }
