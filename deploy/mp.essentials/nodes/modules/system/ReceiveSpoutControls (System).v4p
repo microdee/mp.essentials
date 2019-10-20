@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\ReceiveSpoutControls (System).v4p" systemname="ReceiveSpoutControls (System)" filename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\ReceiveSpoutControls (System).v4p" scrollx="1035" scrolly="285">
+   <PATCH nodename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\ReceiveSpoutControls (System).v4p" systemname="ReceiveSpoutControls (System)" filename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\ReceiveSpoutControls (System).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="10500" top="900" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="dx11" Version="1.3.1">
@@ -146,10 +146,6 @@
    </LINK>
    <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Size">
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="5" dstpinname="Create">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="7" dstpinname="Read">
-   </LINK>
    <NODE systemname="AsString (Raw)" nodename="AsString (Raw)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="2085" top="3465" width="100" height="100">
    </BOUNDS>
@@ -208,8 +204,6 @@
    <LINKPOINT x="1860" y="2085">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="12" dstpinname="Create">
-   </LINK>
    <NODE systemname="ReadExisting (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="ReadExisting (Raw SharedMemory.Advanced)" componentmode="Hidden" id="13">
    <BOUNDS type="Node" left="1800" top="5895" width="100" height="100">
    </BOUNDS>
@@ -247,9 +241,9 @@
    <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Read">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="15" debug="0">
-   <BOUNDS type="Box" left="450" top="12780" width="930" height="240">
+   <BOUNDS type="Box" left="450" top="13680" width="930" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="450" top="12780" width="0" height="0">
+   <BOUNDS type="Node" left="450" top="13680" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Raw">
    </PIN>
@@ -360,8 +354,6 @@
    </NODE>
    <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Count">
    </LINK>
-   <LINK srcnodeid="13" srcpinname="Output" dstnodeid="30" dstpinname="Input">
-   </LINK>
    <NODE systemname="AsString (Raw)" nodename="AsString (Raw)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="2160" top="10230" width="100" height="100">
    </BOUNDS>
@@ -387,9 +379,9 @@
    <LINK srcnodeid="34" srcpinname="Output" dstnodeid="33" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="35">
-   <BOUNDS type="Box" left="2100" top="11595" width="795" height="240">
+   <BOUNDS type="Box" left="2055" top="13020" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2100" top="11595" width="0" height="0">
+   <BOUNDS type="Node" left="2055" top="13020" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -403,9 +395,9 @@
    <LINK srcnodeid="26" srcpinname="Hits" dstnodeid="35" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="36">
-   <BOUNDS type="Box" left="3225" top="11220" width="795" height="240">
+   <BOUNDS type="Box" left="3180" top="12645" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3225" top="11220" width="0" height="0">
+   <BOUNDS type="Node" left="3180" top="12645" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -458,8 +450,6 @@
    </NODE>
    <LINK srcnodeid="43" srcpinname="Y Output Value" dstnodeid="44" dstpinname="Count">
    </LINK>
-   <LINK srcnodeid="13" srcpinname="Output" dstnodeid="44" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="42" srcpinname="Output" dstnodeid="44" dstpinname="Offset">
    </LINK>
    <LINK srcnodeid="18" srcpinname="Output Enum" dstnodeid="33" dstpinname="Encoding">
@@ -501,9 +491,9 @@
    <LINK srcnodeid="47" srcpinname="Output" dstnodeid="48" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="Performer (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Performer (String)" componentmode="Hidden" id="50" debug="0">
-   <BOUNDS type="Node" left="2175" top="10830" width="100" height="100">
+   <BOUNDS type="Node" left="2175" top="11730" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2175" top="10830" width="3000" height="3000">
+   <BOUNDS type="Box" left="2175" top="11730" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -512,8 +502,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="50" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="50" dstpinname="Execute">
    </LINK>
    <LINK srcnodeid="50" srcpinname="Output" dstnodeid="36" dstpinname="Input String">
@@ -555,9 +543,9 @@
    <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Input 2">
    </LINK>
    <NODE systemname="Performer (Value)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Performer (Value)" componentmode="Hidden" id="53">
-   <BOUNDS type="Node" left="2085" top="4605" width="100" height="100">
+   <BOUNDS type="Node" left="2085" top="4380" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2085" top="4605" width="3000" height="3000">
+   <BOUNDS type="Box" left="2085" top="4380" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -569,14 +557,6 @@
    <LINK srcnodeid="10" srcpinname="Output" dstnodeid="53" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="53" dstpinname="Execute">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Output" dstnodeid="12" dstpinname="Size">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Output" dstnodeid="13" dstpinname="Size">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="5" dstpinname="Evaluate">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="7" dstpinname="Evaluate">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="55">
    <BOUNDS type="Box" left="705" top="5415" width="795" height="240">
@@ -603,5 +583,73 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="42" srcpinname="Output" dstnodeid="56" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Max (Value)" nodename="Max (Value)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="2085" top="4800" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Output" dstnodeid="57" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="12" dstpinname="Size">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="13" dstpinname="Size">
+   </LINK>
+   <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="3690" top="2145" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3690" top="2145" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Count (String)" nodename="Count (String)" componentmode="Hidden" id="59">
+   <BOUNDS type="Node" left="4620" top="1635" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="59" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Count" dstnodeid="58" dstpinname="Select">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="58" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="5" dstpinname="Create">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="7" dstpinname="Read">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="12" dstpinname="Create">
+   </LINK>
+   <NODE systemname="Select (Node)" filename="%VVVV%\lib\nodes\modules\Node\Select (Node).v4p" nodename="Select (Node)" componentmode="Hidden" id="68">
+   <BOUNDS type="Node" left="1140" top="7860" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Output" dstnodeid="68" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Hits" dstnodeid="68" dstpinname="Select">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Output" dstnodeid="30" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Output" dstnodeid="44" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="50" dstpinname="Input">
    </LINK>
    </PATCH>
