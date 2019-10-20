@@ -20,7 +20,7 @@ namespace mp.essentials.raw
         Author = "microdee",
         AutoEvaluate = true
         )]
-    public class RawMemoryMappedFile : IPluginEvaluate
+    public class RawMemoryMappedFile : IPluginEvaluate, IDisposable
     {
         [Input("Name")]
         public ISpread<string> FName;
@@ -99,6 +99,13 @@ namespace mp.essentials.raw
                 FOutput.Flush(true);
             }
         }
+        public void Dispose()
+        {
+            foreach (var mmf in _mmfs.Values)
+            {
+                mmf.Dispose();
+            }
+        }
     }
 
     [PluginInfo(
@@ -108,7 +115,7 @@ namespace mp.essentials.raw
         Author = "microdee",
         AutoEvaluate = true
     )]
-    public class RawCreateMemoryMappedFile : IPluginEvaluate
+    public class RawCreateMemoryMappedFile : IPluginEvaluate, IDisposable
     {
         [Input("Name")]
         public ISpread<string> FName;
@@ -150,6 +157,14 @@ namespace mp.essentials.raw
                 FMmf[i] = mmf;
             }
         }
+
+        public void Dispose()
+        {
+            foreach (var mmf in _mmfs.Values)
+            {
+                mmf.Dispose();
+            }
+        }
     }
 
     [PluginInfo(
@@ -159,7 +174,7 @@ namespace mp.essentials.raw
         Author = "microdee",
         AutoEvaluate = true
     )]
-    public class RawCreateMutex : IPluginEvaluate
+    public class RawCreateMutex : IPluginEvaluate, IDisposable
     {
         [Input("Name")]
         public ISpread<string> NameIn;
@@ -197,6 +212,14 @@ namespace mp.essentials.raw
                 }
 
                 MutexOut[i] = mutex;
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (var mutex in _mutexes.Values)
+            {
+                mutex.Dispose();
             }
         }
     }
