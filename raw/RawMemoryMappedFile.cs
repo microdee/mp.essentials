@@ -332,7 +332,7 @@ namespace mp.essentials.raw
         private void HandleStream(int i, MemoryMappedViewStream accessor)
         {
             if(_buffers[i] == null) _buffers[i] = new byte[accessor.Length];
-            if(_buffers[i].Length < accessor.Length) _buffers[i] = new byte[accessor.Length];
+            if(_buffers[i].Length != accessor.Length) _buffers[i] = new byte[accessor.Length];
             FInput[i].Position = 0;
             FInput[i].Read(_buffers[i], 0, _buffers[i].Length);
             FInput[i].Position = 0;
