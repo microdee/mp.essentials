@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\RegisterSpoutControls (System).v4p" systemname="RegisterSpoutControls (System)" filename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\RegisterSpoutControls (System).v4p" scrollx="645" scrolly="1350">
-   <BOUNDS type="Window" left="6240" top="3450" width="9000" height="6000">
+   <PATCH nodename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\RegisterSpoutControls (System).v4p" systemname="RegisterSpoutControls (System)" filename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\system\RegisterSpoutControls (System).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="150" top="2280" width="10455" height="10890">
    </BOUNDS>
    <PACK Name="dx11" Version="1.3.1">
    </PACK>
@@ -208,22 +208,6 @@
    </NODE>
    <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="Create (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Create (Raw SharedMemory.Advanced)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="1320" top="4050" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1320" top="4050" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Name" visible="1">
-   </PIN>
-   <PIN pinname="Size" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Create" visible="1">
-   </PIN>
-   <PIN pinname="Memory Mapped File" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="19" dstpinname="Name">
-   </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="20">
    <BOUNDS type="Node" left="2040" top="3015" width="100" height="100">
    </BOUNDS>
@@ -237,12 +221,12 @@
    </PIN>
    <PIN pinname="Input 3" visible="1" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Input 5" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Changed" dstnodeid="20" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Changed" dstnodeid="20" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Output" dstnodeid="19" dstpinname="Create">
    </LINK>
    <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="21">
    <BOUNDS type="Node" left="7515" top="4800" width="100" height="100">
@@ -327,7 +311,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1305" top="5565" width="3000" height="3000">
    </BOUNDS>
-   <PIN pinname="Memory Mapped File" visible="1">
+   <PIN pinname="Memory Mapped File" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -336,10 +320,6 @@
    <PIN pinname="Write" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Memory Mapped File" dstnodeid="28" dstpinname="Memory Mapped File">
-   </LINK>
-   <LINK srcnodeid="10" srcpinname="Output" dstnodeid="19" dstpinname="Size">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30">
    <BOUNDS type="Box" left="8040" top="2535" width="480" height="480">
    </BOUNDS>
@@ -387,13 +367,11 @@
    </BOUNDS>
    <PIN pinname="Select" slicecount="1" visible="1" values="2">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Memory Mapped File" dstnodeid="33" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="4" srcpinname="Count" dstnodeid="33" dstpinname="Select">
    </LINK>
    <NODE systemname="WriteExisting (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WriteExisting (Raw SharedMemory.Advanced)" componentmode="Hidden" id="34">
@@ -482,8 +460,6 @@
    </NODE>
    <LINK srcnodeid="22" srcpinname="Output" dstnodeid="39" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="20" srcpinname="Output" dstnodeid="34" dstpinname="Write">
-   </LINK>
    <NODE systemname="WriteExisting (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="WriteExisting (Raw SharedMemory.Advanced)" componentmode="Hidden" id="40">
    <BOUNDS type="Node" left="5205" top="8280" width="100" height="100">
    </BOUNDS>
@@ -511,7 +487,7 @@
    </BOUNDS>
    <PIN pinname="Input 1" slicecount="1" values="|  10|">
    </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="0.000000" visible="1">
+   <PIN pinname="Input 2" slicecount="1" visible="1" values="0.000000">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -611,5 +587,77 @@
    <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="47" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="48" srcpinname="Output" dstnodeid="42" dstpinname="Input 2">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50">
+   <BOUNDS type="Box" left="1590" top="3615" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1590" top="3615" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100000">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Shared Memory Size|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="51">
+   <BOUNDS type="Box" left="2355" top="840" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2355" top="840" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Y Output Value" dstnodeid="20" dstpinname="Input 5">
+   </LINK>
+   <NODE systemname="Create (Raw SharedMemory.Advanced)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Create (Raw SharedMemory.Advanced)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="1320" top="4050" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1320" top="4050" width="3000" height="3000">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="52" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Output" dstnodeid="52" dstpinname="Create">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Memory Mapped File" dstnodeid="28" dstpinname="Memory Mapped File">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Memory Mapped File" dstnodeid="33" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Size">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53">
+   <BOUNDS type="Box" left="4095" top="7605" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4095" top="7605" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Output" dstnodeid="34" dstpinname="Write">
    </LINK>
    </PATCH>
