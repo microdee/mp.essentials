@@ -81,8 +81,6 @@ namespace mp.essentials.Nodes.Camera
         public ISpread<Matrix4x4> FProjectionWithAspectOut;
         [Output("Camera", Order = 3)]
         public ISpread<ModularCam> FCameraOut;
-        [Output("FrameTime", Order = 4)]
-        public ISpread<double> FFrameTime;
 
         [DllImport("C:\\Windows\\System32\\user32.dll")]
         public static extern IntPtr GetForegroundWindow();
@@ -181,7 +179,6 @@ namespace mp.essentials.Nodes.Camera
                     {
                         delta.InteractUpstream = true;
                     }
-                    FFrameTime[0] = FHDEHost.FrameTime - _prevFrameTime;
                     _camera.Move(delta, FHDEHost.FrameTime - _prevFrameTime);
                 }
             }

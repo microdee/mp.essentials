@@ -89,11 +89,13 @@
    <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Reset All">
    </LINK>
    <NODE systemname="Decompose (Transform Vector)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Decompose (Transform Vector)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="5670" top="9330" width="100" height="100">
+   <BOUNDS type="Node" left="6165" top="8715" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="TranslateXYZ" visible="1">
+   </PIN>
+   <PIN pinname="RotateXYZ" visible="1">
    </PIN>
    </NODE>
    <NODE id="11" systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow">
@@ -133,9 +135,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Camera (ModularCam Split)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="Camera (ModularCam Split)" componentmode="Hidden" id="5">
-   <BOUNDS type="Node" left="5505" top="8820" width="100" height="100">
+   <BOUNDS type="Node" left="6000" top="8205" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="5505" top="8820" width="3000" height="3000">
+   <BOUNDS type="Box" left="6000" top="8205" width="3000" height="3000">
    </BOUNDS>
    <PIN pinname="TranslationXYZ" visible="1">
    </PIN>
@@ -291,9 +293,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="64">
-   <BOUNDS type="Node" left="5670" top="8475" width="2790" height="270">
+   <BOUNDS type="Node" left="6165" top="7860" width="2790" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="5670" top="8475" width="2790" height="270">
+   <BOUNDS type="Box" left="6165" top="7860" width="2790" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|You can get more data with this node|">
    </PIN>
@@ -305,9 +307,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65">
-   <BOUNDS type="Box" left="6030" top="10155" width="795" height="720">
+   <BOUNDS type="Box" left="6525" top="9540" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="6030" top="10155" width="0" height="0">
+   <BOUNDS type="Node" left="6525" top="9540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -321,9 +323,9 @@
    <LINK srcnodeid="12" srcpinname="TranslateXYZ" dstnodeid="65" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="66">
-   <BOUNDS type="Box" left="6915" top="10155" width="795" height="720">
+   <BOUNDS type="Box" left="7410" top="9540" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="6915" top="10155" width="0" height="0">
+   <BOUNDS type="Node" left="7410" top="9540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -333,13 +335,13 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="TranslationXYZ" dstnodeid="66" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (String)" systemname="IOBox (String)" componentmode="InABox" id="67">
-   <BOUNDS type="Node" left="6000" top="11010" width="13755" height="270">
+   <BOUNDS type="Node" left="6495" top="10395" width="13755" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="6000" top="11010" width="4980" height="750">
+   <BOUNDS type="Box" left="6495" top="10395" width="4980" height="750">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|There&apos;s a Difference between the Translation and position of the View. The translation is in fact the Pivot Position and if Pivot distance is higher than 0 then it&apos;s not the same as the View position|">
    </PIN>
@@ -354,7 +356,7 @@
    </PACK>
    <PACK Name="addonpack" Version="38.0.0">
    </PACK>
-   <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="68">
+   <NODE systemname="MouseKeyboard (CameraDelta Trackball)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="MouseKeyboard (CameraDelta Trackball)" componentmode="Hidden" id="68" debug="0">
    <BOUNDS type="Node" left="4140" top="2910" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Smoothing Time" visible="1">
@@ -480,12 +482,16 @@
    </NODE>
    <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Default FOV">
    </LINK>
-   <NODE systemname="SpaceMouse (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" nodename="SpaceMouse (CameraDelta)" componentmode="Hidden" id="79">
+   <NODE systemname="SpaceMouse (CameraDelta)" filename="%VVVV%\packs\mp.essentials\nodes\modules\transform\ModularCamera\SpaceMouse (CameraDelta).v4p" nodename="SpaceMouse (CameraDelta)" componentmode="Hidden" id="79" debug="0">
    <BOUNDS type="Node" left="4125" top="1845" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Camera Delta Out" visible="1">
    </PIN>
    <PIN pinname="Translation Speed" visible="1">
+   </PIN>
+   <PIN pinname="Reset Translation Button" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Reset Rotation Button" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="79" srcpinname="Camera Delta Out" dstnodeid="68" dstpinname="Delta In">
@@ -496,22 +502,10 @@
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="80">
-   <BOUNDS type="Box" left="6315" top="7665" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6315" top="7665" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="16" srcpinname="FrameTime" dstnodeid="80" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81">
-   <BOUNDS type="Box" left="7590" top="9435" width="2145" height="240">
+   <BOUNDS type="Box" left="8220" top="8430" width="2145" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7590" top="9435" width="0" height="0">
+   <BOUNDS type="Node" left="8220" top="8430" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -573,5 +567,7 @@
    <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="79" dstpinname="Translation Speed">
    </LINK>
    <LINK srcnodeid="5" srcpinname="ViewChecksum" dstnodeid="81" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="RotateXYZ" dstnodeid="66" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
