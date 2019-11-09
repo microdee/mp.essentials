@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Extensions.Data;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using SlimDX;
 using VVVV.Utils.IO;
 using VVVV.Utils.SlimDX;
@@ -13,71 +13,225 @@ using VVVV.Utils.VMath;
 
 namespace mp.essentials.Camera
 {
+    public struct CameraProperties
+    {
+        public Matrix4x4 InputView;
+        public Vector3D Translation;
+        public Quaternion Rotation;
+        public double PivotDistance;
+        public double Fov;
+        public double Near;
+        public double Far;
+
+        /// <summary>
+        /// Create new
+        /// </summary>
+        /// <param name="inputView"></param>
+        /// <param name="translation"></param>
+        /// <param name="rotation"></param>
+        /// <param name="pivotDistance"></param>
+        /// <param name="fov"></param>
+        /// <param name="near"></param>
+        /// <param name="far"></param>
+        public CameraProperties(
+            Matrix4x4 inputView = default,
+            Vector3D translation = default,
+            Quaternion rotation = default,
+            double pivotDistance = 0,
+            double fov = 0.15,
+            double near = 0.1,
+            double far = 100)
+        {
+            InputView = inputView == default ? VMath.IdentityMatrix : inputView;
+            Translation = translation;
+            Rotation = rotation == default ? Quaternion.Identity : rotation;
+            PivotDistance = pivotDistance;
+            Fov = fov;
+            Near = near;
+            Far = far;
+        }
+
+        /// <summary>
+        /// Copy
+        /// </summary>
+        /// <param name="prev"></param>
+        public CameraProperties(CameraProperties prev)
+        {
+            InputView = prev.InputView;
+            Translation = prev.Translation;
+            Rotation = prev.Rotation;
+            PivotDistance = prev.PivotDistance;
+            Fov = prev.Fov;
+            Near = prev.Near;
+            Far = prev.Far;
+        }
+
+        /// <summary>
+        /// Apply delta
+        /// </summary>
+        /// <param name="prev"></param>
+        /// <param name="delta"></param>
+        /// <param name="view"></param>
+        /// <param name="rotSpeed"></param>
+        /// <param name="frametime"></param>
+        public CameraProperties(
+            CameraProperties prev,
+            CameraDelta delta,
+            Matrix4x4 view,
+            double rotSpeed = 1,
+            double frametime = 1) : this(prev)
+        {
+            var rotmat = new Matrix4x4(VMath.Inverse(view))
+            {
+                row4 = new Vector4D(0, 0, 0, 1)
+            };
+            if (delta.SetTranslation)
+                Translation = prev.Translation + rotmat * (delta.Translation * frametime);
+
+            if (delta.SetRotation)
+            {
+                var inputrotmat = new Matrix4x4(InputView)
+                {
+                    row4 = new Vector4D(0, 0, 0, 1)
+                };
+                var inrotq = Quaternion.RotationMatrix(inputrotmat.ToSlimDXMatrix());
+                var rottime = frametime * rotSpeed;
+                var rotq = Quaternion.RotationYawPitchRoll((float) (delta.PitchYawRoll.y * rottime),
+                    (float) (delta.PitchYawRoll.x * rottime), (float) (delta.PitchYawRoll.z * rottime));
+                //Rotation = Quaternion.Normalize(inrotq * rotq * Quaternion.Invert(inrotq) * Rotation);
+                Rotation = Quaternion.Normalize(prev.Rotation * Quaternion.Invert(inrotq) * rotq * inrotq);
+            }
+
+            if (delta.SetPivotDistance)
+                PivotDistance = Math.Max(0, prev.PivotDistance + delta.PivotDistance * frametime);
+
+            if (delta.SetFov)
+            {
+                var nfov = VMath.Map(prev.Fov, 0.01, 0.45, 0, 1, TMapMode.Clamp);
+                nfov += delta.Fov * frametime * (nfov + 0.05);
+                Fov = VMath.Map(nfov, 0, 1, 0.01, 0.45, TMapMode.Clamp);
+            }
+
+            if (delta.SetNear)
+                Near = Math.Max(0, prev.Near + delta.Near * frametime);
+
+            if (delta.SetFar)
+                Far = Math.Max(0, prev.Far + delta.Far * frametime);
+        }
+
+        /// <summary>
+        /// Selectively reset to default
+        /// </summary>
+        /// <param name="prev"></param>
+        /// <param name="def"></param>
+        /// <param name="delta"></param>
+        public CameraProperties(
+            CameraProperties prev,
+            CameraProperties def,
+            CameraDelta delta) : this(prev)
+        {
+            if (delta.ResetTranslation) Translation = def.Translation;
+            if (delta.ResetRotation) Rotation = def.Rotation;
+            if (delta.ResetPivotDistance) PivotDistance = def.PivotDistance;
+            if (delta.ResetFov) Fov = def.Fov;
+            if (delta.ResetNear) Near = def.Near;
+            if (delta.ResetFar) Far = def.Far;
+        }
+
+        public ulong GetViewChecksum()
+        {
+            unsafe
+            {
+                double inp = Translation.x; ulong res = *(ulong*)&inp;
+                inp = Translation.y; res ^= *(ulong*)&inp;
+                inp = Translation.z; res ^= *(ulong*)&inp;
+                inp = Rotation.X; res ^= *(ulong*)&inp;
+                inp = Rotation.Y; res ^= *(ulong*)&inp;
+                inp = Rotation.Z; res ^= *(ulong*)&inp;
+                inp = Rotation.W; res ^= *(ulong*)&inp;
+                inp = PivotDistance; res ^= *(ulong*)&inp;
+
+                return InputView.Values.Aggregate(
+                    res,
+                    (current, value) => current ^ (*(ulong*)&value)
+                );
+            }
+        }
+
+        public ulong GetProjChecksum()
+        {
+            unsafe
+            {
+                double inp = Fov; ulong res = *(ulong*)&inp;
+                inp = Near; res ^= *(ulong*)&inp;
+                inp = Far; res ^= *(ulong*)&inp;
+                return res;
+            }
+        }
+
+        public Matrix4x4 GetView() =>
+            VMath.Translate(Translation) *
+            Matrix.RotationQuaternion(Rotation).ToMatrix4x4() *
+            VMath.Translate(0, 0, PivotDistance) * InputView;
+
+        public Matrix4x4 GetProj() =>
+            VMath.PerspectiveLH(Fov, Near, Far, 1.0);
+
+        public override bool Equals(object obj)
+        {
+            if (obj is CameraProperties other)
+            {
+                return GetViewChecksum() == other.GetViewChecksum() &&
+                       GetProjChecksum() == other.GetProjChecksum();
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            unsafe
+            {
+                ulong vchkl = GetViewChecksum();
+                ulong vchkl0 = (vchkl & 0xFFFFFFFF00000000) >> 32;
+                ulong vchkl1 = vchkl & 0x00000000FFFFFFFF;
+                int vchki = (*(int*)&vchkl0) ^ (*(int*)&vchkl1);
+
+                ulong pchkl = GetProjChecksum();
+                ulong pchkl0 = (pchkl & 0xFFFFFFFF00000000) >> 32;
+                ulong pchkl1 = pchkl & 0x00000000FFFFFFFF;
+                int pchki = (*(int*)&pchkl0) ^ (*(int*)&pchkl1);
+
+                return vchki ^ pchki;
+            }
+        }
+
+        public CameraProperties Lerp(CameraProperties other, double alpha)
+        {
+            return new CameraProperties(
+                InputView,
+                VMath.Lerp(Translation, other.Translation, alpha),
+                Quaternion.Slerp(Rotation, other.Rotation, (float)alpha),
+                VMath.Lerp(PivotDistance, other.PivotDistance, alpha),
+                VMath.Lerp(Fov, other.Fov, alpha),
+                Near, Far
+            );
+        }
+    }
+
     public class ModularCam
     {
-        public ModularCam Default { get; set; }
+        public CameraProperties Default { get; set; }
 
-        public Vector3D Translation { get; set; }
-        public Quaternion Rotation { get; set; } = Quaternion.Identity;
-        public double PivotDistance { get; set; }
-        public double Fov { get; set; } = 0.25;
-        public double Near { get; set; } = 0.1;
-        public double Far { get; set; } = 1000;
+        public CameraProperties Properties { get; set; }
 
-        public Matrix4x4 InputView { get; set; } = VMath.IdentityMatrix;
         public Matrix4x4 InputAspect { get; set; } = VMath.IdentityMatrix;
         public double RotationSpeed { get; set; } = 1;
 
-        private readonly XXHash.State32 _xxHashState = XXHash.CreateState32(51423);
+        public ulong ViewChecksum => Properties.GetViewChecksum();
+        private ulong _prevViewChecksum;
 
-        public uint ViewChecksum
-        {
-            get
-            {
-                using (var tempstream = new MemoryStream())
-                {
-                    tempstream.Write(BitConverter.GetBytes(Translation.x), 0, 8);
-                    tempstream.Write(BitConverter.GetBytes(Translation.y), 0, 8);
-                    tempstream.Write(BitConverter.GetBytes(Translation.z), 0, 8);
-                    tempstream.Write(BitConverter.GetBytes(Rotation.X), 0, 4);
-                    tempstream.Write(BitConverter.GetBytes(Rotation.Y), 0, 4);
-                    tempstream.Write(BitConverter.GetBytes(Rotation.Z), 0, 4);
-                    tempstream.Write(BitConverter.GetBytes(Rotation.W), 0, 4);
-                    tempstream.Write(BitConverter.GetBytes(PivotDistance), 0, 8);
-                    foreach (var value in InputView.Values)
-                    {
-                        tempstream.Write(BitConverter.GetBytes(value), 0, 8);
-                    }
-                    tempstream.Position = 0;
-
-                    XXHash.ResetState32(_xxHashState, 51423);
-                    XXHash.UpdateState32(_xxHashState, tempstream);
-                    return XXHash.DigestState32(_xxHashState);
-                }
-            }
-        }
-
-        private uint _prevViewChecksum;
-
-        public uint ProjectionChecksum
-        {
-            get
-            {
-                using (var tempstream = new MemoryStream())
-                {
-                    tempstream.Write(BitConverter.GetBytes(Fov), 0, 8);
-                    tempstream.Write(BitConverter.GetBytes(Near), 0, 8);
-                    tempstream.Write(BitConverter.GetBytes(Far), 0, 8);
-                    tempstream.Position = 0;
-
-                    XXHash.ResetState32(_xxHashState, 51423);
-                    XXHash.UpdateState32(_xxHashState, tempstream);
-                    return XXHash.DigestState32(_xxHashState);
-                }
-            }
-        }
-
-        private uint _prevProjectionChecksum = 0;
+        public ulong ProjectionChecksum => Properties.GetProjChecksum();
+        private ulong _prevProjectionChecksum = 0;
 
         public Matrix4x4 View
         {
@@ -86,9 +240,7 @@ namespace mp.essentials.Camera
                 var chks = ViewChecksum;
                 if (chks != _prevViewChecksum)
                 {
-                    _view = VMath.Translate(Translation) *
-                            Matrix.RotationQuaternion(Rotation).ToMatrix4x4() *
-                            VMath.Translate(0, 0, PivotDistance) * InputView;
+                    _view = Properties.GetView();
                 }
                 _prevViewChecksum = chks;
                 return _view;
@@ -104,7 +256,7 @@ namespace mp.essentials.Camera
                 var chks = ProjectionChecksum;
                 if (chks != _prevProjectionChecksum)
                 {
-                    _proj = VMath.PerspectiveLH(Fov, Near, Far, 1.0);
+                    _proj = Properties.GetProj();
                 }
                 _prevProjectionChecksum = chks;
                 return _proj;
@@ -118,46 +270,10 @@ namespace mp.essentials.Camera
 
         public void Move(CameraDelta delta, double frametime = 1)
         {
-            var rotmat = new Matrix4x4(VMath.Inverse(View))
-            {
-                row4 = new Vector4D(0, 0, 0, 1)
-            };
-            if (delta.SetTranslation)
-                Translation += rotmat * (delta.Translation * frametime);
-            if (delta.SetRotation)
-            {
-                var inputrotmat = new Matrix4x4(InputView)
-                {
-                    row4 = new Vector4D(0, 0, 0, 1)
-                };
-                var inrotq = Quaternion.RotationMatrix(inputrotmat.ToSlimDXMatrix());
-                var rottime = frametime * RotationSpeed;
-                var rotq = Quaternion.RotationYawPitchRoll((float)(delta.PitchYawRoll.y * rottime), (float)(delta.PitchYawRoll.x * rottime), (float)(delta.PitchYawRoll.z * rottime));
-                //Rotation = Quaternion.Normalize(inrotq * rotq * Quaternion.Invert(inrotq) * Rotation);
-                Rotation = Quaternion.Normalize(Rotation * Quaternion.Invert(inrotq) * rotq * inrotq);
-            }
-            if (delta.SetPivotDistance)
-                PivotDistance = Math.Max(0, PivotDistance + delta.PivotDistance * frametime);
-            if (delta.SetFov)
-            {
-                var nfov = VMath.Map(Fov, 0.01, 0.45, 0, 1, TMapMode.Clamp);
-                nfov += delta.Fov * frametime * (nfov + 0.05);
-                Fov = VMath.Map(nfov, 0, 1, 0.01, 0.45, TMapMode.Clamp);
-            }
-            if (delta.SetNear)
-                Near = Math.Max(0, Near + delta.Near * frametime);
-            if (delta.SetFar)
-                Far = Math.Max(0, Far + delta.Far * frametime);
-
-            if (Default != null)
-            {
-                if (delta.ResetTranslation) Translation = new Vector3D(Default.Translation);
-                if (delta.ResetRotation) Rotation = new Quaternion(Default.Rotation.X, Default.Rotation.Y, Default.Rotation.Z, Default.Rotation.W);
-                if (delta.ResetPivotDistance) PivotDistance = Default.PivotDistance;
-                if (delta.ResetFov) Fov = Default.Fov;
-                if (delta.ResetNear) Near = Default.Near;
-                if (delta.ResetFar) Far = Default.Far;
-            }
+            Properties = new CameraProperties(
+                Properties, delta, View, RotationSpeed, frametime
+            );
+            Properties = new CameraProperties(Properties, Default, delta);
         }
     }
 

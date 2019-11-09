@@ -99,95 +99,78 @@ namespace mp.essentials.Nodes.Camera
         [DllImport("C:\\Windows\\System32\\user32.dll")]
         public static extern IntPtr WindowFromPoint(WPoint lpPoint);
 
-        private ModularCam Camera;
-        private WPoint CursorPos;
-        private double PrevFrameTime;
+        private CameraDelta _resetter;
+        private ModularCam _camera;
+        private WPoint _cursorPos;
+        private double _prevFrameTime;
 
-        private MouseInputManager MouseMan = new MouseInputManager();
-        private KeyboardInputManager KeyMan = new KeyboardInputManager();
+        private readonly MouseInputManager _mouseMan = new MouseInputManager();
+        private readonly KeyboardInputManager _keyMan = new KeyboardInputManager();
 
         public void Evaluate(int SpreadMax)
         {
+            var qrot = Quaternion.RotationYawPitchRoll(
+                (float)(FDefRot[0].y * Math.PI * 2),
+                (float)(FDefRot[0].x * Math.PI * 2),
+                (float)(FDefRot[0].z * Math.PI * 2)
+            );
+            var defcam = new CameraProperties(
+                FTrIn[0],
+                FDefTrans[0],
+                qrot,
+                FDefPivotDist[0],
+                FDefFov[0],
+                FDefNear[0],
+                FDefFar[0]
+            );
+
             if (FKeyboard.IsChanged || FMouse.IsChanged)
             {
-                MouseMan.SelectDevice(FMouse[0]);
-                KeyMan.SelectDevice(FKeyboard[0]);
+                _mouseMan.SelectDevice(FMouse[0]);
+                _keyMan.SelectDevice(FKeyboard[0]);
             }
-            if (Camera == null)
+            if (_camera == null)
             {
-                var qrot = Quaternion.RotationYawPitchRoll((float)(FDefRot[0].y * Math.PI * 2), (float)(FDefRot[0].x * Math.PI * 2), (float)(FDefRot[0].z * Math.PI * 2));
-                Camera = new ModularCam()
+                _camera = new ModularCam()
                 {
-                    Default = new ModularCam()
-                    {
-                        Translation = FDefTrans[0],
-                        Rotation = qrot,
-                        PivotDistance = FDefPivotDist[0],
-                        Fov = FDefFov[0],
-                        Near = FDefNear[0],
-                        Far = FDefFar[0]
-                    },
-                    Translation = FDefTrans[0],
-                    Rotation = qrot,
-                    PivotDistance = FDefPivotDist[0],
-                    Fov = FDefFov[0],
-                    Near = FDefNear[0],
-                    Far = FDefFar[0],
+                    Default = defcam,
+                    Properties = defcam,
                     RotationSpeed = FRotSpeed[0]
                 };
             }
-            Camera.InputView = FTrIn[0];
-            Camera.InputAspect = FAspectIn[0];
-            if (FRotSpeed.IsChanged || FResetAll[0]) Camera.RotationSpeed = FRotSpeed[0];
-            if (FDefTrans.IsChanged || FResetAll[0])
-            {
-                Camera.Translation = FDefTrans[0];
-                Camera.Default.Translation = FDefTrans[0];
-            }
-            if (FDefRot.IsChanged || FResetAll[0])
-            {
-                var qrot = Quaternion.RotationYawPitchRoll((float)(FDefRot[0].y * Math.PI * 2), (float)(FDefRot[0].x * Math.PI * 2), (float)(FDefRot[0].z * Math.PI * 2));
-                Camera.Rotation = qrot;
-                Camera.Default.Rotation = qrot;
-            }
-            if (FDefPivotDist.IsChanged || FResetAll[0])
-            {
-                Camera.PivotDistance = FDefPivotDist[0];
-                Camera.Default.PivotDistance = FDefPivotDist[0];
-            }
-            if (FDefFov.IsChanged || FResetAll[0])
-            {
-                Camera.Fov = FDefFov[0];
-                Camera.Default.Fov = FDefFov[0];
-            }
-            if (FDefNear.IsChanged || FResetAll[0])
-            {
-                Camera.Near = FDefNear[0];
-                Camera.Default.Near = FDefNear[0];
-            }
-            if (FDefFar.IsChanged || FResetAll[0])
-            {
-                Camera.Far = FDefFar[0];
-                Camera.Default.Far = FDefFar[0];
-            }
+            if(_resetter == null) _resetter = new CameraDelta();
+
+            _resetter.ResetTranslation = FDefTrans.IsChanged || FResetAll[0];
+            _resetter.ResetRotation = FDefRot.IsChanged || FResetAll[0];
+            _resetter.ResetPivotDistance = FDefPivotDist.IsChanged || FResetAll[0];
+            _resetter.ResetFov = FDefFov.IsChanged || FResetAll[0];
+            _resetter.ResetNear = FDefNear.IsChanged || FResetAll[0];
+            _resetter.ResetFar = FDefFar.IsChanged || FResetAll[0];
+
+            _camera.InputAspect = FAspectIn[0];
+            if (FRotSpeed.IsChanged || FResetAll[0]) _camera.RotationSpeed = FRotSpeed[0];
+
+            _camera.Default = defcam;
+            _camera.Properties = new CameraProperties(_camera.Properties, defcam, _resetter);
+
             if (FDeltas.SliceCount > 0 && FDeltas[0] != null)
             {
                 if (FDeltas.Any(delta => delta.LockCursor))
                 {
-                    SetCursorPos(CursorPos.X, CursorPos.Y);
+                    SetCursorPos(_cursorPos.X, _cursorPos.Y);
                 }
                 else
                 {
-                    GetCursorPos(out CursorPos);
+                    GetCursorPos(out _cursorPos);
                 }
-                var hoverhandle = WindowFromPoint(CursorPos);
+                var hoverhandle = WindowFromPoint(_cursorPos);
                 var parenthandle = GetParent((IntPtr) FHandle[0]);
                 for (int i = 0; i < FDeltas.SliceCount; i++)
                 {
                     var delta = FDeltas[i];
-                    delta.InputMouse = MouseMan.Devices[0];
-                    delta.InputKeyboard = KeyMan.Devices[0];
-                    delta.ConnectedCamera = Camera;
+                    delta.InputMouse = _mouseMan.Devices[0];
+                    delta.InputKeyboard = _keyMan.Devices[0];
+                    delta.ConnectedCamera = _camera;
                     if (FHandle[0] > 0)
                     {
                         delta.InteractUpstream =
@@ -198,15 +181,15 @@ namespace mp.essentials.Nodes.Camera
                     {
                         delta.InteractUpstream = true;
                     }
-                    FFrameTime[0] = FHDEHost.FrameTime - PrevFrameTime;
-                    Camera.Move(delta, FHDEHost.FrameTime - PrevFrameTime);
+                    FFrameTime[0] = FHDEHost.FrameTime - _prevFrameTime;
+                    _camera.Move(delta, FHDEHost.FrameTime - _prevFrameTime);
                 }
             }
-            FCameraOut[0] = Camera;
-            FViewOut[0] = Camera.View;
-            FProjectionOut[0] = Camera.Projection;
-            FProjectionWithAspectOut[0] = Camera.ProjectionWithAspect;
-            PrevFrameTime = FHDEHost.FrameTime;
+            FCameraOut[0] = _camera;
+            FViewOut[0] = _camera.View;
+            FProjectionOut[0] = _camera.Projection;
+            FProjectionWithAspectOut[0] = _camera.ProjectionWithAspect;
+            _prevFrameTime = FHDEHost.FrameTime;
         }
 
         public bool OutputRequiresInputEvaluation(IPluginIO inputPin, IPluginIO outputPin)

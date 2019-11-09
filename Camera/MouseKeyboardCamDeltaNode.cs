@@ -199,7 +199,7 @@ namespace mp.essentials.Nodes.Camera
                     //// Translation
                     var transl = new Vector3D(0, 0, 0);
                     var crot = new Vector3D(0,0,0);
-                    var translinf = VMath.Lerp(1.0, Math.Max(Delta.ConnectedCamera.PivotDistance * 0.25, 0.1), FTranslDistInf[0]);
+                    var translinf = VMath.Lerp(1.0, Math.Max(Delta.ConnectedCamera.Properties.PivotDistance * 0.25, 0.1), FTranslDistInf[0]);
                     if (MouseObserver.MouseClicks[FTranslationXYButton[0]].Pressed && translxykey)
                     {
                         if (!translzkey || FTranslationZKey[0] == Keys.None)
@@ -233,7 +233,7 @@ namespace mp.essentials.Nodes.Camera
                     bool rotate = false;
                     var mouserot = new Vector2D(mousepos * FRotSpeed[0]);
                     if (FInvY[0]) mouserot.y *= -1;
-                    if (Delta.ConnectedCamera.PivotDistance < 0.1) mouserot *= -1;
+                    if (Delta.ConnectedCamera.Properties.PivotDistance < 0.1) mouserot *= -1;
                     if (MouseObserver.MouseClicks[FRotationButton[0]].Pressed && rotkey || forw || backw || left || right || up || down)
                     {
                         if (!rollkey || FRollKey[0] == Keys.None)
