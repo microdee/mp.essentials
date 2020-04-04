@@ -256,6 +256,7 @@
     <Compile Include="Camera\ModularCamNode.cs" />
     <Compile Include="devices\DevicesDirectInputNode.cs" />
     <Compile Include="devices\Hid\HidDeviceWrap.cs" />
+    <Compile Include="devices\Hid\HidSteamController.cs" />
     <Compile Include="devices\Hid\ListDevices.cs" />
     <Compile Include="devices\Hid\OpenDevicesHidNode.cs" />
     <Compile Include="devices\RawInputDevices.cs" />
