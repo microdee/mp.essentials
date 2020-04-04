@@ -109,9 +109,6 @@ namespace mp.essentials.devices.Hid
         [Input("Close", IsBang = true)]
         protected ISpread<bool> CloseIn;
 
-        [Input("Open on Init")]
-        protected ISpread<bool> OpenOnInitIn;
-
         [Output("Output")]
         protected ISpread<HidDeviceWrap> DeviceOut;
 

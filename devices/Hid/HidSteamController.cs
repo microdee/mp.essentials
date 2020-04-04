@@ -86,10 +86,10 @@ namespace mp.essentials.devices.Hid
 
                     // p = 10
                     byte b1 = (byte)input.ReadByte();
-                    GripLeft = (b1 & 0b_00000001) > 0;
-                    Start = (b1 & 0b_00000010) > 0;
-                    SteamButton = (b1 & 0b_00000100) > 0;
-                    Back = (b1 & 0b_00001000) > 0;
+                    GripLeft = (b1 & 0b_10000000) > 0;
+                    Start = (b1 & 0b_01000000) > 0;
+                    SteamButton = (b1 & 0b_00100000) > 0;
+                    Back = (b1 & 0b_00010000) > 0;
 
                     // p = 11
                     byte b2 = (byte)input.ReadByte();
@@ -108,11 +108,6 @@ namespace mp.essentials.devices.Hid
                     TriggerLeft = ((float)input.ReadByte()) / 255.0f;
                     TriggerRight = ((float)input.ReadByte()) / 255.0f;
 
-                    // Status
-                    // p = 13
-                    BatteryMillivolts = input.ReadUshort();
-                    BatteryNormalized = (float)BatteryMillivolts / 3000.0f;
-
                     // analog
                     input.Position = 17;
                     float aX = ((float)input.ReadShort()) / ((float)0x7FFF);
@@ -120,20 +115,21 @@ namespace mp.essentials.devices.Hid
 
                     var rot = -0.04 * VMath.CycToRad;
                     if (tpl1)
-                        TouchpadLeft = TouchpadTouchedLeft ? new Vector2D(
+                        TouchpadLeft = new Vector2D(
                             aX * Math.Cos(rot) - aY * Math.Sin(rot),
                             aX * Math.Sin(rot) + aY * Math.Cos(rot)
-                        ) : Vector2D.Zero;
+                        );
                     else
                         Analog = new Vector2D(aX, aY);
 
                     float bX = ((float)input.ReadShort()) / ((float)0x7FFF);
                     float bY = ((float)input.ReadShort()) / ((float)0x7FFF);
 
-                    TouchpadRight = new Vector2D(
-                        bX * Math.Cos(-rot) - bY * Math.Sin(-rot),
-                        bX * Math.Sin(-rot) + bY * Math.Cos(-rot)
-                    );
+                    if(TouchpadTouchedRight)
+                        TouchpadRight = new Vector2D(
+                            bX * Math.Cos(-rot) - bY * Math.Sin(-rot),
+                            bX * Math.Sin(-rot) + bY * Math.Cos(-rot)
+                        );
 
                     // IMU
                     input.Position = 29;
@@ -207,6 +203,7 @@ namespace mp.essentials.devices.Hid
             }
 
             Output.ResizeAndDismiss(Input.SliceCount, () => new HidSteamController());
+            Output.Stream.IsChanged = true;
             ErrorOut.SliceCount = Output.SliceCount;
 
             for (int i = 0; i < Output.SliceCount; i++)
@@ -224,14 +221,14 @@ namespace mp.essentials.devices.Hid
     public class HidSteamControllerInitNode : IPluginEvaluate
     {
         [Output("Output")]
-        public ISpread<MemoryStream> Output;
+        public ISpread<Stream> Output;
         public void Evaluate(int SpreadMax)
         {
             Output.SliceCount = 1;
             if (Output[0] == null)
             {
                 Output[0] = new MemoryStream(
-                    new byte[]{ 135, 15, 48, 60, 0, 46, 0, 0, 53, 10, 0, 52, 10, 0, 59, 10}
+                    new byte[]{ 0, 135, 15, 48, 60, 0, 46, 0, 0, 53, 10, 0, 52, 10, 0, 59, 10}
                         .Concat(Enumerable.Repeat((byte)0, 48))
                         .ToArray()
                 );
@@ -246,30 +243,35 @@ namespace mp.essentials.devices.Hid
     )]
     public class HidSteamControllerRumbleNode : IPluginEvaluate
     {
-        [Output("Side (Left/Right)")]
+        [Input("Side (Left/Right)")]
         public IDiffSpread<bool> SideIn;
-        [Output("Intensity")]
+        [Input("Intensity")]
         public IDiffSpread<int> IntensityIn;
-        [Output("Period")]
+        [Input("Period")]
         public IDiffSpread<int> PeriodIn;
-        [Output("Count")]
+        [Input("Count")]
         public IDiffSpread<int> CountIn;
-        [Output("Rumble", IsBang = true)]
+        [Input("Rumble", IsBang = true)]
         public IDiffSpread<bool> RumbleIn;
 
         [Output("Output")]
-        public ISpread<MemoryStream> Output;
+        public ISpread<Stream> Output;
         public void Evaluate(int SpreadMax)
         {
             Output.SliceCount = SpreadMax;
-            bool changed = SpreadUtils.AnyChanged(SideIn, IntensityIn, PeriodIn, CountIn);
-            if(!changed) return;
+            //bool changed = SpreadUtils.AnyChanged(SideIn, IntensityIn, PeriodIn, CountIn);
+            //if(!changed) return;
 
             for (int i = 0; i < SpreadMax; i++)
             {
-                if (!RumbleIn[i]) Output[i] = null;
-                var o = new MemoryStream(Enumerable.Repeat((byte)0, 64).ToArray());
+                if (!RumbleIn[i])
+                {
+                    Output[i] = null;
+                    continue;
+                }
+                var o = new MemoryStream(Enumerable.Repeat((byte)0, 65).ToArray());
                 o.Position = 0;
+                o.WriteByte(0);
                 o.WriteByte(143);
                 o.WriteByte(7);
                 o.WriteByte((byte)(SideIn[0] ? 0 : 1));

@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.8.dtd" >
-   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID) help.v4p" scrollx="60" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SteamController (Devices HID) help.v4p" scrollx="60" scrolly="-360">
    <BOUNDS type="Window" left="3255" top="-15270" width="22035" height="13785">
    </BOUNDS>
-   <NODE nodename="SteamController (Devices HID)" componentmode="InAWindow" id="0">
+   <NODE nodename="SteamController (Devices HID)" componentmode="InAWindow" id="0" debug="0">
    <BOUNDS type="Node" left="4995" top="2610" width="4800" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="4995" top="2610" width="0" height="0">
@@ -13,7 +13,7 @@
    </PIN>
    <PIN pinname="Right Touchpad" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="15720" top="1755" width="16290" height="12165">
+   <BOUNDS type="Window" left="23424" top="6492" width="18780" height="11508">
    </BOUNDS>
    <PIN pinname="Grip Right" visible="1">
    </PIN>
@@ -49,7 +49,7 @@
    </PIN>
    <PIN pinname="Triggers" visible="1">
    </PIN>
-   <PIN pinname="Rumble Data" visible="1" slicecount="1" values="||">
+   <PIN pinname="Rumble Data" visible="1" slicecount="1" values="text">
    </PIN>
    <PIN pinname="Reset Settings" visible="1">
    </PIN>
@@ -58,6 +58,10 @@
    <PIN pinname="Device" visible="1">
    </PIN>
    <PIN pinname="Active" visible="1">
+   </PIN>
+   <PIN pinname="Rumble Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InABox" id="16">
@@ -306,26 +310,24 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Projection" dstnodeid="18" dstpinname="Projection">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.9">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="38.0.0">
    </PACK>
    <NODE systemname="SteamControllerVisualization (SteamController Internal)" filename="SteamControllerVisualization (SteamController Internal).v4p" nodename="SteamControllerVisualization (SteamController Internal)" componentmode="Hidden" id="51">
    <BOUNDS type="Node" left="11145" top="4170" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <PIN pinname="Controller State" visible="1">
+   <PIN pinname="Controller State" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Window" left="17055" top="2385" width="11745" height="9540">
+   <BOUNDS type="Window" left="24936" top="4200" width="17244" height="13188">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Controller State" dstnodeid="51" dstpinname="Controller State">
-   </LINK>
    <LINK srcnodeid="51" srcpinname="Layer Out" dstnodeid="18" dstpinname="Layers">
    </LINK>
    <NODE systemname="Frac (Value)" nodename="Frac (Value)" componentmode="Hidden" id="53">
-   <BOUNDS type="Node" left="11250" top="2100" width="100" height="100">
+   <BOUNDS type="Node" left="11250" top="2124" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -368,66 +370,6 @@
    </LINK>
    <LINK srcnodeid="56" srcpinname="Output 1" dstnodeid="54" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="Rumble (SteamController)" filename="Rumble (SteamController).v4p" nodename="Rumble (SteamController)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="10470" top="3315" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Rumble" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Side" slicecount="1" values="Left">
-   </PIN>
-   <PIN pinname="Count" slicecount="1" visible="1" values="3">
-   </PIN>
-   <PIN pinname="Intensity" visible="1">
-   </PIN>
-   <PIN pinname="Period" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Rumble (SteamController)" filename="Rumble (SteamController).v4p" nodename="Rumble (SteamController)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="11385" top="3315" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Side" slicecount="1" values="Right">
-   </PIN>
-   <PIN pinname="Rumble" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Intensity" visible="1">
-   </PIN>
-   <PIN pinname="Period" visible="1">
-   </PIN>
-   <PIN pinname="Count" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="59">
-   <BOUNDS type="Node" left="11250" top="2865" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="XY" visible="1">
-   </PIN>
-   <PIN pinname="X" visible="1">
-   </PIN>
-   <PIN pinname="Y" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="55" srcpinname="OnChange" dstnodeid="59" dstpinname="XY">
-   </LINK>
-   <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="60">
-   <BOUNDS type="Node" left="11040" top="3720" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="11040" top="3720" width="3000" height="3000">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="60" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="60" dstpinname="Input 2">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61">
    <BOUNDS type="Box" left="12465" top="1650" width="795" height="240">
    </BOUNDS>
@@ -444,16 +386,12 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="57" dstpinname="Intensity">
-   </LINK>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="58" dstpinname="Intensity">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62">
    <BOUNDS type="Box" left="12690" top="2010" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="12690" top="2010" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4000">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -464,10 +402,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="57" dstpinname="Period">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="58" dstpinname="Period">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="63">
    <BOUNDS type="Box" left="12900" top="2370" width="795" height="240">
    </BOUNDS>
@@ -484,10 +418,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="63" srcpinname="Y Output Value" dstnodeid="57" dstpinname="Count">
-   </LINK>
-   <LINK srcnodeid="63" srcpinname="Y Output Value" dstnodeid="58" dstpinname="Count">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64">
    <BOUNDS type="Box" left="4860" top="1935" width="480" height="480">
    </BOUNDS>
@@ -507,22 +437,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Reset Settings">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65">
-   <BOUNDS type="Box" left="14130" top="3540" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="14130" top="3540" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="55" srcpinname="OnChange" dstnodeid="65" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="66">
    <BOUNDS type="Node" left="12525" top="1260" width="780" height="270">
@@ -582,34 +496,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="70">
-   <BOUNDS type="Box" left="6225" top="1650" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6225" top="1650" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Steam Controller 1|">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="Undefined">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="70" srcpinname="Output Enum" dstnodeid="0" dstpinname="Device">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Output" dstnodeid="0" dstpinname="Rumble Data">
-   </LINK>
-   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="72">
-   <BOUNDS type="Node" left="10560" top="2295" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Change" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="59" srcpinname="X" dstnodeid="57" dstpinname="Rumble">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Y" dstnodeid="58" dstpinname="Rumble">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="74">
    <BOUNDS type="Box" left="5295" top="3375" width="480" height="480">
    </BOUNDS>
@@ -625,5 +511,61 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Active" dstnodeid="74" dstpinname="Y Input Value">
+   </LINK>
+   <PACK Name="dx11" Version="1.3.1">
+   </PACK>
+   <NODE systemname="SteamControllerRumble (HID)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="SteamControllerRumble (HID)" componentmode="Hidden" id="75">
+   <BOUNDS type="Node" left="10680" top="3312" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10680" top="3312" width="2400" height="2400">
+   </BOUNDS>
+   <PIN pinname="Side (Left/Right)" visible="1">
+   </PIN>
+   <PIN pinname="Rumble" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Intensity" visible="1">
+   </PIN>
+   <PIN pinname="Period" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="76">
+   <BOUNDS type="Box" left="10572" top="2028" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10572" top="2028" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="2" values="1,0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Side (Left/Right)">
+   </LINK>
+   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Intensity">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Period">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Count">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="OnChange" dstnodeid="75" dstpinname="Rumble">
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Output" dstnodeid="0" dstpinname="Rumble Input">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="51" dstpinname="Controller State">
    </LINK>
    </PATCH>

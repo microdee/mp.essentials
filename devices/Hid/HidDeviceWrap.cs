@@ -240,12 +240,12 @@ namespace mp.essentials.devices.Hid
         protected ISpread<ISpread<Stream>> OutputReportIn;
 
         [Input(
-            "Send",
+            "Send Report",
             IsBang = true,
             Order = 105,
             BinOrder = 106
         )]
-        protected ISpread<ISpread<bool>> SendIn;
+        protected ISpread<ISpread<bool>> SendReportIn;
 
         [Output(
             "Input Report",
@@ -261,9 +261,9 @@ namespace mp.essentials.devices.Hid
             {
                 if (FInput[i] == null) continue;
                 var device = FInput[i];
-                for (int j = 0; j < SpreadUtils.SpreadMax(OutputReportIn[i], SendIn[i]); j++)
+                for (int j = 0; j < SpreadUtils.SpreadMax(OutputReportIn[i], SendReportIn[i]); j++)
                 {
-                    if (SendIn[i][j])
+                    if (SendReportIn[i][j])
                     {
                         device.Send(OutputReportIn[i][j]);
                     }
