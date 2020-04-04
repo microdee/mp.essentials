@@ -89,9 +89,9 @@ namespace mp.essentials.devices.Hid
                     Receiver = Descriptor.CreateHidDeviceInputReceiver();
 
                     var options = new OpenConfiguration();
-                    options.SetOption(OpenOption.Exclusive, true);
-                    options.SetOption(OpenOption.Transient, true);
-                    options.SetOption(OpenOption.Interruptible, true);
+                    options.SetOption(OpenOption.Exclusive, false);
+                    options.SetOption(OpenOption.Transient, false);
+                    options.SetOption(OpenOption.Interruptible, false);
                     options.SetOption(OpenOption.Priority, OpenPriority.High);
 
                     Stream = Device.Open(options);
@@ -216,6 +216,7 @@ namespace mp.essentials.devices.Hid
 
     [PluginInfo(
         Name = "Device",
+        Author = "microdee",
         Category = "HID"
     )]
     public class HidDeviceWrapSplitNode : ObjectSplitNode<HidDeviceWrap>
@@ -300,24 +301,28 @@ namespace mp.essentials.devices.Hid
 
     [PluginInfo(
         Name = "HidDeviceInputReceiver",
+        Author = "microdee",
         Category = "HID"
     )]
     public class HidDeviceInputReceiverSplitNode : ObjectSplitNode<HidDeviceInputReceiver> { }
 
     [PluginInfo(
         Name = "Report",
+        Author = "microdee",
         Category = "HID"
     )]
     public class ReportSplitNode : ObjectSplitNode<Report> { }
 
     [PluginInfo(
         Name = "DeviceItem",
+        Author = "microdee",
         Category = "HID"
     )]
     public class DeviceItemSplitNode : ObjectSplitNode<DeviceItem> { }
 
     [PluginInfo(
         Name = "ReportDescriptor",
+        Author = "microdee",
         Category = "HID"
     )]
     public class ReportDescriptorSplitNode : ObjectSplitNode<ReportDescriptor> { }
@@ -411,6 +416,7 @@ namespace mp.essentials.devices.Hid
     [PluginInfo(
         Name = "DeviceCollection",
         Category = "HID",
+        Author = "microdee",
         Help = "Splits a connected composite device which can report multiple HID devices or a collection of devices"
     )]
     public class HidDeviceCollectionSplitNode : ObjectSplitNode<HidDeviceCollection>
@@ -425,6 +431,7 @@ namespace mp.essentials.devices.Hid
     [PluginInfo(
         Name = "HidDevice",
         Category = "HID",
+        Author = "microdee",
         Help = "Gets additional information about an HID device"
     )]
     public class HidDeviceSplitNode : ObjectSplitNode<HidDevice>

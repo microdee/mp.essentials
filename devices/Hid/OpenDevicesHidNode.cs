@@ -109,6 +109,9 @@ namespace mp.essentials.devices.Hid
         [Input("Close", IsBang = true)]
         protected ISpread<bool> CloseIn;
 
+        [Input("Open on Init")]
+        protected ISpread<bool> OpenOnInitIn;
+
         [Output("Output")]
         protected ISpread<HidDeviceWrap> DeviceOut;
 
@@ -139,6 +142,8 @@ namespace mp.essentials.devices.Hid
                     if (CloseIn[i] && DeviceOut[i] != null && DeviceOut[i].Opened)
                     {
                         DeviceOut[i].Close();
+                        DeviceOut[i].Dispose();
+                        DeviceOut[i] = null;
                     }
                 }
                 DeviceOut.Stream.IsChanged = true;

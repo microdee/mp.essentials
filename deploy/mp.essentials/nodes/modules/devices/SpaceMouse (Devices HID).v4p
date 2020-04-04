@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="30" scrolly="-360">
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID).v4p" systemname="SpaceMouse (Deviced HID)" filename="E:\vvvv\libs\mcropack\packs\mp.essentials\nodes\modules\misc\SpaceMouse (Deviced HID).v4p" scrollx="30" scrolly="-360">
    <BOUNDS type="Window" left="14280" top="6105" width="8445" height="11400">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -777,7 +777,7 @@
    </PIN>
    <PIN pinname="Simulate" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="First N Frames" slicecount="1" values="1">
+   <PIN pinname="First N Frames" slicecount="1" values="3">
    </PIN>
    </NODE>
    <LINK srcnodeid="165" srcpinname="Down Edge" dstnodeid="156" dstpinname="Open">

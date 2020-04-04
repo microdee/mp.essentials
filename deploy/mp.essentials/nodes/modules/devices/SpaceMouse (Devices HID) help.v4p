@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.1.dtd" >
-   <PATCH nodename="D:\local\vvvv-gp\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID) help.v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta38.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\mp.essentials\nodes\modules\devices\SpaceMouse (Devices HID) help.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="11775" top="8070" width="7275" height="11130">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
@@ -110,7 +110,7 @@
    </NODE>
    <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="addonpack" Version="38.1.0">
+   <PACK Name="addonpack" Version="38.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
    <BOUNDS type="Box" left="1410" top="3090" width="480" height="480">
@@ -156,7 +156,7 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <PACK Name="dx11" Version="1.3.1.1">
+   <PACK Name="dx11" Version="1.3.1">
    </PACK>
    <PACK Name="KeyboardUI" Version="1.1.1">
    </PACK>

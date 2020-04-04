@@ -11,6 +11,7 @@ namespace mp.essentials.devices.Hid
     [PluginInfo(
         Name = "ListDevices",
         Category = "HID",
+        Author = "microdee",
         Help = "Get all HID devices"
     )]
     public class ListHidDevices : IPluginEvaluate
