@@ -93,8 +93,8 @@
       <HintPath>dlls\GraphSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HidSharp, Version=2.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\HidSharp.2.0.8\lib\net35\HidSharp.dll</HintPath>
+    <Reference Include="HidSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\HidSharp.2.1.0\lib\net35\HidSharp.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>dlls\ICSharpCode.SharpZipLib.dll</HintPath>

@@ -256,7 +256,7 @@ namespace mp.essentials.devices.Hid
 
         public override void OnEvaluateBegin()
         {
-            base.OnEvaluateEnd();
+            base.OnEvaluateBegin();
             for (int i = 0; i < FInput.SliceCount; i++)
             {
                 if (FInput[i] == null) continue;
