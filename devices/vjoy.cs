@@ -32,6 +32,8 @@ namespace mp.essentials.Nodes.Devices
 
         [Output("Enabled")]
         public ISpread<bool> FEnabled;
+        [Output("Axis Present")]
+        public ISpread<bool> FAxisPresent;
         [Output("Status")]
         public ISpread<string> FStatus;
 
@@ -40,7 +42,6 @@ namespace mp.essentials.Nodes.Devices
 
         protected bool init = true;
         protected HID_USAGES[] Axes;
-        protected bool[] AxisPresent;
         protected long[] AxisMaxVal;
         protected long[] AxisMinVal;
         protected int ButtonCount;
@@ -75,16 +76,23 @@ namespace mp.essentials.Nodes.Devices
                     HID_USAGES.HID_USAGE_RZ,
                     HID_USAGES.HID_USAGE_SL0,
                     HID_USAGES.HID_USAGE_SL1,
-                    HID_USAGES.HID_USAGE_WHL
+                    HID_USAGES.HID_USAGE_WHL,
+                    HID_USAGES.HID_USAGE_ACCELERATOR,
+                    HID_USAGES.HID_USAGE_BRAKE,
+                    HID_USAGES.HID_USAGE_CLUTCH,
+                    HID_USAGES.HID_USAGE_STEERING,
+                    HID_USAGES.HID_USAGE_AILERON,
+                    HID_USAGES.HID_USAGE_RUDDER,
+                    HID_USAGES.HID_USAGE_THROTTLE
                 };
-                AxisPresent = new bool[Axes.Length];
+                FAxisPresent.SliceCount = Axes.Length;
                 AxisMaxVal = new long[Axes.Length];
                 AxisMinVal = new long[Axes.Length];
 
                 for (int i = 0; i < Axes.Length; i++)
                 {
-                    AxisPresent[i] = VJInstance.GetVJDAxisExist(FID[0], Axes[i]);
-                    if (AxisPresent[i])
+                    FAxisPresent[i] = VJInstance.GetVJDAxisExist(FID[0], Axes[i]);
+                    if (FAxisPresent[i])
                     {
                         long minv = 0, maxv = 0;
                         VJInstance.GetVJDAxisMin(FID[0], Axes[i], ref minv);
@@ -99,7 +107,7 @@ namespace mp.essentials.Nodes.Devices
             FStatus[0] = Status.ToString();
             for (int i = 0; i < Math.Min(FAxesIn.SliceCount, Axes.Length); i++)
             {
-                if (AxisPresent[i])
+                if (FAxisPresent[i])
                 {
                     VJInstance.SetAxis(
                         (int)(FAxesIn[i]*AxisMaxVal[i] + (1 - FAxesIn[i])*AxisMinVal[i]),
