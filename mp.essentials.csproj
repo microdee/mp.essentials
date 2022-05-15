@@ -350,6 +350,7 @@
     <Compile Include="transform\TransformGetQuaternionNode.cs" />
     <Compile Include="value\BeatValueLFO.cs" />
     <Compile Include="value\BezierSplineTangent.cs" />
+    <Compile Include="value\BinarySearch.cs" />
     <Compile Include="value\LongitudeLatitude.cs" />
     <Compile Include="value\PulseNode.cs" />
     <Compile Include="value\Stopwatch.cs" />

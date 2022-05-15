@@ -213,3 +213,4 @@ FakesAssemblies/
 deploy/*/nodes/plugins/*.dll
 deploy/*/nodes/plugins/*.xml
 version.info
+.idea/
