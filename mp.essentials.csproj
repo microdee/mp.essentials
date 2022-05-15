@@ -374,6 +374,7 @@
     <Compile Include="vvvv\SetCursor.cs" />
     <Compile Include="vvvv\vvvvNodePathNode.cs" />
     <Compile Include="windows\DeleteFolderNode.cs" />
+    <Compile Include="windows\DirectoryExists.cs" />
     <Compile Include="windows\FileCompressorNodes.cs" />
     <Compile Include="windows\HandleWindowsPIDNode.cs" />
     <Compile Include="windows\PIDWindowsHandleNode.cs" />
