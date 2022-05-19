@@ -154,7 +154,8 @@ namespace mp.essentials.Nodes.Generic
         public void Evaluate(int SpreadMax)
         {
             if (IsConfigDefault()) return;
-            if (DynamicPins.InputPins["Input"].Spread[0] == null) return;
+            var spread = DynamicPins.InputPins["Input"].Spread;
+            if (spread.SliceCount <= 0 || spread[0] == null) return;
             bool changed = DynamicPins.InputPins["Input"].Spread.IsChanged;
             var sprmax = DynamicPins.InputPins["Input"].Spread.SliceCount;
             if (changed || FSignature.IsChanged)
