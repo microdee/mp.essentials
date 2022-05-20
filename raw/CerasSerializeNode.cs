@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using Ceras;
 using mp.pddn;
@@ -44,6 +45,9 @@ namespace mp.essentials.raw
         public ISpread<Stream> Output;
         private Spread<byte[]> _output = new Spread<byte[]>();
 
+        [Output("Success")]
+        public ISpread<bool> Success;
+
         public void OnImportsSatisfied()
         {
             _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Input");
@@ -63,6 +67,7 @@ namespace mp.essentials.raw
             if (!_pgready) return;
             if (_typeChanged || _firstFrame || _input.Spread.IsChanged)
             {
+                Success.SliceCount = _input.Spread.SliceCount;
                 Output.Resize(_input.Spread.SliceCount, i => new MemoryStream(), stream => stream?.Dispose());
                 _output.ResizeAndDismiss(_input.Spread.SliceCount, i => null);
                 
@@ -77,7 +82,19 @@ namespace mp.essentials.raw
                         continue;
                     }
                     Output[i].Position = 0;
-                    int length = _ceras.Serialize(obj, ref buf);
+                    int length = 0;
+                    try
+                    {
+                        length = _ceras.Serialize(obj, ref buf);
+                        Success[i] = true;
+                    }
+                    catch
+                    {
+                        Success[i] = false;
+                        _ceras = CerasSerializerHelper.Serializer();
+                        Output[i].SetLength(0);
+                        continue;
+                    }
                     Output[i].SetLength(length);
                     Output[i].Write(buf, 0, length);
                     _output[i] = buf;
@@ -105,7 +122,7 @@ namespace mp.essentials.raw
     public class CerasDeserializeNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import] protected IPluginHost2 FPluginHost;
-        [Import] protected IIOFactory FIOFactory;
+        [Import] protected IIOFactory IOFactory;
         [Import] protected IHDEHost Hde;
         
         private ConfigurableTypePinGroup _pg;
@@ -119,9 +136,12 @@ namespace mp.essentials.raw
         public IDiffSpread<Stream> Input;
         private Spread<byte[]> _input = new Spread<byte[]>();
 
+        [Output("Success")]
+        public ISpread<bool> Success;
+
         public void OnImportsSatisfied()
         {
-            _pg = new ConfigurableTypePinGroup(FPluginHost, FIOFactory, Hde.MainLoop, "Input");
+            _pg = new ConfigurableTypePinGroup(FPluginHost, IOFactory, Hde.MainLoop, "Input");
             _pg.OnTypeChangeEnd += (sender, args) =>
             {
                 _typeChanged = true;
@@ -138,6 +158,7 @@ namespace mp.essentials.raw
             if (!_pgready) return;
             if (_typeChanged || _firstFrame || Input.IsChanged)
             {
+                Success.SliceCount = Input.SliceCount;
                 _output.Spread.SliceCount = Input.SliceCount;
                 _input.ResizeAndDismiss(Input.SliceCount, i => new byte[0]);
                 
@@ -153,16 +174,26 @@ namespace mp.essentials.raw
                         _output[i] = null;
                         continue;
                     }
-                    
-                    if (_output[i] == null)
+
+                    try
                     {
-                        _output[i] = _ceras.Deserialize<object>(_input[i]);
+                        if (_output[i] == null)
+                        {
+                            _output[i] = _ceras.Deserialize<object>(_input[i]);
+                        }
+                        else
+                        {
+                            var obj = _output[i];
+                            _ceras.Deserialize(ref obj, _input[i]);
+                            _output[i] = obj;
+                        }
                     }
-                    else
+                    catch
                     {
-                        var obj = _output[i];
-                        _ceras.Deserialize(ref obj, _input[i]);
-                        _output[i] = obj;
+                        Success[i] = false;
+                        _ceras = CerasSerializerHelper.Serializer();
+                        _output[i] = null;
+                        continue;
                     }
                 }
                 _output.SetReflectedChanged(true);
