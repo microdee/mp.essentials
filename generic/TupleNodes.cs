@@ -189,6 +189,7 @@ namespace mp.essentials.Nodes.Generic
                 for (int i = 0; i < sprmax; i++)
                 {
                     var tuple = DynamicPins.InputPins["Input"].Spread[i];
+                    if (tuple == null) continue;
                     foreach (var prop in tuple.GetType().GetProperties())
                     {
                         var val = prop.GetValue(tuple);
