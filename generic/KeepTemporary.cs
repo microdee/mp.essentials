@@ -24,6 +24,7 @@ namespace mp.essentials.Nodes.generic
     {
         private class KeptObjectMeta : IMainlooping
         {
+            public object Key;
             public object Object;
             public readonly StopwatchInteractive Dethklok = new StopwatchInteractive();
             public readonly StopwatchInteractive Age = new StopwatchInteractive();
@@ -55,10 +56,12 @@ namespace mp.essentials.Nodes.generic
         private DiffSpreadPin _input;
         private SpreadPin _output;
 
-        [Input("Keep Time", IsBang = true)]
+        [Input("Keep Time")]
         public ISpread<double> FKeepTime;
         [Input("Reset", IsBang = true)]
         public ISpread<bool> FReset;
+        [Input("Treat All as Unique")]
+        public ISpread<bool> FTreatAllAsUnique;
 
         [Output("Age")]
         public ISpread<double> FAge;
@@ -83,8 +86,8 @@ namespace mp.essentials.Nodes.generic
                 if (_pgready) return;
                 _pgready = true;
 
-                _input = _pg.AddInput(new InputAttribute("Input") { Order = 10 });
-                _output = _pg.AddOutput(new OutputAttribute("Output"));
+                _input = _pg.AddInput(new InputAttribute("Input") { Order = -1 });
+                _output = _pg.AddOutput(new OutputAttribute("Output") { Order = -1 });
             };
         }
 
@@ -102,9 +105,10 @@ namespace mp.essentials.Nodes.generic
             for (int i = 0; i < _input.Spread.SliceCount; i++)
             {
                 if(_input[i] == null) continue;
-                if (_kept.ContainsKey(_input[i]))
+                var keyObj = FTreatAllAsUnique.TryGetSlice(0) ? Guid.NewGuid() : _input[i];
+                if (_kept.ContainsKey(keyObj))
                 {
-                    var kometa = _kept[_input[i]];
+                    var kometa = _kept[keyObj];
                     kometa.KeepFor = FKeepTime[i];
                     kometa.Object = _input[i];
                     if (kometa.Dethklok.IsRunning)
@@ -118,10 +122,11 @@ namespace mp.essentials.Nodes.generic
                 {
                     var kometa = new KeptObjectMeta()
                     {
+                        Key = keyObj,
                         Object = _input[i],
                         KeepFor = FKeepTime[i]
                     };
-                    _kept.Add(_input[i], kometa);
+                    _kept.Add(keyObj, kometa);
                 }
             }
 
@@ -133,7 +138,7 @@ namespace mp.essentials.Nodes.generic
                 var found = false;
                 for (int i = 0; i < _input.Spread.SliceCount; i++)
                 {
-                    if (_input[i] != keptObj.Object) continue;
+                    if (_input[i] != keptObj.Key) continue;
                     found = true;
                     break;
                 }
@@ -145,7 +150,7 @@ namespace mp.essentials.Nodes.generic
 
                 if (keptObj.Dethklok.Elapsed.TotalSeconds > keptObj.KeepFor)
                 {
-                    _removables.AddLast(keptObj.Object);
+                    _removables.AddLast(keptObj.Key);
                 }
             }
 
