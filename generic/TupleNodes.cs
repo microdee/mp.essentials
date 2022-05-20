@@ -7,9 +7,59 @@ using System.Text;
 using System.Threading.Tasks;
 using mp.pddn;
 using VVVV.PluginInterfaces.V2;
+using VVVV.Utils.VColor;
+using VVVV.Utils.VMath;
 
 namespace mp.essentials.Nodes.Generic
 {
+    public static class TupleNodeHeper
+    {
+        public static readonly Dictionary<string, Type> SimplifiedTypeMapping = new Dictionary<string, Type>
+        {
+            {"value", typeof(double) },
+            {"double", typeof(double) },
+            {"float", typeof(float) },
+            {"int", typeof(int) },
+            {"string", typeof(string) },
+            {"vector2d", typeof(Vector2D) },
+            {"vector3d", typeof(Vector3D) },    
+            {"vector4d", typeof(Vector4D) },
+            {"vector2", typeof(Vector2D) },
+            {"vector3", typeof(Vector3D) },
+            {"vector4", typeof(Vector4D) },
+            {"vec2", typeof(Vector2D) },
+            {"vec3", typeof(Vector3D) },
+            {"vec4", typeof(Vector4D) },
+            {"matrix", typeof(Matrix4x4) },
+            {"matrix4x4", typeof(Matrix4x4) },
+            {"transform", typeof(Matrix4x4) },
+            {"color", typeof(RGBAColor) }
+        };
+        
+        public static readonly Type[] BareBoneTupleTypes = new []
+        {
+            typeof(Tuple<>),
+            typeof(Tuple<,>),
+            typeof(Tuple<,,>),
+            typeof(Tuple<,,,>),
+            typeof(Tuple<,,,,>),
+            typeof(Tuple<,,,,,>),
+            typeof(Tuple<,,,,,,>)
+        };
+
+        public static Type MakeTupleFromSignature(string signature, out Type[] types)
+        {
+            types = signature.Split('\\')
+                .Where(tn => !string.IsNullOrWhiteSpace(tn))
+                .Take(7)
+                .Select(tn => tn.Trim())
+                .Select(tn => SimplifiedTypeMapping.ContainsKey(tn) ? SimplifiedTypeMapping[tn].FullName : tn)
+                .Where(tn => tn != null)
+                .Select(tn => Type.GetType(tn, true))
+                .ToArray();
+            return BareBoneTupleTypes[types.Length - 1].MakeGenericType(types);
+        }
+    }
     [PluginInfo(
         Name = "Tuple",
         Category = "Node",
@@ -19,7 +69,7 @@ namespace mp.essentials.Nodes.Generic
     public class JoinTupleNode : ConfigurableDynamicPinNode<string>, IPluginEvaluate
     {
         [Import]
-        protected IIOFactory FIOFactory;
+        protected IIOFactory IOFactory;
 
         [Config("Signature", DefaultString = "")]
         public IDiffSpread<string> FSignature;
@@ -27,7 +77,7 @@ namespace mp.essentials.Nodes.Generic
         protected override void PreInitialize()
         {
             ConfigPinCopy = FSignature;
-            DynamicPins = new PinDictionary(FIOFactory);
+            DynamicPins = new PinDictionary(IOFactory);
         }
 
         protected override bool IsConfigDefault()
@@ -40,25 +90,11 @@ namespace mp.essentials.Nodes.Generic
             if(IsConfigDefault()) return;
             DynamicPins.RemoveAllInput();
             DynamicPins.RemoveAllOutput();
-            var ptypesnames = FSignature[0].Split('\\');
-            var typesnames = ptypesnames.Take(Math.Min(ptypesnames.Length, 7)).ToArray();
-            var typelist = typesnames.Select(tn => Type.GetType(tn, true)).ToArray();
 
-            var uglytuplebarebones = new []
-            {
-                typeof(Tuple<>),
-                typeof(Tuple<,>),
-                typeof(Tuple<,,>),
-                typeof(Tuple<,,,>),
-                typeof(Tuple<,,,,>),
-                typeof(Tuple<,,,,,>),
-                typeof(Tuple<,,,,,,>)
-            };
-
-            TupleType = uglytuplebarebones[typesnames.Length-1].MakeGenericType(typelist);
+            TupleType = TupleNodeHeper.MakeTupleFromSignature(FSignature[0], out var typeList);
             DynamicPins.AddOutput(TupleType, new OutputAttribute("Output"));
             var item = 0;
-            foreach (var t in typelist)
+            foreach (var t in typeList)
             {
                 DynamicPins.AddInput(t, new InputAttribute("Item" + (item+1)));
                 item++;
@@ -73,7 +109,7 @@ namespace mp.essentials.Nodes.Generic
         {
             if(IsConfigDefault()) return;
             bool changed = DynamicPins.InputPins.Values.Any(pin => pin.Spread.IsChanged);
-            var sprmax = DynamicPins.InputPins.Values.Max(pin => pin.Spread.SliceCount);
+            var sprmax = DynamicPins.InputSpreadMin > 0 ? DynamicPins.InputSpreadMax : 0;
             if (changed || FSignature.IsChanged)
             {
                 DynamicPins.OutputPins["Output"].Spread.SliceCount = sprmax;
@@ -122,25 +158,11 @@ namespace mp.essentials.Nodes.Generic
             if (IsConfigDefault()) return;
             DynamicPins.RemoveAllInput();
             DynamicPins.RemoveAllOutput();
-            var ptypesnames = FSignature[0].Split('\\');
-            var typesnames = ptypesnames.Take(Math.Min(ptypesnames.Length, 7)).ToArray();
-            var typelist = typesnames.Select(tn => Type.GetType(tn, true)).ToArray();
-
-            var uglytuplebarebones = new []
-            {
-                typeof(Tuple<>),
-                typeof(Tuple<,>),
-                typeof(Tuple<,,>),
-                typeof(Tuple<,,,>),
-                typeof(Tuple<,,,,>),
-                typeof(Tuple<,,,,,>),
-                typeof(Tuple<,,,,,,>)
-            };
-
-            TupleType = uglytuplebarebones[typesnames.Length - 1].MakeGenericType(typelist);
+            
+            TupleType = TupleNodeHeper.MakeTupleFromSignature(FSignature[0], out var typeList);
             DynamicPins.AddInput(TupleType, new InputAttribute("Input"));
             var item = 0;
-            foreach (var t in typelist)
+            foreach (var t in typeList)
             {
                 DynamicPins.AddOutput(t, new OutputAttribute("Item" + (item + 1)));
                 item++;
