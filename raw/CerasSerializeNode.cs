@@ -187,6 +187,7 @@ namespace mp.essentials.raw
                             _ceras.Deserialize(ref obj, _input[i]);
                             _output[i] = obj;
                         }
+                        Success[i] = true;
                     }
                     catch
                     {
