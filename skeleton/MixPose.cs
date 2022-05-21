@@ -20,10 +20,14 @@ namespace mp.essentials.Nodes.SkeletonV2
      )]
     public class V2SkeletonMixPose : ConfigurableDynamicPinNode<int>, IPluginEvaluate
     {
-        [Config("Pose Count", DefaultValue = 2)] public IDiffSpread<int> FPoseCount;
+        [Config("Pose Count", DefaultValue = 2)]
+        public IDiffSpread<int> FPoseCount;
+        
         [Input("Animation Only", Order = 10000, DefaultBoolean = true)]
         public ISpread<bool> FAnimOnly;
-        [Output("Skeleton")] public ISpread<ISkeleton> FOut;
+        
+        [Output("Skeleton")]
+        public ISpread<ISkeleton> FOut;
 
         [Import] public IIOFactory FIOFactory;
 
@@ -76,6 +80,7 @@ namespace mp.essentials.Nodes.SkeletonV2
                 return;
             }
             if (Pins.InputPins.Values.Any(pin => pin.Spread[0] == null)) return;
+            FOut.SliceCount = Pins.InputSpreadMax;
             if (Pins.InputChanged)
             {
                 FOut.Stream.IsChanged = true;
