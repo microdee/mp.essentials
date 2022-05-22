@@ -23,19 +23,21 @@ namespace mp.essentials.Nodes.SkeletonV2
     {
         public static void CopyData(this ISkeleton src, ISkeleton dst)
         {
+            if (src == null || dst == null) return;
             if (src.JointTable.Count != dst.JointTable.Count || src.Uid != dst.Uid)
             {
                 dst.ClearAll();
-                dst.Root = src.Root.DeepCopy();
+                dst.Root = src.Root?.DeepCopy() ?? dst.Root;
                 dst.BuildJointTable();
                 dst.Uid = src.Uid;
             }
-            foreach (var joint in src.JointTable.Keys)
-            {
-                if(!dst.JointTable.ContainsKey(joint)) continue;
-                dst.JointTable[joint].BaseTransform = src.JointTable[joint].BaseTransform;
-                dst.JointTable[joint].AnimationTransform = src.JointTable[joint].AnimationTransform;
-            }
+            if (src.JointTable != null)
+                foreach (var joint in src.JointTable.Keys)
+                {
+                    if(!dst.JointTable.ContainsKey(joint)) continue;
+                    dst.JointTable[joint].BaseTransform = src.JointTable[joint].BaseTransform;
+                    dst.JointTable[joint].AnimationTransform = src.JointTable[joint].AnimationTransform;
+                }
         }
     }
 
