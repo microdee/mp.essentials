@@ -344,6 +344,7 @@
     <Compile Include="string\ControlDragAndDropNode.cs" />
     <Compile Include="string\FixStringClipboardNode.cs" />
     <Compile Include="string\NodeStringFormatNode.cs" />
+    <Compile Include="string\ReaderFileByLine.cs" />
     <Compile Include="string\StatesStateServerNode.cs" />
     <Compile Include="string\StringAddHeadCutTailNode.cs" />
     <Compile Include="string\StringDistanceNodes.cs" />
